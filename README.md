@@ -1,3 +1,3 @@
 # SentrySight
-# Hi This is Jenil Shingala 
+# Jenil Shingala 
 # CJ Pallari
