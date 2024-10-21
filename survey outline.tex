@@ -1,0 +1,130 @@
+\documentclass[a4paper,10pt,oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{wasysym}% provides \ocircle and \Box
+\usepackage{enumitem}% easy control of topsep and leftmargin for lists
+\usepackage{color}% used for background color
+\usepackage{forloop}% used for \Qrating and \Qlines
+\usepackage{ifthen}% used for \Qitem and \QItem
+\usepackage{typearea}
+\areaset{17cm}{26cm}
+\setlength{\topmargin}{-1cm}
+\usepackage{scrlayer-scrpage}
+\pagestyle{headings}
+\ihead{Firearm Detection Assessment}
+\ohead{\pagemark}
+\chead{}
+\cfoot{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Beginning of questionnaire command definitions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \Qq = Questionnaire question. 
+\newcommand{\Qq}[1]{\textbf{#1}}
+
+%% \QO = Circle or box to be ticked.
+\newcommand{\QO}{$\Box$}% or: $\ocircle$
+
+%% \Qrating = Automatically create a rating scale with NUM steps.
+\newcounter{qr}
+\newcommand{\Qrating}[1]{\QO\forloop{qr}{1}{\value{qr} < #1}{---\QO}}
+
+%% \Qline = Line for filling in text.
+\newcommand{\Qline}[1]{\noindent\rule{#1}{0.6pt}}
+
+%% \Qlines = Insert multiple lines with given width.
+\newcounter{ql}
+\newcommand{\Qlines}[1]{\forloop{ql}{0}{\value{ql}<#1}{\vskip0em\Qline{\linewidth}}}
+
+%% \Qlist = Multiple choice list with tick boxes.
+\newenvironment{Qlist}{%
+\renewcommand{\labelitemi}{\QO}
+\begin{itemize}[leftmargin=1.5em,topsep=-.5em]
+}{%
+\end{itemize}
+}
+
+%% \Qtab = Tabulator simulation.
+\newlength{\qt}
+\newcommand{\Qtab}[2]{
+\setlength{\qt}{\linewidth}
+\addtolength{\qt}{-#1}
+\hfill\parbox[t]{\qt}{\raggedright #2}
+}
+
+%% \Qitem = Item with automatic numbering.
+\newcounter{itemnummer}
+\newcommand{\Qitem}[2][]{% #1 optional, #2 necessary
+\ifthenelse{\equal{#1}{}}{\stepcounter{itemnummer}}{}
+\ifthenelse{\equal{#1}{a}}{\stepcounter{itemnummer}}{}
+\begin{enumerate}[topsep=2pt,leftmargin=2.8em]
+\item[\textbf{\arabic{itemnummer}#1.}] #2
+\end{enumerate}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of questionnaire command definitions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+\textbf{\huge Firearm Detection Safety Assessment}
+\end{center}\vskip1em
+
+\noindent This survey will assess your current safety measures and explore the benefits of integrating AI firearm detection in your business. Your responses will help us understand your needs and offer solutions that enhance safety.
+
+\section*{Business Information}
+
+\Qitem{ \Qq{Business Name}: \Qline{8cm} }
+
+\Qitem{ \Qq{Industry Type (e.g., retail, office, restaurant)}: \Qline{8cm} }
+
+\Qitem{ \Qq{Number of employees at this location:} \Qline{5cm} }
+
+\Qitem{ \Qq{How many customers or visitors does your business receive daily?} \Qline{5cm} }
+
+\section*{Current Safety Measures}
+
+\Qitem{ \Qq{Do you currently have any firearm detection technology installed?} \hskip0.4cm \QO{} Yes \hskip0.5cm \QO{} No }
+
+\Qitem{ \Qq{What other safety measures do you have in place? (Check all that apply)} 
+\begin{Qlist}
+    \item Surveillance cameras
+    \item Security guards
+    \item Panic buttons
+    \item Emergency lockdown procedures
+    \item None of the above
+\end{Qlist}
+}
+
+\Qitem{ \Qq{How effective do you think your current safety measures are in preventing gun violence incidents?}
+
+\Qtab{3cm}{Not effective \Qrating{5} Very effective}
+}
+
+\section*{AI Firearm Detection Integration}
+
+\Qitem{ \Qq{Would you be interested in implementing AI firearm detection technology that can instantly alert law enforcement?} 
+\begin{Qlist}
+    \item Yes, definitely
+    \item Possibly, I would like more information
+    \item No, I am not interested
+\end{Qlist}
+}
+
+\Qitem{ \Qq{What level of priority would you give to improving firearm detection in your safety strategy?}
+
+\Qtab{3cm}{Low priority \Qrating{5} High priority}
+}
+
+\Qitem{ \Qq{How important is the speed of police response in ensuring safety at your business?}
+
+\Qtab{3cm}{Not important \Qrating{5} Extremely important}
+}
+
+\Qitem{ \Qq{What concerns would you have about integrating AI firearm detection technology?} \Qlines{3} }
+
+\Qitem{ \Qq{If you would like to share any other thoughts or suggestions about safety improvements, please do so below:} \Qlines{4} }
+
+\end{document}
