@@ -1,0 +1,38 @@
+.features {
+    padding: 40px;
+    background-color: #f4f4f4; /* Light background */
+    text-align: center; /* Center text */
+  }
+  
+  .features-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between items */
+  }
+  
+  .feature-item {
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    transition: transform 0.3s; /* Animation */
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  .feature-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .feature-description {
+    color: #666; /* Grey color for description */
+  }
+  
