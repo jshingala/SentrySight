@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header.jsx';
+import Hero from './Hero.jsx';
+import FAQ from './FAQ.jsx';
+import Blog from './Blog.jsx';
 import Features from './Features.jsx';
 import News from './News.jsx';
 import Socials from './Socials.jsx';
 import Contact from './Contact.jsx'; // Import the Contact component
 import Testimonials from './Testimonials.jsx'; // Import the Testimonials component
 import Questionnaire from './Questionnaire.jsx';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './CSS.css';
 
 function App() {

@@ -47,7 +47,7 @@ function Contact() {
           placeholder="Your Message"
           required
         ></textarea>
-        <button type="submit" className="contact-button">Send Message</button>
+        <button type="submit" className="contact-buttonm">Send Message</button>
       </form>
     </section>
   );
