@@ -1,21 +1,29 @@
-/* src/Socials.css */
 .socials {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* Space between icons */
-}
-
-.social-icons a {
-  font-size: 24px; /* Icon size */
-  color: #333; /* Icon color */
-  transition: color 0.3s; /* Smooth color transition */
-}
-
-.social-icons a:hover {
-  color: #0073e6; /* Change color on hover */
-}
+    padding: 40px;
+    background-color: #282c34; /* Dark background */
+    color: white; /* Text color */
+    text-align: center; /* Center text */
+  }
+  
+  .socials-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .socials-links {
+    display: flex;
+    justify-content: center; /* Center links */
+    gap: 15px; /* Space between links */
+  }
+  
+  .social-link {
+    color: #61dafb; /* Light blue color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.2em;
+    transition: color 0.3s; /* Smooth color transition */
+  }
+  
+  .social-link:hover {
+    color: #21a1f1; /* Darker blue on hover */
+  }
+  

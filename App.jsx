@@ -1,94 +1,87 @@
-// src/App.jsx
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from "framer-motion";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header.jsx';
+import AboutUs from './AboutUs.jsx';
 import Hero from './Hero.jsx';
 import FAQ from './FAQ.jsx';
 import Blog from './Blog.jsx';
 import Features from './Features.jsx';
 import News from './News.jsx';
 import Socials from './Socials.jsx';
-import Testimonials from './Testimonials.jsx';
 import Contact from './Contact.jsx';
-import Modal from './Modal.jsx';
+import Testimonials from './Testimonials.jsx';
+import Questionnaire from './Questionnaire.jsx';
+import Demo from './Demo.jsx';
+import SignUp from './SignUp.jsx';
 import './CSS.css';
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [feedback, setFeedback] = useState('');
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleFeedbackChange = (event) => {
-    setFeedback(event.target.value);
-  };
-
-  const submitFeedback = (event) => {
-    event.preventDefault();
-    alert(`Feedback submitted: ${feedback}`);
-    setFeedback(''); // Clear feedback after submission
-    closeModal(); // Close modal after submitting
-  };
-
   return (
-    <div className="App">
-      <Header />
-      <main className="main-content">
-        <section id="home" className="banner">
-          <h2>Your Banner Title</h2>
-          <p>This is a sample tagline. Customize it as you wish.</p>
-        </section>
+    <Router>
+      <div className="App">
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={ 
+              <>
+                <Hero />
+                <section className="intro">
+                  <div className="container">
+                    <h2>Welcome to SentrySight</h2>
+                    <p>Your trusted solution for advanced security.</p>
+                  </div>
+                </section>
 
-        <section id="about" className="banner2">
-          <h2>About Us</h2>
-        </section>
+                <section className="features">
+                  <div className="container">
+                    <h2>Key Features</h2>
+                    <div className="feature-cards">
+                      <div className="feature-card">
+                        <h3>Real-time Monitoring</h3>
+                        <p>Monitor events as they happen, with real-time alerts.</p>
+                      </div>
+                      <div className="feature-card">
+                        <h3>AI-powered Detection</h3>
+                        <p>Leverage AI for smarter, faster decision-making.</p>
+                      </div>
+                      <div className="feature-card">
+                        <h3>Easy Integration</h3>
+                        <p>Seamlessly integrate with your existing systems.</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
-        <section id="demo" className="features">
-          <h2>Demo Section</h2>
-          <p>Highlight some demo features here.</p>
-        </section>
+                <section className="cta">
+                  <div className="container">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Take the first step towards smarter security solutions. Join us today!</p>
+                    <div className="cta-buttons">
+                      <a href="/sign-up" className="btn-primary">Sign Up</a>
+                      <a href="/demo" className="btn-secondary">See Demo</a> {/* This button now links to /demo */}
+                    </div>
+                  </div>
+                </section>
 
-        <section id="questionnaire" className="cta">
-          <h2>Questionnaire</h2>
-          <p>Encourage users to take the questionnaire here.</p>
-        </section>
-
-        <section id="sign-up" className="features">
-          <h2>Sign Up / Register</h2>
-          <p>Encourage users to sign up here.</p>
-          <button onClick={openModal}>Open Modal</button>
-        </section>
-
-        <Hero />
-        <Features />
-        <News />
-        <Testimonials />
-        <Contact />
-
-        <Modal 
-          isOpen={isModalOpen} 
-          onClose={closeModal}
-          content={
-            <form onSubmit={submitFeedback}>
-              <h3>Submit Your Feedback</h3>
-              <textarea 
-                value={feedback}
-                onChange={handleFeedbackChange}
-                placeholder="Write your feedback here..."
-                required
-              />
-              <button type="submit">Submit</button>
-            </form>
-          }
-        />
-        
-        <Socials />
-      </main>
-
-      <footer className="footer">
-        <p>&copy; SentrySight. All rights reserved.</p>
-      </footer>
-    </div>
+                <Features />
+                <News />
+                <Testimonials />
+                <Contact />
+                <Socials />
+              </>
+            } />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/demo" element={<Demo />} /> {/* Ensures the demo page is routed */}
+            <Route path="/questionnaire" element={<Questionnaire />} />
+            <Route path="/sign-up" element={<SignUp />} />
+          </Routes>
+        </main>
+        <footer className="footer">
+          <p>&copy; SentrySight. All rights reserved.</p>
+        </footer>
+      </div>
+    </Router>
   );
 }
 

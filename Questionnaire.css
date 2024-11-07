@@ -1,0 +1,192 @@
+/* General Styling */
+body {
+    background-color: #f4f4f4; /* Light background for better contrast with the form */
+    color: #333; /* Dark text for better readability */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Questionnaire Styling */
+.questionnaire {
+    max-width: 800px; /* Increase max width to match demo */
+    width: 100%; /* Make it responsive */
+    margin: 20px;
+    padding: 30px; /* Add more padding for spacing */
+    background-color: #fff; /* White background for better contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text to the left for better readability */
+}
+
+/* Header Styling */
+h1, h2 {
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem; /* Larger font size for title */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+h2 {
+    font-size: 1.8rem; /* Larger font size for subheading */
+    margin-top: 30px; /* Add more space above */
+    margin-bottom: 10px; /* Space between subheading and next content */
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 25px; /* Increased spacing between form groups */
+}
+
+/* Label Styling */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444; /* Darker color for labels */
+    font-size: 1.2rem; /* Slightly larger font size for labels */
+}
+
+/* Input and Select Styles */
+input[type="text"],
+input[type="number"],
+input[type="range"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1rem;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #aaa;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+/* Checkbox Styles */
+input[type="checkbox"] {
+    accent-color: #4CAF50; /* Green color for checkboxes */
+}
+
+/* Range Slider */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Button Styling */
+button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Demo Page Style (for the page surrounding the questionnaire) */
+.demo-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.demo-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.demo-page p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.demo-details {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.demo-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.demo-details p {
+    font-size: 1rem;
+    color: #444;
+}
+
+.cta {
+    margin-top: 40px;
+}
+
+.cta .btn-primary {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn-primary:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Form Layout */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .questionnaire {
+        padding: 15px;
+    }
+}
