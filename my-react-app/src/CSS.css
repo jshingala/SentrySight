@@ -161,3 +161,10 @@
   .socials a:hover {
     color: #fff; /* Brighter color on hover */
   }
+
+  .error {
+    color: red;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  

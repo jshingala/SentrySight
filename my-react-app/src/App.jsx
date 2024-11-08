@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './Header.jsx';
 import Hero from './Hero.jsx';
 import FAQ from './FAQ.jsx';
@@ -11,7 +11,8 @@ import Testimonials from './Testimonials.jsx';
 import Contact from './Contact.jsx'; 
 import Modal from './Modal.jsx'; 
 import Demo from './Demo.jsx'; // Import Demo page
-import Login from './login.jsx';
+import Login from './login';
+import Register from './register'
 import './CSS.css';
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
             />
             <Route path="/demo" element={<Demo />} /> {/* Route to Demo */}
             <Route path="/sign-up" element={<Login />} /> {/* Route to Demo */}
+            <Route path="/register" element={<Register />} /> {/* Route to Sign Up*/}
           </Routes>
         </main>
         <footer className="footer">
