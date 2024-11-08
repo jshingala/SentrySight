@@ -1,163 +1,270 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #333;
-    color: white;
-    padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.header:hover {
+  background-color: #444;
+}
+
+.logo h1 {
+  margin: 0;
+}
+
+.nav ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+}
+
+.nav ul li {
+  margin-left: 20px;
+}
+
+.nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav ul li a:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+.App {
+  font-family: Arial, sans-serif;
+  color: #30c403;
+}
+
+.main-content {
+  padding: 100px;
+}
+
+.banner {
+  background: #f5f5f5;
+  padding: 50px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.banner:hover {
+  background-color: #eaeaea;
+}
+
+.banner2 {
+  background: #ffcdcd;
+  padding: 50px;
+  text-align: center;
+}
+
+.features,
+.cta {
+  padding: 30px;
+  text-align: center;
+}
+
+.footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.footer:hover {
+  background-color: #444;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.feature-item {
+  background-color: #1d1d2e;
+  padding: 30px;
+  border-radius: 8px;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: scale(1.05);
+}
+
+.feature-item .icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 50px;
+  height: 3px;
+  background-color: #e04b8a;
+  margin: 20px auto;
+}
+
+.news-section {
+  background-color: #e04b8a;
+  color: white;
+  padding: 40px;
+  text-align: center;
+}
+
+.news-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.news-section p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.news-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.news-form input[type="email"] {
+  padding: 10px;
+  border: 1px solid #e08a9b;
+  border-radius: 4px;
+  background-color: #e56276;
+  color: white;
+}
+
+.news-form input[type="email"]::placeholder {
+  color: #ffdde2;
+}
+
+.news-form button {
+  padding: 10px 20px;
+  background-color: white;
+  color: #e04b8a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.news-form button:hover {
+  background-color: #ffd4db;
+  transform: scale(1.05);
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding: 100px;
+  background-color: #1c1c24;
+}
+
+.socials a {
+  color: #ccc;
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.socials a:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
   }
-  
-  .logo h1 {
-    margin: 0;
-  }
-  
+
   .nav ul {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-  }
-  
-  .nav ul li {
-    margin-left: 20px;
-  }
-  
-  .nav ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav ul li a:hover {
-    text-decoration: underline;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
   }
 
-
-
-  .App {
-    font-family: Arial, sans-serif;
-    color: #30c403;
-  }
-  
   .main-content {
-    padding: 100px;
-  }
-  
-  .banner {
-    background: #f5f5f5;
-    padding: 50px;
-    text-align: center;
-  }
-
-  .banner2 {
-    background: #ffcdcd;
-    padding: 50px;
-    text-align: center;
-  }
-  
-  .features,
-  .cta {
-    padding: 30px;
-    text-align: center;
-  }
-  
-  .footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
     padding: 20px;
   }
- 
+
+  .banner,
+  .banner2,
+  .features,
+  .cta,
+  .news-section,
+  .socials {
+    padding: 20px;
+    text-align: center;
+  }
 
   .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .feature-item {
-    background-color: #1d1d2e;
-    padding: 30px;
-    border-radius: 8px;
-    color: #fff;
-  }
-  
-  .feature-item .icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .divider {
-    width: 50px;
-    height: 3px;
-    background-color: #e04b8a;
-    margin: 20px auto;
+    grid-template-columns: 1fr;
   }
 
-  .news-section {
-    background-color: #e04b8a;
-    color: white;
-    padding: 40px;
+  .socials {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .feature-item {
+    padding: 20px;
+  }
+
+  .news-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .news-form input[type="email"] {
+    width: 100%;
+  }
+
+  .footer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
     text-align: center;
   }
-  
-  .news-section h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+
+  .logo h1 {
+    font-size: 1.5rem;
   }
-  
-  .news-section p {
-    font-size: 1rem;
-    margin-bottom: 20px;
+
+  .nav ul li {
+    margin-left: 0;
   }
-  
-  .news-form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .news-form input[type="email"] {
-    padding: 10px;
-    border: 1px solid #e08a9b;
-    border-radius: 4px;
-    background-color: #e56276;
-    color: white;
-  }
-  
-  .news-form input[type="email"]::placeholder {
-    color: #ffdde2;
-  }
-  
-  .news-form button {
-    padding: 10px 20px;
-    background-color: white;
-    color: #e04b8a;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .news-form button:hover {
-    background-color: #ffd4db;
-  }
-  
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    padding: 100px;
-    background-color: #1c1c24; /* Set the dark background */
-  }
-  
+
   .socials a {
-    color: #ccc; /* Light color for icons */
-    font-size: 24px; /* Adjust icon size */
-    text-decoration: none;
-    transition: color 0.3s;
+    font-size: 20px;
   }
-  
-  .socials a:hover {
-    color: #fff; /* Brighter color on hover */
+
+  .banner,
+  .banner2,
+  .features,
+  .cta,
+  .news-section {
+    padding: 15px;
   }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+}
