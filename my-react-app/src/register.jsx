@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Register extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Register extends Component {
         business_name: '',
         contact_number: '',
         address: null,
-        _share: false
+        _share: false,
+        successMessage: ''  //This will hold the success message
     };
   }
 
@@ -38,10 +40,8 @@ class Register extends Component {
             if (data.error) {
                 // If there's an error, display it to the user
                 this.setState({ errorMessage: data.error });
-              } else {
-                // Handle successful registration (you can redirect or show success)
-                console.log('Data inserted successfully:', data);
-                this.setState({ errorMessage: '' }); // Clear any existing error
+              }else {
+                this.setState({ successMessage: "You're successfully registered!", errorMessage: '' });
               }
         })
         .catch(error => {
@@ -55,6 +55,18 @@ class Register extends Component {
     return (
       <div className="register">
         <h2>Register</h2>
+        {this.state.successMessage && 
+        <div className="success">
+            {this.state.successMessage}     {/*Success Message*/}
+            <div className="to_login">
+            <Link to="/login">
+              <button>Go back to Sign-up</button>
+            </Link>
+          </div>    
+        </div>
+        } 
+
+        {!this.state.successMessage &&(
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>Email: </label>
@@ -101,6 +113,7 @@ class Register extends Component {
           </div>
           <button type="submit">Register</button>
         </form>
+        )}
         
         {/* Display the error message */}
         {this.state.errorMessage && <div className="error">{this.state.errorMessage}</div>}

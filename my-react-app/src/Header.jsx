@@ -14,7 +14,7 @@ function Header() {
           <li className="nav-item"><Link className="nav-link" to="/about">About Us</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/demo">Demo</Link></li> {/* Update this line */}
           <li className="nav-item"><Link className="nav-link" to="/questionnaire">Questionnaire</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/sign-up">Sign Up / Register</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/login">Sign Up / Register</Link></li>
         </ul>
       </nav>
     </header>

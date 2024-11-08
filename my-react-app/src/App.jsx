@@ -84,7 +84,7 @@ function App() {
               } 
             />
             <Route path="/demo" element={<Demo />} /> {/* Route to Demo */}
-            <Route path="/sign-up" element={<Login />} /> {/* Route to Demo */}
+            <Route path="/login" element={<Login />} /> {/* Route to Demo */}
             <Route path="/register" element={<Register />} /> {/* Route to Sign Up*/}
           </Routes>
         </main>
