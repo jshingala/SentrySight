@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import './Hero.css';
 
 function Hero() {
@@ -6,7 +7,9 @@ function Hero() {
     <section className="hero">
       <h1>Welcome to Sentry Sight</h1>
       <p>Your security is our priority.</p>
-      <button>Get Started</button>
+      <Link to="/demo">
+        <button>Get Started</button>  {/* Wrap the button inside a Link component */}
+      </Link>
     </section>
   );
 }

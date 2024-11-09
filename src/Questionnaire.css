@@ -1,8 +1,8 @@
 /* General Styling */
 body {
-    background-color: #121212; /* Dark background similar to prototype */
-    color: #FFFFFF; /* White text for contrast */
-    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light background for better contrast with the form */
+    color: #333; /* Dark text for better readability */
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,44 +10,48 @@ body {
     margin: 0;
 }
 
+/* Questionnaire Styling */
 .questionnaire {
-    max-width: 600px; /* Limit the width for better readability */
-    width: 100%; /* Responsive width */
+    max-width: 800px; /* Increase max width to match demo */
+    width: 100%; /* Make it responsive */
     margin: 20px;
-    padding: 20px;
-    background-color: #1E1E1E; /* Slightly lighter background for contrast */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px; /* Add more padding for spacing */
+    background-color: #fff; /* White background for better contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text to the left for better readability */
 }
 
 /* Header Styling */
 h1, h2 {
-    color: #e0e0e0;
+    color: #333;
     font-weight: bold;
     text-align: center;
 }
 
 h1 {
-    font-size: 2em;
-    margin-bottom: 0.5em;
+    font-size: 2.5rem; /* Larger font size for title */
+    margin-bottom: 20px; /* Space below the title */
 }
 
 h2 {
-    font-size: 1.2em;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    font-size: 1.8rem; /* Larger font size for subheading */
+    margin-top: 30px; /* Add more space above */
+    margin-bottom: 10px; /* Space between subheading and next content */
 }
 
 /* Form Group Styling */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Increased spacing between form groups */
 }
 
+/* Label Styling */
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #b0b0b0;
+    color: #444; /* Darker color for labels */
+    font-size: 1.2rem; /* Slightly larger font size for labels */
 }
 
 /* Input and Select Styles */
@@ -57,26 +61,26 @@ input[type="range"],
 select,
 textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #444;
+    padding: 12px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #2b2b2b; /* Darker background for inputs */
-    color: #e0e0e0;
-    font-size: 1em;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1rem;
 }
 
 input[type="text"]::placeholder,
 textarea::placeholder {
-    color: #888888;
+    color: #aaa;
 }
 
 textarea {
-    min-height: 80px;
+    min-height: 100px;
 }
 
 /* Checkbox Styles */
 input[type="checkbox"] {
-    accent-color: #FFC107;
+    accent-color: #4CAF50; /* Green color for checkboxes */
 }
 
 /* Range Slider */
@@ -84,7 +88,7 @@ input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
     height: 8px;
-    background: #888888;
+    background: #ddd;
     outline: none;
     border-radius: 5px;
 }
@@ -94,37 +98,95 @@ input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #FFC107;
+    background: #4CAF50;
     border-radius: 50%;
     cursor: pointer;
 }
 
 /* Button Styling */
 button {
-    background-color: #FFC107;
-    color: #121212;
+    background-color: #4CAF50;
+    color: #fff;
     padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.2rem;
     font-weight: bold;
     width: 100%;
     transition: background 0.3s ease;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 button:hover {
-    background-color: #FFA000;
+    background-color: #45a049;
+}
+
+/* Demo Page Style (for the page surrounding the questionnaire) */
+.demo-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.demo-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.demo-page p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.demo-details {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.demo-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.demo-details p {
+    font-size: 1rem;
+    color: #444;
+}
+
+.cta {
+    margin-top: 40px;
+}
+
+.cta .btn-primary {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn-primary:hover {
+    background-color: #45a049;
 }
 
 /* Responsive Form Layout */
 @media (max-width: 600px) {
     h1 {
-        font-size: 1.8em;
+        font-size: 2rem;
     }
 
     h2 {
-        font-size: 1.1em;
+        font-size: 1.6rem;
+    }
+
+    .questionnaire {
+        padding: 15px;
     }
 }

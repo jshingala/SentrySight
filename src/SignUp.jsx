@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import './SignIn.css'; // Import the CSS file for styling
 
 class Register extends Component {
   constructor(props) {
@@ -53,13 +54,13 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="register">
-        <h2>Register</h2>
+      <div className="sign-up">
+        <h2>Sign Up / Register</h2>
         {this.state.successMessage && 
         <div className="success">
             {this.state.successMessage}     {/*Success Message*/}
             <div className="to_login">
-            <Link to="/login">
+            <Link to="/sign-in">
               <button>Go back to Sign-up</button>
             </Link>
           </div>    
@@ -67,7 +68,7 @@ class Register extends Component {
         } 
 
         {!this.state.successMessage &&(
-        <form onSubmit={this.handleSubmit}>
+        <form className="sign-up-form" onSubmit={this.handleSubmit}>
           <div>
             <label>Email: </label>
             <input

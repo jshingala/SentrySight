@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from "framer-motion";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header.jsx';
+import AboutUs from './AboutUs.jsx';
 import Hero from './Hero.jsx';
 import FAQ from './FAQ.jsx';
 import Blog from './Blog.jsx';
 import Features from './Features.jsx';
 import News from './News.jsx';
 import Socials from './Socials.jsx';
-import Contact from './Contact.jsx'; // Import the Contact component
-import Testimonials from './Testimonials.jsx'; // Import the Testimonials component
+import Contact from './Contact.jsx';
+import Testimonials from './Testimonials.jsx';
 import Questionnaire from './Questionnaire.jsx';
+import Demo from './Demo.jsx';
+import Login from './SignIn.jsx';
+import Register from './SignUp.jsx'
 import './CSS.css';
 
 function App() {
@@ -19,40 +24,59 @@ function App() {
         <Header />
         <main className="main-content">
           <Routes>
-            <Route path="/questionnaire" element={<Questionnaire />} />
-            <Route path="/" element={
+            <Route path="/" element={ 
               <>
-                <section className="banner">
-                  <h2>Your Banner Title</h2>
-                  <p>This is a sample tagline. Customize it as you wish.</p>
+                <Hero />
+                <section className="intro">
+                  <div className="container">
+                    <h2>Welcome to SentrySight</h2>
+                    <p>Your trusted solution for advanced security.</p>
+                  </div>
                 </section>
-                <section className="banner2">
-                  <h2>Insert picture</h2>
-                </section>
+
                 <section className="features">
-                  <h2>Features Section</h2>
-                  <p>Highlight some key features here.</p>
+                  <div className="container">
+                    <h2>Key Features</h2>
+                    <div className="feature-cards">
+                      <div className="feature-card">
+                        <h3>Real-time Monitoring</h3>
+                        <p>Monitor events as they happen, with real-time alerts.</p>
+                      </div>
+                      <div className="feature-card">
+                        <h3>AI-powered Detection</h3>
+                        <p>Leverage AI for smarter, faster decision-making.</p>
+                      </div>
+                      <div className="feature-card">
+                        <h3>Easy Integration</h3>
+                        <p>Seamlessly integrate with your existing systems.</p>
+                      </div>
+                    </div>
+                  </div>
                 </section>
-                <section className="features">
-                  <p>Highlight some key features here.</p>
-                  <h2>Features Section</h2>
-                </section>
+
                 <section className="cta">
-                  <h2>Call to Action</h2>
-                  <p>Encourage users to take action here.</p>
+                  <div className="container">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Take the first step towards smarter security solutions. Join us today!</p>
+                    <div className="cta-buttons">
+                      <a href="/sign-up" className="btn-primary">Sign Up</a>
+                      <a href="/demo" className="btn-secondary">See Demo</a> {/* This button now links to /demo */}
+                    </div>
+                  </div>
                 </section>
-                <section className="banner">
-                  <h2>Title</h2>
-                  <p>Description.</p>
-                  <div className="divider"></div>
-                </section>
+
                 <Features />
                 <News />
-                <Testimonials /> {/* Add the Testimonials component */}
-                <Contact /> {/* Add the Contact component */}
+                <Testimonials />
+                <Contact />
                 <Socials />
               </>
             } />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/demo" element={<Demo />} /> {/* Ensures the demo page is routed */}
+            <Route path="/questionnaire" element={<Questionnaire />} />
+            <Route path="/sign-in" element={<Login />} />
+            <Route path="/sign-up" element={<Register />} />
           </Routes>
         </main>
         <footer className="footer">

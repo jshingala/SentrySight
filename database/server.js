@@ -20,14 +20,32 @@ con.connect(function (err) {
   console.log("Connected to database!");
 });
 
-// Getting data from the database
-app.get('/business', (req, res) => {
-  const query = "SELECT * FROM Business";
+// Login system - get the database and see if there is matching email & password
+app.post('/sign-in', (req, res) => {
+  const { email, password } = req.body;
 
-  con.query(query, (err, results)=>{
-    if (err) throw err;
+  if (!email || !password){
+    return res.status(400).json({ error: 'Please fill out your email or password.' });
+  }
 
-    res.json({ business: results });
+  const query = "SELECT email, login_password FROM Business WHERE email = ?";
+  con.query(query, [email], (err, results)=>{
+    if (err) {
+      console.log('Error type:', err.code);
+    }
+
+    if (results.length > 0){  //If the email exists
+      const checkPassword = results[0].login_password;
+      //console.log('Detected login password for the id: ' + checkPassword);
+
+      if (checkPassword === password){
+        res.json({ message: 'Login data matches!', results });
+      }else{
+        res.status(400).json({ error: 'Incorrect password.' })
+      }
+    }else{
+      res.status(404).json({ error: 'Email not found.' });
+    }
   })
 });
 
