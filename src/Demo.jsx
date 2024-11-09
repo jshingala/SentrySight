@@ -1,6 +1,6 @@
 // Demo.jsx
 import React from 'react';
-import './Demo.css';  // Ensure to import CSS for styling
+import './demo.css';  // Ensure to import CSS for styling
 import { motion } from 'framer-motion';
 
 function Demo() {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Questionnaire.css'; // Import your CSS file
+import './questionnaire.css'; // Import your CSS file
 
 const Questionnaire = () => {
     const [formData, setFormData] = useState({

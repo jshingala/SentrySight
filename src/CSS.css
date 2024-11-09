@@ -1,226 +1,177 @@
-/* General Reset */
+/* Global Reset */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  color: #30c403;
+/* Global Colors */
+:root {
+  --primary-bg: #1A1A1A;      /* Dark background */
+  --secondary-bg: #333333;    /* Dark gray for sections */
+  --primary-text: #FFFFFF;    /* White text */
+  --secondary-text: #B3B3B3;  /* Light gray text */
+  --accent-color: #27AE60;    /* Lime green accent */
 }
 
-/* Header */
+/* Global Body Styling */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  line-height: 1.6;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Header Styling */
 .header {
+  background-color: var(--secondary-bg);
+  padding: 12px 20px;
+  color: var(--primary-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #333;
-  color: white;
-  padding: 20px 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo h1 {
-  margin: 0;
-}
-
-.nav ul {
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-}
-
-.nav ul li {
-  margin-left: 20px;
-}
-
-.nav ul li a {
-  color: white;
+/* Logo Link Styling with a Single Green Outline */
+.logo-link {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-color); /* Lime green color */
+  text-transform: uppercase;
   text-decoration: none;
-  font-size: 1.1rem;
+  padding: 5px 12px;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.nav ul li a:hover {
-  text-decoration: underline;
+.logo-link:hover {
+  transform: scale(1.05); /* Hover effect */
 }
 
-/* Main Content */
-.App {
-  font-family: Arial, sans-serif;
-  color: #30c403;
-}
 
-.main-content {
-  padding: 50px 100px;
-  background: #f5f5f5;
-}
-
-/* Banner Section */
-.banner {
-  background: #f5f5f5;
-  padding: 50px 20px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.banner h2 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.banner p {
-  font-size: 1.1rem;
-  color: #666;
-}
-
-/* Second Banner Section */
-.banner2 {
-  background: #ffcdcd;
-  padding: 50px 20px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.banner2 h2 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-/* Features Section */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+/* Navigation */
+.nav-list {
+  list-style: none;
+  display: flex;
   gap: 20px;
+}
+
+.nav-link {
+  color: var(--primary-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
   text-align: center;
+  padding: 100px 20px;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--primary-text);
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: var(--secondary-text);
   margin-bottom: 40px;
-}
-
-.feature-item {
-  background-color: #1d1d2e;
-  padding: 30px;
-  border-radius: 8px;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item .icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* Call to Action Section */
 .cta {
-  background: #e04b8a;
-  color: white;
-  padding: 50px 20px;
-  text-align: center;
-  margin-bottom: 40px;
+  margin-top: 50px;
 }
 
 .cta h2 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  color: var(--primary-text);
+  margin-bottom: 15px;
 }
 
 .cta p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  font-size: 1.15rem;
+  color: var(--secondary-text);
+  margin-bottom: 30px;
 }
 
-/* Divider */
-.divider {
-  width: 50px;
-  height: 3px;
-  background-color: #e04b8a;
-  margin: 20px auto;
-}
-
-/* News Section */
-.news-section {
-  background-color: #e04b8a;
-  color: white;
-  padding: 40px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.news-section h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.news-section p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-.news-form {
+/* CTA Buttons */
+.cta-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
-.news-form input[type="email"] {
-  padding: 10px;
-  border: 1px solid #e08a9b;
-  border-radius: 4px;
-  background-color: #e56276;
-  color: white;
-}
-
-.news-form input[type="email"]::placeholder {
-  color: #ffdde2;
-}
-
-.news-form button {
-  padding: 10px 20px;
-  background-color: white;
-  color: #e04b8a;
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--primary-text);
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.news-form button:hover {
-  background-color: #ffd4db;
-}
-
-/* Socials Section */
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 40px 0;
-  background-color: #1c1c24;
-}
-
-.socials a {
-  color: #ccc;
-  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 50px;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.socials a:hover {
-  color: #fff;
+.btn-primary:hover {
+  background-color: #219150; /* Slightly darker lime green */
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-text);
+  transform: scale(1.05);
 }
 
 /* Footer */
 .footer {
-  background: #333;
-  color: #fff;
+  background-color: var(--secondary-bg);
+  color: var(--secondary-text);
   text-align: center;
   padding: 20px;
-  margin-top: 60px;
 }
 
 .footer p {
-  font-size: 1rem;
+  margin: 0;
 }
