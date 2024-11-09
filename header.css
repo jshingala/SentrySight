@@ -1,0 +1,102 @@
+/* Header Styling */
+header {
+  background-color: #1E1E1E;  /* Dark background for the header */
+  padding: 8px 16px;  /* Reduced padding for a smaller header */
+  text-align: center;  /* Center the header text */
+  width: 100%;  /* Ensure the header spans the full width */
+  position: fixed;  /* Fix the header at the top of the page */
+  top: 0;  /* Position it at the top */
+  left: 0;  /* Ensure it starts from the left edge */
+  z-index: 1000;  /* Ensure it stays on top of other content */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Smaller shadow for a cleaner look */
+}
+
+/* Header Text Styling */
+h1 {
+  color: white; /* Set text color to white */
+  font-size: 1.5rem; /* Reduced font size for a smaller logo */
+  font-weight: 200;  /* Lighter font weight for less bold text */
+  margin: 0; /* Remove default margin */
+  letter-spacing: 0.5px;  /* Tighter letter spacing */
+  text-transform: uppercase; /* Keep text uppercase for a modern feel */
+  z-index: 1001;  /* Ensure the header text stays above other elements */
+  display: inline-block; /* Ensure it doesn't take full width */
+  
+  /* Lime Green Border for a detection feel */
+  border: 2px solid limegreen; /* Smaller border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 0 6px limegreen; /* Subtle glow effect around the border */
+  
+  /* Set the background color of the text box to white */
+  background-color: white; /* Background color of the text box */
+  padding: 5px 12px; /* Reduced padding */
+  margin-left: 20px; /* Move it slightly to the left to adjust spacing */
+}
+
+/* Ensure the logo link (Sentry Sight) is visible */
+.logo-link {
+  display: inline-block; /* Make it an inline block for better clickability */
+  color: inherit; /* Inherit color from the header */
+  text-decoration: none; /* Remove underline */
+  margin-left: 0;  /* Reset left margin */
+  padding: 0; /* Remove extra padding */
+}
+
+/* Navigation Styling */
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 12px;  /* Further reduced spacing between nav items */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem; /* Reduced font size for nav links */
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: limegreen !important; /* Highlight color on hover */
+}
+
+/* Optional - Responsiveness */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.25rem;  /* Further reduce font size for smaller screens */
+  }
+
+  .nav-list {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    margin: 8px 0;
+  }
+}
+
+/* Container for the logo link */
+.logo-link {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  padding: 0;
+}
+
+/* Header Title Styling */
+.logo-link h1 {
+  transform: scale(1); /* Set the initial scale */
+  transition: transform 0.3s ease-in-out; /* Smoother scaling transition */
+}
+
+/* Hover Effect for Smooth Zoom */
+.logo-link:hover h1 {
+  transform: scale(1.05); /* Gradual zoom-in on hover */
+}
