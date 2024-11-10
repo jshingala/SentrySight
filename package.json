@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "react-scripts start"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.8",

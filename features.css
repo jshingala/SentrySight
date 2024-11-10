@@ -1,0 +1,58 @@
+/* Features Section */
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #f4f4f4; /* Light background */
+  text-align: center;
+  width: 100vw; /* Full viewport width */
+  max-width: 1200px; /* Limit width on larger screens */
+  margin: 0 auto; /* Center on the page */
+}
+
+/* Title Styling */
+.features-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between items */
+  width: 100%; /* Full width of container */
+  justify-items: center;
+}
+
+/* Feature Item Styling */
+.feature-item {
+  background-color: #fff; /* White background */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  width: 100%;
+  max-width: 300px; /* Limit item width for consistent sizing */
+  transition: transform 0.3s ease; /* Smooth animation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.feature-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Feature Title and Description */
+.feature-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.feature-description {
+  color: #666; /* Grey color for description */
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 10px;
+}
