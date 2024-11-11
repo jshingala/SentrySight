@@ -15,6 +15,8 @@ import Questionnaire from './Questionnaire.jsx';
 import Demo from './Demo.jsx';
 import Login from './SignIn.jsx';
 import Register from './SignUp.jsx';
+import CTA from './CTA.jsx';
+import Footer from './Footer.jsx';
 import './CSS.css';
 
 function App() {
@@ -27,23 +29,10 @@ function App() {
             <Route path="/" element={ 
               <>
                 <Hero />
-
                 <Features />
                 <News />
                 <Testimonials />
-
-                {/* Moved CTA Section Here */}
-                <section className="cta">
-                  <div className="container">
-                    <h2>Ready to Get Started?</h2>
-                    <p>Take the first step towards smarter security solutions. Join us today!</p>
-                    <div className="cta-buttons">
-                      <a href="/sign-up" className="btn-primary">Sign Up</a>
-                      <a href="/demo" className="btn-secondary">See Demo</a>
-                    </div>
-                  </div>
-                </section>
-
+                <CTA />
                 <Contact />
                 <Socials />
               </>
@@ -55,9 +44,7 @@ function App() {
             <Route path="/sign-up" element={<Register />} />
           </Routes>
         </main>
-        <footer className="footer">
-          <p>&copy; SentrySight. All rights reserved.</p>
-        </footer>
+        <Footer />
       </div>
     </Router>
   );

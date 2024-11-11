@@ -1,16 +1,13 @@
-/* footer.css */
 .footer {
-    background-color: #333; /* Dark grey background */
+    background-color: #333; /* Dark background */
     color: white;
-    padding: 20px 0;
     text-align: center;
-    width: 100%;
-    margin: 0; /* Remove any default margin */
-    position: relative;
-    left: 0;
-}
-
-.footer p {
-    margin: 0; /* Removes extra space around text */
-    font-size: 0.9em;
-}
+    padding: 20px;
+    margin-top: 60px;
+  }
+  
+  .footer p {
+    font-size: 1rem;
+    margin: 0;
+  }
+  

@@ -1,53 +1,29 @@
-/* Hero Section */
 .hero {
   position: relative;
-  height: 100vh;           /* Full viewport height */
-  width: 100vw;            /* Full viewport width */
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
-/* YouTube Video as Background */
-.hero-video iframe {
+.hero-video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* Ensures the video covers the hero section */
+  object-fit: cover;
   z-index: -1;
 }
 
-/* Optional Overlay for Better Text Readability */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* Dark overlay */
-  z-index: 0;
-}
-
-/* Hero Content */
 .hero-content {
   position: absolute;
-  bottom: 20px;             /* Position content 20px above the bottom */
-  left: 20px;               /* Position content 20px from the left */
-  z-index: 1;               /* Ensure content is above video and overlay */
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
   color: #ffffff;
-  max-width: 80%;           /* Limit width for larger screens */
+  max-width: 80%;
 }
 
-/* Hero Content Styling */
-.hero-content p {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  line-height: 1.4;
-}
-
-/* CTA Buttons */
 .cta-buttons {
   display: flex;
   gap: 20px;
@@ -64,7 +40,7 @@
 }
 
 .btn-primary {
-  background-color: #4CAF50; /* Green color */
+  background-color: #4CAF50;
 }
 
 .btn-primary:hover {
