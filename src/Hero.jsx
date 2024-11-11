@@ -5,16 +5,15 @@ import './Hero.css';
 function Hero() {
   return (
     <section className="hero">
-      {/* Background YouTube Video */}
-      <div className="hero-video">
-        <iframe
-          src="https://www.youtube.com/embed/7ilMLBuujQc?autoplay=1&mute=1&loop=1&playlist=7ilMLBuujQc" // Loop by adding playlist ID
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          title="Background Video"
-        ></iframe>
-      </div>
+      {/* Background Video */}
+      <video
+        className="hero-video"
+        src="/sunglasses-girl.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
       {/* Hero Content */}
       <motion.div className="hero-content">

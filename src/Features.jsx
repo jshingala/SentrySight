@@ -6,6 +6,8 @@ function Features() {
     { title: "Feature 1", description: "Description for feature 1." },
     { title: "Feature 2", description: "Description for feature 2." },
     { title: "Feature 3", description: "Description for feature 3." },
+    { title: "Feature 4", description: "Description for feature 4." },
+
   ];
 
   return (
