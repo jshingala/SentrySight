@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "react-scripts start"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
@@ -27,13 +26,15 @@
     "@eslint/js": "^9.13.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.3",
+    "@vitejs/plugin-react-swc": "^latest_version",
     "eslint": "^9.13.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "tailwindcss": "^latest_version",
+    "autoprefixer": "^latest_version"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "keywords": [],
