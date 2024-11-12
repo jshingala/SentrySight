@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "concurrently \"npm run start-server\" \"npm run dev\"",
+    "start-server": "node database/server.js"
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
@@ -22,7 +24,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-scripts": "^5.0.1",
-    "react-typed": "^2.0.12"
+    "react-typed": "^2.0.12",
+    "concurrently": "^7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
