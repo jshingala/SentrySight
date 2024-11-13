@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import './SignIn.css'; // Import the CSS file for styling
+import './SignUp.css'; // Import the CSS file for styling
 
-const Login = () => {
+const Login = ({ setUserEmail }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,6 +30,8 @@ const Login = () => {
         if (data.error) {
           setErrorMessage(data.error);
         } else {
+          setUserEmail(email); // Store the email in App state
+          setErrorMessage('');
           alert("You're successfully signed in!");
           navigate('/'); // Redirect to home page
         }

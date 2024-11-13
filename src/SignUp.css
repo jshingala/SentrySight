@@ -26,6 +26,7 @@
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: black;
   }
   
   .sign-up-form button {
@@ -36,9 +37,19 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 15px;
   }
   
   .sign-up-form button:hover {
     background-color: #0056b3;
   }
   
+  .success {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #00fb2a;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // Import AnimatePresence for transitions
 import './header.css';
 
-function Header() {
+function Header({ userEmail }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -22,7 +22,12 @@ function Header() {
           <li className="nav-item"><Link className="nav-link" to="/about">About Us</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/demo">Demo</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/questionnaire">Questionnaire</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/sign-in">Register / Sign In</Link></li>
+          {/* Conditionally render Register/Sign In or Profile */}
+          <li className="nav-item">
+            <Link className="nav-link" to={userEmail ? "/profile" : "/sign-in"}>
+              {userEmail ? "Profile" : "Register / Sign In"}
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
