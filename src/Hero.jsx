@@ -2,27 +2,37 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './Hero.css';
 
-function Hero() {
+const Hero = () => {
   return (
-    <section className="hero">
+    <div className="hero">
       {/* Background Video */}
       <video
-        className="hero-video"
-        src="/sunglasses-girl.mp4"
+        className="video-bg"
+        src="/videoBg.mp4" // Reference to the video in the public folder
         autoPlay
         loop
         muted
         playsInline
       />
 
+      {/* Overlay for styling */}
+      <div className="bg-overlay"></div>
+
       {/* Hero Content */}
       <motion.div className="hero-content">
-        <motion.p
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: 'easeOut' }}
         >
-          Experience peace of mind with cutting-edge technology that keeps your home and business safe.
+          Experience Peace of Mind
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.8, ease: 'easeOut' }}
+        >
+          Cutting-edge technology to keep your home and business safe.
         </motion.p>
         <div className="cta-buttons">
           <motion.a
@@ -30,7 +40,7 @@ function Hero() {
             className="btn-primary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.8, ease: 'easeOut' }}
+            transition={{ duration: 2, ease: 'easeOut' }}
           >
             Get Started
           </motion.a>
@@ -39,14 +49,14 @@ function Hero() {
             className="btn-secondary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2, ease: 'easeOut' }}
+            transition={{ duration: 2.2, ease: 'easeOut' }}
           >
             Learn More
           </motion.a>
         </div>
       </motion.div>
-    </section>
+    </div>
   );
-}
+};
 
 export default Hero;
