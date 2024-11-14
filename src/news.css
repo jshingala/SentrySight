@@ -1,38 +1,41 @@
 .news {
-    padding: 40px;
-    background-color: #fff; /* White background */
-    text-align: center; /* Center text */
-  }
-  
-  .news-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .news-list {
-    display: flex;
-    flex-direction: column; /* Vertical layout */
-    gap: 20px; /* Space between items */
-  }
-  
-  .news-item {
-    background-color: #f9f9f9; /* Light grey background */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 20px;
-    transition: background-color 0.3s; /* Animation */
-  }
-  
-  .news-item:hover {
-    background-color: #e0f7fa; /* Change background on hover */
-  }
-  
-  .news-item-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .news-item-description {
-    color: #666; /* Grey color for description */
-  }
-  
+  padding: 40px;
+  background-color: #1A1A1A; /* Dark background */
+  text-align: center;
+  color: #FFFFFF; /* White text */
+}
+
+.news-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #6A0DAD; /* Purple accent for title */
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.news-item {
+  background-color: #2C2C2C; /* Dark gray background */
+  border: 1px solid #444; /* Darker border */
+  border-radius: 8px;
+  padding: 20px;
+  transition: background-color 0.3s;
+  color: #B3B3B3; /* Light gray text */
+}
+
+.news-item:hover {
+  background-color: #3A3A3A; /* Slightly lighter dark gray on hover */
+}
+
+.news-item-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #6A0DAD; /* Purple accent for item titles */
+}
+
+.news-item-description {
+  color: #888; /* Light gray for description */
+}

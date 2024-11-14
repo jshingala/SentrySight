@@ -14,7 +14,7 @@ import Testimonials from './Testimonials.jsx';
 import Questionnaire from './Questionnaire.jsx';
 import Demo from './Demo.jsx';
 import Login from './SignIn.jsx';
-import Register from './SignUp.jsx';
+import SignUp from './SignUp.jsx';  // Changed to SignUp to match the component name
 import CTA from './CTA.jsx';
 import Footer from './Footer.jsx';
 import Profile from './Profile.jsx';
@@ -54,7 +54,7 @@ function App() {
             <Route path="/demo" element={<Demo />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
             <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
-            <Route path="/sign-up" element={<Register />} />
+            <Route path="/sign-up" element={<SignUp />} /> {/* Changed from Register to SignUp */}
             <Route path="/profile" element={<Profile setUserEmail={setUserEmail}/>} />
           </Routes>
         </main>

@@ -1,29 +1,29 @@
 .socials {
-    padding: 40px;
-    background-color: #282c34; /* Dark background */
-    color: white; /* Text color */
-    text-align: center; /* Center text */
-  }
-  
-  .socials-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .socials-links {
-    display: flex;
-    justify-content: center; /* Center links */
-    gap: 15px; /* Space between links */
-  }
-  
-  .social-link {
-    color: #61dafb; /* Light blue color */
-    text-decoration: none; /* Remove underline */
-    font-size: 1.2em;
-    transition: color 0.3s; /* Smooth color transition */
-  }
-  
-  .social-link:hover {
-    color: #21a1f1; /* Darker blue on hover */
-  }
-  
+  padding: 40px;
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF; /* White text */
+  text-align: center;
+}
+
+.socials-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #6A0DAD; /* Purple accent for title */
+}
+
+.socials-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-link {
+  color: #6A0DAD; /* Purple color for social links */
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.3s;
+}
+
+.social-link:hover {
+  color: #5A0C90; /* Darker purple on hover */
+}

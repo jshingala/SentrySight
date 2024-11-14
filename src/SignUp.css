@@ -1,55 +1,67 @@
 /* SignUp.css */
 .sign-up {
-    padding: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
-  }
-  
-  .sign-up h2 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-  
-  .sign-up-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .sign-up-form input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: black;
-  }
-  
-  .sign-up-form button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 15px;
-  }
-  
-  .sign-up-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .success {
-    padding: 10px 20px;
-    font-size: 18px;
-    color: #00fb2a;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 15px;
-  }
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #333333; /* Dark gray background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #FFFFFF; /* White text */
+}
+
+.sign-up h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #6A0DAD; /* Purple accent for heading */
+  text-align: center;
+}
+
+.sign-up-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #B3B3B3; /* Light gray for labels */
+}
+
+.sign-up-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #2C2C2C; /* Darker gray input background */
+  color: #FFFFFF; /* White text inside input */
+}
+
+.sign-up-form input::placeholder {
+  color: #888; /* Gray placeholder color */
+}
+
+.sign-up-form button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #FFFFFF;
+  background-color: #6A0DAD; /* Purple accent button */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.sign-up-form button:hover {
+  background-color: #5A0C90; /* Darker purple for hover */
+}
+
+.success {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #00fb2a; /* Bright green for success messages */
+  background-color: #2C2C2C; /* Dark background for success message */
+  border: 1px solid #00fb2a;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+}

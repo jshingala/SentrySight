@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import './SignUp.css'; // Import the CSS file for styling
+import './SignUp.css';
 
 const Login = ({ setUserEmail }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate(); // Use the useNavigate hook
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -16,8 +16,6 @@ const Login = ({ setUserEmail }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Send POST request to the backend
     fetch('http://localhost:3306/sign-in', {
       method: 'POST',
       headers: {
@@ -30,7 +28,7 @@ const Login = ({ setUserEmail }) => {
         if (data.error) {
           setErrorMessage(data.error);
         } else {
-          setUserEmail(email); // Store the email in App state
+          setUserEmail(email);
           setErrorMessage('');
           alert("You're successfully signed in!");
           navigate('/'); // Redirect to home page
@@ -44,7 +42,7 @@ const Login = ({ setUserEmail }) => {
   return (
     <div className="sign-up">
       <h2>Login</h2>
-      {errorMessage && <div className="error">{errorMessage}</div>} {/* Display error message */}
+      {errorMessage && <div className="error">{errorMessage}</div>}
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <label>Email:</label>
         <input
@@ -66,9 +64,12 @@ const Login = ({ setUserEmail }) => {
         <button type="submit">Submit</button>
         <div className="register">
           <Link to="/sign-up">
-            <button>Go to Register</button>
+            <button type="button">Go to Register</button>
           </Link>
-          <p>Don't have an account?</p>
+          {/* "Don't have an account?" as a clickable link */}
+          <p>
+            Don't have an account? <Link to="/sign-up">Sign up here</Link>
+          </p>
         </div>
       </form>
     </div>
