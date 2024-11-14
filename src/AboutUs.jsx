@@ -103,7 +103,6 @@ function AboutUs() {
         Whether you’re looking to secure your business or simply want to learn more about the future of safety technology, we welcome you to connect with us. Together, we can create safer environments for all.
       </motion.p>
 
-      // Awards section - listing some achievements
       <div className="awards-section">
         <motion.h2
           initial={{ opacity: 0 }}

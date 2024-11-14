@@ -1,7 +1,7 @@
 /* General Styling */
 body {
-    background-color: #f4f4f4; /* Light background for better contrast with the form */
-    color: #333; /* Dark text for better readability */
+    background-color: #1A1A1A; /* Dark background */
+    color: #FFFFFF; /* White text for readability */
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
@@ -12,37 +12,37 @@ body {
 
 /* Questionnaire Styling */
 .questionnaire {
-    max-width: 800px; /* Increase max width to match demo */
-    width: 100%; /* Make it responsive */
+    max-width: 800px;
+    width: 100%;
     margin: 20px;
-    padding: 30px; /* Add more padding for spacing */
-    background-color: #fff; /* White background for better contrast */
+    padding: 30px;
+    background-color: #333333; /* Dark gray for contrast */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left; /* Align text to the left for better readability */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
 }
 
 /* Header Styling */
 h1, h2 {
-    color: #333;
-    font-weight: bold;
+    color: #6A0DAD; /* Purple accent */
     text-align: center;
+    font-weight: bold;
 }
 
 h1 {
-    font-size: 2.5rem; /* Larger font size for title */
-    margin-bottom: 20px; /* Space below the title */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 1.8rem; /* Larger font size for subheading */
-    margin-top: 30px; /* Add more space above */
-    margin-bottom: 10px; /* Space between subheading and next content */
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 /* Form Group Styling */
 .form-group {
-    margin-bottom: 25px; /* Increased spacing between form groups */
+    margin-bottom: 25px;
 }
 
 /* Label Styling */
@@ -50,8 +50,8 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #444; /* Darker color for labels */
-    font-size: 1.2rem; /* Slightly larger font size for labels */
+    color: #B3B3B3; /* Light gray text */
+    font-size: 1.2rem;
 }
 
 /* Input and Select Styles */
@@ -62,16 +62,16 @@ select,
 textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #2C2C2C; /* Darker gray */
+    color: #FFFFFF;
     font-size: 1rem;
 }
 
 input[type="text"]::placeholder,
 textarea::placeholder {
-    color: #aaa;
+    color: #888; /* Gray placeholder */
 }
 
 textarea {
@@ -80,7 +80,7 @@ textarea {
 
 /* Checkbox Styles */
 input[type="checkbox"] {
-    accent-color: #4CAF50; /* Green color for checkboxes */
+    accent-color: #6A0DAD; /* Purple color for checkboxes */
 }
 
 /* Range Slider */
@@ -88,7 +88,7 @@ input[type="range"] {
     -webkit-appearance: none;
     width: 100%;
     height: 8px;
-    background: #ddd;
+    background: #555; /* Dark gray for slider background */
     outline: none;
     border-radius: 5px;
 }
@@ -98,15 +98,15 @@ input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #4CAF50;
+    background: #6A0DAD; /* Purple thumb */
     border-radius: 50%;
     cursor: pointer;
 }
 
 /* Button Styling */
 button {
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #6A0DAD; /* Purple accent */
+    color: #FFFFFF;
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
@@ -119,7 +119,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #5A0C90; /* Darker purple for hover */
 }
 
 /* Demo Page Style (for the page surrounding the questionnaire) */
@@ -133,47 +133,13 @@ button:hover {
 .demo-page h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #333;
+    color: #6A0DAD;
 }
 
 .demo-page p {
     font-size: 1.2rem;
     line-height: 1.6;
-    color: #555;
-}
-
-.demo-details {
-    margin-top: 30px;
-    text-align: left;
-}
-
-.demo-details h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #222;
-}
-
-.demo-details p {
-    font-size: 1rem;
-    color: #444;
-}
-
-.cta {
-    margin-top: 40px;
-}
-
-.cta .btn-primary {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.cta .btn-primary:hover {
-    background-color: #45a049;
+    color: #B3B3B3;
 }
 
 /* Responsive Form Layout */

@@ -1,3 +1,4 @@
+/* Global Reset */
 *,
 *::before,
 *::after {
@@ -6,142 +7,143 @@
   box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
   font-family: 'Helvetica', sans-serif;
-  background: linear-gradient(to bottom right, #e6eef9, #ffffff);
-  color: #333;
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF; /* White text */
   line-height: 1.6;
   font-size: 16px;
 }
 
+/* About Us Section */
 .about-us {
-  padding: 60px;
-  background: #ffffff;
+  padding: 40px;
+  background-color: #333333;
   max-width: 1000px;
   margin: 40px auto;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-us:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
 .about-us h2 {
-  font-size: 3.5rem;
-  color: #2c3e50;
+  font-size: 2.5rem;
+  color: #6A0DAD; /* Purple accent */
   text-align: center;
-  margin-bottom: 30px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
+  margin-bottom: 20px;
 }
 
 .about-us p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 30px;
+  font-size: 1rem;
+  color: #B3B3B3; /* Light gray text */
   text-align: justify;
+  margin-bottom: 20px;
 }
 
 .about-us h3 {
-  font-size: 2.2rem;
-  color: #27ae60;
-  margin-bottom: 15px;
-  font-weight: 600;
+  font-size: 1.8rem;
+  color: #6A0DAD;
+  margin-bottom: 10px;
   text-transform: uppercase;
-  border-bottom: 2px solid #27ae60;
+  border-bottom: 2px solid #6A0DAD;
   padding-bottom: 5px;
 }
 
+/* Awards Section */
 .awards-section {
   margin-top: 50px;
 }
 
 .awards-section h2 {
-  font-size: 3rem;
-  color: #2c3e50;
+  font-size: 2rem;
+  color: #6A0DAD;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .awards-gallery {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.awards-row {
-  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
 }
 
 .award-item {
-  cursor: pointer;
   text-align: center;
 }
 
 .award-item img {
   width: 100%;
-  max-width: 300px;
+  max-width: 250px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .award-item img:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.35);
 }
 
 .award-caption {
-  font-size: 1rem;
-  color: #444;
-  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #B3B3B3;
+  margin-top: 8px;
 }
 
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  transition: background 0.3s ease;
 }
 
 .modal-content {
   display: flex;
   justify-content: center;
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .modal-image {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
 }
 
+.modal-image:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .about-us {
     padding: 30px;
   }
-
   .about-us h2 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
   }
-
   .about-us h3 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
-
   .about-us p {
-    font-size: 1rem;
-  }
-  
-  .awards-gallery {
-    flex-direction: column;
-    align-items: center;
+    font-size: 0.95rem;
   }
 }
 
@@ -150,16 +152,13 @@ body {
     padding: 20px;
     margin: 20px;
   }
-
   .about-us h2 {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
   }
-
   .about-us h3 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
-
   .about-us p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }

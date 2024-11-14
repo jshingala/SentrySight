@@ -1,12 +1,18 @@
 /* Global Styling */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f9f9f9;
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF; /* White text */
   margin: 0;
   padding: 0;
-  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
 }
 
+/* Fullscreen Section Styling */
 .fullscreen-section {
   height: 100vh;
   width: 100vw;
@@ -14,72 +20,63 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f5f7fa;
-  color: #333;
+  background-color: #333333; /* Dark gray for sections */
 }
 
 /* Demo Page Styling */
 .demo-page {
   max-width: 900px;
   padding: 40px;
+  margin: auto;
   border-radius: 12px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  background: #2C2C2C; /* Darker gray */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .demo-page h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #222;
+  color: #6A0DAD; /* Purple accent */
   font-weight: 700;
 }
 
 .demo-page p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #555;
+  color: #B3B3B3; /* Light gray text */
   max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
 }
 
-.demo-details {
-  margin-top: 30px;
-}
-
+/* Details Section */
 .demo-details h2 {
   font-size: 1.6rem;
   margin-bottom: 10px;
-  color: #333;
+  color: #FFFFFF;
   font-weight: 600;
 }
 
 .demo-details p {
   font-size: 1rem;
-  color: #555;
+  color: #B3B3B3;
   line-height: 1.6;
 }
 
 /* CTA Button Styling */
-.cta {
-  margin-top: 40px;
-}
-
 .cta .btn-primary {
   padding: 12px 30px;
-  background-color: #27AE60;
+  background-color: #6A0DAD; /* Purple accent */
   color: white;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 25px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
 }
 
 .cta .btn-primary:hover {
-  background-color: #219150;
+  background-color: #5A0C90; /* Darker purple for hover */
   transform: translateY(-2px);
 }
 
@@ -91,7 +88,7 @@ body {
 
 .upload-section h3 {
   font-size: 1.5rem;
-  color: #333;
+  color: #FFFFFF;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -101,21 +98,17 @@ body {
   margin: 15px auto;
 }
 
-.image-preview {
-  margin-top: 20px;
-  max-width: 250px;
-}
-
 .image-preview img {
   width: 100%;
   height: auto;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Upload Button Styling */
 .upload-button {
   padding: 10px 24px;
-  background-color: #3498db;
+  background-color: #6A0DAD; /* Purple accent */
   color: white;
   font-size: 1rem;
   border: none;
@@ -123,11 +116,11 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
   margin-top: 15px;
 }
 
 .upload-button:hover {
-  background-color: #2980b9;
+  background-color: #5A0C90;
   transform: translateY(-2px);
 }
