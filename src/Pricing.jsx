@@ -1,7 +1,13 @@
 // Pricing.jsx
 import { motion } from 'framer-motion';
+<<<<<<< Updated upstream
 import React, { useState } from "react";
 import './Pricing.css'; // You'll need to adapt your CSS file
+=======
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './pricing.css';
+>>>>>>> Stashed changes
 
 function Pricing() {
   const [billingCycle, setBillingCycle] = useState('monthly');
@@ -51,8 +57,45 @@ function Pricing() {
         </button>
       </motion.div>
 
+<<<<<<< Updated upstream
       {/* You can add your pricing cards/tiers here with similar motion effects */}
     </motion.div>
+=======
+        {/* Premium Subscription */}
+        <motion.div 
+          className="price-card"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <div className="price-header premium">
+            <h2>PREMIUM SUBSCRIPTION</h2>
+          </div>
+          <div className="price-amount">
+            <h3>$50/camera/month</h3>
+          </div>
+          <div className="price-features">
+            <ul>
+              <li>All of the previous subscription benefits PLUS additional safety detection features tailored for businesses</li>
+              <li>Receive further discounts by opting for an extended contract term</li>
+            </ul>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Contact Us Button */}
+      <motion.div 
+        className="contact-button-container"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
+        <Link to="/contact" className="contact-button">
+          Contact Us
+        </Link>
+      </motion.div>
+    </div>
+>>>>>>> Stashed changes
   );
 }
 
