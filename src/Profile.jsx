@@ -16,12 +16,12 @@ function Profile({ setUserEmail }) {
 
     return (
         <section className="profile">
-        <h2 className="profile-title">Follow Us</h2>
-        <div>
-            This is Profile
-        </div>
+            <h2 className="profile-title">This is Profile</h2>
+            <div>
+                This is Profile
+            </div>
 
-        <button type="button" onClick={handleLogout}>Logout</button>
+            <button type="button" onClick={handleLogout}>Logout</button>
         </section>
     );
 }
