@@ -1,53 +1,126 @@
+/* Global Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF; /* White text */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Fullscreen Section Styling */
+.fullscreen-section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #333333; /* Dark gray for sections */
+}
+
+/* Demo Page Styling */
 .demo-page {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .demo-page h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .demo-page p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  .demo-details {
-    margin-top: 30px;
-    text-align: left;
-  }
-  
-  .demo-details h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #222;
-  }
-  
-  .demo-details p {
-    font-size: 1rem;
-    color: #444;
-  }
-  
-  .cta {
-    margin-top: 40px;
-  }
-  
-  .cta .btn-primary {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cta .btn-primary:hover {
-    background-color: #45a049;
-  }
-  
+  max-width: 900px;
+  padding: 40px;
+  margin: auto;
+  border-radius: 12px;
+  background: #2C2C2C; /* Darker gray */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.demo-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #6A0DAD; /* Purple accent */
+  font-weight: 700;
+}
+
+.demo-page p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #B3B3B3; /* Light gray text */
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+/* Details Section */
+.demo-details h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.demo-details p {
+  font-size: 1rem;
+  color: #B3B3B3;
+  line-height: 1.6;
+}
+
+/* CTA Button Styling */
+.cta .btn-primary {
+  padding: 12px 30px;
+  background-color: #6A0DAD; /* Purple accent */
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+}
+
+.cta .btn-primary:hover {
+  background-color: #5A0C90; /* Darker purple for hover */
+  transform: translateY(-2px);
+}
+
+/* Upload Section Styling */
+.upload-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.upload-section h3 {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.upload-section input[type="file"] {
+  display: block;
+  margin: 15px auto;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Upload Button Styling */
+.upload-button {
+  padding: 10px 24px;
+  background-color: #6A0DAD; /* Purple accent */
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+  margin-top: 15px;
+}
+
+.upload-button:hover {
+  background-color: #5A0C90;
+  transform: translateY(-2px);
+}

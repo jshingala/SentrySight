@@ -1,0 +1,60 @@
+.cta {
+  padding: 40px;
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.cta .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #6A0DAD; /* Purple accent for header */
+}
+
+.cta p {
+  font-size: 1.1rem;
+  color: #B3B3B3; /* Light gray for text */
+  margin-bottom: 20px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Primary Button Styling */
+.btn-primary {
+  background-color: #6A0DAD; /* Purple button */
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #5A0C90; /* Darker purple on hover */
+}
+
+/* Secondary Button Styling */
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #6A0DAD; /* Purple outline */
+  color: #6A0DAD;
+}
+
+.btn-secondary:hover {
+  background-color: #6A0DAD;
+  color: #FFFFFF;
+}

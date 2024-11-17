@@ -1,0 +1,23 @@
+.footer {
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF;
+  text-align: center;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.footer p {
+  font-size: 1rem;
+  margin: 0;
+  color: #B3B3B3; /* Light gray text for subtle contrast */
+}
+
+.footer a {
+  color: #6A0DAD; /* Purple accent for links */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #5A0C90; /* Darker purple on hover */
+}

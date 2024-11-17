@@ -1,17 +1,62 @@
 import React from 'react';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { motion } from 'framer-motion';
 import './Hero.css';
 
-function Hero() {
+const Hero = () => {
   return (
-    <section className="hero">
-      <h1>Welcome to Sentry Sight</h1>
-      <p>Your security is our priority.</p>
-      <Link to="/demo">
-        <button>Get Started</button>  {/* Wrap the button inside a Link component */}
-      </Link>
-    </section>
+    <div className="hero">
+      {/* Background Video */}
+      <video
+        className="video-bg"
+        src="/videoBg.mp4" // Reference to the video in the public folder
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+
+      {/* Overlay for styling */}
+      <div className="bg-overlay"></div>
+
+      {/* Hero Content */}
+      <motion.div className="hero-content">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: 'easeOut' }}
+        >
+          Experience Peace of Mind
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.8, ease: 'easeOut' }}
+        >
+          Cutting-edge technology to keep your home and business safe.
+        </motion.p>
+        <div className="cta-buttons">
+          <motion.a
+            href="#get-started"
+            className="btn-primary"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2, ease: 'easeOut' }}
+          >
+            Get Started
+          </motion.a>
+          <motion.a
+            href="#learn-more"
+            className="btn-secondary"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2.2, ease: 'easeOut' }}
+          >
+            Learn More
+          </motion.a>
+        </div>
+      </motion.div>
+    </div>
   );
-}
+};
 
 export default Hero;

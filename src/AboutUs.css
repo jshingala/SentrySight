@@ -1,101 +1,164 @@
-/* General Reset */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-* {
+/* Global Reset */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
-  font-family: Arial, sans-serif;
-  color: #30c403;
+  font-family: 'Helvetica', sans-serif;
+  background-color: #1A1A1A; /* Dark background */
+  color: #FFFFFF; /* White text */
+  line-height: 1.6;
+  font-size: 16px;
 }
 
 /* About Us Section */
 .about-us {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: left;
-  background-color: #f5f5f5; /* Light background */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 40px;
+  background-color: #333333;
+  max-width: 1000px;
+  margin: 40px auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Title with Formatting Similar to Demo Page */
+.about-us:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
 .about-us h2 {
-  font-size: 2.5rem; /* Same font size as the Demo page title */
-  margin-bottom: 20px; /* Same margin as the Demo page title */
-  color: #333; /* Darker color for the text */
-  text-align: center; /* Center align the title */
-}
-
-
-/* Adjusting other styles */
-.about-us h3 {
-  font-size: 1.8rem; /* Adjusted font size */
-  margin-top: 30px; /* More space above h3 */
-  color: #444; /* Slightly lighter shade */
+  font-size: 2.5rem;
+  color: #6A0DAD; /* Purple accent */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .about-us p {
-  font-size: 1.1rem; /* Slightly larger text for readability */
-  line-height: 1.6;
-  color: #555; /* Lighter color for paragraphs */
-  margin-bottom: 20px; /* Spacing below paragraphs */
+  font-size: 1rem;
+  color: #B3B3B3; /* Light gray text */
+  text-align: justify;
+  margin-bottom: 20px;
 }
 
-/* Divider Between Sections */
-.divider {
-  width: 50px;
-  height: 3px;
-  background-color: #30c403; /* Green divider */
-  margin: 20px auto;
+.about-us h3 {
+  font-size: 1.8rem;
+  color: #6A0DAD;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #6A0DAD;
+  padding-bottom: 5px;
 }
 
-/* Optional Call to Action Section */
-.cta {
-  background: #e04b8a; /* CTA background color */
-  color: white;
-  padding: 50px 20px;
+/* Awards Section */
+.awards-section {
+  margin-top: 50px;
+}
+
+.awards-section h2 {
+  font-size: 2rem;
+  color: #6A0DAD;
   text-align: center;
-  margin-top: 40px;
+  margin-bottom: 30px;
 }
 
-.cta h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.awards-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-.cta p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+.award-item {
+  text-align: center;
 }
 
-/* Call to Action Button */
-.cta .btn-primary {
-  padding: 10px 20px;
-  background-color: #fff;
-  color: #e04b8a;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
+.award-item img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cta .btn-primary:hover {
-  background-color: #ffd4db;
+.award-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.35);
 }
 
-.cta .btn-primary {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.award-caption {
+  font-size: 0.9rem;
+  color: #B3B3B3;
+  margin-top: 8px;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: background 0.3s ease;
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.modal-image:hover {
+  transform: scale(1.03);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .about-us {
+    padding: 30px;
+  }
+  .about-us h2 {
+    font-size: 2.2rem;
+  }
+  .about-us h3 {
+    font-size: 1.6rem;
+  }
+  .about-us p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-us {
+    padding: 20px;
+    margin: 20px;
+  }
+  .about-us h2 {
+    font-size: 1.8rem;
+  }
+  .about-us h3 {
+    font-size: 1.4rem;
+  }
+  .about-us p {
+    font-size: 0.85rem;
+  }
 }

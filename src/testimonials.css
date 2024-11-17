@@ -1,33 +1,37 @@
 .testimonials {
-    padding: 40px;
-    background-color: #fff; /* White background */
-    text-align: center; /* Center text */
-  }
-  
-  .testimonials-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .testimonials-list {
-    display: flex;
-    flex-direction: column; /* Vertical layout */
-    gap: 20px; /* Space between items */
-  }
-  
-  .testimonial-item {
-    background-color: #f9f9f9; /* Light grey background */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 20px;
-  }
-  
-  .testimonial-text {
-    font-style: italic; /* Italic text */
-  }
-  
-  .testimonial-name {
-    font-weight: bold; /* Bold text for names */
-    margin-top: 10px;
-  }
-  
+  padding: 40px;
+  background-color: #1A1A1A; /* Dark background */
+  text-align: center;
+  color: #FFFFFF; /* White text */
+}
+
+.testimonials-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #6A0DAD; /* Purple accent for title */
+}
+
+.testimonials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testimonial-item {
+  background-color: #2C2C2C; /* Darker gray background for contrast */
+  border: 1px solid #444; /* Darker border */
+  border-radius: 8px;
+  padding: 20px;
+  color: #B3B3B3; /* Light gray text for readability */
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: #B3B3B3; /* Light gray for testimonial text */
+}
+
+.testimonial-name {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #6A0DAD; /* Purple accent for names */
+}

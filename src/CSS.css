@@ -1,226 +1,264 @@
-/* General Reset */
+/* Import modern fonts for a tech look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@400;600&family=Inter:wght@400;500&display=swap');
+
+/* Global Reset */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  color: #30c403;
+/* Global Colors and Fonts */
+:root {
+  --primary-bg: #0D0D0D;         /* Dark background */
+  --secondary-bg: #1A1A1A;       /* Dark gray for sections */
+  --card-bg: #262626;            /* Card background */
+  --primary-text: #EAEAEA;       /* Off-white text */
+  --secondary-text: #B0B0B0;     /* Light gray text */
+  --accent-color: #00D4FF;       /* Vibrant cyan accent */
+  --accent-hover: #00B5E2;       /* Darker cyan for hover effect */
+  --border-color: #2A2A2A;       /* Soft border color */
+
+  /* Font definitions */
+  --font-primary: 'Roboto', sans-serif;       /* Font for main headings */
+  --font-secondary: 'Source Code Pro', monospace;  /* Font for subheadings */
+  --font-body: 'Inter', sans-serif;           /* Font for body text */
+
+  /* Font size definitions */
+  --font-size-h1: 2.75rem;       /* Main heading size */
+  --font-size-h2: 2rem;          /* Subheading size */
+  --font-size-body: 1rem;        /* Body text size */
+  --font-size-small: 0.9rem;     /* Smaller text for captions */
 }
 
-/* Header */
+/* Global Body Styling */
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Heading Styles */
+h1 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  color: var(--primary-text);
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  color: var(--primary-text);
+  letter-spacing: 0.5px;
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  color: var(--secondary-text);
+  line-height: 1.6;
+}
+
+/* Header Styling */
 .header {
+  background-color: var(--secondary-bg);
+  padding: 15px 25px;
+  color: var(--primary-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #333;
-  color: white;
-  padding: 20px 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.logo h1 {
-  margin: 0;
-}
-
-.nav ul {
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-}
-
-.nav ul li {
-  margin-left: 20px;
-}
-
-.nav ul li a {
-  color: white;
+/* Logo Link Styling */
+.logo-link {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-transform: uppercase;
   text-decoration: none;
-  font-size: 1.1rem;
+  padding: 5px 12px;
+  transition: transform 0.3s ease-in-out, color 0.3s ease;
 }
 
-.nav ul li a:hover {
-  text-decoration: underline;
+.logo-link:hover {
+  transform: scale(1.05);
+  color: var(--accent-hover);
 }
 
-/* Main Content */
-.App {
-  font-family: Arial, sans-serif;
-  color: #30c403;
+/* Navigation */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 25px;
 }
 
-.main-content {
-  padding: 50px 100px;
-  background: #f5f5f5;
+.nav-link {
+  color: var(--primary-text);
+  text-decoration: none;
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  font-size: var(--font-size-small);
+  transition: color 0.3s ease;
 }
 
-/* Banner Section */
-.banner {
-  background: #f5f5f5;
-  padding: 50px 20px;
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
   text-align: center;
-  margin-bottom: 40px;
+  padding: 120px 20px 100px;
 }
 
-.banner h2 {
-  font-size: 2.5rem;
-  color: #333;
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h1);
   margin-bottom: 20px;
 }
 
-.banner p {
-  font-size: 1.1rem;
-  color: #666;
+.hero p {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  color: var(--secondary-text);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-/* Second Banner Section */
-.banner2 {
-  background: #ffcdcd;
-  padding: 50px 20px;
-  text-align: center;
-  margin-bottom: 40px;
+/* Card Styling */
+.card {
+  background-color: var(--card-bg);
+  color: var(--primary-text);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.banner2 h2 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-/* Features Section */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.feature-item {
-  background-color: #1d1d2e;
-  padding: 30px;
-  border-radius: 8px;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item .icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Call to Action Section */
 .cta {
-  background: #e04b8a;
-  color: white;
-  padding: 50px 20px;
+  margin-top: 60px;
   text-align: center;
-  margin-bottom: 40px;
 }
 
 .cta h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-h2);
+  margin-bottom: 15px;
+  color: var(--primary-text);
 }
 
 .cta p {
+  font-family: var(--font-body);
   font-size: 1.1rem;
-  margin-bottom: 20px;
+  color: var(--secondary-text);
+  margin-bottom: 30px;
 }
 
-/* Divider */
-.divider {
-  width: 50px;
-  height: 3px;
-  background-color: #e04b8a;
-  margin: 20px auto;
-}
-
-/* News Section */
-.news-section {
-  background-color: #e04b8a;
-  color: white;
-  padding: 40px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.news-section h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.news-section p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-.news-form {
+.cta-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
-.news-form input[type="email"] {
-  padding: 10px;
-  border: 1px solid #e08a9b;
-  border-radius: 4px;
-  background-color: #e56276;
-  color: white;
-}
-
-.news-form input[type="email"]::placeholder {
-  color: #ffdde2;
-}
-
-.news-form button {
-  padding: 10px 20px;
-  background-color: white;
-  color: #e04b8a;
+.btn-primary {
+  background-color: var(--accent-color);
+  color: var(--primary-text);
+  padding: 12px 30px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.news-form button:hover {
-  background-color: #ffd4db;
-}
-
-/* Socials Section */
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 40px 0;
-  background-color: #1c1c24;
-}
-
-.socials a {
-  color: #ccc;
-  font-size: 24px;
+  border-radius: 30px;
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(47, 0, 255, 0.3);
 }
 
-.socials a:hover {
-  color: #fff;
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-3px);
 }
 
 /* Footer */
 .footer {
-  background: #333;
-  color: #fff;
+  background-color: var(--secondary-bg);
+  color: var(--secondary-text);
   text-align: center;
   padding: 20px;
-  margin-top: 60px;
+  border-top: 1px solid var(--border-color);
 }
 
 .footer p {
-  font-size: 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .btn-primary {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .nav-list {
+    gap: 15px;
+  }
+
+  .btn-primary {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
 }

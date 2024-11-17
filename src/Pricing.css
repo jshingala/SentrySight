@@ -1,0 +1,146 @@
+/* Pricing.css */
+.pricing-section {
+    padding: 40px;
+    background-color: #f4f4f4;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.pricing-section h2 {
+    font-size: 3rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.pricing-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pricing-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.pricing-toggle button {
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #27ae60;
+    color: #27ae60;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.pricing-toggle button.active {
+    background: #27ae60;
+    color: white;
+}
+.pricing-toggle button:hover {
+    background: #27ae60;
+    color: white;
+}
+.save-badge {
+    position: absolute;
+<<<<<<< Updated upstream
+    top: -10px;
+    right: -20px;
+    background: #e74c3c;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+  /* Mobile responsiveness */
+@media (max-width: 768px) {
+    .pricing-section {
+    padding: 20px;
+=======
+    left: 0;
+  }
+  
+  .price-features li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Contact Button Styles */
+  .contact-button-container {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .contact-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-button:hover {
+    background-color: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 1024px) {
+    .pricing-container {
+      grid-template-columns: repeat(2, 1fr);
+>>>>>>> Stashed changes
+    }
+    .pricing-section h2 {
+    font-size: 2.5rem;
+    }
+    .pricing-subtitle {
+    font-size: 1rem;
+    }
+<<<<<<< Updated upstream
+}
+
+@media (max-width: 480px) {
+    .pricing-section h2 {
+    font-size: 2rem;
+    }
+    .pricing-subtitle {
+    font-size: 0.9rem;
+    }
+    .pricing-toggle {
+    flex-direction: column;
+    }
+    .pricing-toggle button {
+    width: 100%;
+    }
+}
+=======
+  
+    .contact-button {
+      padding: 12px 30px;
+      font-size: 1rem;
+    }
+    
+    .contact-button-container {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+>>>>>>> Stashed changes

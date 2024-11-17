@@ -1,130 +1,236 @@
-import React, { useState } from 'react';
-import './Questionnaire.css'; // Import your CSS file
+import React from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as yup from 'yup';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  MenuItem,
+  Slider,
+  TextField,
+  Typography,
+} from '@mui/material';
+
+const validationSchema = yup.object({
+  businessName: yup.string().required('Business name is required'),
+  industryType: yup.string().required('Industry type is required'),
+  numEmployees: yup.number().required('Number of employees is required'),
+  dailyVisitors: yup.number().required('Daily visitors is required'),
+  hasDetectionTech: yup.string().required('Selection is required'),
+  safetyMeasures: yup.array().min(1, 'Select at least one safety measure'),
+});
+
+const initialValues = {
+  businessName: '',
+  industryType: '',
+  numEmployees: '',
+  dailyVisitors: '',
+  hasDetectionTech: '',
+  safetyMeasures: [],
+  currentEffectiveness: 3,
+  interestInAI: '',
+  priorityLevel: 3,
+  responseSpeedImportance: 3,
+  concerns: '',
+  additionalThoughts: '',
+};
 
 const Questionnaire = () => {
-    const [formData, setFormData] = useState({
-        businessName: '',
-        industryType: '',
-        numEmployees: '',
-        dailyVisitors: '',
-        hasDetectionTech: '',
-        safetyMeasures: [],
-        currentEffectiveness: 0,
-        interestInAI: '',
-        priorityLevel: 0,
-        responseSpeedImportance: 0,
-        concerns: '',
-        additionalThoughts: ''
-    });
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
 
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        if (type === 'checkbox') {
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: checked 
-                    ? [...prevData[name], value] 
-                    : prevData[name].filter((item) => item !== value)
-            }));
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
-    };
+  return (
+    <Container maxWidth="md">
+      <Box mt={5} p={4} bgcolor="grey.900" borderRadius={2} color="white">
+        <Typography variant="h4" align="center" gutterBottom color="purple">
+          Firearm Detection Safety Assessment
+        </Typography>
+        <Typography variant="body1" align="center" color="grey.400" mb={4}>
+          This survey assesses your current safety measures and explores the benefits of AI firearm detection technology.
+        </Typography>
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
-        // Handle form submission (e.g., send to API or database)
-    };
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ values, handleChange, handleBlur, setFieldValue, errors, touched }) => (
+            <Form>
+              <Typography variant="h6" color="purple" mb={2}>
+                Business Information
+              </Typography>
 
-    return (
-        <div className="questionnaire">
-            <h1>Firearm Detection Safety Assessment</h1>
-            <p>This survey assesses your current safety measures and explores the benefits of integrating AI firearm detection into your business. Your responses will help us tailor solutions that enhance safety.</p>
-            
-            <form onSubmit={handleSubmit}>
-                <h2>Business Information</h2>
-                <div className="form-group">
-                    <label>Business Name:</label>
-                    <input type="text" name="businessName" value={formData.businessName} onChange={handleChange} placeholder="Enter your business name" />
-                </div>
-                <div className="form-group">
-                    <label>Industry Type:</label>
-                    <input type="text" name="industryType" value={formData.industryType} onChange={handleChange} placeholder="Enter your industry" />
-                </div>
-                <div className="form-group">
-                    <label>Number of Employees:</label>
-                    <input type="number" name="numEmployees" value={formData.numEmployees} onChange={handleChange} placeholder="Enter number of employees" />
-                </div>
-                <div className="form-group">
-                    <label>Daily Visitors:</label>
-                    <input type="number" name="dailyVisitors" value={formData.dailyVisitors} onChange={handleChange} placeholder="Enter number of daily visitors" />
-                </div>
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Business Name"
+                  name="businessName"
+                  value={values.businessName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.businessName && Boolean(errors.businessName)}
+                  helperText={touched.businessName && errors.businessName}
+                  fullWidth
+                />
+              </FormControl>
 
-                <h2>Current Safety Measures</h2>
-                <div className="form-group">
-                    <label>Do you currently have any firearm detection technology installed?</label>
-                    <select name="hasDetectionTech" value={formData.hasDetectionTech} onChange={handleChange}>
-                        <option value="">Select</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>What other safety measures do you have in place? (Check all that apply)</label>
-                    <div className="checkbox-group">
-                        <label>
-                            <input type="checkbox" name="safetyMeasures" value="Surveillance cameras" onChange={handleChange} /> Surveillance cameras
-                        </label>
-                        <label>
-                            <input type="checkbox" name="safetyMeasures" value="Security guards" onChange={handleChange} /> Security guards
-                        </label>
-                        <label>
-                            <input type="checkbox" name="safetyMeasures" value="Panic buttons" onChange={handleChange} /> Panic buttons
-                        </label>
-                        <label>
-                            <input type="checkbox" name="safetyMeasures" value="Emergency lockdown procedures" onChange={handleChange} /> Emergency lockdown procedures
-                        </label>
-                        <label>
-                            <input type="checkbox" name="safetyMeasures" value="None of the above" onChange={handleChange} /> None of the above
-                        </label>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label>How effective do you think your current safety measures are in preventing gun violence incidents?</label>
-                    <input type="range" name="currentEffectiveness" min="0" max="5" value={formData.currentEffectiveness} onChange={handleChange} />
-                </div>
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Industry Type"
+                  name="industryType"
+                  value={values.industryType}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.industryType && Boolean(errors.industryType)}
+                  helperText={touched.industryType && errors.industryType}
+                  fullWidth
+                />
+              </FormControl>
 
-                <h2>AI Firearm Detection Integration</h2>
-                <div className="form-group">
-                    <label>Would you be interested in implementing AI firearm detection technology that can instantly alert law enforcement?</label>
-                    <select name="interestInAI" value={formData.interestInAI} onChange={handleChange}>
-                        <option value="">Select</option>
-                        <option value="yes">Yes, definitely</option>
-                        <option value="possibly">Possibly, I would like more information</option>
-                        <option value="no">No, I am not interested</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>What level of priority would you give to improving firearm detection in your safety strategy?</label>
-                    <input type="range" name="priorityLevel" min="0" max="5" value={formData.priorityLevel} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label>How important is the speed of police response in ensuring safety at your business?</label>
-                    <input type="range" name="responseSpeedImportance" min="0" max="5" value={formData.responseSpeedImportance} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label>What concerns would you have about integrating AI firearm detection technology?</label>
-                    <textarea name="concerns" value={formData.concerns} onChange={handleChange} placeholder="Enter any concerns" />
-                </div>
-                <div className="form-group">
-                    <label>If you would like to share any other thoughts or suggestions about safety improvements, please do so below:</label>
-                    <textarea name="additionalThoughts" value={formData.additionalThoughts} onChange={handleChange} placeholder="Enter additional thoughts" />
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    );
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Number of Employees"
+                  name="numEmployees"
+                  type="number"
+                  value={values.numEmployees}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.numEmployees && Boolean(errors.numEmployees)}
+                  helperText={touched.numEmployees && errors.numEmployees}
+                  fullWidth
+                />
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Daily Visitors"
+                  name="dailyVisitors"
+                  type="number"
+                  value={values.dailyVisitors}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.dailyVisitors && Boolean(errors.dailyVisitors)}
+                  helperText={touched.dailyVisitors && errors.dailyVisitors}
+                  fullWidth
+                />
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  select
+                  label="Do you currently have firearm detection technology?"
+                  name="hasDetectionTech"
+                  value={values.hasDetectionTech}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.hasDetectionTech && Boolean(errors.hasDetectionTech)}
+                  helperText={touched.hasDetectionTech && errors.hasDetectionTech}
+                  fullWidth
+                >
+                  <MenuItem value="yes">Yes</MenuItem>
+                  <MenuItem value="no">No</MenuItem>
+                </TextField>
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <FormLabel>Safety Measures in Place</FormLabel>
+                <Box display="flex" flexDirection="column">
+                  {['Surveillance cameras', 'Security guards', 'Panic buttons', 'Emergency lockdown procedures'].map((measure) => (
+                    <FormControlLabel
+                      key={measure}
+                      control={<Checkbox />}
+                      label={measure}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setFieldValue('safetyMeasures', [...values.safetyMeasures, measure]);
+                        } else {
+                          setFieldValue('safetyMeasures', values.safetyMeasures.filter((item) => item !== measure));
+                        }
+                      }}
+                    />
+                  ))}
+                </Box>
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <FormLabel>Current Effectiveness of Safety Measures</FormLabel>
+                <Slider
+                  name="currentEffectiveness"
+                  value={values.currentEffectiveness}
+                  onChange={(e, newValue) => setFieldValue('currentEffectiveness', newValue)}
+                  step={1}
+                  min={0}
+                  max={5}
+                  valueLabelDisplay="auto"
+                />
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  select
+                  label="Interest in AI Firearm Detection Technology"
+                  name="interestInAI"
+                  value={values.interestInAI}
+                  onChange={handleChange}
+                  fullWidth
+                >
+                  <MenuItem value="yes">Yes, definitely</MenuItem>
+                  <MenuItem value="possibly">Possibly, I would like more information</MenuItem>
+                  <MenuItem value="no">No, I am not interested</MenuItem>
+                </TextField>
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <FormLabel>Priority Level for Firearm Detection</FormLabel>
+                <Slider
+                  name="priorityLevel"
+                  value={values.priorityLevel}
+                  onChange={(e, newValue) => setFieldValue('priorityLevel', newValue)}
+                  step={1}
+                  min={0}
+                  max={5}
+                  valueLabelDisplay="auto"
+                />
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <FormLabel>Importance of Police Response Speed</FormLabel>
+                <Slider
+                  name="responseSpeedImportance"
+                  value={values.responseSpeedImportance}
+                  onChange={(e, newValue) => setFieldValue('responseSpeedImportance', newValue)}
+                  step={1}
+                  min={0}
+                  max={5}
+                  valueLabelDisplay="auto"
+                />
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Concerns about AI Detection Technology"
+                  name="concerns"
+                  multiline
+                  rows={4}
+                  value={values.concerns}
+                  onChange={handleChange}
+                  fullWidth
+                />
+              </FormControl>
+
+              <Button type="submit" variant="contained" color="primary" size="large" fullWidth>
+                Submit
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Box>
+    </Container>
+  );
 };
 
 export default Questionnaire;

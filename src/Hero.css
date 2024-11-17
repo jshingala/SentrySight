@@ -1,30 +1,59 @@
 .hero {
-  background-color: #4a90e2; /* Blue background */
-  color: white; /* White text */
-  text-align: center; /* Center the text */
-  padding: 50px 20px; /* Add padding */
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
-.hero h1 {
-  font-size: 2.5rem; /* Larger font size for the title */
-  margin: 0; /* Remove default margin */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-.hero p {
-  font-size: 1.25rem; /* Slightly smaller font size for the tagline */
-  margin: 20px 0; /* Add some margin */
+.hero-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+  color: #ffffff;
+  max-width: 80%;
 }
 
-.hero button {
-  background-color: #e94e77; /* Button background color */
-  color: white; /* Button text color */
-  border: none; /* No border */
-  padding: 10px 20px; /* Button padding */
-  font-size: 1rem; /* Font size */
-  cursor: pointer; /* Pointer cursor */
-  border-radius: 5px; /* Rounded corners */
+.cta-buttons {
+  display: flex;
+  gap: 20px;
 }
 
-.hero button:hover {
-  background-color: #d9436b; /* Darker color on hover */
+.btn-primary,
+.btn-secondary {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #4CAF50;
+}
+
+.btn-primary:hover {
+  background-color: #45a049;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #4CAF50;
+  color: #4CAF50;
+}
+
+.btn-secondary:hover {
+  background-color: #4CAF50;
+  color: #fff;
 }
