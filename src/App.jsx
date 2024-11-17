@@ -55,7 +55,7 @@ function App() {
             <Route path="/questionnaire" element={<Questionnaire />} />
             <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
             <Route path="/sign-up" element={<Register />} />
-            <Route path="/profile" element={<Profile setUserEmail={setUserEmail}/>} />
+            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
           </Routes>
         </main>
         <Footer />
