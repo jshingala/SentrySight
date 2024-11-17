@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './Header.jsx';
@@ -14,16 +14,29 @@ import Testimonials from './Testimonials.jsx';
 import Questionnaire from './Questionnaire.jsx';
 import Demo from './Demo.jsx';
 import Login from './SignIn.jsx';
-import Register from './SignUp.jsx';
+import SignUp from './SignUp.jsx';  // Changed to SignUp to match the component name
 import CTA from './CTA.jsx';
 import Footer from './Footer.jsx';
+import Profile from './Profile.jsx';
 import './CSS.css';
 
 function App() {
+  const [userEmail, setUserEmail] = useState(() => {
+    // Check if there's a stored user email in localStorage
+    return localStorage.getItem('userEmail') || '';
+  });
+
+  // Update localStorage whenever userEmail changes
+  useEffect(() => {
+    if (userEmail) {
+      localStorage.setItem('userEmail', userEmail);
+    }
+  }, [userEmail]);
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header userEmail={userEmail} /> {/* Pass userEmail to Header */}
         <main className="main-content">
           <Routes>
             <Route path="/" element={ 
@@ -40,8 +53,9 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
-            <Route path="/sign-in" element={<Login />} />
-            <Route path="/sign-up" element={<Register />} />
+            <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
+            <Route path="/sign-up" element={<SignUp />} /> {/* Changed from Register to SignUp */}
+            <Route path="/profile" element={<Profile setUserEmail={setUserEmail}/>} />
           </Routes>
         </main>
         <Footer />

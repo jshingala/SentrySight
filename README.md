@@ -10,4 +10,4 @@
    npm install
 
 4. Run the development server:
-   npm start (npm run dev for just front end)
+   npm run dev (run npm start to also turn on the server)
