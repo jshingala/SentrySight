@@ -291,6 +291,17 @@ p {
   font-weight: normal;
 }
 
+.profile input,
+.profile select {
+    margin-bottom: 15px; /* Space out inputs */
+    padding: 8px;        /* Add padding inside the input box */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px;  /* Rounded corners */
+    font-size: 16px;     /* Adjust font size */
+    width: 100%;         /* Make inputs full-width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
 .edit-button {
   padding: 2px;
   width: 50px;

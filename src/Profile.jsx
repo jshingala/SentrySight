@@ -148,7 +148,7 @@ function Profile({ userEmail, setUserEmail }) {
                 )}
                 {userData.edit_address && (
                     <form onSubmit={handleSubmit}>
-                        Address Line 1:
+                        <b>Address Line 1: </b>
                         <input
                             type="text"
                             name="address1"
@@ -158,7 +158,7 @@ function Profile({ userEmail, setUserEmail }) {
                             placeholder="Address Line 1"
                         />
                         <br />
-                        Address Line 2:
+                        <b>Address Line 2: </b>
                         <input
                             type="text"
                             name="address2"
@@ -167,7 +167,7 @@ function Profile({ userEmail, setUserEmail }) {
                             placeholder="Address Line 2"
                         />
                         <br />
-                        City:
+                        <b>City: </b>
                         <input
                             type="text"
                             name="city"
@@ -177,7 +177,7 @@ function Profile({ userEmail, setUserEmail }) {
                             placeholder="City"
                         />
                         <br />
-                        State/Province/Region:
+                        <b>State/Province/Region: </b>
                         <input
                             type="text"
                             name="state"
@@ -187,7 +187,7 @@ function Profile({ userEmail, setUserEmail }) {
                             placeholder="State/Province/Region"
                         />
                         <br />
-                        Postal Code:
+                        <b>Postal Code: </b>
                         <input
                             type="text"
                             name="postal_code"
@@ -197,7 +197,7 @@ function Profile({ userEmail, setUserEmail }) {
                             placeholder="Postal Code"
                         />
                         <br />
-                        Country:
+                        <b>Country: </b>
                         <select
                             name="country"
                             value={selectedCountry || userData.country}
