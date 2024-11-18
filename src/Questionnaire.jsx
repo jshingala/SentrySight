@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from 'formik';
+=======
+import React, {useEffect} from 'react';
+import { Formik, Form, Field } from 'formik';
+>>>>>>> f2ce045... Successfully connected questionnaire page to database, fixed scroll bug on questionnaire page
 import * as yup from 'yup';
 import './Questionnaire.css'; // Import the CSS file
 import {
@@ -69,6 +74,7 @@ const Questionnaire = ({userEmail}) => {
     doc.save('questionnaire_submission.pdf');
 
 
+<<<<<<< HEAD
     // 🔹 Convert PDF to Blob
     const pdfBlob = doc.output('blob');
 
@@ -115,7 +121,70 @@ const Questionnaire = ({userEmail}) => {
 
         this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
       });
+=======
+// const Questionnaire = () => {
+//   const handleSubmit = (values) => {
+//     console.log(values);
+//   };
+
+const Questionnaire = () => {
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log('Submitting form with values:', values);
+    
+    try {
+      const response = await fetch('http://localhost:3000/Questionnaire', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(values)  // Include the form values
+      });
+  
+      console.log('Response status:', response.status);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Response data:', data);
+        alert("Database connection successful: " + data.message);
+      } else {
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        alert("Failed to connect to the database: " + response.statusText);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      alert("An error occurred: " + error.message);
+    } finally {
+      setSubmitting(false);
+    }
+>>>>>>> f2ce045... Successfully connected questionnaire page to database, fixed scroll bug on questionnaire page
   };
+  
+  
+
+  // Prevent scroll wheel from changing number inputs
+  useEffect(() => {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+
+    const handleWheel = (event) => {
+      if (document.activeElement === event.target) {
+        event.preventDefault();
+      }
+    };
+
+    numberInputs.forEach((input) => {
+      input.addEventListener('wheel', handleWheel);
+    });
+
+    return () => {
+      numberInputs.forEach((input) => {
+        input.removeEventListener('wheel', handleWheel);
+      });
+    };
+  }, []); // Runs only once after the component mounts
+  
+
 
   // Prevent scroll wheel from changing number inputs
   useEffect(() => {
