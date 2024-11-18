@@ -8,7 +8,7 @@
 .socials-title {
   font-size: 2em;
   margin-bottom: 20px;
-  color: #6A0DAD; /* Purple accent for title */
+  color: #635bff; /* Purple accent for title */
 }
 
 .socials-links {
@@ -18,12 +18,12 @@
 }
 
 .social-link {
-  color: #6A0DAD; /* Purple color for social links */
+  color: #635bff; /* Purple color for social links */
   text-decoration: none;
   font-size: 1.2em;
   transition: color 0.3s;
 }
 
 .social-link:hover {
-  color: #5A0C90; /* Darker purple on hover */
+  color: #635bff; /* Darker purple on hover */
 }

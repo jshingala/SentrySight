@@ -8,7 +8,7 @@
 .testimonials-title {
   font-size: 2em;
   margin-bottom: 20px;
-  color: #6A0DAD; /* Purple accent for title */
+  color: #635bff; /* Purple accent for title */
 }
 
 .testimonials-list {
@@ -33,5 +33,5 @@
 .testimonial-name {
   font-weight: bold;
   margin-top: 10px;
-  color: #6A0DAD; /* Purple accent for names */
+  color: #635bff; /* Purple accent for names */
 }

@@ -87,6 +87,25 @@ function Demo() {
           >
             Our system leverages cutting-edge AI technology to analyze images and provide actionable security insights in real-time.
           </motion.p>
+          {/* Video Section */}
+          <motion.div
+            className="video-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            <video
+              src="/videoBg.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls
+              className="video-content"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
         </div>
       </section>
 
@@ -135,7 +154,7 @@ function Demo() {
           <motion.div
             className="cta-content"
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
             <h2>Unlock Full Access</h2>

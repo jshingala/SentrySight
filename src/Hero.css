@@ -42,11 +42,11 @@
 
 /* Styles for buttons */
 .btn-primary {
-  background-color: #1e3a8a; /* Dark blue */
+  background-color: #635bff; /* Dark blue */
 }
 
 .btn-primary:hover {
-  background-color: #162a6d; /* Darker blue on hover */
+  background-color: #8549e6; /* Darker blue on hover */
 }
 
 .btn-secondary {

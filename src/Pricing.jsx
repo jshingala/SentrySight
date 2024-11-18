@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import './Pricing.css'; // Import the CSS file
 
 function Pricing({ onContactClick }) {
   return (
