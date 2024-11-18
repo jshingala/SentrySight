@@ -164,7 +164,6 @@ function Profile({ userEmail, setUserEmail }) {
                             name="address2"
                             value={userData.address2}
                             onChange={handleChange}
-                            required
                             placeholder="Address Line 2"
                         />
                         <br />
