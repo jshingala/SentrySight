@@ -4,7 +4,11 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 
 const con = mysql.createConnection({
@@ -73,6 +77,20 @@ app.post('/sign-up', (req, res) => {
   }
 });
 
-app.listen(3306, () => {
-  console.log("Server running on port 3306");
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
 });
+
+app.post('/Questionnaire', (req, res) => {
+  console.log('Received questionnaire request');
+  
+  con.ping((err) => {
+    if (err) {
+      console.error("Database connection failed:", err.message);
+      return res.status(500).json({ message: "Failed to connect to the database" });
+    }
+    console.log("Database connection successful");
+    res.json({ message: "Successfully connected to the database" });
+  });
+});
+

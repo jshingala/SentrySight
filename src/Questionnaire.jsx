@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import {
@@ -39,10 +39,68 @@ const initialValues = {
   additionalThoughts: '',
 };
 
+// const Questionnaire = () => {
+//   const handleSubmit = (values) => {
+//     console.log(values);
+//   };
+
 const Questionnaire = () => {
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log('Submitting form with values:', values);
+    
+    try {
+      const response = await fetch('http://localhost:3000/Questionnaire', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(values)  // Include the form values
+      });
+  
+      console.log('Response status:', response.status);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Response data:', data);
+        alert("Database connection successful: " + data.message);
+      } else {
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        alert("Failed to connect to the database: " + response.statusText);
+      }
+    } catch (error) {
+      console.error('Fetch error:', error);
+      alert("An error occurred: " + error.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
+  
+  
+
+  // Prevent scroll wheel from changing number inputs
+  useEffect(() => {
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+
+    const handleWheel = (event) => {
+      if (document.activeElement === event.target) {
+        event.preventDefault();
+      }
+    };
+
+    numberInputs.forEach((input) => {
+      input.addEventListener('wheel', handleWheel);
+    });
+
+    return () => {
+      numberInputs.forEach((input) => {
+        input.removeEventListener('wheel', handleWheel);
+      });
+    };
+  }, []); // Runs only once after the component mounts
+  
+
 
   return (
     <Container maxWidth="md">
