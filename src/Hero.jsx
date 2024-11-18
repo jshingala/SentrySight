@@ -5,19 +5,6 @@ import './Hero.css';
 const Hero = () => {
   return (
     <div className="hero">
-      {/* Background Video */}
-      <video
-        className="video-bg"
-        src="/videoBg.mp4" // Reference to the video in the public folder
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
-
-      {/* Overlay for styling */}
-      <div className="bg-overlay"></div>
-
       {/* Hero Content */}
       <motion.div className="hero-content">
         <motion.h1

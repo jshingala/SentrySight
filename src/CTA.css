@@ -37,24 +37,15 @@
   transition: background-color 0.3s ease;
 }
 
-/* Primary Button Styling */
-.btn-primary {
-  background-color: #6A0DAD; /* Purple button */
-  color: #FFFFFF;
-}
-
-.btn-primary:hover {
-  background-color: #5A0C90; /* Darker purple on hover */
-}
 
 /* Secondary Button Styling */
 .btn-secondary {
-  background-color: transparent;
-  border: 2px solid #6A0DAD; /* Purple outline */
-  color: #6A0DAD;
+  background-color: solid;
+  border: none;
+  color: #ffffff;
 }
 
 .btn-secondary:hover {
-  background-color: #6A0DAD;
+  background-color: #ea398f;
   color: #FFFFFF;
 }

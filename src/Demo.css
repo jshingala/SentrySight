@@ -1,126 +1,246 @@
+/* Root Variables for Theming */
+:root {
+  --primary-color: #b82727;
+  --background-color: #121212;
+  --text-color: #FFFFFF;
+  --secondary-text-color: #B3B3B3;
+  --section-background: #1E1E1E;
+  --button-hover-color: #a31e1e;
+}
+
 /* Global Styling */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #1A1A1A; /* Dark background */
-  color: #FFFFFF; /* White text */
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
+  box-sizing: border-box; /* Include padding/border in element size */
 }
 
-/* Fullscreen Section Styling */
-.fullscreen-section {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #333333; /* Dark gray for sections */
-}
-
-/* Demo Page Styling */
-.demo-page {
-  max-width: 900px;
-  padding: 40px;
-  margin: auto;
-  border-radius: 12px;
-  background: #2C2C2C; /* Darker gray */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.demo-page h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #6A0DAD; /* Purple accent */
-  font-weight: 700;
-}
-
-.demo-page p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #B3B3B3; /* Light gray text */
-  max-width: 800px;
-  margin: 0 auto 20px;
-}
-
-/* Details Section */
-.demo-details h2 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-  color: #FFFFFF;
-  font-weight: 600;
-}
-
-.demo-details p {
-  font-size: 1rem;
-  color: #B3B3B3;
-  line-height: 1.6;
-}
-
-/* CTA Button Styling */
-.cta .btn-primary {
-  padding: 12px 30px;
-  background-color: #6A0DAD; /* Purple accent */
-  color: white;
+a {
+  color: inherit;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 25px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
 }
 
-.cta .btn-primary:hover {
-  background-color: #5A0C90; /* Darker purple for hover */
-  transform: translateY(-2px);
+.demo-container {
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Upload Section Styling */
-.upload-section {
-  margin-top: 40px;
+/* General Section Styling */
+section {
+  position: relative;
+  padding: 60px 20px;
+}
+
+.content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.upload-section h3 {
-  font-size: 1.5rem;
-  color: #FFFFFF;
-  font-weight: 500;
-  margin-bottom: 10px;
+/* Hero Section */
+.hero-section {
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  background-image: linear-gradient(
+      rgba(18, 18, 18, 0.8),
+      rgba(18, 18, 18, 0.8)
+    ),
+    url('./assets/pic3.jpg'); /* Replace with the correct relative path */
+  background-size: cover;
+  background-position: center center; /* Center the background image */
+  color: var(--text-color);
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Include padding/border in dimensions */
+  overflow: hidden; /* Prevent scrolling issues */
 }
 
-.upload-section input[type="file"] {
-  display: block;
-  margin: 15px auto;
+.hero-content {
+  max-width: 800px; /* Restrict max text width */
+  text-align: center; /* Center the text */
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin: 0 0 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin: 0 0 30px;
+  color: var(--secondary-text-color);
+}
+
+.btn-primary {
+  padding: 15px 40px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: var(--button-hover-color);
+  transform: translateY(-3px);
+}
+
+/* How It Works Section */
+.how-it-works {
+  background-color: var(--section-background);
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.how-it-works p {
+  font-size: 1.1rem;
+  margin: 0 auto 30px;
+  color: var(--secondary-text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .btn-primary {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Upload Section */
+.upload-section h3 {
+  font-size: 1.8rem;
+  margin: 0 0 30px;
+}
+
+.upload-controls {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.upload-controls input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--section-background);
+  border: none;
+  border-radius: 5px;
+  color: var(--secondary-text-color);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.upload-controls input[type="file"]::before {
+  content: "Select Image";
+  display: inline-block;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: var(--text-color);
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-controls input[type="file"]:hover::before {
+  background-color: var(--button-hover-color);
+  transform: translateY(-2px);
 }
 
 .image-preview img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  margin: 20px 0;
 }
 
-/* Upload Button Styling */
 .upload-button {
-  padding: 10px 24px;
-  background-color: #6A0DAD; /* Purple accent */
-  color: white;
+  padding: 12px 30px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   font-size: 1rem;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
   font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
-  margin-top: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4);
 }
 
 .upload-button:hover {
-  background-color: #5A0C90;
-  transform: translateY(-2px);
+  background-color: var(--button-hover-color);
+  transform: translateY(-3px);
+}
+
+.spinner {
+  margin-right: 8px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid var(--text-color);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Call to Action Section */
+.cta-section {
+  background-color: var(--section-background);
+}
+
+.cta-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: var(--secondary-text-color);
+}
+
+.btn-secondary {
+  padding: 15px 40px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4);
+}
+
+.btn-secondary:hover {
+  background-color: var(--button-hover-color);
+  transform: translateY(-3px);
 }
