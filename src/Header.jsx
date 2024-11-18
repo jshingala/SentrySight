@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"; // Import AnimatePresen
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './header.css';
+import Logo from './assets/Logo.png'; // Corrected import path
 
 function Header({ userEmail }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,8 @@ function Header({ userEmail }) {
     <header className="header">
       <div className="logo">
         <Link to="/" className="logo-link">
-          <h1>SENTRY SIGHT</h1>
+          <img src={Logo} alt="Logo" className="logo-image" />
+          <h1>SentrySight</h1>
         </Link>
       </div>
       <nav className="nav-desktop">
@@ -52,7 +54,7 @@ function Header({ userEmail }) {
             <ul className="nav-list">
               <li className="nav-item"><Link className="nav-link" to="/about" onClick={toggleMenu}>About Us</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/demo" onClick={toggleMenu}>Demo</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={toggleMenu}>Pricing</Link></li> {/* Added Pricing */}
+              <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={toggleMenu}>Pricing</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/questionnaire" onClick={toggleMenu}>Questionnaire</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/sign-in" onClick={toggleMenu}>Register / Sign In</Link></li>
             </ul>

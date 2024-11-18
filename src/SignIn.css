@@ -17,7 +17,7 @@
 .sign-up h2 {
   font-size: 2rem;
   margin-bottom: 15px;
-  color: #6A0DAD; /* Purple accent */
+  color: #635bff; /* Purple accent */
   text-align: center;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .sign-up-form input:focus {
-  border-color: #6A0DAD; /* Purple border on focus */
+  border-color: #635bff; /* Purple border on focus */
   outline: none;
 }
 
@@ -57,7 +57,7 @@
   padding: 12px 20px;
   font-size: 1rem;
   color: #FFFFFF;
-  background-color: #6A0DAD; /* Purple button */
+  background-color: #635bff; /* Purple button */
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -66,7 +66,7 @@
 }
 
 .sign-up-form button:hover {
-  background-color: #5A0C90; /* Darker purple for hover */
+  background-color: #3b32f2; /* Darker purple for hover */
   box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
 }
 

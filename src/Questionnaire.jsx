@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
-import { Formik, Form, Field } from 'formik';
+import React, { useEffect } from 'react';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import './Questionnaire.css'; // Import the CSS file
 import {
   Box,
   Button,
@@ -39,45 +40,38 @@ const initialValues = {
   additionalThoughts: '',
 };
 
-// const Questionnaire = () => {
-//   const handleSubmit = (values) => {
-//     console.log(values);
-//   };
-
 const Questionnaire = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     console.log('Submitting form with values:', values);
-    
+
     try {
       const response = await fetch('http://localhost:3000/Questionnaire', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Accept: 'application/json',
         },
-        body: JSON.stringify(values)  // Include the form values
+        body: JSON.stringify(values),
       });
-  
+
       console.log('Response status:', response.status);
-      
+
       if (response.ok) {
         const data = await response.json();
         console.log('Response data:', data);
-        alert("Database connection successful: " + data.message);
+        alert('Database connection successful: ' + data.message);
       } else {
         const errorText = await response.text();
         console.error('Response error:', errorText);
-        alert("Failed to connect to the database: " + response.statusText);
+        alert('Failed to connect to the database: ' + response.statusText);
       }
     } catch (error) {
       console.error('Fetch error:', error);
-      alert("An error occurred: " + error.message);
+      alert('An error occurred: ' + error.message);
     } finally {
       setSubmitting(false);
     }
   };
-  
-  
 
   // Prevent scroll wheel from changing number inputs
   useEffect(() => {
@@ -99,16 +93,14 @@ const Questionnaire = () => {
       });
     };
   }, []); // Runs only once after the component mounts
-  
-
 
   return (
-    <Container maxWidth="md">
-      <Box mt={5} p={4} bgcolor="grey.900" borderRadius={2} color="white">
-        <Typography variant="h4" align="center" gutterBottom color="purple">
+    <Container maxWidth="md" className="Questionnaire">
+      <Box mt={5} p={4}>
+        <Typography variant="h4" gutterBottom className="title">
           Firearm Detection Safety Assessment
         </Typography>
-        <Typography variant="body1" align="center" color="grey.400" mb={4}>
+        <Typography variant="body1" className="subtitle" mb={4}>
           This survey assesses your current safety measures and explores the benefits of AI firearm detection technology.
         </Typography>
 
@@ -117,12 +109,20 @@ const Questionnaire = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ values, handleChange, handleBlur, setFieldValue, errors, touched }) => (
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            setFieldValue,
+            errors,
+            touched,
+          }) => (
             <Form>
-              <Typography variant="h6" color="purple" mb={2}>
+              <Typography variant="h6" className="title" mb={2}>
                 Business Information
               </Typography>
 
+              {/* Business Name */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   label="Business Name"
@@ -136,6 +136,7 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
+              {/* Industry Type */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   label="Industry Type"
@@ -149,6 +150,7 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
+              {/* Number of Employees */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   label="Number of Employees"
@@ -163,6 +165,7 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
+              {/* Daily Visitors */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   label="Daily Visitors"
@@ -171,12 +174,15 @@ const Questionnaire = () => {
                   value={values.dailyVisitors}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.dailyVisitors && Boolean(errors.dailyVisitors)}
+                  error={
+                    touched.dailyVisitors && Boolean(errors.dailyVisitors)
+                  }
                   helperText={touched.dailyVisitors && errors.dailyVisitors}
                   fullWidth
                 />
               </FormControl>
 
+              {/* Has Detection Technology */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   select
@@ -185,8 +191,13 @@ const Questionnaire = () => {
                   value={values.hasDetectionTech}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.hasDetectionTech && Boolean(errors.hasDetectionTech)}
-                  helperText={touched.hasDetectionTech && errors.hasDetectionTech}
+                  error={
+                    touched.hasDetectionTech &&
+                    Boolean(errors.hasDetectionTech)
+                  }
+                  helperText={
+                    touched.hasDetectionTech && errors.hasDetectionTech
+                  }
                   fullWidth
                 >
                   <MenuItem value="yes">Yes</MenuItem>
@@ -194,32 +205,53 @@ const Questionnaire = () => {
                 </TextField>
               </FormControl>
 
+              {/* Safety Measures */}
               <FormControl fullWidth margin="normal">
                 <FormLabel>Safety Measures in Place</FormLabel>
                 <Box display="flex" flexDirection="column">
-                  {['Surveillance cameras', 'Security guards', 'Panic buttons', 'Emergency lockdown procedures'].map((measure) => (
+                  {[
+                    'Surveillance cameras',
+                    'Security guards',
+                    'Panic buttons',
+                    'Emergency lockdown procedures',
+                  ].map((measure) => (
                     <FormControlLabel
                       key={measure}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          checked={values.safetyMeasures.includes(measure)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setFieldValue('safetyMeasures', [
+                                ...values.safetyMeasures,
+                                measure,
+                              ]);
+                            } else {
+                              setFieldValue(
+                                'safetyMeasures',
+                                values.safetyMeasures.filter(
+                                  (item) => item !== measure
+                                )
+                              );
+                            }
+                          }}
+                        />
+                      }
                       label={measure}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setFieldValue('safetyMeasures', [...values.safetyMeasures, measure]);
-                        } else {
-                          setFieldValue('safetyMeasures', values.safetyMeasures.filter((item) => item !== measure));
-                        }
-                      }}
                     />
                   ))}
                 </Box>
               </FormControl>
 
+              {/* Current Effectiveness */}
               <FormControl fullWidth margin="normal">
                 <FormLabel>Current Effectiveness of Safety Measures</FormLabel>
                 <Slider
                   name="currentEffectiveness"
                   value={values.currentEffectiveness}
-                  onChange={(e, newValue) => setFieldValue('currentEffectiveness', newValue)}
+                  onChange={(e, newValue) =>
+                    setFieldValue('currentEffectiveness', newValue)
+                  }
                   step={1}
                   min={0}
                   max={5}
@@ -227,6 +259,7 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
+              {/* Interest in AI */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   select
@@ -237,17 +270,22 @@ const Questionnaire = () => {
                   fullWidth
                 >
                   <MenuItem value="yes">Yes, definitely</MenuItem>
-                  <MenuItem value="possibly">Possibly, I would like more information</MenuItem>
+                  <MenuItem value="possibly">
+                    Possibly, I would like more information
+                  </MenuItem>
                   <MenuItem value="no">No, I am not interested</MenuItem>
                 </TextField>
               </FormControl>
 
+              {/* Priority Level */}
               <FormControl fullWidth margin="normal">
                 <FormLabel>Priority Level for Firearm Detection</FormLabel>
                 <Slider
                   name="priorityLevel"
                   value={values.priorityLevel}
-                  onChange={(e, newValue) => setFieldValue('priorityLevel', newValue)}
+                  onChange={(e, newValue) =>
+                    setFieldValue('priorityLevel', newValue)
+                  }
                   step={1}
                   min={0}
                   max={5}
@@ -255,12 +293,15 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
+              {/* Response Speed Importance */}
               <FormControl fullWidth margin="normal">
                 <FormLabel>Importance of Police Response Speed</FormLabel>
                 <Slider
                   name="responseSpeedImportance"
                   value={values.responseSpeedImportance}
-                  onChange={(e, newValue) => setFieldValue('responseSpeedImportance', newValue)}
+                  onChange={(e, newValue) =>
+                    setFieldValue('responseSpeedImportance', newValue)
+                  }
                   step={1}
                   min={0}
                   max={5}
@@ -268,6 +309,7 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
+              {/* Concerns */}
               <FormControl fullWidth margin="normal">
                 <TextField
                   label="Concerns about AI Detection Technology"
@@ -280,7 +322,14 @@ const Questionnaire = () => {
                 />
               </FormControl>
 
-              <Button type="submit" variant="contained" color="primary" size="large" fullWidth>
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                fullWidth
+                className="submit-button"
+              >
                 Submit
               </Button>
             </Form>
