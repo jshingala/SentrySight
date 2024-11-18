@@ -14,7 +14,7 @@ import Testimonials from './Testimonials.jsx';
 import Questionnaire from './Questionnaire.jsx';
 import Demo from './Demo.jsx';
 import Login from './SignIn.jsx';
-import Register from './SignUp.jsx';
+import SignUp from './SignUp.jsx';  // Changed to SignUp to match the component name
 import CTA from './CTA.jsx';
 import Footer from './Footer.jsx';
 import Profile from './Profile.jsx';

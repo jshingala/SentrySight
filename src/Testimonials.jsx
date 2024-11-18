@@ -4,17 +4,25 @@ import './testimonials.css'; // Import the CSS file
 function Testimonials() {
   const testimonials = [
     {
-      name: "John Doe",
-      text: "Sentry Sight has transformed our security approach!",
+      name: "Michael Lee",
+      text: "SentrySight's real-time threat detection has given us peace of mind. Our team feels much safer knowing the system is in place."
     },
     {
-      name: "Jane Smith",
-      text: "Incredibly easy to use and effective!",
+      name: "Sarah K.",
+      text: "The firearm detection feature is incredibly accurate. We've been able to respond faster and avoid potential incidents."
     },
     {
-      name: "Bob Johnson",
-      text: "Highly recommend this service to everyone!",
+      name: "James O’Neil",
+      text: "Integrating SentrySight into our security infrastructure was seamless. Highly recommend for any organization prioritizing safety."
     },
+    {
+      name: "Emily Tran",
+      text: "SentrySight has revolutionized our approach to security monitoring. The 24/7 alerts ensure we're always informed, even off-site."
+    },
+    {
+      name: "Carlos Diaz",
+      text: "The user-friendly interface made training our staff a breeze. SentrySight is truly a game-changer in security tech."
+    }
   ];
 
   return (

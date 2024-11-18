@@ -3,9 +3,18 @@ import './news.css'; // Import the CSS file
 
 function News() {
   const newsList = [
-    { title: "News Item 1", description: "Details about news item 1." },
-    { title: "News Item 2", description: "Details about news item 2." },
-    { title: "News Item 3", description: "Details about news item 3." },
+    { 
+      title: "SentrySight Launches New AI-Powered Security Platform", 
+      description: "We are excited to announce the launch of our latest AI-driven platform, designed to enhance security with real-time threat detection and advanced firearm recognition." 
+    },
+    { 
+      title: "SentrySight Partners with Local Law Enforcement Agencies", 
+      description: "In a groundbreaking partnership, SentrySight collaborates with law enforcement to improve response times and enhance public safety." 
+    },
+    { 
+      title: "SentrySight Receives Innovation Award for Security Solutions", 
+      description: "Our innovative technology was recognized at the Security Innovation Awards for its impact on modern security challenges." 
+    },
   ];
 
   return (
