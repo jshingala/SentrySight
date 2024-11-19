@@ -262,3 +262,80 @@ p {
     font-size: 0.85rem;
   }
 }
+
+
+.profile {
+  color: black;
+  padding: 20px 40px;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  width: 120%;
+  max-width: 600px;
+  font-size: 1.2em;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.profile div {
+  margin: 15px 0;
+}
+
+.profile label {
+  font-weight: bold;
+  display: block;
+}
+
+.profile a {
+  display: block;
+  font-weight: normal;
+}
+
+.profile input,
+.profile select {
+    background-color: white;
+    color: black;
+    margin-bottom: 15px; /* Space out inputs */
+    padding: 8px;        /* Add padding inside the input box */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px;  /* Rounded corners */
+    font-size: 16px;     /* Adjust font size */
+    width: 100%;         /* Make inputs full-width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.edit-button {
+  padding: 2px;
+  width: 50px;
+  font-size: 0.9rem;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: rgb(235, 235, 235);
+  transform: scale(1.05);
+}
+
+/* Logout Button Styling */
+.logout-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-style: bold;
+  color: white;
+  background-color: #007bff; /* Blue */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom-in effect */
+}
