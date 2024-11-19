@@ -21,6 +21,7 @@ function Header({ userEmail }) {
         <ul className="nav-list">
           <li className="nav-item"><Link className="nav-link" to="/about">About Us</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/demo">Demo</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/pricing">Pricing</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/questionnaire">Questionnaire</Link></li>
           {/* Conditionally render Register/Sign In or Profile */}
           <li className="nav-item">

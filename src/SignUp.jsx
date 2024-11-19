@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import './SignIn.css'; // Import the CSS file for styling
+import './SignUp.css'; // Import the CSS file for styling
 
 class Register extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="sign-up-form">
+      <div className="sign-up">
         <h2>Sign Up / Register</h2>
         {this.state.successMessage && 
         <div className="success">

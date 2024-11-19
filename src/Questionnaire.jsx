@@ -15,6 +15,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import './Questionnaire.css'
+
 const validationSchema = yup.object({
   businessName: yup.string().required('Business name is required'),
   industryType: yup.string().required('Industry type is required'),

@@ -17,6 +17,7 @@ import Login from './SignIn.jsx';
 import Register from './SignUp.jsx';  // Changed to SignUp to match the component name
 import CTA from './CTA.jsx';
 import Footer from './Footer.jsx';
+import Pricing from './Pricing.jsx';
 import Profile from './Profile.jsx';
 import './CSS.css';
 
@@ -52,6 +53,7 @@ function App() {
             } />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
             <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
             <Route path="/sign-up" element={<Register />} />

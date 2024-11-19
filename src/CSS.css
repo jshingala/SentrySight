@@ -293,6 +293,8 @@ p {
 
 .profile input,
 .profile select {
+    background-color: white;
+    color: black;
     margin-bottom: 15px; /* Space out inputs */
     padding: 8px;        /* Add padding inside the input box */
     border: 1px solid #ccc; /* Light gray border */
