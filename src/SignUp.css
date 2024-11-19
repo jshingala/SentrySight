@@ -65,3 +65,11 @@
   margin-bottom: 15px;
   text-align: center;
 }
+
+.sign-up-button {
+  color: #8612d8;
+}
+
+.error {
+  color: red
+}

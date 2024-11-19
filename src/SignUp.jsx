@@ -53,7 +53,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="sign-up-form">
+      <div className="sign-up">
         <h2>Sign Up / Register</h2>
         {this.state.successMessage && 
         <div className="success">
