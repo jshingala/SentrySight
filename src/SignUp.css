@@ -12,7 +12,7 @@
 .sign-up h2 {
   font-size: 2rem;
   margin-bottom: 15px;
-  color: #6A0DAD; /* Purple accent for heading */
+  color: #635bff; /* Purple accent for heading */
   text-align: center;
 }
 
@@ -52,15 +52,15 @@
 }
 
 .sign-up-form button:hover {
-  background-color: #5A0C90; /* Darker purple for hover */
+  background-color: #493fff; /* Darker purple for hover */
 }
 
 .success {
   padding: 10px 20px;
   font-size: 1rem;
-  color: #00fb2a; /* Bright green for success messages */
+  color: #635bff; /* Bright green for success messages */
   background-color: #2C2C2C; /* Dark background for success message */
-  border: 1px solid #00fb2a;
+  border: 1px solid #635bff;
   border-radius: 4px;
   margin-bottom: 15px;
   text-align: center;

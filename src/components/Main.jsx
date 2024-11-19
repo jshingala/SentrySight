@@ -4,7 +4,7 @@ import videoBg from '../assets/videoBg.mp4';
 const Main = () => {
   return (
     <div className='main'>
-      <video src={videoBg} autoPlay loop muted />
+      <video src={"https://streamable.com/o5kjw6"} autoPlay loop muted />
     </div>
   );
 };
