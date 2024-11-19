@@ -14,7 +14,7 @@ import Pricing from './Pricing.jsx'; // Add this import
 import Profile from './Profile.jsx';
 import Questionnaire from './Questionnaire.jsx';
 import Login from './SignIn.jsx';
-import SignUp from './SignUp.jsx';
+import Register from './SignUp.jsx';
 import Socials from './Socials.jsx';
 import Testimonials from './Testimonials.jsx';
 
