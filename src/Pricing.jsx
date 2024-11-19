@@ -1,101 +1,118 @@
-// Pricing.jsx
 import { motion } from 'framer-motion';
-<<<<<<< Updated upstream
-import React, { useState } from "react";
-import './Pricing.css'; // You'll need to adapt your CSS file
-=======
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './pricing.css';
->>>>>>> Stashed changes
+import './Pricing.css'; // Import the CSS file
 
-function Pricing() {
-  const [billingCycle, setBillingCycle] = useState('monthly');
-
+function Pricing({ onContactClick }) {
   return (
-    <motion.div
-      className="pricing-section"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <motion.h2
-        initial={{ x: -200 }}
-        animate={{ x: 0 }}
-        transition={{ duration: 1 }}
-      >
-        Simple, Transparent Pricing
-      </motion.h2>
-      
-      <motion.p
-        initial={{ y: 50 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 1 }}
-        className="pricing-subtitle"
-      >
-        Choose the perfect plan to secure your space with Sentry Sight's AI-powered protection.
-      </motion.p>
-
-      <motion.div 
-        className="pricing-toggle"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-      >
-        <button 
-          className={billingCycle === 'monthly' ? 'active' : ''}
-          onClick={() => setBillingCycle('monthly')}
+    <main className="min-h-screen bg-[#1A1A1A] pt-24">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Flat Purchase */}
+        <motion.div
+          className="bg-white rounded-lg shadow-lg overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          Monthly
-        </button>
-        <button 
-          className={billingCycle === 'annual' ? 'active' : ''}
-          onClick={() => setBillingCycle('annual')}
-        >
-          Annual
-          <span className="save-badge">Save 20%</span>
-        </button>
-      </motion.div>
+          <div className="bg-[#4CAF50] py-6 px-4">
+            <h2 className="text-white text-center text-2xl font-normal">FLAT PURCHASE</h2>
+          </div>
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-center text-3xl font-normal text-gray-800">$2,000/appliance</h3>
+          </div>
+          <div className="p-6">
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Flat license fee of $500</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Receive the newest update and feature with no additional cost</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Receive a robust hardware equipped with strong capacity for 10+ cameras</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Cameras not included</span>
+              </li>
+            </ul>
+          </div>
+        </motion.div>
 
-<<<<<<< Updated upstream
-      {/* You can add your pricing cards/tiers here with similar motion effects */}
-    </motion.div>
-=======
+        {/* Basic Subscription */}
+        <motion.div
+          className="bg-white rounded-lg shadow-lg overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="bg-[#3f51b5] py-6 px-4">
+            <h2 className="text-white text-center text-2xl font-normal">BASIC SUBSCRIPTION</h2>
+          </div>
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-center text-3xl font-normal text-gray-800">$15/camera/month</h3>
+          </div>
+          <div className="p-6">
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <span className="text-[#3f51b5] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Flat license fee of $500</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#3f51b5] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Receive the newest update and feature through subscription period</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#3f51b5] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Free customer and technical support 24/7</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#3f51b5] mr-2 text-lg">•</span>
+                <span className="text-gray-600">SMS fees at additional cost</span>
+              </li>
+            </ul>
+          </div>
+        </motion.div>
+
         {/* Premium Subscription */}
-        <motion.div 
-          className="price-card"
+        <motion.div
+          className="bg-white rounded-lg shadow-lg overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <div className="price-header premium">
-            <h2>PREMIUM SUBSCRIPTION</h2>
+          <div className="bg-[#e65100] py-6 px-4">
+            <h2 className="text-white text-center text-2xl font-normal">PREMIUM SUBSCRIPTION</h2>
           </div>
-          <div className="price-amount">
-            <h3>$50/camera/month</h3>
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-center text-3xl font-normal text-gray-800">$50/camera/month</h3>
           </div>
-          <div className="price-features">
-            <ul>
-              <li>All of the previous subscription benefits PLUS additional safety detection features tailored for businesses</li>
-              <li>Receive further discounts by opting for an extended contract term</li>
+          <div className="p-6">
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <span className="text-[#e65100] mr-2 text-lg">•</span>
+                <span className="text-gray-600">All of the previous subscription benefits PLUS additional safety detection features tailored for businesses</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#e65100] mr-2 text-lg">•</span>
+                <span className="text-gray-600">Receive further discounts by opting for an extended contract term</span>
+              </li>
             </ul>
           </div>
         </motion.div>
       </div>
 
-      {/* Contact Us Button */}
-      <motion.div 
-        className="contact-button-container"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
-        <Link to="/contact" className="contact-button">
+      <div className="text-center mt-12 mb-16">
+        <button 
+          onClick={onContactClick}
+          className="px-8 py-3 bg-[#4CAF50] text-white rounded-lg text-lg hover:bg-[#45a049] transition-colors"
+        >
           Contact Us
-        </Link>
-      </motion.div>
-    </div>
->>>>>>> Stashed changes
+        </button>
+      </div>
+    </main>
   );
 }
 

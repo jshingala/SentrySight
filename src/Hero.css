@@ -3,30 +3,31 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('src/assets/Rifle.png'); /* Adjust the path to your image */
+  background-size: cover;
+  background-position: center;
 }
 
-.hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
+/* Center the hero content */
 .hero-content {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #ffffff;
   max-width: 80%;
+  text-align: center;
 }
 
 .cta-buttons {
   display: flex;
+  justify-content: center;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .btn-primary,
@@ -39,21 +40,19 @@
   transition: background-color 0.3s ease;
 }
 
+/* Styles for buttons */
 .btn-primary {
-  background-color: #4CAF50;
+  background-color: #635bff; /* Dark blue */
 }
 
 .btn-primary:hover {
-  background-color: #45a049;
+  background-color: #8549e6; /* Darker blue on hover */
 }
 
 .btn-secondary {
-  background-color: transparent;
-  border: 2px solid #4CAF50;
-  color: #4CAF50;
+  background-color: #b82727; /* Red */
 }
 
 .btn-secondary:hover {
-  background-color: #4CAF50;
-  color: #fff;
+  background-color: #a31e1e; /* Darker red on hover */
 }

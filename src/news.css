@@ -8,7 +8,7 @@
 .news-title {
   font-size: 2em;
   margin-bottom: 20px;
-  color: #6A0DAD; /* Purple accent for title */
+  color: #635bff; /* Purple accent for title */
 }
 
 .news-list {
@@ -33,7 +33,7 @@
 .news-item-title {
   font-size: 1.5em;
   margin-bottom: 10px;
-  color: #6A0DAD; /* Purple accent for item titles */
+  color: #635bff; /* Purple accent for item titles */
 }
 
 .news-item-description {
