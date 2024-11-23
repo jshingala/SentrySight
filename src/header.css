@@ -12,14 +12,23 @@
   z-index: 1000;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-image {
+  width: 40px; /* Adjust the size as needed */
+  height: 50px;
+  margin-right: 10px;
+}
+
 .logo h1 {
   font-size: 1.5rem;
   font-weight: 200;
   margin: 0;
-  color: #6A0DAD; /* Purple accent for logo */
-  padding: 5px 12px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px #6A0DAD; /* Purple glow */
+  color: #635bff; /* Purple accent for logo */
 }
 
 .nav-desktop {
@@ -41,7 +50,7 @@
 }
 
 .nav-item .nav-link:hover {
-  color: #6A0DAD; /* Purple accent on hover */
+  color: #635bff; /* Purple accent on hover */
 }
 
 /* Hamburger Menu */
@@ -80,7 +89,7 @@
   top: 20px;
   left: 20px;
   font-size: 1.5rem;
-  color: #6A0DAD; /* Purple accent for back arrow */
+  color: #635bff; /* Purple accent for back arrow */
   cursor: pointer;
 }
 

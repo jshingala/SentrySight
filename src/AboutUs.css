@@ -34,7 +34,7 @@ body {
 
 .about-us h2 {
   font-size: 2.5rem;
-  color: #6A0DAD; /* Purple accent */
+  color: #fc0404; /* Purple accent */
   text-align: center;
   margin-bottom: 20px;
 }
@@ -48,10 +48,10 @@ body {
 
 .about-us h3 {
   font-size: 1.8rem;
-  color: #6A0DAD;
+  color: #b82727;
   margin-bottom: 10px;
   text-transform: uppercase;
-  border-bottom: 2px solid #6A0DAD;
+  border-bottom: 2px solid #b82727;
   padding-bottom: 5px;
 }
 
@@ -62,7 +62,7 @@ body {
 
 .awards-section h2 {
   font-size: 2rem;
-  color: #6A0DAD;
+  color: #b82727;
   text-align: center;
   margin-bottom: 30px;
 }

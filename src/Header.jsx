@@ -1,7 +1,10 @@
+import { AnimatePresence, motion } from "framer-motion"; // Import AnimatePresence for transitions
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion"; // Import AnimatePresence for transitions
 import "./header.css";
+import Logo from './assets/Logo.png'; // Corrected import path
+
 
 function Header({ userEmail }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +17,8 @@ function Header({ userEmail }) {
     <header className="header">
       <div className="logo">
         <Link to="/" className="logo-link">
-          <h1>SENTRY SIGHT</h1>
+          <img src={Logo} alt="Logo" className="logo-image" />
+          <h1>SentrySight</h1>
         </Link>
       </div>
       <nav className="nav-desktop">
@@ -34,6 +38,7 @@ function Header({ userEmail }) {
               Questionnaire
             </Link>
           </li>
+          <li className="nav-item"><Link className="nav-link" to="/pricing">Pricing</Link></li>
           <li className="nav-item">
             <Link className="nav-link" to="/faq">
               FAQ
@@ -76,6 +81,7 @@ function Header({ userEmail }) {
                   Demo
                 </Link>
               </li>
+              <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={toggleMenu}>Pricing</Link></li>
               <li className="nav-item">
                 <Link
                   className="nav-link"
@@ -85,6 +91,7 @@ function Header({ userEmail }) {
                   Questionnaire
                 </Link>
               </li>
+  
               <li className="nav-item">
                 <Link className="nav-link" to="/faq" onClick={toggleMenu}>
                   FAQ
@@ -95,6 +102,7 @@ function Header({ userEmail }) {
                   Register / Sign In
                 </Link>
               </li>
+
             </ul>
           </motion.div>
         )}

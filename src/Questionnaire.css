@@ -1,175 +1,79 @@
-/* General Styling */
-body {
-    background-color: #2E004F; /* Dark purple background */
-    color: #FFFFFF; /* White text for readability */
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
-
-/* Questionnaire Styling */
-.questionnaire {
-    max-width: 800px;
-    width: 100%;
-    margin: 20px;
-    padding: 30px;
-    background-color: #3B006A; /* Darker purple for contrast */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-}
-
-/* Header Styling */
-h1, h2 {
-    color: #A353F1; /* Bright purple accent */
-    text-align: center;
-    font-weight: bold;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-/* Form Group Styling */
-.form-group {
-    margin-bottom: 25px;
-}
-
-/* Label Styling */
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #D1B3FF; /* Light purple text */
-    font-size: 1.2rem;
-}
-
-/* Input and Select Styles */
-input[type="text"],
-input[type="number"],
-input[type="range"],
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #7A2BA0; /* Mid-purple border */
+/* Styles for the Questionnaire component */
+.Questionnaire {
+    background-color: #0D0D0D; /* Dark background */
+    color: #EAEAEA; /* Off-white text */
+    padding: 40px;
     border-radius: 8px;
-    background-color: #4A007E; /* Darker purple */
-    color: #FFFFFF;
+  }
+  
+  /* Title styling */
+  .Questionnaire .title {
+    color: #635bff; /* Purple color for the title */
+    text-align: center;
+  }
+  
+  /* Subtitle styling */
+  .Questionnaire .subtitle {
+    color: #B0B0B0; /* Light gray text */
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  /* Form control margins */
+  .Questionnaire .MuiFormControl-root {
+    margin-bottom: 20px;
+  }
+  
+  /* TextFields styling */
+  .Questionnaire .MuiInputBase-root {
+    background-color: #262626; /* Card background */
+    color: #EAEAEA; /* Off-white text */
+  }
+  
+  .Questionnaire .MuiInputBase-input::placeholder {
+    color: #EAEAEA; /* White placeholder text */
+    opacity: 1;
+  }
+  
+  .Questionnaire .MuiFormLabel-root {
+    color: #B0B0B0; /* Light gray labels */
+  }
+  
+  .Questionnaire .MuiFormHelperText-root {
+    color: red; /* Error messages in red */
+  }
+  
+  /* Checkbox labels */
+  .Questionnaire .MuiFormControlLabel-label {
+    color: #EAEAEA; /* Off-white text */
+  }
+  
+  /* Checkbox icons */
+  .Questionnaire .MuiCheckbox-root .MuiSvgIcon-root {
+    color: #EAEAEA; /* Off-white */
+  }
+  
+  /* Slider thumb and track */
+  .Questionnaire .MuiSlider-thumb {
+    color: #635bff; /* Purple thumb */
+  }
+  
+  .Questionnaire .MuiSlider-track {
+    color: #635bff; /* Purple track */
+  }
+  
+  /* Submit button styling */
+  .Questionnaire .submit-button {
+    background-color: #635bff; /* Purple background */
+    color: #EAEAEA; /* Off-white text */
+    padding: 12px 30px;
     font-size: 1rem;
-}
-
-input[type="text"]::placeholder,
-textarea::placeholder {
-    color: #B185C5; /* Soft purple placeholder */
-}
-
-textarea {
-    min-height: 100px;
-}
-
-/* Checkbox Styles */
-input[type="checkbox"] {
-    accent-color: #A353F1; /* Bright purple color for checkboxes */
-}
-
-/* Range Slider */
-input[type="range"] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 8px;
-    background: #7A2BA0; /* Darker purple for slider background */
-    outline: none;
-    border-radius: 5px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #A353F1; /* Bright purple thumb */
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* General Button Reset */
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-    background-color: #A353F1; /* Bright purple accent */
-    color: #FFFFFF;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    width: 100%;
-    transition: background 0.3s ease;
-    margin-top: 20px;
-    text-decoration: none; /* Remove underline for link-styled buttons */
-    appearance: none; /* Reset browser default styling */
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover {
-    background-color: #8B3CC6; /* Darker purple for hover */
-}
-
-/* Focus State for Accessibility */
-button:focus,
-input[type="button"]:focus,
-input[type="submit"]:focus,
-input[type="reset"]:focus {
-    outline: 2px solid #A353F1; /* Bright purple focus outline */
-    outline-offset: 2px;
-}
-
-/* Demo Page Style (for the page surrounding the questionnaire) */
-.demo-page {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.demo-page h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #A353F1;
-}
-
-.demo-page p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #D1B3FF;
-}
-
-/* Responsive Form Layout */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.6rem;
-    }
-
-    .questionnaire {
-        padding: 15px;
-    }
-}
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Questionnaire .submit-button:hover {
+    background-color: #a73ded; /* Darker purple on hover */
+  }
+  
