@@ -38,7 +38,7 @@ Our web development team was assigned to build a comprehensive website for **Sen
 <img src="src/assets/readme_assets/main_page.png" alt="Main_Page" width="1024" height="auto">
 
 - **About Us Page**
-<img src="src/assets/readme_assets/about_us.png" alt="About_Us" width="1024" height="auto">
+<img src="src/assets/readme_assets/about_us_page.png" alt="About_Us" width="1024" height="auto">
 
 - **Demo Page**
 <img src="src/assets/readme_assets/demo_page.png" alt="Demo" width="1024" height="auto">
