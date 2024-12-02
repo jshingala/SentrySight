@@ -68,7 +68,7 @@ const Login = ({ setUserEmail }) => {
           </Link>
           {/* "Don't have an account?" as a clickable link */}
           <p>
-            Don't have an account? <Link to="/sign-up">Sign up here</Link>
+          Don't have an account? <Link to="/sign-up" className="sign-up-button">Sign up here</Link>
           </p>
         </div>
       </form>

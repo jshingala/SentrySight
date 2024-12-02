@@ -10,7 +10,6 @@ class Register extends Component {
         password: '',
         business_name: '',
         contact_number: '',
-        address: null,
         _share: false,
         successMessage: ''  //This will hold the success message
     };
@@ -23,7 +22,7 @@ class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password, business_name, contact_number, address, _share } = this.state;
+    const { email, password, business_name, contact_number, _share } = this.state;
 
     // Send POST request to backend
     fetch('http://localhost:3306/sign-up', {
@@ -31,7 +30,7 @@ class Register extends Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password, business_name, contact_number, address, _share })
+        body: JSON.stringify({ email, password, business_name, contact_number, _share })
       })
         .then(response => {
             //console.log(response);
@@ -54,7 +53,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="sign-up-form">
+      <div className="sign-up">
         <h2>Sign Up / Register</h2>
         {this.state.successMessage && 
         <div className="success">

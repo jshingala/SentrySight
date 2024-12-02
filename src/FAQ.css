@@ -1,32 +1,72 @@
+/* FAQ.css */
 .faq {
-    background-color: #f9f9f9; /* Light background color */
-    padding: 40px 20px; /* Add padding */
-    margin: 20px 0; /* Add margin */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
-  }
-  
-  .faq h2 {
-    text-align: center; /* Center the title */
-    font-size: 2rem; /* Font size */
-    margin-bottom: 20px; /* Space below title */
-  }
-  
-  .faq ul {
-    list-style: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-  }
-  
-  .faq li {
-    margin-bottom: 15px; /* Space between questions */
-    padding: 15px; /* Padding around each question */
-    background-color: #fff; /* White background for each item */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow */
-  }
-  
-  .faq strong {
-    display: block; /* Make question bold and block */
-    font-size: 1.1rem; /* Slightly larger font size */
-  }
-  
+  background-color: #343434;
+  padding: 40px 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  border-color: #870a7a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #870a7a;
+}
+
+.faq ul {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #c950de;
+}
+
+.faq-answer {
+  padding-top: 10px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: #c950de;
+}
+
+.faq-item.active {
+  background-color: #f0f8ff;
+}
+
+.faq-item.active .faq-question {
+  color: #007bff;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
