@@ -34,7 +34,30 @@ Our web development team was assigned to build a comprehensive website for **Sen
 
 ## Prototype Images
 
-*Insert image here*
+- **Main Page**
+<img src="src/assets/readme_assets/main_page.png" alt="Logo" width="1024" height="auto">
+
+- **About Us Page**
+<img src="src/assets/readme_assets/about_us.png" alt="Logo" width="1024" height="auto">
+
+- **Demo Page**
+<img src="src/assets/readme_assets/demo_page.png" alt="Logo" width="1024" height="auto">
+
+Product Testing
+<video src="/videoBg.mp4" autoPlay loop muted playsInline className="video-content">
+
+- **Questionnaire Page**
+<img src="src/assets/readme_assets/questionnaire_page.png" alt="Logo" width="1024" height="auto">
+
+- **Pricing Page**
+<img src="src/assets/readme_assets/pricing_page.png" alt="Logo" width="1024" height="auto">
+
+- **Login/Register Page**
+<img src="src/assets/readme_assets/login_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/register_page.png" alt="Logo" width="1024" height="auto">
+
+- **Profile Page**
+<img src="src/assets/readme_assets/profile_page.png" alt="Logo" width="1024" height="auto">
 
 ## Testing
 
@@ -50,7 +73,7 @@ Our web development team was assigned to build a comprehensive website for **Sen
 
 ## Entity-Relationship Diagram (ERD)
 
-*Insert image here*
+<img src="src/assets/readme_assets/ERD.png" alt="Logo" width="1024" height="auto">
 
 ## Timeline and Milestones
 
