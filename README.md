@@ -98,13 +98,4 @@ Our project timeline is managed through JIRA, outlining key milestones:
    - Redesign Website UI with dark theme
    - Optimize the website to satisfy the remaining requirements
 
-
-
-## Contact
-
-For more information or inquiries, please contact us:
-
-- **Email:** webdevteam@example.com
-- **Website:** [www.aifirearmdetection.com](http://www.aifirearmdetection.com)
-
 ---
