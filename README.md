@@ -35,29 +35,29 @@ Our web development team was assigned to build a comprehensive website for **Sen
 ## Prototype Images
 
 - **Main Page**
-<img src="src/assets/readme_assets/main_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/main_page.png" alt="Main_Page" width="1024" height="auto">
 
 - **About Us Page**
-<img src="src/assets/readme_assets/about_us.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/about_us.png" alt="About_Us" width="1024" height="auto">
 
 - **Demo Page**
-<img src="src/assets/readme_assets/demo_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/demo_page.png" alt="Demo" width="1024" height="auto">
 
 Product Testing
 <video src="/videoBg.mp4" autoPlay loop muted playsInline className="video-content">
 
 - **Questionnaire Page**
-<img src="src/assets/readme_assets/questionnaire_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/questionnaire_page.png" alt="Questionnaire" width="1024" height="auto">
 
 - **Pricing Page**
-<img src="src/assets/readme_assets/pricing_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/pricing_page.png" alt="Pricing" width="1024" height="auto">
 
 - **Login/Register Page**
-<img src="src/assets/readme_assets/login_page.png" alt="Logo" width="1024" height="auto">
-<img src="src/assets/readme_assets/register_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/login_page.png" alt="Login" width="1024" height="auto">
+<img src="src/assets/readme_assets/register_page.png" alt="Register" width="1024" height="auto">
 
 - **Profile Page**
-<img src="src/assets/readme_assets/profile_page.png" alt="Logo" width="1024" height="auto">
+<img src="src/assets/readme_assets/profile_page.png" alt="Profile" width="1024" height="auto">
 
 ## Testing
 
