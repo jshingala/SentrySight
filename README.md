@@ -44,7 +44,7 @@ Our web development team was assigned to build a comprehensive website for **Sen
 <img src="src/assets/readme_assets/demo.png" alt="Demo" width="1024" height="auto">
 
 Product Testing
-<video src="/videoBg.mp4" autoPlay loop muted playsInline className="video-content">
+<img src="src/assets/readme_assets/demo.gif" alt="Demo Video" width="1024" height="auto">
 
 - **Questionnaire Page**
 <img src="src/assets/readme_assets/questionnaire.png" alt="Questionnaire" width="1024" height="auto">
