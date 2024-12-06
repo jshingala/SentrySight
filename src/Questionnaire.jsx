@@ -249,10 +249,8 @@ const Questionnaire = () => {
                 <Slider
                   name="currentEffectiveness"
                   value={values.currentEffectiveness}
-                  onChange={(e, newValue) =>
-                    setFieldValue('currentEffectiveness', newValue)
-                  }
-                  step={1}
+                  onChange={(e, newValue) => setFieldValue('currentEffectiveness', newValue)} // Smooth state update
+                  step={0.1} 
                   min={0}
                   max={5}
                   valueLabelDisplay="auto"
@@ -283,10 +281,8 @@ const Questionnaire = () => {
                 <Slider
                   name="priorityLevel"
                   value={values.priorityLevel}
-                  onChange={(e, newValue) =>
-                    setFieldValue('priorityLevel', newValue)
-                  }
-                  step={1}
+                  onChange={(e, newValue) => setFieldValue('priorityLevel', newValue)} // Smooth state update
+                  step={0.1} 
                   min={0}
                   max={5}
                   valueLabelDisplay="auto"
@@ -299,10 +295,8 @@ const Questionnaire = () => {
                 <Slider
                   name="responseSpeedImportance"
                   value={values.responseSpeedImportance}
-                  onChange={(e, newValue) =>
-                    setFieldValue('responseSpeedImportance', newValue)
-                  }
-                  step={1}
+                  onChange={(e, newValue) => setFieldValue('responseSpeedImportance', newValue)} // Smooth state update
+                  step={0.1} 
                   min={0}
                   max={5}
                   valueLabelDisplay="auto"
