@@ -64,7 +64,7 @@ function App() {
               element={<Login setUserEmail={setUserEmail} />}
             />
             <Route path="/sign-up" element={<SignUp />} />
-            
+
            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
 
           </Routes>
