@@ -23,7 +23,7 @@ const Hero = () => {
         </motion.p>
         <div className="cta-buttons">
           <motion.a
-            href="#get-started"
+            href="/sign-in"
             className="btn-primary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -32,7 +32,7 @@ const Hero = () => {
             Get Started
           </motion.a>
           <motion.a
-            href="#learn-more"
+            href="/demo" 
             className="btn-secondary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

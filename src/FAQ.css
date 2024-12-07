@@ -1,32 +1,71 @@
 .faq {
-    background-color: #f9f9f9; /* Light background color */
-    padding: 40px 20px; /* Add padding */
-    margin: 20px 0; /* Add margin */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
-  }
-  
-  .faq h2 {
-    text-align: center; /* Center the title */
-    font-size: 2rem; /* Font size */
-    margin-bottom: 20px; /* Space below title */
-  }
-  
-  .faq ul {
-    list-style: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-  }
-  
-  .faq li {
-    margin-bottom: 15px; /* Space between questions */
-    padding: 15px; /* Padding around each question */
-    background-color: #fff; /* White background for each item */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow */
-  }
-  
-  .faq strong {
-    display: block; /* Make question bold and block */
-    font-size: 1.1rem; /* Slightly larger font size */
-  }
-  
+  background-color: var(--section-background);
+  padding: 40px 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.faq h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.faq ul {
+  list-style: none;
+  padding: 0;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(255, 153, 153, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 4px 10px rgba(172, 116, 246, 0.8);
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.faq-answer {
+  padding-top: 10px;
+  font-size: 1rem;
+  color: var(--secondary-text-color);
+  line-height: 1.6;
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.faq-item.active {
+  background-color: #342e2e11;
+}
+
+.faq-item.active .faq-question {
+  color: var(--primary-color);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+>>>>>>> 459f286d472d3e6714ffd2e33598dd3a16c7f5af

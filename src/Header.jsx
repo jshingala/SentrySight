@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"; // Import AnimatePresence for transitions
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './header.css';
+import "./header.css";
 import Logo from './assets/Logo.png'; // Corrected import path
 
 function Header({ userEmail }) {
