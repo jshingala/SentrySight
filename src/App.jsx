@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -17,20 +16,22 @@ import Demo from "./Demo.jsx";
 import Login from "./SignIn.jsx";
 import SignUp from "./SignUp.jsx"; // Changed to SignUp to match the component name
 import Pricing from './Pricing.jsx'; // Add this import
-import CTA from "./CTA.jsx";
-import Footer from "./Footer.jsx";
-import Profile from "./Profile.jsx";
-import "./CSS.css";
+import Profile from './Profile.jsx';
+import Questionnaire from './Questionnaire.jsx';
+import Login from './SignIn.jsx';
+import SignUp from './SignUp.jsx';
+import Socials from './Socials.jsx';
+import Testimonials from './Testimonials.jsx';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 function App() {
   const [userEmail, setUserEmail] = useState(() => {
-    return localStorage.getItem("userEmail") || "";
-
+    return localStorage.getItem('userEmail') || '';
   });
 
   useEffect(() => {
     if (userEmail) {
-      localStorage.setItem("userEmail", userEmail);
+      localStorage.setItem('userEmail', userEmail);
     }
   }, [userEmail]);
 
@@ -45,7 +46,27 @@ function App() {
               element={
                 <>
                   <Hero />
+                  
+                  {/* Parallax Section 1 */}
+                  <div
+                    className="parallax"
+                    style={{ backgroundImage: `url('src/assets/Rifle.png')` }}
+                  >
+                  </div>
+
                   <Features />
+
+                  {/* Parallax Section 2 */}
+                  <div
+                    className="parallax"
+                    style={{ backgroundImage: `url('/images/parallax2.jpg')` }}
+                  >
+                    <div className="parallax-content">
+                      <h2>Stay Updated</h2>
+                      <p>Check out our latest news and articles</p>
+                    </div>
+                  </div>
+
                   <News />
                   <Testimonials />
                   <CTA />
@@ -57,14 +78,13 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
-            <Route path="/pricing" element={<Pricing />} /> {/* Add this route */}
-            <Route path="/faq" element={<FAQ />} />
-            <Route
-              path="/sign-in"
-              element={<Login setUserEmail={setUserEmail} />}
-            />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
             <Route path="/sign-up" element={<SignUp />} />
-           <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
+            <Route
+              path="/profile"
+              element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />}
+            />
           </Routes>
         </main>
         <Footer />
