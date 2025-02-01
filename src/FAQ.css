@@ -1,11 +1,11 @@
 /* FAQ.css */
 .faq {
-  background-color: #343434;
+  background-color: var(--section-background);
   padding: 40px 20px;
   margin: 20px 0;
   border-radius: 20px;
-  border-color: #870a7a;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .faq h2 {
@@ -13,7 +13,7 @@
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 30px;
-  color: #870a7a;
+  color: var(--primary-color);
 }
 
 .faq ul {
@@ -24,15 +24,15 @@
 .faq-item {
   margin-bottom: 20px;
   padding: 15px;
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 8px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px rgba(255, 153, 153, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(172, 116, 246, 0.8);
   transform: translateY(-2px);
 }
 
@@ -42,31 +42,30 @@
   align-items: center;
   font-size: 1.1rem;
   font-weight: bold;
-  color: #c950de;
+  color: var(--text-color);
 }
 
 .faq-answer {
   padding-top: 10px;
   font-size: 1rem;
-  color: #555;
+  color: var(--secondary-text-color);
   line-height: 1.6;
 }
 
 .faq-icon {
   font-size: 1.5rem;
-  color: #c950de;
+  color: var(--primary-color);
 }
 
 .faq-item.active {
-  background-color: #f0f8ff;
+  background-color: #342e2e11;
 }
 
 .faq-item.active .faq-question {
-  color: #007bff;
+  color: var(--primary-color);
 }
 
 .faq-item.active .faq-icon {
   transform: rotate(45deg);
   transition: transform 0.3s ease;
 }
-

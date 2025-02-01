@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Route, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./Header.jsx";
 import AboutUs from "./AboutUs.jsx";
 import Hero from "./Hero.jsx";
@@ -64,9 +64,7 @@ function App() {
               element={<Login setUserEmail={setUserEmail} />}
             />
             <Route path="/sign-up" element={<SignUp />} />
-            
            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
-
           </Routes>
         </main>
         <Footer />
@@ -76,4 +74,3 @@ function App() {
 }
 
 export default App;
-

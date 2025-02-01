@@ -104,12 +104,16 @@ function Pricing({ onContactClick }) {
         </motion.div>
       </div>
 
-      <div className="text-center mt-12 mb-16">
-        <button 
+      <div className="button-container text-center mt-12 mb-16 flex flex-col items-center space-y-4">
+        <button
           onClick={onContactClick}
-          className="px-8 py-3 bg-[#4CAF50] text-white rounded-lg text-lg hover:bg-[#45a049] transition-colors"
-        >
-          Contact Us
+          className="px-8 py-3 bg-[#4CAF50] text-white rounded-lg text-lg hover:bg-[#45a049] transition-colors">
+            Contact Us
+        </button>
+        <button
+          onClick={() => alert('Estimate feature is coming soon!')}
+          className="px-8 py-3 bg-[#3f51b5] text-white rounded-lg text-lg hover:bg-[#35489a] transition-colors">
+            Press for Estimate
         </button>
       </div>
     </main>
