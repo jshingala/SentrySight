@@ -3,6 +3,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-attachment: fixed; /* Enables parallax effect */
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
@@ -10,9 +11,9 @@
     url('src/assets/Rifle.png'); /* Adjust the path to your image */
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* Center the hero content */
 .hero-content {
   position: absolute;
   top: 50%;
@@ -40,19 +41,18 @@
   transition: background-color 0.3s ease;
 }
 
-/* Styles for buttons */
 .btn-primary {
-  background-color: #635bff; /* Dark blue */
+  background-color: #635bff;
 }
 
 .btn-primary:hover {
-  background-color: #8549e6; /* Darker blue on hover */
+  background-color: #8549e6;
 }
 
 .btn-secondary {
-  background-color: #b82727; /* Red */
+  background-color: #b82727;
 }
 
 .btn-secondary:hover {
-  background-color: #a31e1e; /* Darker red on hover */
+  background-color: #a31e1e;
 }

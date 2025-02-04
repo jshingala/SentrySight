@@ -16,20 +16,23 @@
 
 .price-card {
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .price-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .price-header {
-  padding: 20px;
+  padding: 25px;
   text-align: center;
   color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 .price-header.flat {
@@ -46,12 +49,12 @@
 
 .price-header h2 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .price-amount {
-  padding: 20px;
+  padding: 25px;
   text-align: center;
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid #eee;
@@ -59,12 +62,13 @@
 
 .price-amount h3 {
   margin: 0;
-  font-size: 1.8rem;
-  color: #333;
+  font-size: 2.2rem;
+  color: #2c3e50;
+  font-weight: 700;
 }
 
 .price-features {
-  padding: 20px;
+  padding: 25px;
 }
 
 .price-features ul {
@@ -74,18 +78,20 @@
 }
 
 .price-features li {
-  padding: 12px 0;
-  color: #666;
+  padding: 15px 0;
+  color: #444;
+  font-size: 1.1rem;
   border-bottom: 1px solid #eee;
   position: relative;
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 .price-features li:before {
-  content: "•";
+  content: "✔";
   color: #27ae60;
   position: absolute;
   left: 0;
+  font-size: 1.3rem;
 }
 
 .price-features li:last-child {
@@ -95,27 +101,27 @@
 /* Contact Button Styles */
 .contact-button-container {
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 60px auto;
 }
 
 .contact-button {
   display: inline-block;
-  padding: 15px 40px;
+  margin: 20px;
+  padding: 18px 45px;
   background-color: #27ae60;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  font-weight: 500;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .contact-button:hover {
   background-color: #219a52;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* Mobile Responsiveness */
@@ -135,12 +141,12 @@
   }
 
   .contact-button {
-    padding: 12px 30px;
-    font-size: 1rem;
+    padding: 14px 35px;
+    font-size: 1.1rem;
   }
   
   .contact-button-container {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 }

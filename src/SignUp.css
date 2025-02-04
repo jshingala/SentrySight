@@ -6,7 +6,7 @@
   background-color: #333333; /* Dark gray background */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #FFFFFF; /* White text */
+  color: #ff1212; /* White text */
 }
 
 .sign-up h2 {
@@ -20,7 +20,7 @@
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #B3B3B3; /* Light gray for labels */
+  color: #cd6060; /* Light gray for labels */
 }
 
 .sign-up-form input {
@@ -67,7 +67,7 @@
 }
 
 .sign-up-button {
-  color: #8612d8;
+  color: #ff0000;
 }
 
 .error {
