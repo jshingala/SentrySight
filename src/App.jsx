@@ -56,7 +56,7 @@ function App() {
             />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
-            <Route path="/questionnaire" element={<Questionnaire />} />
+            <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
             <Route path="/pricing" element={<Pricing />} /> {/* Add this route */}
             <Route path="/faq" element={<FAQ />} />
             <Route
