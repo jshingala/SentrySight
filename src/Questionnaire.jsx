@@ -76,7 +76,9 @@ const Questionnaire = ({userEmail}) => {
             // If there's an error, display it to the user
             this.setState({ errorMessage: data.error });
           }else {
-            this.setState({ successMessage: "You're successfully registered!", errorMessage: '' });
+            alert("Submitted Successfully");
+            window.location.href = "/questionnaire";
+            this.setState({ successMessage: "Submitted successfully!", errorMessage: '' });
           }
       })
       .catch(error => {

@@ -180,42 +180,84 @@ app.post('/questionnaire', (req, res) => {
   // Get business_id from Business table
   const businessQuery = `SELECT business_id FROM Business WHERE email = ?`;
   con.query(businessQuery, [email], (err, results) => {
-    if (err) return res.status(500).json({ error: 'Database query error', details: err });
-
-    if (results.length === 0) return res.status(404).json({ error: 'Business not found' });
-
+    if (err) return res.status(500).json({ error: "Database query error", details: err });
+  
+    if (results.length === 0) return res.status(404).json({ error: "Business not found" });
+  
     const businessId = results[0].business_id;
-
-    // Insert into Questionnaire table
-    const questionnaireQuery = `
-      INSERT INTO Questionnaire 
-        (business_id, business_name, industry_type, num_employees, num_visitors, en_detection, 
-        safety_0, safety_1, safety_2, safety_3, 
-        effectiveness, interest, priority, police_speed, comments) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-
-    con.query(questionnaireQuery, [
-      businessId,
-      businessName,
-      industryType,
-      numEmployees,
-      dailyVisitors,
-      hasDetectionTech === 'yes' ? 1 : 0,
-      safetyMeasures.includes('Surveillance cameras') ? 1 : 0,
-      safetyMeasures.includes('Security guards') ? 1 : 0,
-      safetyMeasures.includes('Panic buttons') ? 1 : 0,
-      safetyMeasures.includes('Emergency lockdown procedures') ? 1 : 0,
-      currentEffectiveness,
-      interestInAI === 'yes' ? 1 : interestInAI === 'possibly' ? 0 : -1,
-      priorityLevel,
-      responseSpeedImportance,
-      concerns || ''
-    ], (err, result) => {
-      if (err) return res.status(500).json({ error: 'Error saving questionnaire', details: err });
-
-      res.status(200).json({ message: 'Questionnaire submitted successfully', result });
+  
+    // Check if the business_id exists in the Questionnaire table
+    const countQuery = "SELECT COUNT(*) AS count FROM Questionnaire WHERE business_id = ?";
+    con.query(countQuery, [businessId], (err, countResult) => {
+      if (err) {
+        return res.status(500).json({ error: "Error counting existing data", details: err });
+      }
+  
+      const count = countResult[0].count; // Get actual count value from the result
+  
+      if (count > 0) {
+        // If the business_id exists, update the row
+        const questionnaireQuery = `
+          UPDATE Questionnaire 
+          SET industry_type = ?, num_employees = ?, num_visitors = ?, en_detection = ?, 
+              safety_0 = ?, safety_1 = ?, safety_2 = ?, safety_3 = ?, 
+              effectiveness = ?, interest = ?, priority = ?, police_speed = ?, comments = ? 
+          WHERE business_id = ?`;
+  
+        con.query(questionnaireQuery, [
+          industryType,
+          numEmployees,
+          dailyVisitors,
+          hasDetectionTech === "yes" ? 1 : 0,
+          safetyMeasures.includes("Surveillance cameras") ? 1 : 0,
+          safetyMeasures.includes("Security guards") ? 1 : 0,
+          safetyMeasures.includes("Panic buttons") ? 1 : 0,
+          safetyMeasures.includes("Emergency lockdown procedures") ? 1 : 0,
+          currentEffectiveness,
+          interestInAI === "yes" ? 1 : interestInAI === "possibly" ? 0 : -1,
+          priorityLevel,
+          responseSpeedImportance,
+          concerns || "",
+          businessId // This goes at the end for the WHERE clause
+        ], (err, result) => {
+          if (err) return res.status(500).json({ error: "Error updating questionnaire", details: err });
+  
+          res.status(200).json({ message: "Questionnaire updated successfully", result });
+        });
+  
+      } else {
+        // If the business_id does NOT exist, insert a new row
+        const insertQuery = `
+          INSERT INTO Questionnaire 
+          (business_id, business_name, industry_type, num_employees, num_visitors, en_detection, 
+           safety_0, safety_1, safety_2, safety_3, 
+           effectiveness, interest, priority, police_speed, comments) 
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  
+        con.query(insertQuery, [
+          businessId,
+          businessName,
+          industryType,
+          numEmployees,
+          dailyVisitors,
+          hasDetectionTech === "yes" ? 1 : 0,
+          safetyMeasures.includes("Surveillance cameras") ? 1 : 0,
+          safetyMeasures.includes("Security guards") ? 1 : 0,
+          safetyMeasures.includes("Panic buttons") ? 1 : 0,
+          safetyMeasures.includes("Emergency lockdown procedures") ? 1 : 0,
+          currentEffectiveness,
+          interestInAI === "yes" ? 1 : interestInAI === "possibly" ? 0 : -1,
+          priorityLevel,
+          responseSpeedImportance,
+          concerns || ""
+        ], (err, result) => {
+          if (err) return res.status(500).json({ error: "Error inserting questionnaire", details: err });
+  
+          res.status(200).json({ message: "Questionnaire submitted successfully", result });
+        });
+      }
     });
-  });
+  });  
 });
 
 app.listen(3000, () => {
