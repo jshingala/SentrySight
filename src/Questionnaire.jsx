@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import './Questionnaire.css'; // Import the CSS file
@@ -25,52 +25,67 @@ const validationSchema = yup.object({
   safetyMeasures: yup.array().min(1, 'Select at least one safety measure'),
 });
 
-const initialValues = {
-  businessName: '',
-  industryType: '',
-  numEmployees: '',
-  dailyVisitors: '',
-  hasDetectionTech: '',
-  safetyMeasures: [],
-  currentEffectiveness: 3,
-  interestInAI: '',
-  priorityLevel: 3,
-  responseSpeedImportance: 3,
-  concerns: '',
-  additionalThoughts: '',
-};
+const Questionnaire = ({userEmail}) => {
+  const [values, setValues] = useState ({
+    businessName: '',
+    industryType: '',
+    numEmployees: '',
+    dailyVisitors: '',
+    hasDetectionTech: '',
+    safetyMeasures: [],
+    currentEffectiveness: 3,
+    interestInAI: '',
+    priorityLevel: 3,
+    responseSpeedImportance: 3,
+    concerns: ''
+  });
 
-const Questionnaire = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
+    if (!userEmail) {
+      alert("Please login to submit your questionnaire");
+      return;
+    }
+
     console.log('Submitting form with values:', values);
 
-    try {
-      const response = await fetch('http://localhost:3000/Questionnaire', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(values),
+    
+    fetch('http://localhost:3000/questionnaire', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: userEmail,
+        businessName: values.businessName,
+        industryType: values.industryType,
+        numEmployees: values.numEmployees,
+        dailyVisitors: values.dailyVisitors,
+        hasDetectionTech: values.hasDetectionTech,
+        safetyMeasures: values.safetyMeasures,
+        currentEffectiveness: values.currentEffectiveness,
+        interestInAI: values.interestInAI,
+        priorityLevel: values.priorityLevel,
+        responseSpeedImportance: values.responseSpeedImportance,
+        concerns: values.concerns
+      })
+    })      
+      .then(response => {
+        //console.log(response);
+        return response.json()
+      })
+      .then(data => {
+        if (data.error) {
+            // If there's an error, display it to the user
+            this.setState({ errorMessage: data.error });
+          }else {
+            alert("Submitted Successfully");
+            window.location.href = "/questionnaire";
+            this.setState({ successMessage: "Submitted successfully!", errorMessage: '' });
+          }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+
+        this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
       });
-
-      console.log('Response status:', response.status);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Response data:', data);
-        alert('Database connection successful: ' + data.message);
-      } else {
-        const errorText = await response.text();
-        console.error('Response error:', errorText);
-        alert('Failed to connect to the database: ' + response.statusText);
-      }
-    } catch (error) {
-      console.error('Fetch error:', error);
-      alert('An error occurred: ' + error.message);
-    } finally {
-      setSubmitting(false);
-    }
   };
 
   // Prevent scroll wheel from changing number inputs
@@ -105,7 +120,7 @@ const Questionnaire = () => {
         </Typography>
 
         <Formik
-          initialValues={initialValues}
+          initialValues={values}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
