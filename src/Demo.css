@@ -51,7 +51,7 @@ section {
       rgba(18, 18, 18, 0.8),
       rgba(18, 18, 18, 0.8)
     ),
-    url('./assets/pic3.jpg'); /* Replace with the correct relative path */
+    url('./assets/pic3.jpg');
   background-size: cover;
   background-position: center center;
   color: var(--text-color);
@@ -184,6 +184,41 @@ section {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Progress Bar */
+.progress-bar-container {
+  width: 100%;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+  height: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--primary-color);
+  width: 0%;
+  transition: width 0.1s ease-in-out;
+}
+
+/* Result Box */
+.result {
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px dashed var(--primary-color);
+  border-radius: 10px;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.result img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 /* Call to Action Section */
