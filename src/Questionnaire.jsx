@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import './Questionnaire.css'; // Import the CSS file
@@ -25,52 +25,96 @@ const validationSchema = yup.object({
   safetyMeasures: yup.array().min(1, 'Select at least one safety measure'),
 });
 
-const initialValues = {
-  businessName: '',
-  industryType: '',
-  numEmployees: '',
-  dailyVisitors: '',
-  hasDetectionTech: '',
-  safetyMeasures: [],
-  currentEffectiveness: 3,
-  interestInAI: '',
-  priorityLevel: 3,
-  responseSpeedImportance: 3,
-  concerns: '',
-  additionalThoughts: '',
-};
+const Questionnaire = ({userEmail}) => {
+  const [values, setValues] = useState ({
+    businessName: '',
+    industryType: '',
+    numEmployees: '',
+    dailyVisitors: '',
+    hasDetectionTech: '',
+    safetyMeasures: [],
+    currentEffectiveness: 3,
+    interestInAI: '',
+    priorityLevel: 3,
+    responseSpeedImportance: 3,
+    concerns: ''
+  });
 
-const Questionnaire = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
+    if (!userEmail) {
+      alert("Please login to submit your questionnaire");
+      return;
+    }
+
     console.log('Submitting form with values:', values);
 
-    try {
-      const response = await fetch('http://localhost:3000/Questionnaire', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(values),
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text('Firearm Detection Safety Assessment', 20, 20);
+
+    doc.setFontSize(12);
+    doc.text(`Business Name: ${values.businessName}`, 20, 40);
+    doc.text(`Industry Type: ${values.industryType}`, 20, 50);
+    doc.text(`Number of Employees: ${values.numEmployees}`, 20, 60);
+    doc.text(`Daily Visitors: ${values.dailyVisitors}`, 20, 70);
+    doc.text(`Has Detection Technology: ${values.hasDetectionTech}`, 20, 80);
+    doc.text(`Safety Measures: ${values.safetyMeasures.join(', ')}`, 20, 90);
+    doc.text(`Current Effectiveness: ${values.currentEffectiveness}`, 20, 100);
+    doc.text(`Interest in AI: ${values.interestInAI}`, 20, 110);
+    doc.text(`Priority Level for Firearm Detection:  ${values.priorityLevel}, 20, 100`)
+    doc.text(`Importance of Police Response Speed:  ${values.responseSpeedImportance}, 20, 100`)
+    doc.text(`Concerns: ${values.concerns}`, 20, 120);
+
+    doc.save('questionnaire_submission.pdf');
+
+
+    // 🔹 Convert PDF to Blob
+    const pdfBlob = doc.output('blob');
+
+    // 🔹 Send to Backend (API Request)
+    const formData = new FormData();
+    formData.append('pdf', pdfBlob, 'questionnaire_submission.pdf');
+    formData.append('formValues', JSON.stringify(values));
+
+    
+    fetch('http://localhost:3000/questionnaire', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: userEmail,
+        businessName: values.businessName,
+        industryType: values.industryType,
+        numEmployees: values.numEmployees,
+        dailyVisitors: values.dailyVisitors,
+        hasDetectionTech: values.hasDetectionTech,
+        safetyMeasures: values.safetyMeasures,
+        currentEffectiveness: values.currentEffectiveness,
+        interestInAI: values.interestInAI,
+        priorityLevel: values.priorityLevel,
+        responseSpeedImportance: values.responseSpeedImportance,
+        concerns: values.concerns
+      })
+    })      
+      .then(response => {
+        //console.log(response);
+        return response.json()
+      })
+      .then(data => {
+        if (data.error) {
+            // If there's an error, display it to the user
+            this.setState({ errorMessage: data.error });
+          }else {
+            alert("Submitted Successfully");
+            window.location.href = "/questionnaire";
+            this.setState({ successMessage: "Submitted successfully!", errorMessage: '' });
+          }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+
+        this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
       });
-
-      console.log('Response status:', response.status);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Response data:', data);
-        alert('Database connection successful: ' + data.message);
-      } else {
-        const errorText = await response.text();
-        console.error('Response error:', errorText);
-        alert('Failed to connect to the database: ' + response.statusText);
-      }
-    } catch (error) {
-      console.error('Fetch error:', error);
-      alert('An error occurred: ' + error.message);
-    } finally {
-      setSubmitting(false);
-    }
   };
 
   // Prevent scroll wheel from changing number inputs
@@ -105,7 +149,7 @@ const Questionnaire = () => {
         </Typography>
 
         <Formik
-          initialValues={initialValues}
+          initialValues={values}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >

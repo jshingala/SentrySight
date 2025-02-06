@@ -16,7 +16,7 @@ const Login = ({ setUserEmail }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:3306/sign-in', {
+    fetch('http://localhost:3000/sign-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
