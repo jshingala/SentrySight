@@ -6,13 +6,19 @@ import Logo from './assets/Logo.png'; // Corrected import path
 
 function Header({ userEmail }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [lightMode, setLightMode] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const toggleTheme = () => {
+    setLightMode(!lightMode);
+    document.body.classList.toggle("light-mode"); // Applies to whole page
+  };
+
   return (
-    <header className="header">
+    <header className={`header ${lightMode ? "light-mode" : ""}`}>
       <div className="logo">
         <Link to="/" className="logo-link">
           <img src={Logo} alt="Logo" className="logo-image" />
@@ -32,6 +38,7 @@ function Header({ userEmail }) {
               {userEmail ? "Profile" : "Register / Sign In"}
             </Link>
           </li>
+          <li className="nav-item toggle-btn" onClick={toggleTheme}>☀️</li>
         </ul>
       </nav>
       <div className="hamburger" onClick={toggleMenu}>
