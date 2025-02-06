@@ -22,7 +22,7 @@ function Profile({ userEmail, setUserEmail }) {
     const [selectedCountry, setSelectedCountry] = useState("");
 
     useEffect(() => {
-        const fetchUserData = fetch(`http://localhost:3306/user-profile?email=${userEmail}`)
+        const fetchUserData = fetch(`http://localhost:3000/user-profile?email=${userEmail}`)
             .then(response => {
                 if (!response.ok) throw new Error("Failed to fetch user data");
                 return response.json();
