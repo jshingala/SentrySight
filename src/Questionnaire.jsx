@@ -49,7 +49,7 @@ const Questionnaire = ({userEmail}) => {
     console.log('Submitting form with values:', values);
 
     
-    fetch('http://localhost:3000/questionnaire', {
+    fetch('http://localhost:3306/questionnaire', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
