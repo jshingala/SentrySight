@@ -48,6 +48,35 @@ const Questionnaire = ({userEmail}) => {
 
     console.log('Submitting form with values:', values);
 
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text('Firearm Detection Safety Assessment', 20, 20);
+
+    doc.setFontSize(12);
+    doc.text(`Business Name: ${values.businessName}`, 20, 40);
+    doc.text(`Industry Type: ${values.industryType}`, 20, 50);
+    doc.text(`Number of Employees: ${values.numEmployees}`, 20, 60);
+    doc.text(`Daily Visitors: ${values.dailyVisitors}`, 20, 70);
+    doc.text(`Has Detection Technology: ${values.hasDetectionTech}`, 20, 80);
+    doc.text(`Safety Measures: ${values.safetyMeasures.join(', ')}`, 20, 90);
+    doc.text(`Current Effectiveness: ${values.currentEffectiveness}`, 20, 100);
+    doc.text(`Interest in AI: ${values.interestInAI}`, 20, 110);
+    doc.text(`Priority Level for Firearm Detection:  ${values.priorityLevel}, 20, 100`)
+    doc.text(`Importance of Police Response Speed:  ${values.responseSpeedImportance}, 20, 100`)
+    doc.text(`Concerns: ${values.concerns}`, 20, 120);
+
+    doc.save('questionnaire_submission.pdf');
+
+
+    // 🔹 Convert PDF to Blob
+    const pdfBlob = doc.output('blob');
+
+    // 🔹 Send to Backend (API Request)
+    const formData = new FormData();
+    formData.append('pdf', pdfBlob, 'questionnaire_submission.pdf');
+    formData.append('formValues', JSON.stringify(values));
+
     
     fetch('http://localhost:3000/questionnaire', {
       method: 'POST',
