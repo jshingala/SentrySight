@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { motion } from "framer-motion";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
 import AboutUs from "./AboutUs.jsx";
