@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import './Pricing.css'; // Import the CSS file
+import { useNavigate } from 'react-router-dom';
+import './Pricing.css';
 
-function Pricing({ onContactClick }) {
+function Pricing() {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [field1, setField1] = useState('');
   const [field2, setField2] = useState('');
@@ -13,6 +15,10 @@ function Pricing({ onContactClick }) {
     // Mock calculation logic until we figure out what will be the actual estimate according to the services provided
     const mockEstimate = `$${Math.floor(Math.random() * 1000 + 500)}`;
     setEstimate(mockEstimate);
+  };
+
+  const handleContactClick = () => {
+    navigate('/contact');
   };
 
   return (
@@ -118,7 +124,7 @@ function Pricing({ onContactClick }) {
 
       <div className="button-container text-center mt-12 mb-16 flex flex-col items-center space-y-4">
         <button
-          onClick={onContactClick}
+          onClick={handleContactClick}
           className="px-8 py-3 bg-[#4CAF50] text-white rounded-lg text-lg hover:bg-[#45a049] transition-colors">
           Contact Us
         </button>
@@ -132,11 +138,10 @@ function Pricing({ onContactClick }) {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white w-[60%] h-[60%] p-8 rounded-lg">
-          <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center">Estimate Based on Your Requirements</h2>
+            <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center">Estimate Based on Your Requirements</h2>
 
-          {/* These are just mock Fields and Mock Values for the fields and options for now. TODO: Will be updated soon */}
             <div className="mb-8">
-            <label className="block text-gray-700 text-lg font-bold">Field 1</label>
+              <label className="block text-gray-700 text-lg font-bold">Field 1</label>
               <select
                 className="w-full p-2 border rounded-lg text-lg"
                 value={field1}
@@ -145,7 +150,6 @@ function Pricing({ onContactClick }) {
                 <option value="" className="text-black-800">Select</option>
                 <option value="Option 1" className="text-black-800">Option 1</option>
                 <option value="Option 2" className="text-gray-800">Option 2</option>
-
               </select>
             </div>
             <div className="mb-4">
