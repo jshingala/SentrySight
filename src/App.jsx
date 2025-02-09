@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AboutUs from "./AboutUs.jsx";
 import Contact from "./Contact.jsx";
-import ContactUs from './ContactUs';
+import ContactUs from './ContactUs'; // Ensure this component exists and is correct
 import "./CSS.css";
 import CTA from "./CTA.jsx";
 import Demo from "./Demo.jsx";
@@ -13,7 +12,7 @@ import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import Hero from "./Hero.jsx";
 import News from "./News.jsx";
-import Pricing from './Pricing.jsx'; // Add this import
+import Pricing from './Pricing.jsx';
 import Profile from "./Profile.jsx";
 import Questionnaire from "./Questionnaire.jsx";
 import Login from "./SignIn.jsx";
@@ -24,12 +23,13 @@ import Testimonials from "./Testimonials.jsx";
 function App() {
   const [userEmail, setUserEmail] = useState(() => {
     return localStorage.getItem("userEmail") || "";
-
   });
 
   useEffect(() => {
     if (userEmail) {
       localStorage.setItem("userEmail", userEmail);
+    } else {
+      localStorage.removeItem("userEmail"); // Remove if email is cleared
     }
   }, [userEmail]);
 
@@ -64,7 +64,7 @@ function App() {
               element={<Login setUserEmail={setUserEmail} />}
             />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
+            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />} />
           </Routes>
         </main>
         <Footer />
