@@ -1,8 +1,9 @@
-const express = require('express');
-const mysql = require('mysql2');
-const cors = require('cors');
-const { address } = require('framer-motion/client');
-require('dotenv').config();
+import express from 'express';
+import mysql from 'mysql2';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
