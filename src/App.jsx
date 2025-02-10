@@ -20,6 +20,7 @@ import Pricing from './Pricing.jsx';
 import CTA from "./CTA.jsx";
 import Footer from "./Footer.jsx";
 import Profile from "./Profile.jsx";
+import NotFound from "./404.jsx"; // Import the 404 component
 import "./CSS.css";
 import "./App.css"; // Ensure the CSS for transitions is included
 
@@ -61,6 +62,7 @@ function AppContent({ userEmail, setUserEmail }) {
                 path="/profile"
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />}
               />
+              <Route path="*" element={<NotFound />} /> {/* Rout to 404 Page */}
             </Routes>
           </CSSTransition>
         </TransitionGroup>
