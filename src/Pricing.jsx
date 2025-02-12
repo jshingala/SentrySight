@@ -130,150 +130,150 @@ function Pricing({ onContactClick }) {
       </div>
 
       {isModalOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white w-[60%] h-[80%] p-8 rounded-lg overflow-y-auto">
-    <h2 className="text-4xl font-bold mb-6 text-gray-800 text-center tracking-wide" style={{ fontFamily: "'Copperplate Gothic', serif" }}>
-      Estimate Based on Your Requirements
-    </h2>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white w-[60%] h-[80%] p-8 rounded-lg overflow-y-auto">
+          <h2 className="text-4xl font-bold mb-6 text-gray-800 text-center tracking-wide" style={{ fontFamily: "'Copperplate Gothic', serif" }}>
+            Estimate Based on Your Requirements
+          </h2>
 
 
-      {/* Appliances Section */}
-      <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Appliances</h3>
-        <div className="mb-4">
-          <label className="block text-lg font-bold text-gray-700">How many cameras?</label>
-          <select
-            className="w-full p-2 border rounded-lg text-lg"
-            value={field1}
-            onChange={(e) => setField1(e.target.value)}
-            style={{color: field1 ? "black" : ""}}
-          >
-            <option value="">Select</option>
-            {[...Array(10)].map((_, i) => (
-              <option key={i + 1} value={i + 1}>{i + 1}</option>
-            ))}
-          </select>
+            {/* Appliances Section */}
+            <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">Appliances</h3>
+              <div className="mb-4">
+                <label className="block text-lg font-bold text-gray-700">How many cameras?</label>
+                <select
+                  className="w-full p-2 border rounded-lg text-lg"
+                  value={field1}
+                  onChange={(e) => setField1(e.target.value)}
+                  style={{color: field1 ? "black" : ""}}
+                >
+                  <option value="">Select</option>
+                  {[...Array(10)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block text-lg font-bold text-gray-700">How many server/workstations?</label>
+                <select
+                  className="w-full p-2 border rounded-lg text-lg"
+                  value={field2}
+                  onChange={(e) => setField2(e.target.value)}
+                  style={{color: field1 ? "black" : ""}}
+                >
+                  <option value="">Select</option>
+                  {[...Array(10)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Storage Section */}
+            <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">Storage</h3>
+              <div className="mb-4">
+                <label className="block text-lg font-bold text-gray-700">Storage Type</label>
+                <select
+                  className="w-full p-2 border rounded-lg text-lg"
+                  value={field3}
+                  onChange={(e) => setField3(e.target.value)}
+                  style={{color: field1 ? "black" : ""}}
+                >
+                  <option value="">Select Storage Type</option>
+                  <option value="Cloud">Cloud</option>
+                  <option value="Physical">Physical</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label className="block text-lg font-bold text-gray-700">Select Storage Size</label>
+                <select
+                  className="w-full p-2 border rounded-lg text-lg"
+                  value={field3}
+                  onChange={(e) => setField3(e.target.value)}
+                  style={{color: field1 ? "black" : ""}}
+                >
+                  <option value="">Select Size</option>
+                  <option value="64GB">64GB</option>
+                  <option value="128GB">128GB</option>
+                  <option value="256GB">256GB</option>
+                  <option value="512GB">512GB</option>
+                  <option value="1TB">1TB</option>
+                  <option value="2TB">2TB</option>
+                  <option value="4TB">4TB</option>
+                  <option value="8TB">8TB</option>
+                  <option value="16TB">16TB</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Network Requirements Section */}
+            <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">Network Requirements</h3>
+              <div className="mb-4">
+                <label className="block text-lg font-bold text-gray-700">Routers and Switches</label>
+                <select
+                  className="w-full p-2 border rounded-lg text-lg"
+                  value={field1}
+                  onChange={(e) => setField1(e.target.value)}
+                  style={{color: field1 ? "black" : ""}}
+                >
+                  <option value="">Select</option>
+                  {[...Array(10)].map((_, i) => (
+                    <option key={i + 1} value={i + 1}>{i + 1}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Security Features Section */}
+            <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-700">Security Features</h3>
+              <div className="mb-4">
+                <label className="block text-lg font-bold text-gray-700">Select Security Features</label>
+                <select
+                  className="w-full p-2 border rounded-lg text-lg"
+                  value={field2}
+                  onChange={(e) => setField2(e.target.value)}
+                  style={{color: field1 ? "black" : ""}}
+                >
+                  <option value="">Select</option>
+                  <option value="Encryption of data">Encryption of data</option>
+                  <option value="Role-based access control">Role-based access control</option>
+                  <option value="Secure cloud storage">Secure cloud storage</option>
+                  <option value="Secure physical storage">Secure physical storage</option>
+                  <option value="No specific security features">No specific security features</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Get Estimate Button */}
+            <div className="text-center mb-4">
+              <button
+                onClick={handleEstimate}
+                className="px-4 py-2 bg-[#4CAF50] text-white rounded-lg hover:bg-[#45a049] text-lg">
+                Get Estimate
+              </button>
+            </div>
+
+            {/* Estimate Display */}
+            {estimate && (
+              <div className="mt-4 text-center text-4xl text-gray-700">
+                <strong>Estimated Price: </strong> {estimate}
+              </div>
+            )}
+
+            {/* Close Button */}
+            <div className="mt-4 flex justify-center">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="bg-[#e65100] text-white px-4 py-2 rounded-lg hover:bg-[#d84315] text-lg">
+                Close
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="mb-4">
-          <label className="block text-lg font-bold text-gray-700">How many server/workstations?</label>
-          <select
-            className="w-full p-2 border rounded-lg text-lg"
-            value={field2}
-            onChange={(e) => setField2(e.target.value)}
-            style={{color: field1 ? "black" : ""}}
-          >
-            <option value="">Select</option>
-            {[...Array(10)].map((_, i) => (
-              <option key={i + 1} value={i + 1}>{i + 1}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Storage Section */}
-      <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Storage</h3>
-        <div className="mb-4">
-          <label className="block text-lg font-bold text-gray-700">Storage Type</label>
-          <select
-            className="w-full p-2 border rounded-lg text-lg"
-            value={field3}
-            onChange={(e) => setField3(e.target.value)}
-            style={{color: field1 ? "black" : ""}}
-          >
-            <option value="">Select Storage Type</option>
-            <option value="Cloud">Cloud</option>
-            <option value="Physical">Physical</option>
-          </select>
-        </div>
-        <div className="mb-4">
-          <label className="block text-lg font-bold text-gray-700">Select Storage Size</label>
-          <select
-            className="w-full p-2 border rounded-lg text-lg"
-            value={field3}
-            onChange={(e) => setField3(e.target.value)}
-            style={{color: field1 ? "black" : ""}}
-          >
-            <option value="">Select Size</option>
-            <option value="64GB">64GB</option>
-            <option value="128GB">128GB</option>
-            <option value="256GB">256GB</option>
-            <option value="512GB">512GB</option>
-            <option value="1TB">1TB</option>
-            <option value="2TB">2TB</option>
-            <option value="4TB">4TB</option>
-            <option value="8TB">8TB</option>
-            <option value="16TB">16TB</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Network Requirements Section */}
-      <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Network Requirements</h3>
-        <div className="mb-4">
-          <label className="block text-lg font-bold text-gray-700">Routers and Switches</label>
-          <select
-            className="w-full p-2 border rounded-lg text-lg"
-            value={field1}
-            onChange={(e) => setField1(e.target.value)}
-            style={{color: field1 ? "black" : ""}}
-          >
-            <option value="">Select</option>
-            {[...Array(10)].map((_, i) => (
-              <option key={i + 1} value={i + 1}>{i + 1}</option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Security Features Section */}
-      <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
-        <h3 className="text-2xl font-semibold mb-4 text-gray-700">Security Features</h3>
-        <div className="mb-4">
-          <label className="block text-lg font-bold text-gray-700">Select Security Features</label>
-          <select
-            className="w-full p-2 border rounded-lg text-lg"
-            value={field2}
-            onChange={(e) => setField2(e.target.value)}
-            style={{color: field1 ? "black" : ""}}
-          >
-            <option value="">Select</option>
-            <option value="Encryption of data">Encryption of data</option>
-            <option value="Role-based access control">Role-based access control</option>
-            <option value="Secure cloud storage">Secure cloud storage</option>
-            <option value="Secure physical storage">Secure physical storage</option>
-            <option value="No specific security features">No specific security features</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Get Estimate Button */}
-      <div className="text-center mb-4">
-        <button
-          onClick={handleEstimate}
-          className="px-4 py-2 bg-[#4CAF50] text-white rounded-lg hover:bg-[#45a049] text-lg">
-          Get Estimate
-        </button>
-      </div>
-
-      {/* Estimate Display */}
-      {estimate && (
-        <div className="mt-4 text-center text-4xl text-gray-700">
-          <strong>Estimated Price: </strong> {estimate}
-        </div>
-      )}
-
-      {/* Close Button */}
-      <div className="mt-4 flex justify-center">
-        <button
-          onClick={() => setIsModalOpen(false)}
-          className="bg-[#e65100] text-white px-4 py-2 rounded-lg hover:bg-[#d84315] text-lg">
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
 )}
 
 
