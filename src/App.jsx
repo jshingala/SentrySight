@@ -1,24 +1,79 @@
-import React, { useEffect, useState } from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import AboutUs from "./AboutUs.jsx";
-import Contact from "./Contact.jsx";
-import ContactUs from './ContactUs'; // Ensure this component exists and is correct
-import "./CSS.css";
-import CTA from "./CTA.jsx";
-import Demo from "./Demo.jsx";
-import FAQ from "./FAQ.jsx";
-import Features from "./Features.jsx";
-import Footer from "./Footer.jsx";
+import React, { useState, useEffect } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { motion } from "framer-motion";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
+import Contact from "./Contact.jsx";
+import ContactUs from './ContactUs'; 
+import AboutUs from "./AboutUs.jsx";
 import Hero from "./Hero.jsx";
+import FAQ from "./FAQ.jsx";
+import Blog from "./Blog.jsx";
+import Features from "./Features.jsx";
 import News from "./News.jsx";
-import Pricing from './Pricing.jsx';
-import Profile from "./Profile.jsx";
-import Questionnaire from "./Questionnaire.jsx";
-import Login from "./SignIn.jsx";
-import SignUp from "./SignUp.jsx"; // Changed to SignUp to match the component name
 import Socials from "./Socials.jsx";
+import Contact from "./Contact.jsx";
 import Testimonials from "./Testimonials.jsx";
+import Questionnaire from "./Questionnaire.jsx";
+import Demo from "./Demo.jsx";
+import Login from "./SignIn.jsx";
+import SignUp from "./SignUp.jsx";
+import Pricing from './Pricing.jsx';
+import CTA from "./CTA.jsx";
+import Footer from "./Footer.jsx";
+import Profile from "./Profile.jsx";
+import NotFound from "./404.jsx"; 
+import "./CSS.css";
+import "./App.css"; 
+
+function AppContent({ userEmail, setUserEmail }) {
+  const location = useLocation();
+
+  return (
+    <div className="App">
+      <Header userEmail={userEmail} />
+      <main className="main-content">
+        <TransitionGroup>
+          <CSSTransition key={location.key} classNames="fade" timeout={500}>
+            <Routes location={location}>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <Features />
+                    <News />
+                    <Testimonials />
+                    <CTA />
+                    <Contact />
+                    <Socials />
+                  </>
+                }
+              />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/demo" element={<Demo />} />
+              <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route
+                path="/sign-in"
+                element={<Login setUserEmail={setUserEmail} />}
+              />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route
+                path="/profile"
+                element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />}
+              />
+              <Route path="*" element={<NotFound />} /> {/* Rout to 404 Page */}
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
+      </main>
+      <Footer />
+    </div>
+  );
+}
 
 function App() {
   const [userEmail, setUserEmail] = useState(() => {
@@ -28,47 +83,12 @@ function App() {
   useEffect(() => {
     if (userEmail) {
       localStorage.setItem("userEmail", userEmail);
-    } else {
-      localStorage.removeItem("userEmail"); // Remove if email is cleared
     }
   }, [userEmail]);
 
   return (
     <Router>
-      <div className="App">
-        <Header userEmail={userEmail} />
-        <main className="main-content">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Hero />
-                  <Features />
-                  <News />
-                  <Testimonials />
-                  <CTA />
-                  <Contact />
-                  <Socials />
-                </>
-              }
-            />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route
-              path="/sign-in"
-              element={<Login setUserEmail={setUserEmail} />}
-            />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <AppContent userEmail={userEmail} setUserEmail={setUserEmail} />
     </Router>
   );
 }

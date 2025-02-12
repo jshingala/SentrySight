@@ -116,8 +116,8 @@ app.post('/sign-up', (req, res) => {
 
   if (email && password && business_name && contact_number) {
     // Step 1: Insert data into Business table
-    const query = `INSERT INTO Business (email, login_password, business_name, contact_number, _share)
-                  VALUES (?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO Business (email, login_password, business_name, contact_number, _share) 
+                   VALUES (?, ?, ?, ?, ?)`;
     con.query(query, [email, password, business_name, contact_number, _share], (err, results) => {
       if (err) {
         console.log('Error type:', err.code);
@@ -192,7 +192,9 @@ app.post('/questionnaire', (req, res) => {
       if (err) {
         return res.status(500).json({ error: "Error counting existing data", details: err });
       }
+  
       const count = countResult[0].count; // Get actual count value from the result
+  
       if (count > 0) {
         // If the business_id exists, update the row
         const questionnaireQuery = `
@@ -201,6 +203,7 @@ app.post('/questionnaire', (req, res) => {
               safety_0 = ?, safety_1 = ?, safety_2 = ?, safety_3 = ?, 
               effectiveness = ?, interest = ?, priority = ?, police_speed = ?, comments = ? 
           WHERE business_id = ?`;
+  
         con.query(questionnaireQuery, [
           industryType,
           numEmployees,
@@ -218,16 +221,19 @@ app.post('/questionnaire', (req, res) => {
           businessId // This goes at the end for the WHERE clause
         ], (err, result) => {
           if (err) return res.status(500).json({ error: "Error updating questionnaire", details: err });
+  
           res.status(200).json({ message: "Questionnaire updated successfully", result });
         });
+  
       } else {
         // If the business_id does NOT exist, insert a new row
         const insertQuery = `
-          INSERT INTO Questionnaire
-          (business_id, business_name, industry_type, num_employees, num_visitors, en_detection,
-          safety_0, safety_1, safety_2, safety_3,
-          effectiveness, interest, priority, police_speed, comments)
+          INSERT INTO Questionnaire 
+          (business_id, business_name, industry_type, num_employees, num_visitors, en_detection, 
+           safety_0, safety_1, safety_2, safety_3, 
+           effectiveness, interest, priority, police_speed, comments) 
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  
         con.query(insertQuery, [
           businessId,
           businessName,
@@ -246,12 +252,14 @@ app.post('/questionnaire', (req, res) => {
           concerns || ""
         ], (err, result) => {
           if (err) return res.status(500).json({ error: "Error inserting questionnaire", details: err });
+  
           res.status(200).json({ message: "Questionnaire submitted successfully", result });
         });
       }
     });
-  });
+  });  
 });
+
 app.listen(3306, () => {
-  console.log("Server running on port 3000");
+  console.log("Server running on port 3306");
 });

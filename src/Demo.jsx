@@ -6,6 +6,9 @@ function Demo() {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [result, setResult] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -17,6 +20,7 @@ function Demo() {
       if (validImageTypes.includes(fileType)) {
         setFile(selectedFile);
         setPreviewUrl(URL.createObjectURL(selectedFile));
+        setResult(null);
       } else {
         alert('Please select a valid image file (JPEG, PNG, GIF, or WEBP).');
       }
@@ -26,14 +30,27 @@ function Demo() {
   const handleUpload = () => {
     if (file) {
       setIsUploading(true);
+      setIsProcessing(true);
+      setProgress(0);
 
-      // Simulate an upload process
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          const next = prev + 100 / 30;
+          if (next >= 100) {
+            clearInterval(interval);
+            return 100;
+          }
+          return next;
+        });
+      }, 100);
+
       setTimeout(() => {
+        setResult(previewUrl);
         setIsUploading(false);
-        alert(`File "${file.name}" has been uploaded successfully!`);
-        setFile(null);
-        setPreviewUrl(null);
-      }, 2000);
+        setIsProcessing(false);
+        clearInterval(interval);
+        setProgress(100);
+      }, 3000);
     } else {
       alert('Please select a file to upload.');
     }
@@ -41,7 +58,6 @@ function Demo() {
 
   return (
     <div className="demo-container">
-      {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
           <motion.h1
@@ -69,8 +85,6 @@ function Demo() {
           </motion.a>
         </div>
       </section>
-
-      {/* How It Works Section */}
       <section className="how-it-works">
         <div className="content-wrapper">
           <motion.h2
@@ -87,7 +101,6 @@ function Demo() {
           >
             Our system leverages cutting-edge AI technology to analyze images and provide actionable security insights in real-time.
           </motion.p>
-          {/* Video Section */}
           <motion.div
             className="video-container"
             initial={{ opacity: 0 }}
@@ -108,8 +121,6 @@ function Demo() {
           </motion.div>
         </div>
       </section>
-
-      {/* Upload Section */}
       <section className="upload-section" id="upload-section">
         <div className="content-wrapper">
           <motion.h3
@@ -144,11 +155,19 @@ function Demo() {
                 'Upload Image'
               )}
             </button>
+            {isUploading && (
+              <div className="progress-bar-container">
+                <div className="progress-bar" style={{ width: `${progress}%` }}></div>
+              </div>
+            )}
           </motion.div>
+          {(isProcessing || result) && (
+            <div className="result">
+              {isProcessing ? "Running..." : <img src={result} alt="Uploaded Result" />}
+            </div>
+          )}
         </div>
       </section>
-
-      {/* Call to Action Section */}
       <section className="cta-section">
         <div className="content-wrapper">
           <motion.div
@@ -171,4 +190,4 @@ function Demo() {
   );
 }
 
-export default Demo;
+export default Demo; 
