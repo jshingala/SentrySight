@@ -3,6 +3,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { motion } from "framer-motion";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Header from "./Header.jsx";
+import Contact from "./Contact.jsx";
+import ContactUs from './ContactUs'; 
 import AboutUs from "./AboutUs.jsx";
 import Hero from "./Hero.jsx";
 import FAQ from "./FAQ.jsx";
@@ -20,9 +22,9 @@ import Pricing from './Pricing.jsx';
 import CTA from "./CTA.jsx";
 import Footer from "./Footer.jsx";
 import Profile from "./Profile.jsx";
-import NotFound from "./404.jsx"; // Import the 404 component
+import NotFound from "./404.jsx"; 
 import "./CSS.css";
-import "./App.css"; // Ensure the CSS for transitions is included
+import "./App.css"; 
 
 function AppContent({ userEmail, setUserEmail }) {
   const location = useLocation();
@@ -52,6 +54,7 @@ function AppContent({ userEmail, setUserEmail }) {
               <Route path="/demo" element={<Demo />} />
               <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/contact" element={<ContactUs />} />
               <Route path="/faq" element={<FAQ />} />
               <Route
                 path="/sign-in"
