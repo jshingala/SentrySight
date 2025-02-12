@@ -258,6 +258,7 @@ function Pricing({ onContactClick }) {
             </div>
 
             {/* Estimate Display */}
+
             {estimate && (
               <div className="mt-4 text-center text-4xl text-gray-700">
                 <strong>Estimated Price: </strong> {estimate}
@@ -265,6 +266,7 @@ function Pricing({ onContactClick }) {
             )}
 
             {/* Close Button */}
+
             <div className="mt-4 flex justify-center">
               <button
                 onClick={() => setIsModalOpen(false)}
@@ -274,9 +276,8 @@ function Pricing({ onContactClick }) {
             </div>
           </div>
         </div>
-)}
 
-
+      )}
     </main>
   );
 }
