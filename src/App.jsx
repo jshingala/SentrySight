@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -20,12 +19,12 @@ import Pricing from './Pricing.jsx'; // Add this import
 import CTA from "./CTA.jsx";
 import Footer from "./Footer.jsx";
 import Profile from "./Profile.jsx";
+import Admin from "./Admin.jsx";
 import "./CSS.css";
 
 function App() {
   const [userEmail, setUserEmail] = useState(() => {
     return localStorage.getItem("userEmail") || "";
-
   });
 
   useEffect(() => {
@@ -65,6 +64,7 @@ function App() {
             />
             <Route path="/sign-up" element={<SignUp />} />
            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
+           <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
         <Footer />
