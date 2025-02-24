@@ -66,6 +66,8 @@ function Header({ userEmail }) {
               <li className="nav-item"><Link className="nav-link" to="/faq" onClick={toggleMenu}>FAQ</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/questionnaire" onClick={toggleMenu}>Questionnaire</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/sign-in" onClick={toggleMenu}>Register / Sign In</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
+
             </ul>
           </motion.div>
         )}

@@ -22,6 +22,7 @@ import CTA from "./CTA.jsx";
 import Footer from "./Footer.jsx";
 import Profile from "./Profile.jsx";
 import NotFound from "./404.jsx"; 
+import Admin from "./Admin.jsx";
 import "./CSS.css";
 import "./App.css"; 
 
@@ -64,6 +65,8 @@ function AppContent({ userEmail, setUserEmail }) {
                 path="/profile"
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />}
               />
+              <Route path="/admin" element={<Admin />} />
+
               <Route path="*" element={<NotFound />} /> {/* Rout to 404 Page */}
             </Routes>
           </CSSTransition>
