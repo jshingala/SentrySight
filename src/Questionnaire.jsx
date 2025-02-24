@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from 'formik';
-=======
-import React, {useEffect} from 'react';
-import { Formik, Form, Field } from 'formik';
->>>>>>> f2ce045... Successfully connected questionnaire page to database, fixed scroll bug on questionnaire page
 import * as yup from 'yup';
 import './Questionnaire.css'; // Import the CSS file
 import {
@@ -53,35 +48,107 @@ const Questionnaire = ({userEmail}) => {
 
     console.log('Submitting form with values:', values);
 
-    const doc = new jsPDF();
 
-    doc.setFontSize(16);
-    doc.text('Firearm Detection Safety Assessment', 20, 20);
+  //Guarantees special characters will be escaped
+  const escape = (str) => {
+    if (!str) return str;
 
-    doc.setFontSize(12);
-    doc.text(`Business Name: ${values.businessName}`, 20, 40);
-    doc.text(`Industry Type: ${values.industryType}`, 20, 50);
-    doc.text(`Number of Employees: ${values.numEmployees}`, 20, 60);
-    doc.text(`Daily Visitors: ${values.dailyVisitors}`, 20, 70);
-    doc.text(`Has Detection Technology: ${values.hasDetectionTech}`, 20, 80);
-    doc.text(`Safety Measures: ${values.safetyMeasures.join(', ')}`, 20, 90);
-    doc.text(`Current Effectiveness: ${values.currentEffectiveness}`, 20, 100);
-    doc.text(`Interest in AI: ${values.interestInAI}`, 20, 110);
-    doc.text(`Priority Level for Firearm Detection:  ${values.priorityLevel}, 20, 100`)
-    doc.text(`Importance of Police Response Speed:  ${values.responseSpeedImportance}, 20, 100`)
-    doc.text(`Concerns: ${values.concerns}`, 20, 120);
+    if (typeof str !== 'string'){
+      str = str.toString()
+    }
 
-    doc.save('questionnaire_submission.pdf');
+    return str
+    .replace(/\\/g, '\\textbackslash') 
+    .replace(/&/g, '\\&')
+    .replace(/%/g, '\\%')
+    .replace(/\$/g, '\\$')
+    .replace(/#/g, '\\#')
+    .replace(/_/g, '\\_')
+    .replace(/{/g, '\\{')
+    .replace(/}/g, '\\}')
+    .replace(/~/g, '\\~{}')
+    .replace(/\^/g, '\\textasciicircum');
+};
 
 
-<<<<<<< HEAD
-    // 🔹 Convert PDF to Blob
-    const pdfBlob = doc.output('blob');
+//Sanitizes business_name -> file_name to resolve .tex filename errors
+const sanitize = (str) => {
+  if (!str) return str;
 
-    // 🔹 Send to Backend (API Request)
-    const formData = new FormData();
-    formData.append('pdf', pdfBlob, 'questionnaire_submission.pdf');
-    formData.append('formValues', JSON.stringify(values));
+   str = str
+    .replace(/\\/g, '') 
+    .replace(/&/g, '')
+    .replace(/%/g, '')
+    .replace(/\$/g, '')
+    .replace(/@/, '')
+    .replace(/#/g, '')
+    .replace(/_/g, '')
+    .replace(/{/g, '')
+    .replace(/}/g, '')
+    .replace(/~/g, '')
+    .replace(/\^/g, '')
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_'); //trim excess underscores
+
+    return str;
+}
+
+
+
+  //Generates latex document
+  const latexContent = `
+  \\documentclass{article}
+  \\usepackage[utf8]{inputenc}
+  \\begin{document}
+
+  \\section*{Firearm Detection Safety Assessment}
+
+  \\textbf{Business Name:} ${escape(values.businessName)} \\\\
+  \\textbf{Industry Type:} ${escape(values.industryType)} \\\\
+  \\textbf{Number of Employees:} ${escape(values.numEmployees)} \\\\
+  \\textbf{Daily Visitors:} ${escape(values.dailyVisitors)} \\\\
+  \\textbf{Has Detection Technology:} ${escape(values.hasDetectionTech)} \\\\
+  \\textbf{Safety Measures:} ${escape(values.safetyMeasures.join(', '))} \\\\
+  \\textbf{Current Effectiveness:} ${escape(values.currentEffectiveness)} \\\\
+  \\textbf{Interest in AI:} ${escape(values.interestInAI)} \\\\
+  \\textbf{Priority Level for Firearm Detection:} ${escape(values.priorityLevel)} \\\\
+  \\textbf{Importance of Police Response Speed:} ${escape(values.responseSpeedImportance)} \\\\
+  \\textbf{Concerns:} ${escape(values.concerns)} \\\\
+
+  \\end{document}
+  `;
+
+    // const doc = new jsPDF();
+
+    // doc.setFontSize(16);
+    // doc.text('Firearm Detection Safety Assessment', 20, 20);
+
+    // doc.setFontSize(12);
+    // doc.text(`Business Name: ${values.businessName}`, 20, 40);
+    // doc.text(`Industry Type: ${values.industryType}`, 20, 50);
+    // doc.text(`Number of Employees: ${values.numEmployees}`, 20, 60);
+    // doc.text(`Daily Visitors: ${values.dailyVisitors}`, 20, 70);
+    // doc.text(`Has Detection Technology: ${values.hasDetectionTech}`, 20, 80);
+    // doc.text(`Safety Measures: ${values.safetyMeasures.join(', ')}`, 20, 90);
+    // doc.text(`Current Effectiveness: ${values.currentEffectiveness}`, 20, 100);
+    // doc.text(`Interest in AI: ${values.interestInAI}`, 20, 110);
+    // doc.text(`Priority Level for Firearm Detection:  ${values.priorityLevel}, 20, 100`)
+    // doc.text(`Importance of Police Response Speed:  ${values.responseSpeedImportance}, 20, 100`)
+    // doc.text(`Concerns: ${values.concerns}`, 20, 120);
+
+    // doc.save('questionnaire_submission.pdf');
+
+
+
+    //Donwloads latex document for testing
+    const blob = new Blob([latexContent], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${sanitize(values.businessName)}_questionnaire_submission.tex`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
     
     fetch('http://localhost:3306/questionnaire', {
@@ -89,17 +156,8 @@ const Questionnaire = ({userEmail}) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: userEmail,
-        businessName: values.businessName,
-        industryType: values.industryType,
-        numEmployees: values.numEmployees,
-        dailyVisitors: values.dailyVisitors,
-        hasDetectionTech: values.hasDetectionTech,
-        safetyMeasures: values.safetyMeasures,
-        currentEffectiveness: values.currentEffectiveness,
-        interestInAI: values.interestInAI,
-        priorityLevel: values.priorityLevel,
-        responseSpeedImportance: values.responseSpeedImportance,
-        concerns: values.concerns
+        latex: latexContent,
+        formValues: values
       })
     })      
       .then(response => {
@@ -121,44 +179,6 @@ const Questionnaire = ({userEmail}) => {
 
         this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
       });
-=======
-// const Questionnaire = () => {
-//   const handleSubmit = (values) => {
-//     console.log(values);
-//   };
-
-const Questionnaire = () => {
-  const handleSubmit = async (values, { setSubmitting }) => {
-    console.log('Submitting form with values:', values);
-    
-    try {
-      const response = await fetch('http://localhost:3000/Questionnaire', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(values)  // Include the form values
-      });
-  
-      console.log('Response status:', response.status);
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Response data:', data);
-        alert("Database connection successful: " + data.message);
-      } else {
-        const errorText = await response.text();
-        console.error('Response error:', errorText);
-        alert("Failed to connect to the database: " + response.statusText);
-      }
-    } catch (error) {
-      console.error('Fetch error:', error);
-      alert("An error occurred: " + error.message);
-    } finally {
-      setSubmitting(false);
-    }
->>>>>>> f2ce045... Successfully connected questionnaire page to database, fixed scroll bug on questionnaire page
   };
   
   
