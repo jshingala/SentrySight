@@ -12,7 +12,6 @@ import Blog from "./Blog.jsx";
 import Features from "./Features.jsx";
 import News from "./News.jsx";
 import Socials from "./Socials.jsx";
-import Contact from "./Contact.jsx";
 import Testimonials from "./Testimonials.jsx";
 import Questionnaire from "./Questionnaire.jsx";
 import Demo from "./Demo.jsx";
