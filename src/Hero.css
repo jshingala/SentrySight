@@ -42,17 +42,37 @@
 }
 
 .btn-primary {
-  background-color: #635bff;
+  background-color: #8a89e6;
 }
 
 .btn-primary:hover {
-  background-color: #8549e6;
+  background-color: #8a89e6;
 }
 
 .btn-secondary {
-  background-color: #b82727;
+  background-color: #8a89e6;
 }
 
 .btn-secondary:hover {
-  background-color: #a31e1e;
+  background-color: #8a89e6;
+}
+
+/* Enhanced Header Button Styling */
+.theme-toggle,
+.sign-in-button {
+  background: #8a89e6;
+  color: white;
+  border: none;
+  padding: 12px 20px; /* Increased padding for better spacing */
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-left: 10px; /* Adds spacing between buttons */
+}
+
+.theme-toggle:hover,
+.sign-in-button:hover {
+  background: #6f6dd9;
+  transform: scale(1.05);
 }
