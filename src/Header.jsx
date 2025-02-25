@@ -44,6 +44,45 @@ function Header({ userEmail }) {
         <img src={Logo} alt="SentrySight Logo" className="logo" />
       </div>
 
+
+      {isMobile ? (
+        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+        </div>
+      ) : (
+        <nav className="nav-links">
+          <NavLink to="/about" activeclassname="active">About</NavLink>
+          <NavLink to="/demo" activeclassname="active">Demo</NavLink>
+          <NavLink to="/questionnaire" activeclassname="active">Questionnaire</NavLink>
+          <NavLink to="/pricing" activeclassname="active">Pricing</NavLink>
+          <NavLink to="/contact" activeclassname="active">Contact</NavLink>
+          {userEmail ? (
+            <NavLink to="/profile" activeclassname="active">Profile</NavLink>
+          ) : (
+            <NavLink to="/sign-in" activeclassname="active">Sign In</NavLink>
+          )}
+        </nav>
+      )}
+
+      {menuOpen && isMobile && (
+        <div className="dropdown-menu">
+          <NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
+          <NavLink to="/demo" onClick={() => setMenuOpen(false)}>Demo</NavLink>
+          <NavLink to="/questionnaire" onClick={() => setMenuOpen(false)}>Questionnaire</NavLink>
+          <NavLink to="/pricing" onClick={() => setMenuOpen(false)}>Pricing</NavLink>
+          <NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
+          {userEmail ? (
+            <NavLink to="/profile" onClick={() => setMenuOpen(false)}>Profile</NavLink>
+          ) : (
+            <NavLink to="/sign-in" onClick={() => setMenuOpen(false)}>Sign In</NavLink>
+          )}
+        </div>
+      )}
+
+      <button className="theme-toggle" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+        {theme === "dark" ? "☀️" : "🌙"}
+      </button>
+      
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -69,6 +108,7 @@ function Header({ userEmail }) {
           </motion.div>
         )}
       </AnimatePresence>
+      
     </header>
   );
 }
