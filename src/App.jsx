@@ -75,7 +75,7 @@ function App() {
               element={<Login setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>}
             />
             <Route path="/sign-up" element={<SignUp />} />
-           <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
+           <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
           </Routes>
         </main>
         <Footer />
