@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './SignUp.css';
 
-const Login = ({ setUserEmail }) => {
+const Login = ({ setUserEmail, setIsAdmin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -16,7 +16,7 @@ const Login = ({ setUserEmail }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:3000/sign-in', {
+    fetch('http://localhost:3306/sign-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -29,6 +29,15 @@ const Login = ({ setUserEmail }) => {
           setErrorMessage(data.error);
         } else {
           setUserEmail(email);
+
+          // Store isAdmin in localStorage and set state
+          const isAdmin = data.results[0].isAdmin; // Assuming the response contains `isAdmin`
+          localStorage.setItem("userEmail", email);
+          localStorage.setItem("isAdmin", isAdmin);
+          
+          // Update the state in App.jsx
+          setIsAdmin(isAdmin);
+
           setErrorMessage('');
           alert("You're successfully signed in!");
           navigate('/'); // Redirect to home page

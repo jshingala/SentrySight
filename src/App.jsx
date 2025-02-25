@@ -13,6 +13,7 @@ import Socials from "./Socials.jsx";
 import Contact from "./Contact.jsx";
 import Testimonials from "./Testimonials.jsx";
 import Questionnaire from "./Questionnaire.jsx";
+import Questionnaire_Admin from "./Questionnaire_Admin.jsx";
 import Demo from "./Demo.jsx";
 import Login from "./SignIn.jsx";
 import SignUp from "./SignUp.jsx"; // Changed to SignUp to match the component name
@@ -25,8 +26,17 @@ import "./CSS.css";
 function App() {
   const [userEmail, setUserEmail] = useState(() => {
     return localStorage.getItem("userEmail") || "";
-
   });
+
+  const [isAdmin, setIsAdmin] = useState(() => {
+    return localStorage.getItem("isAdmin") || false;
+  });
+
+  useEffect(() => {
+    if (isAdmin) {
+      localStorage.setItem("isAdmin", isAdmin);
+    }
+  }, [isAdmin]);
 
   useEffect(() => {
     if (userEmail) {
@@ -37,7 +47,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header userEmail={userEmail} />
+        <Header userEmail={userEmail} isAdmin={isAdmin} />
         <main className="main-content">
           <Routes>
             <Route
@@ -57,11 +67,12 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
             <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
+            <Route path="/questionnaire_A" element={<Questionnaire_Admin />} />
             <Route path="/pricing" element={<Pricing />} /> {/* Add this route */}
             <Route path="/faq" element={<FAQ />} />
             <Route
               path="/sign-in"
-              element={<Login setUserEmail={setUserEmail} />}
+              element={<Login setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>}
             />
             <Route path="/sign-up" element={<SignUp />} />
            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
