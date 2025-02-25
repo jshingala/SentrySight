@@ -1,50 +1,47 @@
-import { AnimatePresence, motion } from "framer-motion"; // Import AnimatePresence for transitions
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import './header.css';
-import Logo from './assets/Logo.png'; // Corrected import path
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa"; // FontAwesome icons
+import "./global.css";
+import "./header.css";
+import Logo from "./assets/Logo.png";
 
 function Header({ userEmail }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [lightMode, setLightMode] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
-  const toggleTheme = () => {
-    setLightMode(!lightMode);
-    document.body.classList.toggle("light-mode"); // Applies to whole page
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleHomeClick = () => {
+    navigate("/", { replace: true });
+    window.location.reload();
   };
 
   return (
-    <header className={`header ${lightMode ? "light-mode" : ""}`}>
-      <div className="logo">
-        <Link to="/" className="logo-link">
-          <img src={Logo} alt="Logo" className="logo-image" />
-          <h1>SentrySight</h1>
-        </Link>
-      </div>
-      <nav className="nav-desktop">
-        <ul className="nav-list">
-          <li className="nav-item"><Link className="nav-link" to="/about">About Us</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/demo">Demo</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/faq">FAQ</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/questionnaire">Questionnaire</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/pricing">Pricing</Link></li>
-          {/* Conditionally render Register/Sign In or Profile */}
-          <li className="nav-item">
-            <Link className="nav-link" to={userEmail ? "/profile" : "/sign-in"}>
-              {userEmail ? "Profile" : "Register / Sign In"}
-            </Link>
-          </li>
-          <li className="nav-item toggle-btn" onClick={toggleTheme}>☀️</li>
-        </ul>
-      </nav>
-      <div className="hamburger" onClick={toggleMenu}>
-        <span className="line"></span>
-        <span className="line"></span>
-        <span className="line"></span>
+    <header className={`header ${scrolled ? "scrolled" : ""}`}>
+      <div className="logo-container" onClick={handleHomeClick} style={{ cursor: "pointer" }}>
+        <img src={Logo} alt="SentrySight Logo" className="logo" />
       </div>
 
       <AnimatePresence>

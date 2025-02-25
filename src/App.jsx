@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+
 import Header from "./Header.jsx";
 import Contact from "./Contact.jsx";
 import ContactUs from './ContactUs'; 
@@ -50,17 +49,16 @@ function AppContent({ userEmail, setUserEmail }) {
                   </>
                 }
               />
+
               <Route path="/about" element={<AboutUs />} />
               <Route path="/demo" element={<Demo />} />
               <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/faq" element={<FAQ />} />
-              <Route
-                path="/sign-in"
-                element={<Login setUserEmail={setUserEmail} />}
-              />
+              <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
               <Route path="/sign-up" element={<SignUp />} />
+
               <Route
                 path="/profile"
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} />}
@@ -69,18 +67,16 @@ function AppContent({ userEmail, setUserEmail }) {
 
               <Route path="*" element={<NotFound />} /> {/* Rout to 404 Page */}
             </Routes>
-          </CSSTransition>
-        </TransitionGroup>
-      </main>
+          </Suspense>
+        </main>
+      </div>
       <Footer />
     </div>
   );
 }
 
 function App() {
-  const [userEmail, setUserEmail] = useState(() => {
-    return localStorage.getItem("userEmail") || "";
-  });
+  const [userEmail, setUserEmail] = useState(() => localStorage.getItem("userEmail") || "");
 
   useEffect(() => {
     if (userEmail) {
