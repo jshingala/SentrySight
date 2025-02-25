@@ -133,7 +133,7 @@ const Questionnaire = ({userEmail}) => {
             touched,
           }) => (
             <Form>
-              <Typography variant="h6" className="title" mb={2}>
+              <Typography variant="h6" className="title1" mb={2}>
                 Business Information
               </Typography>
 

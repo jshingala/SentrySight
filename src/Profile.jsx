@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './CSS.css'; // Import the CSS file
+import './Profile.css'; // Import the CSS file
 
 function Profile({ userEmail, setUserEmail }) {
     const navigate = useNavigate();
+    const [lightMode, setLightMode] = useState(false);
     const [userData, setUserData] = useState({
         email: userEmail,
         business_name: '',
@@ -20,6 +21,10 @@ function Profile({ userEmail, setUserEmail }) {
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState("");
+    const toggleTheme = () => {
+        setLightMode(!lightMode);
+        document.body.classList.toggle("light-mode"); // Applies to whole page
+      };
 
     useEffect(() => {
         const fetchUserData = fetch(`http://localhost:3000/user-profile?email=${userEmail}`)
@@ -108,7 +113,7 @@ function Profile({ userEmail, setUserEmail }) {
     };     
 
     return (
-        <section className="profile">
+        <section className={`section ${lightMode ? "light-mode" : "profile"}`}>
             <h2 className="profile-title">Profile</h2>
             <div>
                 <label>Business Name:</label>

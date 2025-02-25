@@ -1,0 +1,101 @@
+.light-mode {
+    background: white;
+    color: black;
+  }
+  
+  .light-mode .section {
+    background: white;
+    color: black;
+  }
+.profile {
+    padding: 20px 40px;
+    background-color: #161616;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 120%;
+    max-width: 600px;
+    font-size: 1.2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+  }
+
+    .profile h2 {
+        color: #ff0000;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .profile label {
+        color: #c9c9c9;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+  
+  .profile div {
+    margin: 15px 0;
+
+}
+
+  .profile a {
+    color: #635bff;
+    display: block;
+    font-weight: normal;
+    margin-bottom: 20px;
+
+  }
+
+  .profile b{
+    color: #c9c9c9;
+    font-weight: bold;
+  }
+  
+  .profile input,
+  .profile select {
+      background-color: rgb(0, 0, 0);
+      color: black;
+      margin-bottom: 15px; /* Space out inputs */
+      padding: 8px;        /* Add padding inside the input box */
+      border: 1px solid #ccc; /* Light gray border */
+      border-radius: 4px;  /* Rounded corners */
+      font-size: 16px;     /* Adjust font size */
+      width: 100%;         /* Make inputs full-width */
+      box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .edit-button {
+    padding: 2px;
+    width: 50px;
+    font-size: 0.9rem;
+    color: black;
+    background-color: white;
+    border: 1px solid #635bff;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+  }
+  
+  .edit-button:hover {
+    background-color: rgb(255, 0, 0);
+    transform: scale(1.05);
+  }
+  
+  /* Logout Button Styling */
+  .logout-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-style: bold;
+    color: white;
+    background-color: #007bff; /* Blue */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight zoom-in effect */
+  }

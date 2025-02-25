@@ -8,10 +8,14 @@
   
   /* Title styling */
   .Questionnaire .title {
+    color: #ff0000; /* Purple color for the title */
+    text-align: center;
+  }
+  .Questionnaire .title1 {
     color: #635bff; /* Purple color for the title */
     text-align: center;
   }
-  
+
   /* Subtitle styling */
   .Questionnaire .subtitle {
     color: #B0B0B0; /* Light gray text */
