@@ -44,43 +44,31 @@ function Header({ userEmail }) {
         <img src={Logo} alt="SentrySight Logo" className="logo" />
       </div>
 
-      {isMobile ? (
-        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
-        </div>
-      ) : (
-        <nav className="nav-links">
-          <NavLink to="/about" activeclassname="active">About</NavLink>
-          <NavLink to="/demo" activeclassname="active">Demo</NavLink>
-          <NavLink to="/questionnaire" activeclassname="active">Questionnaire</NavLink>
-          <NavLink to="/pricing" activeclassname="active">Pricing</NavLink>
-          <NavLink to="/contact" activeclassname="active">Contact</NavLink>
-          {userEmail ? (
-            <NavLink to="/profile" activeclassname="active">Profile</NavLink>
-          ) : (
-            <NavLink to="/sign-in" activeclassname="active">Sign In</NavLink>
-          )}
-        </nav>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="nav-overlay"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="back-arrow" onClick={toggleMenu}>
+              &#8592; {/* Left arrow symbol */}
+            </div>
+            <ul className="nav-list">
+              <li className="nav-item"><Link className="nav-link" to="/about" onClick={toggleMenu}>About Us</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/demo" onClick={toggleMenu}>Demo</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={toggleMenu}>Pricing</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/faq" onClick={toggleMenu}>FAQ</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/questionnaire" onClick={toggleMenu}>Questionnaire</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/sign-in" onClick={toggleMenu}>Register / Sign In</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
 
-      {menuOpen && isMobile && (
-        <div className="dropdown-menu">
-          <NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
-          <NavLink to="/demo" onClick={() => setMenuOpen(false)}>Demo</NavLink>
-          <NavLink to="/questionnaire" onClick={() => setMenuOpen(false)}>Questionnaire</NavLink>
-          <NavLink to="/pricing" onClick={() => setMenuOpen(false)}>Pricing</NavLink>
-          <NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
-          {userEmail ? (
-            <NavLink to="/profile" onClick={() => setMenuOpen(false)}>Profile</NavLink>
-          ) : (
-            <NavLink to="/sign-in" onClick={() => setMenuOpen(false)}>Sign In</NavLink>
-          )}
-        </div>
-      )}
-
-      <button className="theme-toggle" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-        {theme === "dark" ? "☀️" : "🌙"}
-      </button>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
