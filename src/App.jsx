@@ -32,6 +32,10 @@ function App() {
     return localStorage.getItem("isAdmin") || false;
   });
 
+  const [clientEmail, setClientEmail] = useState(() => {
+    return localStorage.getItem("clientEmail") || "";
+  });
+
   useEffect(() => {
     if (isAdmin) {
       localStorage.setItem("isAdmin", isAdmin);
@@ -43,6 +47,12 @@ function App() {
       localStorage.setItem("userEmail", userEmail);
     }
   }, [userEmail]);
+
+  useEffect(() => {
+    if (clientEmail) {
+      localStorage.setItem("clientEmail", clientEmail);
+    }
+  }, [clientEmail]);
 
   return (
     <Router>
@@ -66,8 +76,8 @@ function App() {
             />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
-            <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
-            <Route path="/questionnaire_A" element={<Questionnaire_Admin />} />
+            <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} isAdmin={isAdmin} clientEmail={clientEmail} />} />
+            <Route path="/questionnaire_A" element={<Questionnaire_Admin setClientEmail={setClientEmail}/>} />
             <Route path="/pricing" element={<Pricing />} /> {/* Add this route */}
             <Route path="/faq" element={<FAQ />} />
             <Route

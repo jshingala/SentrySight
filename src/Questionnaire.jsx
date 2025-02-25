@@ -25,7 +25,7 @@ const validationSchema = yup.object({
   safetyMeasures: yup.array().min(1, 'Select at least one safety measure'),
 });
 
-const Questionnaire = ({userEmail}) => {
+const Questionnaire = ({userEmail, isAdmin, clientEmail}) => {
   const [values, setValues] = useState ({
     businessName: '',
     industryType: '',
@@ -91,6 +91,16 @@ const Questionnaire = ({userEmail}) => {
   useEffect(() => {
     const numberInputs = document.querySelectorAll('input[type="number"]');
 
+    fetch(`http://localhost:3306/questionnaire_client?email=${clientEmail}`)
+    .then(response => response.json())
+    .then(updatedData => {
+        console.log(updatedData);  // Log the response to see if businessName is in the data
+        setValues(prevData => ({
+            ...prevData,
+            ...updatedData
+        }));
+    });
+
     const handleWheel = (event) => {
       if (document.activeElement === event.target) {
         event.preventDefault();
@@ -113,6 +123,10 @@ const Questionnaire = ({userEmail}) => {
       <Box mt={5} p={4}>
         <Typography variant="h4" gutterBottom className="title">
           Firearm Detection Safety Assessment
+          <h2>userEmail: {userEmail}</h2>
+          <h2>clientEmail: {clientEmail}</h2>
+          <h2>isAdmin: {isAdmin}</h2>
+          <h2>business name: {values.businessName}</h2>
         </Typography>
         <Typography variant="body1" className="subtitle" mb={4}>
           This survey assesses your current safety measures and explores the benefits of AI firearm detection technology.

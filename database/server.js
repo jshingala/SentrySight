@@ -21,6 +21,42 @@ con.connect(function (err) {
   console.log("Connected to database!");
 });
 
+app.get('/questionnaire_client', (req, res) => {
+  const email = req.query.email;
+
+  if (!email) return res.status(400).json({ error: 'Email is required' });
+
+  const userQuery = "SELECT business_id, business_name FROM Business WHERE email = ?";
+  con.query(userQuery, [email], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database query error' });
+
+      if (results.length === 0) return res.status(404).json({ error: 'User not found' });
+
+      const user = results[0];
+      const q_Query = `SELECT * FROM Questionnaire WHERE business_id = ?`;
+
+      con.query(q_Query, [user.business_id], (err, q_results) => {
+          if (err) return res.status(500).json({ error: 'Database query error' });
+
+          const questionnaire = q_results[0] || {};
+          res.json({
+              businessName: user.businessName | '',
+              industryType: questionnaire.industry_type | '',
+              numEmployees: questionnaire.num_employees | '',
+              dailyVisitors: questionnaire.num_visitors | '',
+              hasDetectionTech: questionnaire.en_detection | '',
+              safetyMeasures: [questionnaire.safety_0, questionnaire.safety_1, 
+                questionnaire.safety_2, questionnaire.safety_3] | [],
+              currentEffectiveness: questionnaire.effectiveness | 3,
+              interestInAI: questionnaire.interest | '',
+              priorityLevel: questionnaire.priority | 3,
+              responseSpeedImportance: questionnaire.police_speed | 3,
+              concerns: questionnaire.comments | ''
+          });
+      });
+  });
+});
+
 // New endpoint to get user profile information
 app.get('/user-profile', (req, res) => {
   const email = req.query.email;
