@@ -44,13 +44,13 @@ app.get('/questionnaire_client', (req, res) => {
             industry_type: questionnaire.industry_type || '',
             num_employees: questionnaire.num_employees || '',
             dailyVisitors: questionnaire.num_visitors || '',
-            hasDetectionTech: questionnaire.en_detection || '',
-            safetyMeasures: [questionnaire.safety_0, questionnaire.safety_1, 
-              questionnaire.safety_2, questionnaire.safety_3] || [],
-            currentEffectiveness: questionnaire.effectiveness || 3,
-            interestInAI: questionnaire.interest || '',
-            priorityLevel: questionnaire.priority || 3,
-            responseSpeedImportance: questionnaire.police_speed || 3,
+            hasDetectionTech: questionnaire.en_detection || false,
+            safetyMeasures: [questionnaire.safety_0 || false, questionnaire.safety_1 || false, 
+              questionnaire.safety_2 || false, questionnaire.safety_3 || false],
+            currentEffectiveness: questionnaire.effectiveness || 0,
+            interestInAI: questionnaire.interest || false,
+            priorityLevel: questionnaire.priority || 0,
+            responseSpeedImportance: questionnaire.police_speed || 0,
             comments: questionnaire.comments || ''
           });
       });
