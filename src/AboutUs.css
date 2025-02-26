@@ -1,103 +1,101 @@
-/* Global Reset */
-*,
-*::before,
-*::after {
+/* Enhanced About Us Styling */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-  font-family: 'Helvetica', sans-serif;
-  background-color: #1A1A1A; /* Dark background */
-  color: #FFFFFF; /* White text */
-  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1a1a1a, #333);
+  color: #fff;
+  line-height: 1.8;
   font-size: 16px;
 }
 
-/* About Us Section */
 .about-us {
-  padding: 40px;
-  background-color: #333333;
-  max-width: 1000px;
-  margin: 40px auto;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  padding: 60px;
+  background: rgba(51, 51, 51, 0.9);
+  max-width: 1100px;
+  margin: 50px auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-us:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
 .about-us h2 {
-  font-size: 2.5rem;
-  color: #fc0404; /* Purple accent */
+  font-size: 2.8rem;
+  background: linear-gradient(to right, #8a89e6, #d084f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .about-us p {
-  font-size: 1rem;
-  color: #B3B3B3; /* Light gray text */
+  font-size: 1.1rem;
+  color: #bfbfbf;
   text-align: justify;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .about-us h3 {
-  font-size: 1.8rem;
-  color: #b82727;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #d084f3;
+  margin-bottom: 12px;
   text-transform: uppercase;
-  border-bottom: 2px solid #b82727;
-  padding-bottom: 5px;
+  border-bottom: 2px solid #d084f3;
+  padding-bottom: 8px;
 }
 
 /* Awards Section */
 .awards-section {
-  margin-top: 50px;
+  margin-top: 60px;
+  text-align: center;
 }
 
 .awards-section h2 {
-  font-size: 2rem;
-  color: #b82727;
-  text-align: center;
-  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #d084f3;
 }
 
 .awards-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
 }
 
 .award-item {
   text-align: center;
+  cursor: pointer;
 }
 
 .award-item img {
   width: 100%;
-  max-width: 250px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  max-width: 270px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .award-item img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.35);
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 .award-caption {
-  font-size: 0.9rem;
-  color: #B3B3B3;
-  margin-top: 8px;
+  font-size: 1rem;
+  color: #d084f3;
+  margin-top: 10px;
 }
 
-/* Modal Overlay */
+/* Modal Styling */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -109,7 +107,6 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  transition: background 0.3s ease;
 }
 
 .modal-content {
@@ -122,43 +119,43 @@ body {
 .modal-image {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
   transition: transform 0.3s ease;
 }
 
 .modal-image:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .about-us {
-    padding: 30px;
+    padding: 40px;
   }
   .about-us h2 {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
   }
   .about-us h3 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
   .about-us p {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .about-us {
-    padding: 20px;
+    padding: 30px;
     margin: 20px;
   }
   .about-us h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   .about-us h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   .about-us p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 }
