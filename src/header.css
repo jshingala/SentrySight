@@ -27,7 +27,6 @@
   background: rgb(194, 194, 194);
 }
 
-
 /* General Header Styles */
 .header {
   display: flex;
@@ -59,7 +58,6 @@
 
 .logo-link h1:hover {
   transform: scale(1.1); /* Slightly enlarge the text */
-  
 }
 
 .logo-image {
@@ -91,7 +89,8 @@
   font-size: 1rem;
   font-weight: 500;
   transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Added text-shadow transition */
-  display: inline-block; /* Ensure scaling works */}
+  display: inline-block; /* Ensure scaling works */
+}
 
 .nav-item .nav-link:hover {
   color: #635bff; /* Purple accent on hover */
@@ -104,12 +103,12 @@
   font-weight: 700; /* Set font weight to bold */
   transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Ensure smooth transition */
 }
+
 .nav-item .nav-link[href="/sign-in"]:hover {
   transform: scale(1.1); /* Slightly enlarge the text */
   text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   color: #ff5050;
 }
-
 
 /* Hamburger Menu */
 .hamburger {
@@ -169,4 +168,25 @@
   .hamburger {
     display: flex;
   }
+}
+
+/* Language Switcher (added for easier styling of language buttons) */
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  color: #838383;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.language-switcher button:hover {
+  color: #635bff;
+  transform: scale(1.1);
 }

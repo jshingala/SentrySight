@@ -23,6 +23,10 @@ import Footer from "./Footer.jsx";
 import Profile from "./Profile.jsx";
 import NotFound from "./404.jsx"; 
 import Admin from "./Admin.jsx";
+
+// 1) Import the TranslationProvider
+import { TranslationProvider } from "./context/TranslationContext";
+
 import "./CSS.css";
 import "./App.css"; 
 
@@ -32,7 +36,7 @@ function AppContent({ userEmail, setUserEmail }) {
   return (
     <div className="App">
       <Header userEmail={userEmail} />
-      <main className="main-content">
+      <main className="main-content" style={{ marginTop: "80px" }}>
         <TransitionGroup>
           <CSSTransition key={location.key} classNames="fade" timeout={500}>
             <Routes location={location}>
@@ -52,7 +56,10 @@ function AppContent({ userEmail, setUserEmail }) {
               />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/demo" element={<Demo />} />
-              <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} />} />
+              <Route 
+                path="/questionnaire" 
+                element={<Questionnaire userEmail={userEmail} />} 
+              />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/faq" element={<FAQ />} />
@@ -67,7 +74,8 @@ function AppContent({ userEmail, setUserEmail }) {
               />
               <Route path="/admin" element={<Admin />} />
 
-              <Route path="*" element={<NotFound />} /> {/* Rout to 404 Page */}
+              {/* Route to 404 Page */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </CSSTransition>
         </TransitionGroup>
@@ -88,10 +96,13 @@ function App() {
     }
   }, [userEmail]);
 
+  // 2) Wrap <Router> in <TranslationProvider>
   return (
-    <Router>
-      <AppContent userEmail={userEmail} setUserEmail={setUserEmail} />
-    </Router>
+    <TranslationProvider>
+      <Router>
+        <AppContent userEmail={userEmail} setUserEmail={setUserEmail} />
+      </Router>
+    </TranslationProvider>
   );
 }
 
