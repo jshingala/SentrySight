@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 import './SignUp.css';
 
 const Login = ({ setUserEmail }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [captchaValue, setCaptchaValue] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -14,14 +16,28 @@ const Login = ({ setUserEmail }) => {
     if (name === "password") setPassword(value);
   };
 
+  const handleCaptchaChange = (value) => {
+    setCaptchaValue(value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    if (!captchaValue) {
+      setErrorMessage('Please complete the CAPTCHA');
+      return;
+    }
+
     fetch('http://localhost:3306/sign-in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ 
+        email, 
+        password,
+        captchaToken: captchaValue 
+      })
     })
       .then(response => response.json())
       .then(data => {
@@ -36,6 +52,7 @@ const Login = ({ setUserEmail }) => {
       })
       .catch(error => {
         console.error('Error:', error);
+        setErrorMessage('An error occurred during sign in');
       });
   };
 
@@ -60,8 +77,16 @@ const Login = ({ setUserEmail }) => {
           onChange={handleChange}
           placeholder="Enter your password"
           value={password}
+          required
         />
-        <button type="submit">Submit</button>
+        <div className="captcha-container">
+          <ReCAPTCHA
+            sitekey="6LdpEeMqAAAAAMg7zfin2ikfx-a0iFa-1dZkRoGU"
+            onChange={handleCaptchaChange}
+            theme="dark"
+          />
+        </div>
+        <button type="submit" disabled={!captchaValue}>Submit</button>
         <div className="register">
           <Link to="/sign-up">
             <button type="button">Go to Register</button>

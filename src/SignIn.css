@@ -101,3 +101,10 @@
     font-size: 0.9rem;
   }
 }
+
+.captcha-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

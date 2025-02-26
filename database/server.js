@@ -2,6 +2,7 @@ import express from 'express';
 import mysql from 'mysql2';
 import cors from 'cors';
 import dotenv from 'dotenv';
+const axios = require('axios');
 
 dotenv.config();
 
@@ -83,32 +84,46 @@ app.post('/update-address', (req, res) => {
 });
 
 // Login system - get the database and see if there is matching email & password
-app.post('/sign-in', (req, res) => {
-  const { email, password } = req.body;
+app.post('/sign-in', async (req, res) => {
+  const { email, password, captchaToken } = req.body;
 
-  if (!email || !password){
-    return res.status(400).json({ error: 'Please fill out your email or password.' });
-  }
+  // Verify CAPTCHA first
+  try {
+    const captchaVerification = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify?secret=6LdpEeMqAAAAAF8kgbdi1zWhXpYo_elvvkY3r3kK&response=${captchaToken}`  // Replace with your actual reCAPTCHA secret key
+    );
 
-  const query = "SELECT email, login_password FROM Business WHERE email = ?";
-  con.query(query, [email], (err, results)=>{
-    if (err) {
-      console.log('Error type:', err.code);
+    if (!captchaVerification.data.success) {
+      return res.json({ error: 'CAPTCHA verification failed' });
     }
 
-    if (results.length > 0){  //If the email exists
-      const checkPassword = results[0].login_password;
-      //console.log('Detected login password for the id: ' + checkPassword);
+    if (!email || !password){
+      return res.status(400).json({ error: 'Please fill out your email or password.' });
+    }
 
-      if (checkPassword === password){
-        res.json({ message: 'Login data matches!', results });
-      }else{
-        res.status(400).json({ error: 'Incorrect password.' })
+    const query = "SELECT email, login_password FROM Business WHERE email = ?";
+    con.query(query, [email], (err, results)=>{
+      if (err) {
+        console.log('Error type:', err.code);
       }
-    }else{
-      res.status(404).json({ error: 'Email not found.' });
-    }
-  })
+
+      if (results.length > 0){  //If the email exists
+        const checkPassword = results[0].login_password;
+        //console.log('Detected login password for the id: ' + checkPassword);
+
+        if (checkPassword === password){
+          res.json({ message: 'Login data matches!', results });
+        }else{
+          res.status(400).json({ error: 'Incorrect password.' })
+        }
+      }else{
+        res.status(404).json({ error: 'Email not found.' });
+      }
+    })
+  } catch (error) {
+    console.error('Error verifying CAPTCHA:', error);
+    res.json({ error: 'An error occurred during sign in' });
+  }
 });
 
 // Putting data into the database
