@@ -1,0 +1,58 @@
+/* Features Section */
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background-color: #1A1A1A; /* Dark background */
+  text-align: center;
+  width: 100vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title Styling */
+.features-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #635bff; /* Purple accent for title */
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  justify-items: center;
+}
+
+/* Feature Item Styling */
+.feature-item {
+  background-color: #2C2C2C; /* Dark gray background for items */
+  border: 1px solid #444; /* Dark border */
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+}
+
+.feature-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Feature Title and Description */
+.feature-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #635bff; /* Purple accent for feature titles */
+}
+
+.feature-description {
+  color: #B3B3B3; /* Light gray for descriptions */
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 10px;
+}

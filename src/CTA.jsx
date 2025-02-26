@@ -1,35 +1,19 @@
-import React from "react";
-import { motion } from "framer-motion";
-import "./global.css";
-import "./CTA.css";
+import React from 'react';
+import './CTA.css';
 
-const buttonVariant = {
-  hover: { scale: 1.1, transition: { duration: 0.3 } },
-};
-
-const CTA = () => {
+function CTA() {
   return (
     <section className="cta">
       <div className="container">
-        <motion.h2 className="cta-title" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          Ready to Get Started?
-        </motion.h2>
-        <motion.p className="cta-subtext" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}>
-          Take the first step towards smarter security solutions.
-        </motion.p>
-        <motion.div className="cta-buttons-container">
-          <motion.div className="cta-buttons">
-            <motion.button variants={buttonVariant} whileHover="hover" className="btn btn-primary">
-              Sign Up
-            </motion.button>
-            <motion.button variants={buttonVariant} whileHover="hover" className="btn btn-secondary">
-              See Demo
-            </motion.button>
-          </motion.div>
-        </motion.div>
+        <h2>Ready to Get Started?</h2>
+        <p>Take the first step towards smarter security solutions. Join us today!</p>
+        <div className="cta-buttons">
+          <a href="/sign-up" className="btn-primary">Sign Up</a>
+          <a href="/demo" className="btn-secondary">See Demo</a>
+        </div>
       </div>
     </section>
   );
-};
+}
 
 export default CTA;
