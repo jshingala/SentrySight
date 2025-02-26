@@ -29,14 +29,14 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
           setErrorMessage(data.error);
         } else {
           setUserEmail(email);
+          localStorage.setItem("userEmail", email);
 
           // Store isAdmin in localStorage and set state
           const isAdmin = data.results[0].isAdmin; // Assuming the response contains `isAdmin`
-          localStorage.setItem("userEmail", email);
-          localStorage.setItem("isAdmin", isAdmin);
-          
-          // Update the state in App.jsx
-          setIsAdmin(isAdmin);
+          if (isAdmin){
+            setIsAdmin(isAdmin);
+            localStorage.setItem("isAdmin", isAdmin);
+          }
 
           setErrorMessage('');
           alert("You're successfully signed in!");

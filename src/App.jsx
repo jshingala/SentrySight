@@ -14,6 +14,7 @@ import Contact from "./Contact.jsx";
 import Testimonials from "./Testimonials.jsx";
 import Questionnaire from "./Questionnaire.jsx";
 import Questionnaire_Admin from "./Questionnaire_Admin.jsx";
+import Questionnaire_Client from "./Questionnaire_Client.jsx";
 import Demo from "./Demo.jsx";
 import Login from "./SignIn.jsx";
 import SignUp from "./SignUp.jsx"; // Changed to SignUp to match the component name
@@ -76,8 +77,9 @@ function App() {
             />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/demo" element={<Demo />} />
-            <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail} isAdmin={isAdmin} clientEmail={clientEmail} />} />
+            <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail}/>} />
             <Route path="/questionnaire_A" element={<Questionnaire_Admin setClientEmail={setClientEmail}/>} />
+            <Route path="/questionnaire_C" element={<Questionnaire_Client clientEmail={clientEmail} />}/>
             <Route path="/pricing" element={<Pricing />} /> {/* Add this route */}
             <Route path="/faq" element={<FAQ />} />
             <Route

@@ -12,8 +12,8 @@ const companies = [
 const Questionnaire_Admin = ({setClientEmail}) => {
   const navigate = useNavigate();
 
-  const handleNavigation = (email) => {
-    navigate(`/questionnaire?email=${email}`);
+  const handleNavigation = () => {
+    navigate(`/questionnaire_C`);
   };
 
   return (
