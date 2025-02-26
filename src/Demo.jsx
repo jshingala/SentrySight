@@ -27,32 +27,44 @@ function Demo() {
     }
   };
 
-  const handleUpload = () => {
-    if (file) {
-      setIsUploading(true);
-      setIsProcessing(true);
-      setProgress(0);
-
-      const interval = setInterval(() => {
-        setProgress((prev) => {
-          const next = prev + 100 / 30;
-          if (next >= 100) {
-            clearInterval(interval);
-            return 100;
-          }
-          return next;
-        });
-      }, 100);
-
-      setTimeout(() => {
-        setResult(previewUrl);
-        setIsUploading(false);
-        setIsProcessing(false);
-        clearInterval(interval);
-        setProgress(100);
-      }, 3000);
-    } else {
+  const handleUpload = async () => {
+    if (!file) {
       alert('Please select a file to upload.');
+      return;
+    }
+
+    setIsUploading(true);
+    setIsProcessing(true);
+    setProgress(0);
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      // Explicitly set mode: 'cors'
+      const response = await fetch('http://3.133.147.122:3000/upload', {
+        method: 'POST',
+        mode: 'cors',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Upload failed with status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!data.imageUrl) {
+        throw new Error('No imageUrl returned from server.');
+      }
+      setResult(data.imageUrl + '?timestamp=' + new Date().getTime());
+      setPreviewUrl(data.imageUrl + '?timestamp=' + new Date().getTime());
+      setProgress(100);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Error uploading image. Check console for details.');
+    } finally {
+      setIsUploading(false);
+      setIsProcessing(false);
     }
   };
 
@@ -155,15 +167,14 @@ function Demo() {
                 'Upload Image'
               )}
             </button>
-            {isUploading && (
-              <div className="progress-bar-container">
-                <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-              </div>
-            )}
           </motion.div>
           {(isProcessing || result) && (
             <div className="result">
-              {isProcessing ? "Running..." : <img src={result} alt="Uploaded Result" />}
+              {isProcessing ? (
+                "Running..."
+              ) : (
+                <img src={result} alt="Server Processed Result" />
+              )}
             </div>
           )}
         </div>
@@ -190,4 +201,4 @@ function Demo() {
   );
 }
 
-export default Demo; 
+export default Demo;
