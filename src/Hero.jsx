@@ -1,8 +1,29 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import './Hero.css';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useTranslation } from "./context/TranslationContext"; // Import translation hook
+import "./Hero.css";
 
 const Hero = () => {
+  const { translateText, language } = useTranslation();
+  const [translatedText, setTranslatedText] = useState({});
+
+  useEffect(() => {
+    const texts = {
+      heading: "Experience Peace of Mind",
+      description: "Cutting-edge technology to keep your home and business safe.",
+    };
+
+    async function updateTranslations() {
+      const newTranslations = {};
+      for (const key in texts) {
+        newTranslations[key] = await translateText(texts[key]);
+      }
+      setTranslatedText(newTranslations);
+    }
+
+    updateTranslations();
+  }, [language, translateText]);
+
   return (
     <div className="hero">
       {/* Hero Content */}
@@ -10,16 +31,16 @@ const Hero = () => {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: 'easeOut' }}
+          transition={{ duration: 1.4, ease: "easeOut" }}
         >
-          Experience Peace of Mind
+          {translatedText.heading || "Experience Peace of Mind"}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.8, ease: 'easeOut' }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
         >
-          Cutting-edge technology to keep your home and business safe.
+          {translatedText.description || "Cutting-edge technology to keep your home and business safe."}
         </motion.p>
         <div className="cta-buttons">
           <motion.a
@@ -27,16 +48,16 @@ const Hero = () => {
             className="btn-primary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2, ease: 'easeOut' }}
+            transition={{ duration: 2, ease: "easeOut" }}
           >
             Get Started
           </motion.a>
           <motion.a
-            href="/demo" 
+            href="/demo"
             className="btn-secondary"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2.2, ease: 'easeOut' }}
+            transition={{ duration: 2.2, ease: "easeOut" }}
           >
             Learn More
           </motion.a>

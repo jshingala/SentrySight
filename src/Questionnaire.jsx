@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Formik, Form } from 'formik';
-import * as yup from 'yup';
-import './Questionnaire.css'; // Import the CSS file
+import { Formik, Form } from "formik";
+import * as yup from "yup";
+import "./Questionnaire.css"; // Import the CSS file
+import { useTranslation } from "./context/TranslationContext"; // Import translation hook
 import {
   Box,
   Button,
@@ -14,162 +15,86 @@ import {
   Slider,
   TextField,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 
 const validationSchema = yup.object({
-  businessName: yup.string().required('Business name is required'),
-  industryType: yup.string().required('Industry type is required'),
-  numEmployees: yup.number().required('Number of employees is required'),
-  dailyVisitors: yup.number().required('Daily visitors is required'),
-  hasDetectionTech: yup.string().required('Selection is required'),
-  safetyMeasures: yup.array().min(1, 'Select at least one safety measure'),
+  businessName: yup.string().required("Business name is required"),
+  industryType: yup.string().required("Industry type is required"),
+  numEmployees: yup.number().required("Number of employees is required"),
+  dailyVisitors: yup.number().required("Daily visitors is required"),
+  hasDetectionTech: yup.string().required("Selection is required"),
+  safetyMeasures: yup.array().min(1, "Select at least one safety measure"),
 });
 
-const Questionnaire = ({userEmail}) => {
-  const [values, setValues] = useState ({
-    businessName: '',
-    industryType: '',
-    numEmployees: '',
-    dailyVisitors: '',
-    hasDetectionTech: '',
+const Questionnaire = ({ userEmail }) => {
+  const [values, setValues] = useState({
+    businessName: "",
+    industryType: "",
+    numEmployees: "",
+    dailyVisitors: "",
+    hasDetectionTech: "",
     safetyMeasures: [],
     currentEffectiveness: 3,
-    interestInAI: '',
+    interestInAI: "",
     priorityLevel: 3,
     responseSpeedImportance: 3,
-    concerns: ''
+    concerns: "",
   });
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    if (!userEmail) {
-      alert("Please login to submit your questionnaire");
-      return;
+  const { translateText, language } = useTranslation();
+  const [translatedText, setTranslatedText] = useState({});
+
+  useEffect(() => {
+    async function updateTranslations() {
+      const texts = {
+        title: "Firearm Detection Safety Assessment",
+        subtitle: "This survey assesses your current safety measures and explores the benefits of AI firearm detection technology.",
+        businessInfo: "Business Information",
+        businessName: "Business Name",
+        industryType: "Industry Type",
+        numEmployees: "Number of Employees",
+        dailyVisitors: "Daily Visitors",
+        detectionTech: "Do you currently have firearm detection technology?",
+        safetyMeasures: "Safety Measures in Place",
+        effectiveness: "Current Effectiveness of Safety Measures",
+        interestAI: "Interest in AI Firearm Detection Technology",
+        priority: "Priority Level for Firearm Detection",
+        responseSpeed: "Importance of Police Response Speed",
+        concerns: "Concerns about AI Detection Technology",
+        submit: "Submit",
+      };
+
+      const translated = {};
+      for (const key in texts) {
+        translated[key] = await translateText(texts[key], language);
+      }
+      setTranslatedText(translated);
     }
 
-    console.log('Submitting form with values:', values);
-
-    const doc = new jsPDF();
-
-    doc.setFontSize(16);
-    doc.text('Firearm Detection Safety Assessment', 20, 20);
-
-    doc.setFontSize(12);
-    doc.text(`Business Name: ${values.businessName}`, 20, 40);
-    doc.text(`Industry Type: ${values.industryType}`, 20, 50);
-    doc.text(`Number of Employees: ${values.numEmployees}`, 20, 60);
-    doc.text(`Daily Visitors: ${values.dailyVisitors}`, 20, 70);
-    doc.text(`Has Detection Technology: ${values.hasDetectionTech}`, 20, 80);
-    doc.text(`Safety Measures: ${values.safetyMeasures.join(', ')}`, 20, 90);
-    doc.text(`Current Effectiveness: ${values.currentEffectiveness}`, 20, 100);
-    doc.text(`Interest in AI: ${values.interestInAI}`, 20, 110);
-    doc.text(`Priority Level for Firearm Detection:  ${values.priorityLevel}, 20, 100`)
-    doc.text(`Importance of Police Response Speed:  ${values.responseSpeedImportance}, 20, 100`)
-    doc.text(`Concerns: ${values.concerns}`, 20, 120);
-
-    doc.save('questionnaire_submission.pdf');
-
-
-    // 🔹 Convert PDF to Blob
-    const pdfBlob = doc.output('blob');
-
-    // 🔹 Send to Backend (API Request)
-    const formData = new FormData();
-    formData.append('pdf', pdfBlob, 'questionnaire_submission.pdf');
-    formData.append('formValues', JSON.stringify(values));
-
-    
-    fetch('http://localhost:3306/questionnaire', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: userEmail,
-        businessName: values.businessName,
-        industryType: values.industryType,
-        numEmployees: values.numEmployees,
-        dailyVisitors: values.dailyVisitors,
-        hasDetectionTech: values.hasDetectionTech,
-        safetyMeasures: values.safetyMeasures,
-        currentEffectiveness: values.currentEffectiveness,
-        interestInAI: values.interestInAI,
-        priorityLevel: values.priorityLevel,
-        responseSpeedImportance: values.responseSpeedImportance,
-        concerns: values.concerns
-      })
-    })      
-      .then(response => {
-        //console.log(response);
-        return response.json()
-      })
-      .then(data => {
-        if (data.error) {
-            // If there's an error, display it to the user
-            this.setState({ errorMessage: data.error });
-          }else {
-            alert("Submitted Successfully");
-            window.location.href = "/questionnaire";
-            this.setState({ successMessage: "Submitted successfully!", errorMessage: '' });
-          }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-
-        this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
-      });
-  };
-
-  // Prevent scroll wheel from changing number inputs
-  useEffect(() => {
-    const numberInputs = document.querySelectorAll('input[type="number"]');
-
-    const handleWheel = (event) => {
-      if (document.activeElement === event.target) {
-        event.preventDefault();
-      }
-    };
-
-    numberInputs.forEach((input) => {
-      input.addEventListener('wheel', handleWheel);
-    });
-
-    return () => {
-      numberInputs.forEach((input) => {
-        input.removeEventListener('wheel', handleWheel);
-      });
-    };
-  }, []); // Runs only once after the component mounts
+    updateTranslations();
+  }, [language, translateText]);
 
   return (
     <Container maxWidth="md" className="Questionnaire">
       <Box mt={5} p={4}>
         <Typography variant="h4" gutterBottom className="title">
-          Firearm Detection Safety Assessment
+          {translatedText.title || "Firearm Detection Safety Assessment"}
         </Typography>
         <Typography variant="body1" className="subtitle" mb={4}>
-          This survey assesses your current safety measures and explores the benefits of AI firearm detection technology.
+          {translatedText.subtitle || "This survey assesses your current safety measures and explores the benefits of AI firearm detection technology."}
         </Typography>
 
-        <Formik
-          initialValues={values}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({
-            values,
-            handleChange,
-            handleBlur,
-            setFieldValue,
-            errors,
-            touched,
-          }) => (
+        <Formik initialValues={values} validationSchema={validationSchema} onSubmit={(values) => console.log(values)}>
+          {({ values, handleChange, handleBlur, setFieldValue, errors, touched }) => (
             <Form>
               <Typography variant="h6" className="title" mb={2}>
-                Business Information
+                {translatedText.businessInfo || "Business Information"}
               </Typography>
 
               {/* Business Name */}
               <FormControl fullWidth margin="normal">
                 <TextField
-                  label="Business Name"
+                  label={translatedText.businessName || "Business Name"}
                   name="businessName"
                   value={values.businessName}
                   onChange={handleChange}
@@ -183,7 +108,7 @@ const Questionnaire = ({userEmail}) => {
               {/* Industry Type */}
               <FormControl fullWidth margin="normal">
                 <TextField
-                  label="Industry Type"
+                  label={translatedText.industryType || "Industry Type"}
                   name="industryType"
                   value={values.industryType}
                   onChange={handleChange}
@@ -197,7 +122,7 @@ const Questionnaire = ({userEmail}) => {
               {/* Number of Employees */}
               <FormControl fullWidth margin="normal">
                 <TextField
-                  label="Number of Employees"
+                  label={translatedText.numEmployees || "Number of Employees"}
                   name="numEmployees"
                   type="number"
                   value={values.numEmployees}
@@ -212,15 +137,13 @@ const Questionnaire = ({userEmail}) => {
               {/* Daily Visitors */}
               <FormControl fullWidth margin="normal">
                 <TextField
-                  label="Daily Visitors"
+                  label={translatedText.dailyVisitors || "Daily Visitors"}
                   name="dailyVisitors"
                   type="number"
                   value={values.dailyVisitors}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={
-                    touched.dailyVisitors && Boolean(errors.dailyVisitors)
-                  }
+                  error={touched.dailyVisitors && Boolean(errors.dailyVisitors)}
                   helperText={touched.dailyVisitors && errors.dailyVisitors}
                   fullWidth
                 />
@@ -230,18 +153,13 @@ const Questionnaire = ({userEmail}) => {
               <FormControl fullWidth margin="normal">
                 <TextField
                   select
-                  label="Do you currently have firearm detection technology?"
+                  label={translatedText.detectionTech || "Do you currently have firearm detection technology?"}
                   name="hasDetectionTech"
                   value={values.hasDetectionTech}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={
-                    touched.hasDetectionTech &&
-                    Boolean(errors.hasDetectionTech)
-                  }
-                  helperText={
-                    touched.hasDetectionTech && errors.hasDetectionTech
-                  }
+                  error={touched.hasDetectionTech && Boolean(errors.hasDetectionTech)}
+                  helperText={touched.hasDetectionTech && errors.hasDetectionTech}
                   fullWidth
                 >
                   <MenuItem value="yes">Yes</MenuItem>
@@ -251,14 +169,9 @@ const Questionnaire = ({userEmail}) => {
 
               {/* Safety Measures */}
               <FormControl fullWidth margin="normal">
-                <FormLabel>Safety Measures in Place</FormLabel>
+                <FormLabel>{translatedText.safetyMeasures || "Safety Measures in Place"}</FormLabel>
                 <Box display="flex" flexDirection="column">
-                  {[
-                    'Surveillance cameras',
-                    'Security guards',
-                    'Panic buttons',
-                    'Emergency lockdown procedures',
-                  ].map((measure) => (
+                  {["Surveillance cameras", "Security guards", "Panic buttons", "Emergency lockdown procedures"].map((measure) => (
                     <FormControlLabel
                       key={measure}
                       control={
@@ -266,17 +179,9 @@ const Questionnaire = ({userEmail}) => {
                           checked={values.safetyMeasures.includes(measure)}
                           onChange={(e) => {
                             if (e.target.checked) {
-                              setFieldValue('safetyMeasures', [
-                                ...values.safetyMeasures,
-                                measure,
-                              ]);
+                              setFieldValue("safetyMeasures", [...values.safetyMeasures, measure]);
                             } else {
-                              setFieldValue(
-                                'safetyMeasures',
-                                values.safetyMeasures.filter(
-                                  (item) => item !== measure
-                                )
-                              );
+                              setFieldValue("safetyMeasures", values.safetyMeasures.filter((item) => item !== measure));
                             }
                           }}
                         />
@@ -287,70 +192,10 @@ const Questionnaire = ({userEmail}) => {
                 </Box>
               </FormControl>
 
-              {/* Current Effectiveness */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Current Effectiveness of Safety Measures</FormLabel>
-                <Slider
-                  name="currentEffectiveness"
-                  value={values.currentEffectiveness}
-                  onChange={(e, newValue) => setFieldValue('currentEffectiveness', newValue)} // Smooth state update
-                  step={0.1} 
-                  min={0}
-                  max={5}
-                  valueLabelDisplay="auto"
-                />
-              </FormControl>
-
-              {/* Interest in AI */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  select
-                  label="Interest in AI Firearm Detection Technology"
-                  name="interestInAI"
-                  value={values.interestInAI}
-                  onChange={handleChange}
-                  fullWidth
-                >
-                  <MenuItem value="yes">Yes, definitely</MenuItem>
-                  <MenuItem value="possibly">
-                    Possibly, I would like more information
-                  </MenuItem>
-                  <MenuItem value="no">No, I am not interested</MenuItem>
-                </TextField>
-              </FormControl>
-
-              {/* Priority Level */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Priority Level for Firearm Detection</FormLabel>
-                <Slider
-                  name="priorityLevel"
-                  value={values.priorityLevel}
-                  onChange={(e, newValue) => setFieldValue('priorityLevel', newValue)} // Smooth state update
-                  step={0.1} 
-                  min={0}
-                  max={5}
-                  valueLabelDisplay="auto"
-                />
-              </FormControl>
-
-              {/* Response Speed Importance */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Importance of Police Response Speed</FormLabel>
-                <Slider
-                  name="responseSpeedImportance"
-                  value={values.responseSpeedImportance}
-                  onChange={(e, newValue) => setFieldValue('responseSpeedImportance', newValue)} // Smooth state update
-                  step={0.1} 
-                  min={0}
-                  max={5}
-                  valueLabelDisplay="auto"
-                />
-              </FormControl>
-
               {/* Concerns */}
               <FormControl fullWidth margin="normal">
                 <TextField
-                  label="Concerns about AI Detection Technology"
+                  label={translatedText.concerns || "Concerns about AI Detection Technology"}
                   name="concerns"
                   multiline
                   rows={4}
@@ -361,14 +206,8 @@ const Questionnaire = ({userEmail}) => {
               </FormControl>
 
               {/* Submit Button */}
-              <Button
-                type="submit"
-                variant="contained"
-                size="large"
-                fullWidth
-                className="submit-button"
-              >
-                Submit
+              <Button type="submit" variant="contained" size="large" fullWidth className="submit-button">
+                {translatedText.submit || "Submit"}
               </Button>
             </Form>
           )}

@@ -190,3 +190,24 @@
   color: #635bff;
   transform: scale(1.1);
 }
+
+
+.translation-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.lang-select {
+  background: #ff5252;
+  border: 1px solid #c004c0;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.lang-select:focus {
+  outline: none;
+  border-color: #635bff;
+}

@@ -9,14 +9,11 @@ function Header({ userEmail }) {
   const [isOpen, setIsOpen] = useState(false);
   const [lightMode, setLightMode] = useState(false);
 
-  // We get these from the context:
   const { changeLanguage, translateText, language } = useTranslation();
 
-  // We'll store translations for various text keys here
   const [translatedText, setTranslatedText] = useState({});
 
   useEffect(() => {
-    // We define the strings we want to translate:
     const texts = {
       about: "About Us",
       demo: "Demo",
@@ -28,7 +25,6 @@ function Header({ userEmail }) {
       admin: "Admin",
     };
 
-    // Translate them whenever the language changes
     async function updateTranslations() {
       const newTranslations = {};
       for (const key in texts) {
@@ -58,7 +54,6 @@ function Header({ userEmail }) {
         </Link>
       </div>
 
-      {/* Desktop Nav */}
       <nav className="nav-desktop">
         <ul className="nav-list">
           <li className="nav-item">
@@ -96,10 +91,18 @@ function Header({ userEmail }) {
           <li className="nav-item toggle-btn" onClick={toggleTheme}>
             ☀️
           </li>
-          <li className="nav-item">
-            <button onClick={() => changeLanguage("en")}>🇬🇧</button>
-            <button onClick={() => changeLanguage("es")}>🇪🇸</button>
-            <button onClick={() => changeLanguage("fr")}>🇫🇷</button>
+
+          {/* Language Dropdown */}
+          <li className="nav-item translation-dropdown">
+            <select
+              className="lang-select"
+              value={language}
+              onChange={(e) => changeLanguage(e.target.value)}
+            >
+              <option value="en">🇬🇧 English</option>
+              <option value="es">🇪🇸 Español</option>
+              <option value="fr">🇫🇷 Français</option>
+            </select>
           </li>
         </ul>
       </nav>
