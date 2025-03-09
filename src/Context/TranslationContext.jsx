@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
 
-// ask for API key for now
-const API_KEY = "";
+
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const TranslationContext = createContext();
 
@@ -20,7 +20,7 @@ export const TranslationProvider = ({ children }) => {
       return text;
     }
 
-    // If we've already translated this text in the current language, return that
+   
     if (translations[language]?.[text]) {
       return translations[language][text];
     }
@@ -37,7 +37,7 @@ export const TranslationProvider = ({ children }) => {
 
       const translated = response.data.data.translations[0].translatedText;
 
-      // Cache the translation by [language][text] so we don't re-fetch
+      
       setTranslations((prev) => ({
         ...prev,
         [language]: {
@@ -49,7 +49,7 @@ export const TranslationProvider = ({ children }) => {
       return translated;
     } catch (error) {
       console.error("Translation error:", error);
-      // If something fails, just return the original text
+      
       return text;
     }
   };
@@ -59,7 +59,7 @@ export const TranslationProvider = ({ children }) => {
       value={{
         translateText,
         language,
-        changeLanguage, // or just export `setLanguage` if you prefer
+        changeLanguage,
       }}
     >
       {children}
