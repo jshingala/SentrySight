@@ -135,20 +135,10 @@ function ContactUs() {
           </div>
           <h2 style={cardTitleStyle}>Email Us</h2>
           <p style={cardDescriptionStyle}>Get detailed information</p>
-          <a href="mailto:contact@sentrysight.com" style={purpleLinkStyle}>contact@sentrysight.com</a>
+          <a href="mailto:modernritchie@yahoo.com" style={purpleLinkStyle}>contact@sentrysight.com</a>
         </div>
 
         {/* Visit Us Card */}
-        <div style={cardStyle}>
-          <div style={iconContainerStyle}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{opacity: 0.8}}>
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-            </svg>
-          </div>
-          <h2 style={cardTitleStyle}>Visit Us</h2>
-          <p style={cardDescriptionStyle}>Schedule a demo at our office</p>
-          <span style={purpleLinkStyle}>Sacramento, CA</span>
-        </div>
 
         {/* Business Hours Card */}
         <div style={cardStyle}>
@@ -165,7 +155,6 @@ function ContactUs() {
 
       <div style={footerStyle}>
         <p style={footerTextStyle}>Experience the future of security with SentrySight's AI-powered solutions</p>
-        <button style={buttonStyle}>Schedule a Consultation</button>
       </div>
     </div>
   );

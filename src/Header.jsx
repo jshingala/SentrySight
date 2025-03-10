@@ -44,7 +44,6 @@ function Header({ userEmail }) {
         <img src={Logo} alt="SentrySight Logo" className="logo" />
       </div>
 
-
       {isMobile ? (
         <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
@@ -82,33 +81,6 @@ function Header({ userEmail }) {
       <button className="theme-toggle" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
         {theme === "dark" ? "☀️" : "🌙"}
       </button>
-      
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="nav-overlay"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="back-arrow" onClick={toggleMenu}>
-              &#8592; {/* Left arrow symbol */}
-            </div>
-            <ul className="nav-list">
-              <li className="nav-item"><Link className="nav-link" to="/about" onClick={toggleMenu}>About Us</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/demo" onClick={toggleMenu}>Demo</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/pricing" onClick={toggleMenu}>Pricing</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/faq" onClick={toggleMenu}>FAQ</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/questionnaire" onClick={toggleMenu}>Questionnaire</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/sign-in" onClick={toggleMenu}>Register / Sign In</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
-
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
     </header>
   );
 }
