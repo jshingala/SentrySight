@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Profile.css'; // Import the CSS file
 
 function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     const navigate = useNavigate();

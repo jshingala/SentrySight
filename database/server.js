@@ -133,28 +133,28 @@ app.get('/user-profile', (req, res) => {
 
   const userQuery = "SELECT business_id, business_name, contact_number FROM Business WHERE email = ?";
   con.query(userQuery, [email], (err, results) => {
-    if (err) return res.status(500).json({ error: 'Database query error' });
-
-    if (results.length === 0) return res.status(404).json({ error: 'User not found' });
-
-    const user = results[0];
-    const addressQuery = `SELECT address1, address2, city, state, postal_code, country FROM Business_address WHERE business_id = ?`;
-
-    con.query(addressQuery, [user.business_id], (err, addressResults) => {
       if (err) return res.status(500).json({ error: 'Database query error' });
 
-      const address = addressResults[0] || {};
-      res.json({
-        business_name: user.business_name || '',
-        contact_number: user.contact_number || '',
-        address1: address.address1 || '',
-        address2: address.address2 || '',
-        city: address.city || '',
-        state: address.state || '',
-        postal_code: address.postal_code || '',
-        country: address.country || ''
+      if (results.length === 0) return res.status(404).json({ error: 'User not found' });
+
+      const user = results[0];
+      const addressQuery = `SELECT address1, address2, city, state, postal_code, country FROM Business_address WHERE business_id = ?`;
+
+      con.query(addressQuery, [user.business_id], (err, addressResults) => {
+          if (err) return res.status(500).json({ error: 'Database query error' });
+
+          const address = addressResults[0] || {};
+          res.json({
+              business_name: user.business_name || '',
+              contact_number: user.contact_number || '',
+              address1: address.address1 || '',
+              address2: address.address2 || '',
+              city: address.city || '',
+              state: address.state || '',
+              postal_code: address.postal_code || '',
+              country: address.country || ''
+          });
       });
-    });
   });
 });
 
@@ -194,23 +194,26 @@ app.post('/sign-in', (req, res) => {
       console.log('Error type:', err.code);
     }
 
-    if (results.length > 0){
+    if (results.length > 0){  //If the email exists
       const checkPassword = results[0].login_password;
+      //console.log('Detected login password for the id: ' + checkPassword);
+
       if (checkPassword === password){
         res.json({ message: 'Login data matches!', results });
-      } else {
-        res.status(400).json({ error: 'Incorrect password.' });
+      }else{
+        res.status(400).json({ error: 'Incorrect password.' })
       }
-    } else {
+    }else{
       res.status(404).json({ error: 'Email not found.' });
     }
-  });
+  })
 });
 
 app.post('/sign-up', (req, res) => {
   const { email, password, business_name, contact_number, _share } = req.body;
 
   if (email && password && business_name && contact_number) {
+    // Step 1: Insert data into Business table
     const query = `INSERT INTO Business (email, login_password, business_name, contact_number, _share) 
                    VALUES (?, ?, ?, ?, ?)`;
     con.query(query, [email, password, business_name, contact_number, _share], (err, results) => {
@@ -222,6 +225,7 @@ app.post('/sign-up', (req, res) => {
         return res.status(500).json({ error: 'Database error during business insertion' });
       }
 
+      // Step 2: Get the business_id using the email
       const getBusinessIdQuery = `SELECT business_id FROM Business WHERE email = ?`;
 
       con.query(getBusinessIdQuery, [email], (err, rows) => {
@@ -236,6 +240,7 @@ app.post('/sign-up', (req, res) => {
 
         const businessId = rows[0].business_id;
 
+        // Step 3: Insert data into Business_address table with NULL values
         const addressQuery = `INSERT INTO Business_address (business_id, address1, address2, city, state, postal_code, country)
                               VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL)`;
 
@@ -254,6 +259,42 @@ app.post('/sign-up', (req, res) => {
   }
 });
 
+app.get('/questionnaire_client', (req, res) => {
+  const email = req.query.email;
+
+  if (!email) return res.status(400).json({ error: 'Email is required' });
+
+  const userQuery = "SELECT business_id, business_name FROM Business WHERE email = ?";
+  con.query(userQuery, [email], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Database query error' });
+
+      if (results.length === 0) return res.status(404).json({ error: 'User not found' });
+
+      const user = results[0];
+      const q_Query = "SELECT * FROM Questionnaire WHERE business_id = ?";
+
+      con.query(q_Query, [user.business_id], (err, q_results) => {
+          if (err) return res.status(500).json({ error: 'Database query error' });
+
+          const questionnaire = q_results[0] || {};
+          res.json({
+            business_name: user.business_name || '',
+            industry_type: questionnaire.industry_type || '',
+            num_employees: questionnaire.num_employees || '',
+            dailyVisitors: questionnaire.num_visitors || '',
+            hasDetectionTech: questionnaire.en_detection || false,
+            safetyMeasures: [questionnaire.safety_0 || false, questionnaire.safety_1 || false, 
+              questionnaire.safety_2 || false, questionnaire.safety_3 || false],
+            currentEffectiveness: questionnaire.effectiveness || 0,
+            interestInAI: questionnaire.interest || false,
+            priorityLevel: questionnaire.priority || 0,
+            responseSpeedImportance: questionnaire.police_speed || 0,
+            comments: questionnaire.comments || ''
+          });
+      });
+  });
+});
+
 app.post('/questionnaire', (req, res) => {
   const {
     email,
@@ -270,6 +311,7 @@ app.post('/questionnaire', (req, res) => {
     concerns
   } = req.body;
 
+  // Get business_id from Business table
   const businessQuery = `SELECT business_id FROM Business WHERE email = ?`;
   con.query(businessQuery, [email], (err, results) => {
     if (err) return res.status(500).json({ error: "Database query error", details: err });
@@ -278,15 +320,17 @@ app.post('/questionnaire', (req, res) => {
   
     const businessId = results[0].business_id;
   
+    // Check if the business_id exists in the Questionnaire table
     const countQuery = "SELECT COUNT(*) AS count FROM Questionnaire WHERE business_id = ?";
     con.query(countQuery, [businessId], (err, countResult) => {
       if (err) {
         return res.status(500).json({ error: "Error counting existing data", details: err });
       }
   
-      const count = countResult[0].count;
+      const count = countResult[0].count; // Get actual count value from the result
   
       if (count > 0) {
+        // If the business_id exists, update the row
         const questionnaireQuery = `
           UPDATE Questionnaire 
           SET industry_type = ?, num_employees = ?, num_visitors = ?, en_detection = ?, 
@@ -308,7 +352,7 @@ app.post('/questionnaire', (req, res) => {
           priorityLevel,
           responseSpeedImportance,
           concerns || "",
-          businessId
+          businessId // This goes at the end for the WHERE clause
         ], (err, result) => {
           if (err) return res.status(500).json({ error: "Error updating questionnaire", details: err });
   

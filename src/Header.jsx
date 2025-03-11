@@ -52,7 +52,7 @@ function Header({ userEmail, isAdmin }) {
         <nav className="nav-links">
           <NavLink to="/about" activeclassname="active">About</NavLink>
           <NavLink to="/demo" activeclassname="active">Demo</NavLink>
-          <NavLink to="/questionnaire" activeclassname="active">Questionnaire</NavLink>
+          <NavLink to={isAdmin ? "/questionnaire_A" : "/questionnaire"} activeclassname="active">Questionnaire</NavLink>
           <NavLink to="/pricing" activeclassname="active">Pricing</NavLink>
           <NavLink to="/contact" activeclassname="active">Contact</NavLink>
           {userEmail ? (

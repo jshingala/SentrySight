@@ -20,7 +20,38 @@ const SignUp = lazy(() => import("./SignUp"));
 const Profile = lazy(() => import("./Profile"));
 const NotFound = lazy(() => import("./404"));
 
-function AppContent({ userEmail, setUserEmail }) {
+function App() {
+  const [userEmail, setUserEmail] = useState(() => localStorage.getItem("userEmail") || "");
+
+  const [isAdmin, setIsAdmin] = useState(() => {
+    return localStorage.getItem("isAdmin") || false;
+  });
+
+  const [clientEmail, setClientEmail] = useState(() => {
+    return localStorage.getItem("clientEmail") || "";
+  });
+
+  useEffect(() => {
+    if (isAdmin) {
+      localStorage.setItem("isAdmin", isAdmin);
+    }
+    if (userEmail) {
+      localStorage.setItem("userEmail", userEmail);
+    }
+    if (clientEmail) {
+      localStorage.setItem("clientEmail", clientEmail);
+    }
+  }, [isAdmin, userEmail, clientEmail]);
+
+  return (
+    <Router>
+      <AppContent userEmail={userEmail} setUserEmail={setUserEmail} isAdmin={isAdmin} setIsAdmin={setIsAdmin}
+      setClientEmail={setClientEmail} clientEmail={clientEmail}/>
+    </Router>
+  );
+}
+
+function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail, setClientEmail}) {
   const location = useLocation();
 
   return (
@@ -39,7 +70,8 @@ function AppContent({ userEmail, setUserEmail }) {
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/faq" element={<FAQ />} />
-              <Route path="/sign-in" element={<Login setUserEmail={setUserEmail} />} />
+              <Route path="/sign-in"
+              element={<Login setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
               <Route path="*" element={<NotFound />} />
@@ -49,42 +81,6 @@ function AppContent({ userEmail, setUserEmail }) {
       </div>
       <Footer />
     </div>
-  );
-}
-
-function App() {
-  const [userEmail, setUserEmail] = useState(() => localStorage.getItem("userEmail") || "");
-
-  const [isAdmin, setIsAdmin] = useState(() => {
-    return localStorage.getItem("isAdmin") || false;
-  });
-
-  const [clientEmail, setClientEmail] = useState(() => {
-    return localStorage.getItem("clientEmail") || "";
-  });
-
-  useEffect(() => {
-    if (isAdmin) {
-      localStorage.setItem("isAdmin", isAdmin);
-    }
-  }, [isAdmin]);
-
-  useEffect(() => {
-    if (userEmail) {
-      localStorage.setItem("userEmail", userEmail);
-    }
-  }, [userEmail]);
-
-  useEffect(() => {
-    if (clientEmail) {
-      localStorage.setItem("clientEmail", clientEmail);
-    }
-  }, [clientEmail]);
-
-  return (
-    <Router>
-      <AppContent userEmail={userEmail} setUserEmail={setUserEmail}/>
-    </Router>
   );
 }
 
