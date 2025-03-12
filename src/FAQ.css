@@ -6,6 +6,10 @@
   border-radius: 20px;
   border-color: var(--primary-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  min-height: 100vh;
 }
 
 .faq h2 {
@@ -19,16 +23,19 @@
 .faq ul {
   list-style: none;
   padding: 0;
+  width: 100%; 
+  max-width: 900px;
 }
 
 .faq-item {
-  margin-bottom: 20px;
+  margin: 40px 0;
   padding: 15px;
   background-color: var(--background-color);
   border-radius: 8px;
   box-shadow: 0 1px 5px rgba(255, 153, 153, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
+  max-width: 100%;
 }
 
 .faq-item:hover {

@@ -1,6 +1,6 @@
 /* Main content wrapper to add space below the fixed header */
 .main-content {
-  padding-top: 120px; /* Adjust based on the exact height of your header */
+  padding-top: 100px; /* Adjust based on the exact height of your header */
 }
 
 /* Sign-up form styling */
@@ -8,6 +8,7 @@
   padding: 20px;
   max-width: 400px;
   margin: 0 auto; /* Center the form */
+  margin-top: 130px;
   background-color: #333333; /* Dark gray for contrast */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

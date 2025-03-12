@@ -1,9 +1,13 @@
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  z-index: 1000;
   background-color: #1A1A1A; /* Dark background */
   color: #FFFFFF;
   text-align: center;
   padding: 20px;
-  margin-top: 60px;
 }
 
 .footer p {

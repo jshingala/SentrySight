@@ -11,6 +11,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, ease: 'easeOut' }}
+          whileHover={{ scale: 1.05 }}
+          style={{ fontSize: '3.5rem' }}
+          className="hero-title"
         >
           Experience Peace of Mind
         </motion.h1>
@@ -18,6 +21,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.8, ease: 'easeOut' }}
+          style={{ fontSize: '1.4rem' }}
         >
           Cutting-edge technology to keep your home and business safe.
         </motion.p>

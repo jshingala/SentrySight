@@ -16,6 +16,12 @@
   text-align: center;
 }
 
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the form elements */
+}
+
 .sign-up-form label {
   display: block;
   margin-bottom: 10px;
@@ -46,6 +52,7 @@
   background-color: #6A0DAD; /* Purple accent button */
   border: none;
   border-radius: 4px;
+  text-align: center;
   cursor: pointer;
   margin-bottom: 15px;
   transition: background-color 0.3s ease;
@@ -53,6 +60,19 @@
 
 .sign-up-form button:hover {
   background-color: #493fff; /* Darker purple for hover */
+}
+
+.register {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center them horizontally */
+  margin-top: 10px;
+}
+
+.register button {
+  width: 100%;
+  max-width: 200px; /* Same width as Submit button */
+  text-align: center;
 }
 
 .success {
@@ -67,6 +87,9 @@
 }
 
 .sign-up-button {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
   color: #ff0000;
 }
 
