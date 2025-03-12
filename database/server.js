@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const { address } = require('framer-motion/client'); 
 require('dotenv').config();
 
@@ -181,82 +182,109 @@ app.post('/update-address', (req, res) => {
   });
 });
 
-app.post('/sign-in', (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password){
-    return res.status(400).json({ error: 'Please fill out your email or password.' });
-  }
-
-  const query = "SELECT email, login_password, isAdmin FROM Business WHERE email = ?";
-  con.query(query, [email], (err, results)=>{
-    if (err) {
-      console.log('Error type:', err.code);
-    }
-
-    if (results.length > 0){  //If the email exists
-      const checkPassword = results[0].login_password;
-      //console.log('Detected login password for the id: ' + checkPassword);
-
-      if (checkPassword === password){
-        res.json({ message: 'Login data matches!', results });
-      }else{
-        res.status(400).json({ error: 'Incorrect password.' })
-      }
-    }else{
-      res.status(404).json({ error: 'Email not found.' });
-    }
-  })
-});
-
+// Sign-Up Route
 app.post('/sign-up', (req, res) => {
-  const { email, password, business_name, contact_number, _share } = req.body;
+  let { email, password, business_name, contact_number, _share } = req.body;
+
+  // Trim inputs to avoid extra spaces
+  email = email.trim();
+  password = password.trim();
 
   if (email && password && business_name && contact_number) {
-    // Step 1: Insert data into Business table
-    const query = `INSERT INTO Business (email, login_password, business_name, contact_number, _share) 
-                   VALUES (?, ?, ?, ?, ?)`;
-    con.query(query, [email, password, business_name, contact_number, _share], (err, results) => {
+    // Hash the password before inserting
+    const saltRounds = 10; // You can adjust this number for more security
+    bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
       if (err) {
-        console.log('Error type:', err.code);
-        if (err.code === 'ER_DUP_ENTRY') {
-          return res.status(400).json({ error: 'Email already exists!' });
-        }
-        return res.status(500).json({ error: 'Database error during business insertion' });
+        console.log('Error hashing the password:', err);
+        return res.status(500).json({ error: 'Error hashing the password' });
       }
 
-      // Step 2: Get the business_id using the email
-      const getBusinessIdQuery = `SELECT business_id FROM Business WHERE email = ?`;
-
-      con.query(getBusinessIdQuery, [email], (err, rows) => {
+      // Insert data into Business table with hashed password
+      const query = `INSERT INTO Business (email, login_password, business_name, contact_number, _share) 
+                     VALUES (?, ?, ?, ?, ?)`;
+      con.query(query, [email, hashedPassword, business_name, contact_number, _share], (err, results) => {
         if (err) {
-          console.log('Error fetching business_id:', err.code);
-          return res.status(500).json({ error: 'Error fetching business_id' });
+          console.log('Error type:', err.code);
+          if (err.code === 'ER_DUP_ENTRY') {
+            return res.status(400).json({ error: 'Email already exists!' });
+          }
+          return res.status(500).json({ error: 'Database error during business insertion' });
         }
 
-        if (rows.length === 0) {
-          return res.status(404).json({ error: 'Business not found' });
-        }
+        // Get the business_id using the email
+        const getBusinessIdQuery = `SELECT business_id FROM Business WHERE email = ?`;
 
-        const businessId = rows[0].business_id;
-
-        // Step 3: Insert data into Business_address table with NULL values
-        const addressQuery = `INSERT INTO Business_address (business_id, address1, address2, city, state, postal_code, country)
-                              VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL)`;
-
-        con.query(addressQuery, [businessId], (err, addressResults) => {
+        con.query(getBusinessIdQuery, [email], (err, rows) => {
           if (err) {
-            console.log('Error inserting into Business_address:', err.code);
-            return res.status(500).json({ error: 'Error inserting address data' });
+            console.log('Error fetching business_id:', err.code);
+            return res.status(500).json({ error: 'Error fetching business_id' });
           }
 
-          res.json({ message: 'Data inserted successfully', businessResults: results, addressResults });
+          if (rows.length === 0) {
+            return res.status(404).json({ error: 'Business not found' });
+          }
+
+          const businessId = rows[0].business_id;
+
+          // Insert data into Business_address table with NULL values
+          const addressQuery = `INSERT INTO Business_address (business_id, address1, address2, city, state, postal_code, country)
+                                VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL)`;
+
+          con.query(addressQuery, [businessId], (err, addressResults) => {
+            if (err) {
+              console.log('Error inserting into Business_address:', err.code);
+              return res.status(500).json({ error: 'Error inserting address data' });
+            }
+
+            res.json({ message: 'Data inserted successfully', businessResults: results, addressResults });
+          });
         });
       });
     });
   } else {
     res.status(400).json({ error: 'All fields are required' });
   }
+});
+
+// Sign-In Route
+app.post('/sign-in', (req, res) => {
+  let { email, password } = req.body;
+
+  // Trim inputs to avoid extra spaces
+  email = email.trim();
+  password = password.trim();
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Please fill out your email or password.' });
+  }
+
+  const query = "SELECT email, login_password, isAdmin FROM Business WHERE email = ?";
+  con.query(query, [email], (err, results) => {
+    if (err) {
+      console.log('Error type:', err.code);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length > 0) {  // If the email exists
+      const storedHashedPassword = results[0].login_password;
+
+      // Compare the entered password with the stored hashed password
+      bcrypt.compare(password, storedHashedPassword, (err, isMatch) => {
+        if (err) {
+          console.log('Error comparing passwords:', err);
+          return res.status(500).json({ error: 'Error comparing passwords' });
+        }
+
+        if (isMatch) {
+          res.json({ message: 'Login data matches!', results });
+        } else {
+          res.status(400).json({ error: 'Incorrect password.' });
+        }
+      });
+    } else {
+      res.status(404).json({ error: 'Email not found.' });
+    }
+  });
 });
 
 app.get('/questionnaire_client', (req, res) => {
