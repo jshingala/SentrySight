@@ -1,0 +1,30 @@
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;  /* Full page height */
+    background-color: rgba(0, 0, 0, 0.8);  /* Semi-transparent overlay */
+    color: #ffffff;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top: 6px solid #1504fc;  /* Vibrant color for rotation */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-container p {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
