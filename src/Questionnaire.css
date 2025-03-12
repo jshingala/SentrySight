@@ -76,4 +76,23 @@
   .Questionnaire .submit-button:hover {
     background-color: #ff0000; /* Darker purple on hover */
   }
+
+  .pdf-button{
+    background: #635bff;
+    color: white;
+    border: 2px solid #635bff;
+    font-weight: bold;
+    cursor: pointer;
+    width: 20%;
+    margin-left: 80%;
+    border-radius: 12px;
+
+  }
+
+  .pdf-button:hover{
+    background-color: #ff0000;
+    border: 2px solid #ff0000;
+    color: white;
+    transition: all .5s ease-in;
+  }
   

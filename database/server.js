@@ -1,7 +1,9 @@
 const express = require('express');
 const mysql = require('mysql2');
-const cors = require('cors');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const { address } = require('framer-motion/client'); 
 require('dotenv').config();
 
@@ -15,6 +17,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+app.use(bodyParser.json());
 
 const con = mysql.createConnection({
   host: "db-test.cj42emkqsiy5.us-west-2.rds.amazonaws.com",
@@ -27,6 +30,53 @@ const con = mysql.createConnection({
 con.connect(function (err) {
   if (err) throw err;
   console.log("Connected to database!");
+});
+
+const verificationCodes = {}; // Temporary storage for codes (can use Redis for better persistence)
+
+// Nodemailer Transporter Configuration
+const transporter = nodemailer.createTransport({
+  host: 'sandbox.smtp.mailtrap.io',
+  port: 587,
+  secure: false,
+  auth: {
+      user: "ff523db79546ef",   // Your email
+      pass: "8e3d8c262542b1"      // Your email password or app password
+  }
+});
+
+// Send Verification Code
+app.post('/send-verification-code', (req, res) => {
+  const { email } = req.body;
+  const code = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
+
+  verificationCodes[email] = code; // Store code temporarily
+  console.log(code);
+
+  const mailOptions = {
+      from: 'testersentrysight@gmail.com',
+      to: email,
+      subject: 'Your Verification Code',
+      text: `Your verification code is: ${code}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.error(error);
+          return res.status(500).json({ error: 'Failed to send verification code' });
+      }
+      res.json({ message: 'Verification code sent successfully!' });
+  });
+});
+
+// Verify Code
+app.post('/verify-code', (req, res) => {
+  const { email, code } = req.body;
+  if (verificationCodes[email] === code) {
+      delete verificationCodes[email];  // Remove verified code from memory
+      return res.json({ success: true, message: 'Verification successful!' });
+  }
+  res.status(400).json({ error: 'Invalid verification code' });
 });
 
 app.get('/companies', (req, res) => {
@@ -247,6 +297,47 @@ app.post('/sign-up', (req, res) => {
 });
 
 // Sign-In Route
+
+// app.post('/sign-in', (req, res) => {
+//   let { email, password } = req.body;
+
+//   if (!email || !password) {
+//     return res.status(400).json({ error: 'Please fill out your email or password.' });
+//   }
+
+//   const query = "SELECT email, login_password, isAdmin FROM Business WHERE email = ?";
+
+//   con.query(query, [email], (err, results) => {
+//     if (err) {
+//       console.error('Database query error:', err);
+//       return res.status(500).json({ error: 'Database query error', details: err });
+//     }
+
+//     if (!results || results.length === 0) {
+//       return res.status(404).json({ error: 'Email not found.' });
+//     }
+
+//     const storedPassword = results[0].login_password; // Get the stored plain password
+//     const isAdmin = results[0].isAdmin === 1; // Ensure isAdmin is read correctly
+
+//     console.log("Stored Password from DB:", storedPassword);
+//     console.log("Entered Password:", password);
+
+//     // 🚨 TEMPORARY: Disable bcrypt comparison and just compare plain text
+//     if (password === storedPassword) {
+//       console.log("Login successful (NO HASH CHECK)");
+//       res.json({
+//         message: 'Login successful!',
+//         isAdmin, 
+//         userEmail: email // Include userEmail for frontend storage
+//       });
+//     } else {
+//       console.log("Incorrect password (NO HASH CHECK)");
+//       res.status(400).json({ error: 'Incorrect password.' });
+//     }
+//   });
+// });
+
 app.post('/sign-in', (req, res) => {
   let { email, password } = req.body;
 
