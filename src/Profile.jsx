@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Profile.css'; // Import the CSS file
 
-function Profile({ userEmail, setUserEmail }) {
+function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
         email: userEmail,
@@ -21,7 +22,7 @@ function Profile({ userEmail, setUserEmail }) {
     const [selectedCountry, setSelectedCountry] = useState("");
 
     useEffect(() => {
-        const fetchUserData = fetch(`http://localhost:3000/user-profile?email=${userEmail}`)
+        const fetchUserData = fetch(`http://localhost:3306/user-profile?email=${userEmail}`)
             .then(response => {
                 if (!response.ok) throw new Error("Failed to fetch user data");
                 return response.json();
@@ -52,7 +53,9 @@ function Profile({ userEmail, setUserEmail }) {
     const handleLogout = () => {
         // Clear the userEmail from localStorage and reset the state
         localStorage.removeItem('userEmail');
+        localStorage.removeItem('isAdmin');
         setUserEmail(''); // Reset the userEmail state to ''
+        setIsAdmin(false);
         
         navigate('/');
       };

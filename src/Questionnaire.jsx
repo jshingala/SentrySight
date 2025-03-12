@@ -47,117 +47,23 @@ const Questionnaire = ({userEmail}) => {
     }
 
     console.log('Submitting form with values:', values);
-
-
-  //Guarantees special characters will be escaped
-  const escape = (str) => {
-    if (!str) return str;
-
-    if (typeof str !== 'string'){
-      str = str.toString()
-    }
-
-    return str
-    .replace(/\\/g, '\\textbackslash') 
-    .replace(/&/g, '\\&')
-    .replace(/%/g, '\\%')
-    .replace(/\$/g, '\\$')
-    .replace(/#/g, '\\#')
-    .replace(/_/g, '\\_')
-    .replace(/{/g, '\\{')
-    .replace(/}/g, '\\}')
-    .replace(/~/g, '\\~{}')
-    .replace(/\^/g, '\\textasciicircum');
-};
-
-
-//Sanitizes business_name -> file_name to resolve .tex filename errors
-const sanitize = (str) => {
-  if (!str) return str;
-
-   str = str
-    .replace(/\\/g, '') 
-    .replace(/&/g, '')
-    .replace(/%/g, '')
-    .replace(/\$/g, '')
-    .replace(/@/, '')
-    .replace(/#/g, '')
-    .replace(/_/g, '')
-    .replace(/{/g, '')
-    .replace(/}/g, '')
-    .replace(/~/g, '')
-    .replace(/\^/g, '')
-    .replace(/\s+/g, '_')
-    .replace(/_+/g, '_'); //trim excess underscores
-
-    return str;
-}
-
-
-
-  //Generates latex document
-  const latexContent = `
-  \\documentclass{article}
-  \\usepackage[utf8]{inputenc}
-  \\begin{document}
-
-  \\section*{Firearm Detection Safety Assessment}
-
-  \\textbf{Business Name:} ${escape(values.businessName)} \\\\
-  \\textbf{Industry Type:} ${escape(values.industryType)} \\\\
-  \\textbf{Number of Employees:} ${escape(values.numEmployees)} \\\\
-  \\textbf{Daily Visitors:} ${escape(values.dailyVisitors)} \\\\
-  \\textbf{Has Detection Technology:} ${escape(values.hasDetectionTech)} \\\\
-  \\textbf{Safety Measures:} ${escape(values.safetyMeasures.join(', '))} \\\\
-  \\textbf{Current Effectiveness:} ${escape(values.currentEffectiveness)} \\\\
-  \\textbf{Interest in AI:} ${escape(values.interestInAI)} \\\\
-  \\textbf{Priority Level for Firearm Detection:} ${escape(values.priorityLevel)} \\\\
-  \\textbf{Importance of Police Response Speed:} ${escape(values.responseSpeedImportance)} \\\\
-  \\textbf{Concerns:} ${escape(values.concerns)} \\\\
-
-  \\end{document}
-  `;
-
-    // const doc = new jsPDF();
-
-    // doc.setFontSize(16);
-    // doc.text('Firearm Detection Safety Assessment', 20, 20);
-
-    // doc.setFontSize(12);
-    // doc.text(`Business Name: ${values.businessName}`, 20, 40);
-    // doc.text(`Industry Type: ${values.industryType}`, 20, 50);
-    // doc.text(`Number of Employees: ${values.numEmployees}`, 20, 60);
-    // doc.text(`Daily Visitors: ${values.dailyVisitors}`, 20, 70);
-    // doc.text(`Has Detection Technology: ${values.hasDetectionTech}`, 20, 80);
-    // doc.text(`Safety Measures: ${values.safetyMeasures.join(', ')}`, 20, 90);
-    // doc.text(`Current Effectiveness: ${values.currentEffectiveness}`, 20, 100);
-    // doc.text(`Interest in AI: ${values.interestInAI}`, 20, 110);
-    // doc.text(`Priority Level for Firearm Detection:  ${values.priorityLevel}, 20, 100`)
-    // doc.text(`Importance of Police Response Speed:  ${values.responseSpeedImportance}, 20, 100`)
-    // doc.text(`Concerns: ${values.concerns}`, 20, 120);
-
-    // doc.save('questionnaire_submission.pdf');
-
-
-
-    //Donwloads latex document for testing
-    const blob = new Blob([latexContent], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${sanitize(values.businessName)}_questionnaire_submission.tex`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
     
     fetch('http://localhost:3306/questionnaire', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: userEmail,
-        latex: latexContent,
-        formValues: values
+        businessName: values.businessName,
+        industryType: values.industryType,
+        numEmployees: values.numEmployees,
+        dailyVisitors: values.dailyVisitors,
+        hasDetectionTech: values.hasDetectionTech,
+        safetyMeasures: values.safetyMeasures,
+        currentEffectiveness: values.currentEffectiveness,
+        interestInAI: values.interestInAI,
+        priorityLevel: values.priorityLevel,
+        responseSpeedImportance: values.responseSpeedImportance,
+        concerns: values.concerns
       })
     })      
       .then(response => {
@@ -180,31 +86,6 @@ const sanitize = (str) => {
         this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
       });
   };
-  
-  
-
-  // Prevent scroll wheel from changing number inputs
-  useEffect(() => {
-    const numberInputs = document.querySelectorAll('input[type="number"]');
-
-    const handleWheel = (event) => {
-      if (document.activeElement === event.target) {
-        event.preventDefault();
-      }
-    };
-
-    numberInputs.forEach((input) => {
-      input.addEventListener('wheel', handleWheel);
-    });
-
-    return () => {
-      numberInputs.forEach((input) => {
-        input.removeEventListener('wheel', handleWheel);
-      });
-    };
-  }, []); // Runs only once after the component mounts
-  
-
 
   // Prevent scroll wheel from changing number inputs
   useEffect(() => {

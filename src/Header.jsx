@@ -5,7 +5,7 @@ import "./global.css";
 import "./header.css";
 import Logo from "./assets/Logo.png";
 
-function Header({ userEmail }) {
+function Header({ userEmail, isAdmin }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,7 +52,7 @@ function Header({ userEmail }) {
         <nav className="nav-links">
           <NavLink to="/about" activeclassname="active">About</NavLink>
           <NavLink to="/demo" activeclassname="active">Demo</NavLink>
-          <NavLink to="/questionnaire" activeclassname="active">Questionnaire</NavLink>
+          <NavLink to={isAdmin ? "/questionnaire_A" : "/questionnaire"} activeclassname="active">Questionnaire</NavLink>
           <NavLink to="/pricing" activeclassname="active">Pricing</NavLink>
           <NavLink to="/contact" activeclassname="active">Contact</NavLink>
           {userEmail ? (
@@ -67,7 +67,7 @@ function Header({ userEmail }) {
         <div className="dropdown-menu">
           <NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
           <NavLink to="/demo" onClick={() => setMenuOpen(false)}>Demo</NavLink>
-          <NavLink to="/questionnaire" onClick={() => setMenuOpen(false)}>Questionnaire</NavLink>
+          <NavLink to={isAdmin ? "/questionnaire_A" : "/questionnaire"} onClick={() => setMenuOpen(false)}>Questionnaire</NavLink>
           <NavLink to="/pricing" onClick={() => setMenuOpen(false)}>Pricing</NavLink>
           <NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
           {userEmail ? (
