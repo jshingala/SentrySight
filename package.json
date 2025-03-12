@@ -27,6 +27,7 @@
     "express": "^4.21.1",
     "formik": "^2.4.6",
     "framer-motion": "^11.11.15",
+    "jspdf": "^3.0.0",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.4",

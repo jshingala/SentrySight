@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import './SignUp.css';
 
-const Login = ({ setUserEmail }) => {
+const Login = ({ setUserEmail, setIsAdmin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -29,6 +29,15 @@ const Login = ({ setUserEmail }) => {
           setErrorMessage(data.error);
         } else {
           setUserEmail(email);
+          localStorage.setItem("userEmail", email);
+
+          // Store isAdmin in localStorage and set state
+          const isAdmin = data.results[0].isAdmin; // Assuming the response contains `isAdmin`
+          if (isAdmin){
+            setIsAdmin(isAdmin);
+            localStorage.setItem("isAdmin", isAdmin);
+          }
+
           setErrorMessage('');
           alert("You're successfully signed in!");
           navigate('/'); // Redirect to home page

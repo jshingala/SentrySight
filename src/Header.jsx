@@ -5,12 +5,11 @@ import { useTranslation } from "./context/TranslationContext";
 import Logo from "./assets/Logo.png";
 import "./header.css";
 
-function Header({ userEmail }) {
+function Header({ userEmail, isAdmin }) {
   const [isOpen, setIsOpen] = useState(false);
   const [lightMode, setLightMode] = useState(false);
 
   const { changeLanguage, translateText, language } = useTranslation();
-
   const [translatedText, setTranslatedText] = useState({});
 
   useEffect(() => {
@@ -72,7 +71,7 @@ function Header({ userEmail }) {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/questionnaire">
+            <Link className="nav-link" to={isAdmin ? "/questionnaire_A" : "/questionnaire"}>
               {translatedText.questionnaire || "Questionnaire"}
             </Link>
           </li>
@@ -149,19 +148,36 @@ function Header({ userEmail }) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/questionnaire" onClick={toggleMenu}>
+                <Link className="nav-link" to={isAdmin ? "/questionnaire_A" : "/questionnaire"} onClick={toggleMenu}>
                   {translatedText.questionnaire || "Questionnaire"}
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/sign-in" onClick={toggleMenu}>
-                  {translatedText.signIn || "Register / Sign In"}
+                <Link className="nav-link" to={userEmail ? "/profile" : "/sign-in"} onClick={toggleMenu}>
+                  {userEmail
+                    ? translatedText.profile || "Profile"
+                    : translatedText.signIn || "Register / Sign In"}
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/admin" onClick={toggleMenu}>
-                  {translatedText.admin || "Admin"}
-                </Link>
+              {isAdmin && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/admin" onClick={toggleMenu}>
+                    {translatedText.admin || "Admin"}
+                  </Link>
+                </li>
+              )}
+              
+              {/* Mobile Language Selector */}
+              <li className="nav-item translation-dropdown mobile-lang">
+                <select
+                  className="lang-select"
+                  value={language}
+                  onChange={(e) => changeLanguage(e.target.value)}
+                >
+                  <option value="en">🇬🇧 English</option>
+                  <option value="es">🇪🇸 Español</option>
+                  <option value="fr">🇫🇷 Français</option>
+                </select>
               </li>
             </ul>
           </motion.div>
