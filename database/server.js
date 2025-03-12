@@ -1,7 +1,9 @@
 const express = require('express');
 const mysql = require('mysql2');
-const cors = require('cors');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const { address } = require('framer-motion/client'); 
 require('dotenv').config();
 
@@ -15,6 +17,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+app.use(bodyParser.json());
 
 const con = mysql.createConnection({
   host: "db-test.cj42emkqsiy5.us-west-2.rds.amazonaws.com",
@@ -27,6 +30,53 @@ const con = mysql.createConnection({
 con.connect(function (err) {
   if (err) throw err;
   console.log("Connected to database!");
+});
+
+const verificationCodes = {}; // Temporary storage for codes (can use Redis for better persistence)
+
+// Nodemailer Transporter Configuration
+const transporter = nodemailer.createTransport({
+  host: 'sandbox.smtp.mailtrap.io',
+  port: 587,
+  secure: false,
+  auth: {
+      user: "ff523db79546ef",   // Your email
+      pass: "8e3d8c262542b1"      // Your email password or app password
+  }
+});
+
+// Send Verification Code
+app.post('/send-verification-code', (req, res) => {
+  const { email } = req.body;
+  const code = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
+
+  verificationCodes[email] = code; // Store code temporarily
+  console.log(code);
+
+  const mailOptions = {
+      from: 'testersentrysight@gmail.com',
+      to: email,
+      subject: 'Your Verification Code',
+      text: `Your verification code is: ${code}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.error(error);
+          return res.status(500).json({ error: 'Failed to send verification code' });
+      }
+      res.json({ message: 'Verification code sent successfully!' });
+  });
+});
+
+// Verify Code
+app.post('/verify-code', (req, res) => {
+  const { email, code } = req.body;
+  if (verificationCodes[email] === code) {
+      delete verificationCodes[email];  // Remove verified code from memory
+      return res.json({ success: true, message: 'Verification successful!' });
+  }
+  res.status(400).json({ error: 'Invalid verification code' });
 });
 
 app.get('/companies', (req, res) => {
