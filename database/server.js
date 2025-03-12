@@ -297,6 +297,47 @@ app.post('/sign-up', (req, res) => {
 });
 
 // Sign-In Route
+
+// app.post('/sign-in', (req, res) => {
+//   let { email, password } = req.body;
+
+//   if (!email || !password) {
+//     return res.status(400).json({ error: 'Please fill out your email or password.' });
+//   }
+
+//   const query = "SELECT email, login_password, isAdmin FROM Business WHERE email = ?";
+
+//   con.query(query, [email], (err, results) => {
+//     if (err) {
+//       console.error('Database query error:', err);
+//       return res.status(500).json({ error: 'Database query error', details: err });
+//     }
+
+//     if (!results || results.length === 0) {
+//       return res.status(404).json({ error: 'Email not found.' });
+//     }
+
+//     const storedPassword = results[0].login_password; // Get the stored plain password
+//     const isAdmin = results[0].isAdmin === 1; // Ensure isAdmin is read correctly
+
+//     console.log("Stored Password from DB:", storedPassword);
+//     console.log("Entered Password:", password);
+
+//     // 🚨 TEMPORARY: Disable bcrypt comparison and just compare plain text
+//     if (password === storedPassword) {
+//       console.log("Login successful (NO HASH CHECK)");
+//       res.json({
+//         message: 'Login successful!',
+//         isAdmin, 
+//         userEmail: email // Include userEmail for frontend storage
+//       });
+//     } else {
+//       console.log("Incorrect password (NO HASH CHECK)");
+//       res.status(400).json({ error: 'Incorrect password.' });
+//     }
+//   });
+// });
+
 app.post('/sign-in', (req, res) => {
   let { email, password } = req.body;
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Typography, Box, TextField } from "@mui/material";
+import { jsPDF } from "jspdf";
 import "./Questionnaire.css"; 
 
 const Questionnaire_Client = ({clientEmail}) => {
@@ -30,12 +31,54 @@ const Questionnaire_Client = ({clientEmail}) => {
         .catch(error => console.error("Error fetching user data:", error));
     }, [clientEmail]);   
 
+    const handleExportToPDF = (clientEmail, clientData) => {
+        const doc = new jsPDF();
+      
+        doc.setFontSize(18);
+        doc.text("Admin Questionnaire", 20, 20);
+      
+        doc.setFontSize(12);
+        doc.text(`Client Email: ${clientEmail}`, 20, 30);
+        doc.text(`Business Name: ${clientData.business_name}`, 20, 40);
+        doc.text(`Industry Type: ${clientData.industry_type}`, 20, 50);
+        doc.text(`Number of Employees: ${clientData.num_employees}`, 20, 60);
+        doc.text(`Number of Daily Visitors: ${clientData.dailyVisitors}`, 20, 70);
+        doc.text(`Has Firearm Detection Technology: ${clientData.hasDetectionTech ? "Yes" : "No"}`, 20, 80);
+      
+        doc.text("Safety Measures in Place:", 20, 90);
+        doc.text(`- Surveillance cameras: ${clientData.safetyMeasures[0] ? "Yes" : "No"}`, 30, 100);
+        doc.text(`- Security guards: ${clientData.safetyMeasures[1] ? "Yes" : "No"}`, 30, 110);
+        doc.text(`- Panic buttons: ${clientData.safetyMeasures[2] ? "Yes" : "No"}`, 30, 120);
+        doc.text(`- Emergency lockdown procedures: ${clientData.safetyMeasures[3] ? "Yes" : "No"}`, 30, 130);
+      
+        doc.text(`Current Effectiveness of Safety Measures: ${clientData.currentEffectiveness}`, 20, 140);
+        doc.text(`Interest in AI Firearm Detection Technology: ${clientData.interestInAI ? "Yes" : "No"}`, 20, 150);
+        doc.text(`Priority Level for Firearm Detection: ${clientData.priorityLevel}`, 20, 160);
+        doc.text(`Importance of Police Response Speed: ${clientData.responseSpeedImportance}`, 20, 170);
+      
+        // Check if comments exist and add them
+        if (clientData.comments) {
+          doc.text("Comments:", 20, 180);
+          doc.text(clientData.comments, 20, 190, { maxWidth: 170 });
+        }
+      
+        doc.save(clientData.business_name+"_Questionnaire.pdf");
+      };
+
   return (
     <Container maxWidth="md" className="Questionnaire">
       <Box className="questionnaire-container" textAlign="center">
         <Typography variant="h4" className="title">
           Admin Questionnaire
         </Typography>
+
+        <div class = "pdf-button">
+
+            <button onClick={() => handleExportToPDF(clientEmail, clientData)}>
+                Export to PDF
+            </button>
+
+        </div>
 
         <div>
             Client Email
