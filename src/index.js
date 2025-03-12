@@ -1,11 +1,20 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App"; // We'll create this below
-import "./index.css";   // Optional global CSS
+import ReactDOM from "react-dom";
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+// ✅ Register Service Worker for PWA Support
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then(() => console.log("Service Worker Registered"))
+      .catch((error) => console.error("Service Worker Registration Failed:", error));
+  });
+}
+
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

@@ -1,67 +1,134 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useTranslation } from "./context/TranslationContext"; // Import translation hook
-import "./Hero.css";
+import { motion, useAnimation } from 'framer-motion';
+import React, { useEffect } from 'react';
+import './Hero.css';
 
 const Hero = () => {
-  const { translateText, language } = useTranslation();
-  const [translatedText, setTranslatedText] = useState({});
-
+  const controls = useAnimation();
+  
   useEffect(() => {
-    const texts = {
-      heading: "Experience Peace of Mind",
-      description: "Cutting-edge technology to keep your home and business safe.",
-    };
+    controls.start('visible');
+  }, [controls]);
 
-    async function updateTranslations() {
-      const newTranslations = {};
-      for (const key in texts) {
-        newTranslations[key] = await translateText(texts[key]);
+  const heroVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.7, 
+        ease: "easeOut" 
       }
-      setTranslatedText(newTranslations);
     }
-
-    updateTranslations();
-  }, [language, translateText]);
+  };
 
   return (
     <div className="hero">
-      {/* Hero Content */}
-      <motion.div className="hero-content">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
+      {/* Security detection overlay */}
+      <div className="security-overlay">
+        <div className="detection-box">
+          <motion.div 
+            className="detection-marker"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0.3, 0.7, 0.3] }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 2.5,
+              ease: "linear"
+            }}
+          />
+          <motion.div 
+            className="detection-label"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            Movement Detected 0.81
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <motion.div 
+        className="hero-content"
+        initial="hidden"
+        animate={controls}
+        variants={heroVariants}
+      >
+        <motion.h1 
+          variants={itemVariants} 
+          className="hero-title"
         >
-          {translatedText.heading || "Experience Peace of Mind"}
+          Experience Peace of Mind
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
+        
+        <motion.p 
+          variants={itemVariants} 
+          className="hero-subtitle"
         >
-          {translatedText.description || "Cutting-edge technology to keep your home and business safe."}
+          Cutting-edge technology to keep your home and business safe.
         </motion.p>
-        <div className="cta-buttons">
+        
+        <motion.div 
+          className="cta-buttons" 
+          variants={itemVariants}
+        >
           <motion.a
             href="/sign-in"
             className="btn-primary"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
             Get Started
           </motion.a>
+          
           <motion.a
             href="/demo"
             className="btn-secondary"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2.2, ease: "easeOut" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
             Learn More
           </motion.a>
-        </div>
+        </motion.div>
+
+        {/* Additional security features */}
+        <motion.div 
+          className="security-features"
+          variants={itemVariants}
+        >
+          <div className="feature">
+            <div className="feature-icon">📹</div>
+            <div className="feature-text">
+              <h3>Real-time Monitoring</h3>
+              <p>24/7 video surveillance</p>
+            </div>
+          </div>
+          
+          <div className="feature">
+            <div className="feature-icon">🔍</div>
+            <div className="feature-text">
+              <h3>AI Detection</h3>
+              <p>Smart object recognition</p>
+            </div>
+          </div>
+          
+          <div className="feature">
+            <div className="feature-icon">📱</div>
+            <div className="feature-text">
+              <h3>Mobile Alerts</h3>
+              <p>Instant notifications</p>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );
