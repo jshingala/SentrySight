@@ -55,7 +55,7 @@ function AppContent({ userEmail, setUserEmail }) {
                 }
               />
               <Route path="/about" element={<AboutUs />} />
-              <Route path="/demo" element={<Demo />} />
+              <Route path="/demo" element={<Demo userEmail={userEmail} />} />
               <Route 
                 path="/questionnaire" 
                 element={<Questionnaire userEmail={userEmail} />} 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./demo.css";
 import { motion } from "framer-motion";
 import { useTranslation } from "./context/TranslationContext"; // Import translation hook
 
-function Demo() {
+function Demo({ userEmail }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -12,6 +13,7 @@ function Demo() {
   const [progress, setProgress] = useState(0);
   const { translateText, language } = useTranslation();
   const [translatedText, setTranslatedText] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function updateTranslations() {
@@ -29,6 +31,8 @@ function Demo() {
         fullAccess: "Unlock Full Access",
         signUpNow: "Sign Up Now",
         fullAccessDesc: "Sign up today to gain complete access to all features and benefits of SentrySight.",
+        loginRequired: "Please log in to experiment with our Demo function",
+        loginButtonText: "Go to Login"
       };
 
       const translated = {};
@@ -98,6 +102,38 @@ function Demo() {
     }
   };
 
+  const handleLoginRedirect = () => {
+    navigate('/sign-in');
+  };
+
+  // Not logged in view
+  if (!userEmail) {
+    return (
+      <div className="demo-container">
+        <section className="hero-section">
+          <div className="hero-content">
+            <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+              {translatedText.demoTitle || "SentrySight Demo"}
+            </motion.h1>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}>
+              {translatedText.loginRequired || "Please log in to experiment with our Demo function"}
+            </motion.p>
+            <motion.button 
+              className="btn-primary" 
+              onClick={handleLoginRedirect}
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              {translatedText.loginButtonText || "Go to Login"}
+            </motion.button>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  // Logged in view - original demo functionality
   return (
     <div className="demo-container">
       <section className="hero-section">
