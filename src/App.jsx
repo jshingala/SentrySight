@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import Home from "./Home";
 import "./global.css";
 import "./App.css";
+import LoadingSpinner from './LoadingSpinner';  // Import the new spinner
+
 
 // Lazy load other pages
 const ContactUs = lazy(() => import("./ContactUs"));
