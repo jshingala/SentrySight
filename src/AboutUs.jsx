@@ -1,29 +1,114 @@
-import React, { useState } from "react";
-import './AboutUs.css'; 
 import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import './global.css';
 
 function AboutUs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState("");
 
-  const openModal = (imageSrc) => { // open modal with selected image
+  const openModal = (imageSrc) => {
     setModalImage(imageSrc);
     setIsModalOpen(true);
   };
 
-  const closeModal = () => { // close modal and reset image
+  const closeModal = () => {
     setIsModalOpen(false);
     setModalImage("");
   };
 
+  // Custom styles using global.css variables and classes
+  const styles = {
+    aboutContainer: {
+      padding: '60px',
+      maxWidth: '1100px',
+      margin: '50px auto',
+      borderRadius: '15px',
+      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.25)',
+    },
+    sectionHeading: {
+      fontSize: '2.5rem',
+      margin: '0 0 25px 0',
+      backgroundImage: 'linear-gradient(to right, #8a89e6, #d084f3)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      textAlign: 'center',
+    },
+    subHeading: {
+      fontSize: '1.8rem',
+      color: '#d084f3',
+      marginBottom: '12px',
+      textTransform: 'uppercase',
+      borderBottom: '2px solid #d084f3',
+      paddingBottom: '8px',
+    },
+    paragraph: {
+      fontSize: '1.1rem',
+      color: '#bfbfbf',
+      textAlign: 'justify',
+      marginBottom: '25px',
+    },
+    awardsSection: {
+      marginTop: '60px',
+      textAlign: 'center',
+    },
+    awardsGallery: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '25px',
+      justifyContent: 'center',
+    },
+    awardItem: {
+      textAlign: 'center',
+      cursor: 'pointer',
+    },
+    awardImage: {
+      width: '100%',
+      maxWidth: '270px',
+      borderRadius: '12px',
+      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    },
+    awardCaption: {
+      fontSize: '1rem',
+      color: '#d084f3',
+      marginTop: '10px',
+    },
+    modalOverlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, 0.85)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000,
+    },
+    modalContent: {
+      display: 'flex',
+      justifyContent: 'center',
+      maxWidth: '90%',
+      maxHeight: '90%',
+    },
+    modalImage: {
+      maxWidth: '100%',
+      maxHeight: '100%',
+      borderRadius: '15px',
+      boxShadow: '0 5px 15px rgba(255, 255, 255, 0.3)',
+    },
+  };
+
   return (
     <motion.div
-      className="about-us"
+      className="card"
+      style={styles.aboutContainer}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <motion.h2
+        style={styles.sectionHeading}
         initial={{ x: -200 }}
         animate={{ x: 0 }}
         transition={{ duration: 1 }}
@@ -32,6 +117,7 @@ function AboutUs() {
       </motion.h2>
       
       <motion.p
+        style={styles.paragraph}
         initial={{ y: 50 }}
         animate={{ y: 0 }}
         transition={{ duration: 1 }}
@@ -40,6 +126,7 @@ function AboutUs() {
       </motion.p>
 
       <motion.h3
+        style={styles.subHeading}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
@@ -48,6 +135,7 @@ function AboutUs() {
       </motion.h3>
 
       <motion.p
+        style={styles.paragraph}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
@@ -56,6 +144,7 @@ function AboutUs() {
       </motion.p>
 
       <motion.h3
+        style={styles.subHeading}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8, duration: 0.8 }}
@@ -64,6 +153,7 @@ function AboutUs() {
       </motion.h3>
 
       <motion.p
+        style={styles.paragraph}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
@@ -72,6 +162,7 @@ function AboutUs() {
       </motion.p>
 
       <motion.h3
+        style={styles.subHeading}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.2, duration: 0.8 }}
@@ -80,6 +171,7 @@ function AboutUs() {
       </motion.h3>
 
       <motion.p
+        style={styles.paragraph}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.5, duration: 1 }}
@@ -88,6 +180,7 @@ function AboutUs() {
       </motion.p>
 
       <motion.h3
+        style={styles.subHeading}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.8, duration: 0.8 }}
@@ -96,15 +189,17 @@ function AboutUs() {
       </motion.h3>
 
       <motion.p
+        style={styles.paragraph}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 3, duration: 1 }}
       >
-        Whether you’re looking to secure your business or simply want to learn more about the future of safety technology, we welcome you to connect with us. Together, we can create safer environments for all.
+        Whether you're looking to secure your business or simply want to learn more about the future of safety technology, we welcome you to connect with us. Together, we can create safer environments for all.
       </motion.p>
 
-      <div className="awards-section">
+      <div style={styles.awardsSection}>
         <motion.h2
+          style={styles.sectionHeading}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.2, duration: 1 }}
@@ -112,28 +207,72 @@ function AboutUs() {
           Awards & Recognition
         </motion.h2>
         
-        <div className="awards-gallery">
-          <div className="awards-row">
-            <div className="award-item" onClick={() => openModal("/src/assets/pic1.jpg")}>
-              <img src="/src/assets/pic1.jpg" alt="Award 1" />
-              <div className="award-caption">1st Place AI Hackathon</div>
-            </div>
-            <div className="award-item" onClick={() => openModal("/src/assets/pic2.jpg")}>
-              <img src="/src/assets/pic2.jpg" alt="Award 2" />
-              <div className="award-caption">Second Place University Pitch Comp</div>
-            </div>
+        <div style={styles.awardsGallery}>
+          <div style={styles.awardItem} onClick={() => openModal("/src/assets/pic1.jpg")}>
+            <img 
+              src="/src/assets/pic1.jpg" 
+              alt="Award 1" 
+              style={styles.awardImage}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.1)';
+                e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.5)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)';
+              }}
+            />
+            <div style={styles.awardCaption}>1st Place AI Hackathon</div>
           </div>
-          <div className="award-item" onClick={() => openModal("/src/assets/pic3.jpg")}>
-            <img src="/src/assets/pic3.jpg" alt="Award 3" />
-            <div className="award-caption">2nd Place Statewide Competition</div>
+          <div style={styles.awardItem} onClick={() => openModal("/src/assets/pic2.jpg")}>
+            <img 
+              src="/src/assets/pic2.jpg" 
+              alt="Award 2" 
+              style={styles.awardImage}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.1)';
+                e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.5)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)';
+              }}
+            />
+            <div style={styles.awardCaption}>Second Place University Pitch Comp</div>
+          </div>
+          <div style={styles.awardItem} onClick={() => openModal("/src/assets/pic3.jpg")}>
+            <img 
+              src="/src/assets/pic3.jpg" 
+              alt="Award 3" 
+              style={styles.awardImage}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.1)';
+                e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.5)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)';
+              }}
+            />
+            <div style={styles.awardCaption}>2nd Place Statewide Competition</div>
           </div>
         </div>
       </div>
 
-        {isModalOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content">
-            <img src={modalImage} alt="Full Screen Award" className="modal-image" />
+      {isModalOpen && (
+        <div style={styles.modalOverlay} onClick={closeModal}>
+          <div style={styles.modalContent}>
+            <img 
+              src={modalImage} 
+              alt="Full Screen Award" 
+              style={styles.modalImage}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            />
           </div>
         </div>
       )}

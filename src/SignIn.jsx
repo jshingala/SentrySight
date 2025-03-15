@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import './SignUp.css';
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ setUserEmail, setIsAdmin }) => {
   const [email, setEmail] = useState('');
@@ -30,14 +29,12 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
         } else {
           setUserEmail(email);
           localStorage.setItem("userEmail", email);
-
           // Store isAdmin in localStorage and set state
           const isAdmin = data.results[0].isAdmin; // Assuming the response contains `isAdmin`
-          if (isAdmin){
+          if (isAdmin) {
             setIsAdmin(isAdmin);
             localStorage.setItem("isAdmin", isAdmin);
           }
-
           setErrorMessage('');
           alert("You're successfully signed in!");
           navigate('/'); // Redirect to home page
@@ -49,39 +46,75 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
   };
 
   return (
-    <div className="sign-up">
-      <h2>Login</h2>
-      {errorMessage && <div className="error">{errorMessage}</div>}
-      <form className="sign-up-form" onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          onChange={handleChange}
-          placeholder="Enter your email"
-          value={email}
-          required
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          placeholder="Enter your password"
-          value={password}
-        />
-        <button type="submit">Submit</button>
-        <div className="register">
-          <Link to="/sign-up">
-            <button type="button">Go to Register</button>
-          </Link>
-          {/* "Don't have an account?" as a clickable link */}
-          <p>
-          Don't have an account? <Link to="/sign-up" className="sign-up-button">Sign up here</Link>
-          </p>
-        </div>
-      </form>
-    </div>
+    <section className="container">
+      <div className="card" style={{ maxWidth: "500px", margin: "40px auto", padding: "40px" }}>
+        <h2 className="text-center" style={{ marginBottom: "24px" }}>Login</h2>
+        
+        {errorMessage && (
+          <div style={{ 
+            backgroundColor: "rgba(255, 0, 0, 0.1)", 
+            color: "#ff6b6b", 
+            padding: "10px", 
+            borderRadius: "8px", 
+            marginBottom: "20px",
+            textAlign: "center"
+          }}>
+            {errorMessage}
+          </div>
+        )}
+        
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: "20px" }}>
+            <label style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}>Email:</label>
+            <input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              placeholder="Enter your email"
+              value={email}
+              required
+              style={{ 
+                width: "100%", 
+                padding: "10px", 
+                borderRadius: "8px", 
+                border: "1px solid #444",
+                backgroundColor: "#333",
+                color: "white"
+              }}
+            />
+          </div>
+          
+          <div style={{ marginBottom: "30px" }}>
+            <label style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}>Password:</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              placeholder="Enter your password"
+              value={password}
+              style={{ 
+                width: "100%", 
+                padding: "10px", 
+                borderRadius: "8px", 
+                border: "1px solid #444",
+                backgroundColor: "#333",
+                color: "white"
+              }}
+            />
+          </div>
+          
+          <button type="submit" className="btn" style={{ width: "100%", marginBottom: "20px" }}>
+            Login
+          </button>
+          
+          <div className="text-center" style={{ marginTop: "20px" }}>
+            <p className="text-light">
+              Don't have an account? <Link to="/sign-up" style={{ color: "#8a89e6", textDecoration: "none" }}>Sign up here</Link>
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }
 

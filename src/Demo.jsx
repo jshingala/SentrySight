@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './demo.css';
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import './global.css';
 
 function Demo() {
   const [file, setFile] = useState(null);
@@ -9,6 +9,134 @@ function Demo() {
   const [result, setResult] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  const styles = {
+    demoContainer: {
+      width: '100%',
+    },
+    heroSection: {
+      minHeight: '80vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
+      padding: '80px 20px',
+    },
+    heroContent: {
+      maxWidth: '800px',
+    },
+    heroTitle: {
+      fontSize: '3.5rem',
+      marginBottom: '20px',
+      backgroundImage: 'linear-gradient(to right, #8a89e6, #d084f3)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+    },
+    heroParagraph: {
+      fontSize: '1.2rem',
+      color: '#bfbfbf',
+      marginBottom: '30px',
+      lineHeight: '1.6',
+    },
+    section: {
+      padding: '80px 20px',
+    },
+    contentWrapper: {
+      maxWidth: '1200px',
+      margin: '0 auto',
+    },
+    sectionTitle: {
+      fontSize: '2.5rem',
+      marginBottom: '20px',
+      textAlign: 'center',
+      color: '#d084f3',
+    },
+    sectionParagraph: {
+      fontSize: '1.1rem',
+      color: '#bfbfbf',
+      marginBottom: '40px',
+      textAlign: 'center',
+      maxWidth: '800px',
+      margin: '0 auto 40px auto',
+    },
+    videoContainer: {
+      width: '100%',
+      borderRadius: '15px',
+      overflow: 'hidden',
+      boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)',
+    },
+    videoContent: {
+      width: '100%',
+      display: 'block',
+    },
+    uploadSection: {
+      textAlign: 'center',
+    },
+    uploadControls: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '20px',
+      marginBottom: '30px',
+    },
+    fileInput: {
+      backgroundColor: '#333333',
+      padding: '15px',
+      borderRadius: '8px',
+      width: '100%',
+      maxWidth: '400px',
+      color: '#FFFFFF',
+    },
+    imagePreview: {
+      maxWidth: '500px',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+    },
+    previewImage: {
+      width: '100%',
+      display: 'block',
+    },
+    spinner: {
+      display: 'inline-block',
+      width: '20px',
+      height: '20px',
+      border: '3px solid rgba(255, 255, 255, 0.3)',
+      borderRadius: '50%',
+      borderTopColor: '#FFFFFF',
+      animation: 'spin 1s ease-in-out infinite',
+      marginRight: '10px',
+    },
+    result: {
+      marginTop: '30px',
+    },
+    resultImage: {
+      maxWidth: '100%',
+      borderRadius: '8px',
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+    },
+    ctaSection: {
+      textAlign: 'center',
+      padding: '60px 20px',
+    },
+    ctaContent: {
+      maxWidth: '600px',
+      margin: '0 auto',
+    },
+    ctaTitle: {
+      fontSize: '2.5rem',
+      marginBottom: '20px',
+      color: '#d084f3',
+    },
+    ctaParagraph: {
+      fontSize: '1.1rem',
+      color: '#bfbfbf',
+      marginBottom: '30px',
+    },
+    '@keyframes spin': {
+      to: { transform: 'rotate(360deg)' }
+    }
+  };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -69,10 +197,11 @@ function Demo() {
   };
 
   return (
-    <div className="demo-container">
-      <section className="hero-section">
-        <div className="hero-content">
+    <div style={styles.demoContainer}>
+      <section className="card" style={styles.heroSection}>
+        <div style={styles.heroContent}>
           <motion.h1
+            style={styles.heroTitle}
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -80,6 +209,7 @@ function Demo() {
             SentrySight Demo
           </motion.h1>
           <motion.p
+            style={styles.heroParagraph}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -88,7 +218,7 @@ function Demo() {
           </motion.p>
           <motion.a
             href="#upload-section"
-            className="btn-primary"
+            className="btn"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -97,9 +227,11 @@ function Demo() {
           </motion.a>
         </div>
       </section>
-      <section className="how-it-works">
-        <div className="content-wrapper">
+
+      <section className="card" style={{...styles.section, ...styles.howItWorks}}>
+        <div style={styles.contentWrapper}>
           <motion.h2
+            style={styles.sectionTitle}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -107,6 +239,7 @@ function Demo() {
             How It Works
           </motion.h2>
           <motion.p
+            style={styles.sectionParagraph}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -114,7 +247,7 @@ function Demo() {
             Our system leverages cutting-edge AI technology to analyze images and provide actionable security insights in real-time.
           </motion.p>
           <motion.div
-            className="video-container"
+            style={styles.videoContainer}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -126,16 +259,18 @@ function Demo() {
               muted
               playsInline
               controls
-              className="video-content"
+              style={styles.videoContent}
             >
               Your browser does not support the video tag.
             </video>
           </motion.div>
         </div>
       </section>
-      <section className="upload-section" id="upload-section">
-        <div className="content-wrapper">
+
+      <section className="card" style={{...styles.section, ...styles.uploadSection}} id="upload-section">
+        <div style={styles.contentWrapper}>
           <motion.h3
+            style={styles.sectionTitle}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -143,57 +278,70 @@ function Demo() {
             Upload an Image for Analysis
           </motion.h3>
           <motion.div
-            className="upload-controls"
+            style={styles.uploadControls}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <input type="file" accept="image/*" onChange={handleFileChange} />
+            <input 
+              type="file" 
+              accept="image/*" 
+              onChange={handleFileChange} 
+              style={styles.fileInput}
+            />
             {previewUrl && (
-              <div className="image-preview">
-                <img src={previewUrl} alt="Uploaded Preview" />
+              <div style={styles.imagePreview}>
+                <img src={previewUrl} alt="Uploaded Preview" style={styles.previewImage} />
               </div>
             )}
-            <button
-              className="upload-button"
+            <motion.button
+              className="btn"
               onClick={handleUpload}
               disabled={isUploading}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {isUploading ? (
                 <>
-                  <span className="spinner"></span> Uploading...
+                  <span style={styles.spinner}></span> Uploading...
                 </>
               ) : (
                 'Upload Image'
               )}
-            </button>
+            </motion.button>
           </motion.div>
           {(isProcessing || result) && (
-            <div className="result">
+            <div style={styles.result}>
               {isProcessing ? (
                 "Running..."
               ) : (
-                <img src={result} alt="Server Processed Result" />
+                <img src={result} alt="Server Processed Result" style={styles.resultImage} />
               )}
             </div>
           )}
         </div>
       </section>
-      <section className="cta-section">
-        <div className="content-wrapper">
+
+      <section className="card" style={{...styles.section, ...styles.ctaSection}}>
+        <div style={styles.contentWrapper}>
           <motion.div
-            className="cta-content"
+            style={styles.ctaContent}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <h2>Unlock Full Access</h2>
-            <p>
+            <h2 style={styles.ctaTitle}>Unlock Full Access</h2>
+            <p style={styles.ctaParagraph}>
               Sign up today to gain complete access to all features and benefits of SentrySight.
             </p>
-            <a href="/sign-in" className="btn-secondary">
+            <motion.a 
+              href="/sign-in" 
+              className="btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               Sign Up Now
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </section>

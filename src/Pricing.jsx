@@ -13,263 +13,117 @@ function Pricing({ onContactClick }) {
     setEstimate(mockEstimate);
   };
 
-  const cardStyle = {
-    backgroundColor: "white",
-    borderRadius: "8px",
-    overflow: "hidden",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    margin: "0",
-    padding: "0"
-  };
-
-  const flatHeaderStyle = {
-    backgroundColor: "#4CAF50",
-    padding: "24px 16px",
-    textAlign: "center"
-  };
-
-  const basicHeaderStyle = {
-    backgroundColor: "#3f51b5",
-    padding: "24px 16px",
-    textAlign: "center"
-  };
-
-  const premiumHeaderStyle = {
-    backgroundColor: "#e65100",
-    padding: "24px 16px",
-    textAlign: "center"
-  };
-
-  const headerTextStyle = {
-    color: "white",
-    fontSize: "1.5rem",
-    fontWeight: "normal",
-    letterSpacing: "0.05em",
-    margin: "0"
-  };
-
-  const priceStyle = {
-    textAlign: "center",
-    fontSize: "1.875rem",
-    fontWeight: "normal",
-    color: "#333",
-    padding: "24px",
-    borderBottom: "1px solid #eee",
-    margin: "0",
-    backgroundColor: "white"
-  };
-
-  const featuresContainerStyle = {
-    padding: "24px",
-    backgroundColor: "white"
-  };
-
-  const featureItemStyle = {
-    display: "flex",
-    alignItems: "flex-start",
-    marginBottom: "16px"
-  };
-
-  const greenDotStyle = {
-    color: "#4CAF50",
-    marginRight: "8px",
-    fontSize: "1.25rem",
-    lineHeight: "1.2"
-  };
-
-  const blueDotStyle = {
-    color: "#3f51b5",
-    marginRight: "8px",
-    fontSize: "1.25rem",
-    lineHeight: "1.2"
-  };
-
-  const orangeDotStyle = {
-    color: "#e65100",
-    marginRight: "8px",
-    fontSize: "1.25rem",
-    lineHeight: "1.2"
-  };
-
-  const featureTextStyle = {
-    color: "#666",
-    fontSize: "1rem",
-    lineHeight: "1.5"
-  };
-
-  const buttonContainerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: "64px",
-    marginBottom: "40px"
-  };
-
-  const contactButtonStyle = {
-    backgroundColor: "#4CAF50",
-    color: "white",
-    padding: "12px 32px",
-    fontSize: "1.125rem",
-    borderRadius: "8px",
-    border: "none",
-    cursor: "pointer",
-    width: "176px",
-    marginBottom: "16px",
-    transition: "background-color 0.3s"
-  };
-
-  const estimateButtonStyle = {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    padding: "12px 32px",
-    fontSize: "1.125rem",
-    borderRadius: "8px",
-    border: "none",
-    cursor: "pointer",
-    width: "176px",
-    transition: "background-color 0.3s"
-  };
-
-  const modalOverlayStyle = {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    right: "0",
-    bottom: "0",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: "50"
-  };
-
-  const modalContentStyle = {
-    backgroundColor: "white",
-    width: "60%",
-    height: "80%",
-    padding: "32px",
-    borderRadius: "8px",
-    overflowY: "auto",
-    color: "black"
-  };
-
   return (
-    <main style={{ 
-      minHeight: "100vh", 
-      backgroundColor: "#1A1A1A", 
-      paddingTop: "96px",
-      color: "white"
-    }}>
-      <div style={{ 
-        maxWidth: "1200px", 
-        margin: "0 auto", 
-        padding: "0 16px" 
-      }}>
+    <main className="container">
+      <div className="container">
         <div style={{ 
           display: "grid", 
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "32px",
-          "@media (max-width: 768px)": {
-            gridTemplateColumns: "repeat(1, 1fr)"
-          }
         }}>
           {/* Flat Purchase */}
-          <div style={cardStyle}>
-            <div style={flatHeaderStyle}>
-              <h2 style={headerTextStyle}>FLAT PURCHASE</h2>
+          <div className="card">
+            <div style={{ backgroundColor: "#4CAF50", padding: "24px 16px" }} className="text-center">
+              <h2 style={{ color: "white", fontSize: "1.5rem", letterSpacing: "0.05em", margin: "0" }}>FLAT PURCHASE</h2>
             </div>
-            <div style={priceStyle}>
+            <div className="text-center" style={{ fontSize: "1.875rem", color: "#333", padding: "24px", borderBottom: "1px solid #eee", margin: "0" }}>
               $2,000/appliance
             </div>
-            <div style={featuresContainerStyle}>
+            <div style={{ padding: "24px" }}>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li style={featureItemStyle}>
-                  <span style={greenDotStyle}>•</span>
-                  <span style={featureTextStyle}>Flat license fee of $500</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#4CAF50", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Flat license fee of $500</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={greenDotStyle}>•</span>
-                  <span style={featureTextStyle}>Receive the newest update and feature with no additional cost</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#4CAF50", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Receive the newest update and feature with no additional cost</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={greenDotStyle}>•</span>
-                  <span style={featureTextStyle}>Receive a robust hardware equipped with strong capacity for 10+ cameras</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#4CAF50", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Receive a robust hardware equipped with strong capacity for 10+ cameras</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={greenDotStyle}>•</span>
-                  <span style={featureTextStyle}>Cameras not included</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#4CAF50", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Cameras not included</span>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Basic Subscription */}
-          <div style={cardStyle}>
-            <div style={basicHeaderStyle}>
-              <h2 style={headerTextStyle}>BASIC SUBSCRIPTION</h2>
+          <div className="card">
+            <div style={{ backgroundColor: "#3f51b5", padding: "24px 16px" }} className="text-center">
+              <h2 style={{ color: "white", fontSize: "1.5rem", letterSpacing: "0.05em", margin: "0" }}>BASIC SUBSCRIPTION</h2>
             </div>
-            <div style={priceStyle}>
+            <div className="text-center" style={{ fontSize: "1.875rem", color: "#333", padding: "24px", borderBottom: "1px solid #eee", margin: "0" }}>
               $15/camera/month
             </div>
-            <div style={featuresContainerStyle}>
+            <div style={{ padding: "24px" }}>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li style={featureItemStyle}>
-                  <span style={blueDotStyle}>•</span>
-                  <span style={featureTextStyle}>Flat license fee of $500</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#3f51b5", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Flat license fee of $500</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={blueDotStyle}>•</span>
-                  <span style={featureTextStyle}>Receive the newest update and feature through subscription period</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#3f51b5", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Receive the newest update and feature through subscription period</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={blueDotStyle}>•</span>
-                  <span style={featureTextStyle}>Free customer and technical support 24/7</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#3f51b5", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Free customer and technical support 24/7</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={blueDotStyle}>•</span>
-                  <span style={featureTextStyle}>SMS fees at additional cost</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#3f51b5", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>SMS fees at additional cost</span>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Premium Subscription */}
-          <div style={cardStyle}>
-            <div style={premiumHeaderStyle}>
-              <h2 style={headerTextStyle}>PREMIUM SUBSCRIPTION</h2>
+          <div className="card">
+            <div style={{ backgroundColor: "#e65100", padding: "24px 16px" }} className="text-center">
+              <h2 style={{ color: "white", fontSize: "1.5rem", letterSpacing: "0.05em", margin: "0" }}>PREMIUM SUBSCRIPTION</h2>
             </div>
-            <div style={priceStyle}>
+            <div className="text-center" style={{ fontSize: "1.875rem", color: "#333", padding: "24px", borderBottom: "1px solid #eee", margin: "0" }}>
               $50/camera/month
             </div>
-            <div style={featuresContainerStyle}>
+            <div style={{ padding: "24px" }}>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                <li style={featureItemStyle}>
-                  <span style={orangeDotStyle}>•</span>
-                  <span style={featureTextStyle}>All of the previous subscription benefits PLUS additional safety detection features tailored for businesses</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#e65100", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>All of the previous subscription benefits PLUS additional safety detection features tailored for businesses</span>
                 </li>
-                <li style={featureItemStyle}>
-                  <span style={orangeDotStyle}>•</span>
-                  <span style={featureTextStyle}>Receive further discounts by opting for an extended contract term</span>
+                <li style={{ display: "flex", alignItems: "flex-start", marginBottom: "16px" }}>
+                  <span style={{ color: "#e65100", marginRight: "8px", fontSize: "1.25rem", lineHeight: "1.2" }}>•</span>
+                  <span style={{ color: "#666", fontSize: "1rem", lineHeight: "1.5" }}>Receive further discounts by opting for an extended contract term</span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div style={buttonContainerStyle}>
+        <div className="text-center" style={{ marginTop: "64px", marginBottom: "40px" }}>
           <button 
             onClick={onContactClick}
-            style={contactButtonStyle}
-            onMouseOver={(e) => e.target.style.backgroundColor = "#45a049"}
-            onMouseOut={(e) => e.target.style.backgroundColor = "#4CAF50"}
+            className="btn"
+            style={{ 
+              backgroundColor: "#4CAF50", 
+              width: "176px", 
+              marginBottom: "16px" 
+            }}
           >
             Contact Us
           </button>
+          <br />
           <button
             onClick={() => setIsModalOpen(true)}
-            style={estimateButtonStyle}
-            onMouseOver={(e) => e.target.style.backgroundColor = "#35489a"}
-            onMouseOut={(e) => e.target.style.backgroundColor = "#3f51b5"}
+            className="btn"
+            style={{ 
+              backgroundColor: "#3f51b5", 
+              width: "176px" 
+            }}
           >
             Press for Estimate
           </button>
@@ -277,54 +131,42 @@ function Pricing({ onContactClick }) {
       </div>
 
       {isModalOpen && (
-        <div style={modalOverlayStyle}>
-          <div style={modalContentStyle}>
-            <h2 style={{ 
-              fontSize: "2.25rem", 
-              fontWeight: "bold", 
-              marginBottom: "24px", 
-              textAlign: "center", 
-              color: "#333",
-              letterSpacing: "0.05em"
-            }}>
+        <div style={{ 
+          position: "fixed", 
+          top: "0", 
+          left: "0", 
+          right: "0", 
+          bottom: "0", 
+          backgroundColor: "rgba(0, 0, 0, 0.5)", 
+          display: "flex", 
+          alignItems: "center", 
+          justifyContent: "center", 
+          zIndex: "50" 
+        }}>
+          <div style={{ 
+            backgroundColor: "white", 
+            width: "60%", 
+            height: "80%", 
+            padding: "32px", 
+            borderRadius: "15px", 
+            overflowY: "auto", 
+            color: "black" 
+          }} className="card">
+            <h2 className="text-center" style={{ fontSize: "2.25rem", marginBottom: "24px", color: "#333", letterSpacing: "0.05em" }}>
               Estimate Based on Your Requirements
             </h2>
 
             {/* Appliances Section */}
-            <div style={{
-              marginBottom: "32px",
-              padding: "24px",
-              backgroundColor: "#f9f9f9",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-            }}>
-              <h3 style={{ 
-                fontSize: "1.5rem", 
-                fontWeight: "600", 
-                marginBottom: "16px", 
-                color: "#444" 
-              }}>
+            <div className="card" style={{ marginBottom: "32px", padding: "24px", backgroundColor: "#f9f9f9" }}>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "16px", color: "#444" }}>
                 Appliances
               </h3>
               <div style={{ marginBottom: "16px" }}>
-                <label style={{ 
-                  display: "block", 
-                  fontSize: "1.125rem", 
-                  fontWeight: "bold", 
-                  color: "#444", 
-                  marginBottom: "4px" 
-                }}>
+                <label style={{ display: "block", fontSize: "1.125rem", fontWeight: "bold", color: "#444", marginBottom: "4px" }}>
                   How many cameras?
                 </label>
                 <select
-                  style={{ 
-                    width: "100%", 
-                    padding: "8px", 
-                    border: "1px solid #ccc", 
-                    borderRadius: "8px", 
-                    fontSize: "1.125rem",
-                    color: "black"
-                  }}
+                  style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "8px", fontSize: "1.125rem", color: "black" }}
                   value={field1}
                   onChange={(e) => setField1(e.target.value)}
                 >
@@ -335,24 +177,11 @@ function Pricing({ onContactClick }) {
                 </select>
               </div>
               <div style={{ marginBottom: "16px" }}>
-                <label style={{ 
-                  display: "block", 
-                  fontSize: "1.125rem", 
-                  fontWeight: "bold", 
-                  color: "#444", 
-                  marginBottom: "4px" 
-                }}>
+                <label style={{ display: "block", fontSize: "1.125rem", fontWeight: "bold", color: "#444", marginBottom: "4px" }}>
                   How many server/workstations?
                 </label>
                 <select
-                  style={{ 
-                    width: "100%", 
-                    padding: "8px", 
-                    border: "1px solid #ccc", 
-                    borderRadius: "8px", 
-                    fontSize: "1.125rem",
-                    color: "black"
-                  }}
+                  style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "8px", fontSize: "1.125rem", color: "black" }}
                   value={field2}
                   onChange={(e) => setField2(e.target.value)}
                 >
@@ -365,40 +194,16 @@ function Pricing({ onContactClick }) {
             </div>
 
             {/* Storage Section */}
-            <div style={{
-              marginBottom: "32px",
-              padding: "24px",
-              backgroundColor: "#f9f9f9",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-            }}>
-              <h3 style={{ 
-                fontSize: "1.5rem", 
-                fontWeight: "600", 
-                marginBottom: "16px", 
-                color: "#444" 
-              }}>
+            <div className="card" style={{ marginBottom: "32px", padding: "24px", backgroundColor: "#f9f9f9" }}>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "16px", color: "#444" }}>
                 Storage
               </h3>
               <div style={{ marginBottom: "16px" }}>
-                <label style={{ 
-                  display: "block", 
-                  fontSize: "1.125rem", 
-                  fontWeight: "bold", 
-                  color: "#444", 
-                  marginBottom: "4px" 
-                }}>
+                <label style={{ display: "block", fontSize: "1.125rem", fontWeight: "bold", color: "#444", marginBottom: "4px" }}>
                   Storage Type
                 </label>
                 <select
-                  style={{ 
-                    width: "100%", 
-                    padding: "8px", 
-                    border: "1px solid #ccc", 
-                    borderRadius: "8px", 
-                    fontSize: "1.125rem",
-                    color: "black"
-                  }}
+                  style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "8px", fontSize: "1.125rem", color: "black" }}
                   value={field3}
                   onChange={(e) => setField3(e.target.value)}
                 >
@@ -408,24 +213,11 @@ function Pricing({ onContactClick }) {
                 </select>
               </div>
               <div style={{ marginBottom: "16px" }}>
-                <label style={{ 
-                  display: "block", 
-                  fontSize: "1.125rem", 
-                  fontWeight: "bold", 
-                  color: "#444", 
-                  marginBottom: "4px" 
-                }}>
+                <label style={{ display: "block", fontSize: "1.125rem", fontWeight: "bold", color: "#444", marginBottom: "4px" }}>
                   Select Storage Size
                 </label>
                 <select
-                  style={{ 
-                    width: "100%", 
-                    padding: "8px", 
-                    border: "1px solid #ccc", 
-                    borderRadius: "8px", 
-                    fontSize: "1.125rem",
-                    color: "black"
-                  }}
+                  style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "8px", fontSize: "1.125rem", color: "black" }}
                   value={field3}
                   onChange={(e) => setField3(e.target.value)}
                 >
@@ -444,40 +236,16 @@ function Pricing({ onContactClick }) {
             </div>
 
             {/* Network Requirements Section */}
-            <div style={{
-              marginBottom: "32px",
-              padding: "24px",
-              backgroundColor: "#f9f9f9",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-            }}>
-              <h3 style={{ 
-                fontSize: "1.5rem", 
-                fontWeight: "600", 
-                marginBottom: "16px", 
-                color: "#444" 
-              }}>
+            <div className="card" style={{ marginBottom: "32px", padding: "24px", backgroundColor: "#f9f9f9" }}>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "16px", color: "#444" }}>
                 Network Requirements
               </h3>
               <div style={{ marginBottom: "16px" }}>
-                <label style={{ 
-                  display: "block", 
-                  fontSize: "1.125rem", 
-                  fontWeight: "bold", 
-                  color: "#444", 
-                  marginBottom: "4px" 
-                }}>
+                <label style={{ display: "block", fontSize: "1.125rem", fontWeight: "bold", color: "#444", marginBottom: "4px" }}>
                   Routers and Switches
                 </label>
                 <select
-                  style={{ 
-                    width: "100%", 
-                    padding: "8px", 
-                    border: "1px solid #ccc", 
-                    borderRadius: "8px", 
-                    fontSize: "1.125rem",
-                    color: "black"
-                  }}
+                  style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "8px", fontSize: "1.125rem", color: "black" }}
                   value={field1}
                   onChange={(e) => setField1(e.target.value)}
                 >
@@ -490,40 +258,16 @@ function Pricing({ onContactClick }) {
             </div>
 
             {/* Security Features Section */}
-            <div style={{
-              marginBottom: "32px",
-              padding: "24px",
-              backgroundColor: "#f9f9f9",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
-            }}>
-              <h3 style={{ 
-                fontSize: "1.5rem", 
-                fontWeight: "600", 
-                marginBottom: "16px", 
-                color: "#444" 
-              }}>
+            <div className="card" style={{ marginBottom: "32px", padding: "24px", backgroundColor: "#f9f9f9" }}>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: "600", marginBottom: "16px", color: "#444" }}>
                 Security Features
               </h3>
               <div style={{ marginBottom: "16px" }}>
-                <label style={{ 
-                  display: "block", 
-                  fontSize: "1.125rem", 
-                  fontWeight: "bold", 
-                  color: "#444", 
-                  marginBottom: "4px" 
-                }}>
+                <label style={{ display: "block", fontSize: "1.125rem", fontWeight: "bold", color: "#444", marginBottom: "4px" }}>
                   Select Security Features
                 </label>
                 <select
-                  style={{ 
-                    width: "100%", 
-                    padding: "8px", 
-                    border: "1px solid #ccc", 
-                    borderRadius: "8px", 
-                    fontSize: "1.125rem",
-                    color: "black"
-                  }}
+                  style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "8px", fontSize: "1.125rem", color: "black" }}
                   value={field2}
                   onChange={(e) => setField2(e.target.value)}
                 >
@@ -538,20 +282,10 @@ function Pricing({ onContactClick }) {
             </div>
 
             {/* Button Section */}
-            <div style={{ textAlign: "center", marginBottom: "16px" }}>
+            <div className="text-center" style={{ marginBottom: "16px" }}>
               <button
                 onClick={handleEstimate}
-                style={{
-                  padding: "8px 16px",
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                  borderRadius: "8px",
-                  border: "none",
-                  fontSize: "1.125rem",
-                  cursor: "pointer"
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = "#45a049"}
-                onMouseOut={(e) => e.target.style.backgroundColor = "#4CAF50"}
+                className="btn"
               >
                 Get Estimate
               </button>
@@ -559,31 +293,17 @@ function Pricing({ onContactClick }) {
 
             {/* Estimate Display */}
             {estimate && (
-              <div style={{ 
-                marginTop: "16px", 
-                textAlign: "center", 
-                fontSize: "2.25rem", 
-                color: "#444" 
-              }}>
+              <div className="text-center" style={{ marginTop: "16px", fontSize: "2.25rem", color: "#444" }}>
                 <strong>Estimated Price: </strong> {estimate}
               </div>
             )}
 
             {/* Close Button */}
-            <div style={{ marginTop: "16px", display: "flex", justifyContent: "center" }}>
+            <div className="text-center" style={{ marginTop: "16px" }}>
               <button
                 onClick={() => setIsModalOpen(false)}
-                style={{
-                  backgroundColor: "#e65100",
-                  color: "white",
-                  padding: "8px 16px",
-                  borderRadius: "8px",
-                  border: "none",
-                  fontSize: "1.125rem",
-                  cursor: "pointer"
-                }}
-                onMouseOver={(e) => e.target.style.backgroundColor = "#d84315"}
-                onMouseOut={(e) => e.target.style.backgroundColor = "#e65100"}
+                className="btn"
+                style={{ backgroundColor: "#e65100" }}
               >
                 Close
               </button>

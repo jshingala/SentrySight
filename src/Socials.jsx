@@ -1,25 +1,70 @@
-import React from "react";
-import './socials.css'; // Import CSS
+import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import React from "react";
 
 function Socials() {
   return (
-    <section className="socials">
-      <h2 className="socials-title">Follow Us</h2>
-      <div className="socials-links">
-        <a className="social-link" href="https://facebook.com" aria-label="Facebook">
-          <FontAwesomeIcon icon={faFacebook} />
-        </a>
-        <a className="social-link" href="https://twitter.com" aria-label="Twitter">
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-        <a className="social-link" href="https://instagram.com" aria-label="Instagram">
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
-        <a className="social-link" href="https://linkedin.com" aria-label="LinkedIn">
-          <FontAwesomeIcon icon={faLinkedin} />
-        </a>
+    <section className="container">
+      <div className="text-center" style={{ padding: "40px 0" }}>
+        <h2 style={{ marginBottom: "20px" }}>Follow Us</h2>
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "center", 
+          gap: "20px"
+        }}>
+          <a 
+            href="https://facebook.com" 
+            aria-label="Facebook"
+            style={{ 
+              fontSize: "24px", 
+              color: "white",
+              transition: "transform 0.3s ease"
+            }}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.2)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            <FontAwesomeIcon icon={faFacebook} />
+          </a>
+          <a 
+            href="https://twitter.com" 
+            aria-label="Twitter"
+            style={{ 
+              fontSize: "24px", 
+              color: "white",
+              transition: "transform 0.3s ease"
+            }}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.2)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+          <a 
+            href="https://instagram.com" 
+            aria-label="Instagram"
+            style={{ 
+              fontSize: "24px", 
+              color: "white",
+              transition: "transform 0.3s ease"
+            }}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.2)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+          <a 
+            href="https://linkedin.com" 
+            aria-label="LinkedIn"
+            style={{ 
+              fontSize: "24px", 
+              color: "white",
+              transition: "transform 0.3s ease"
+            }}
+            onMouseOver={(e) => e.target.style.transform = "scale(1.2)"}
+            onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+          >
+            <FontAwesomeIcon icon={faLinkedin} />
+          </a>
+        </div>
       </div>
     </section>
   );

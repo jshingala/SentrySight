@@ -1,87 +1,128 @@
-import React, { useState, useEffect } from "react";
-import { Container, Typography, Box, TextField } from "@mui/material";
-import "./Questionnaire.css"; 
+import React, { useEffect, useState } from "react";
 
-const Questionnaire_Client = ({clientEmail}) => {
-    const [clientData, setClientData] = useState({
-            business_name: '',
-            industry_type: '',
-            num_employees: 0,
-            dailyVisitors: 0,
-            hasDetectionTech: false,
-            safetyMeasures: [false, false, false, false],
-            currentEffectiveness: 0,
-            interestInAI: false,
-            priorityLevel: 0,
-            responseSpeedImportance: 0,
-            comments: ''
-        });
+const Questionnaire_Client = ({ clientEmail }) => {
+  const [clientData, setClientData] = useState({
+    business_name: '',
+    industry_type: '',
+    num_employees: 0,
+    dailyVisitors: 0,
+    hasDetectionTech: false,
+    safetyMeasures: [false, false, false, false],
+    currentEffectiveness: 0,
+    interestInAI: false,
+    priorityLevel: 0,
+    responseSpeedImportance: 0,
+    comments: ''
+  });
 
-    useEffect(() => {
-        fetch(`http://localhost:3306/questionnaire_client?email=${clientEmail}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log("Raw API response:", data); // Log raw response
-            setClientData(prevData => ({
-            ...prevData,
-            ...data
-            }));
-        })
-        .catch(error => console.error("Error fetching user data:", error));
-    }, [clientEmail]);   
+  useEffect(() => {
+    fetch(`http://localhost:3306/questionnaire_client?email=${clientEmail}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log("Raw API response:", data); // Log raw response
+        setClientData(prevData => ({
+          ...prevData,
+          ...data
+        }));
+      })
+      .catch(error => console.error("Error fetching user data:", error));
+  }, [clientEmail]);
 
   return (
-    <Container maxWidth="md" className="Questionnaire">
-      <Box className="questionnaire-container" textAlign="center">
-        <Typography variant="h4" className="title">
+    <section className="container">
+      <div className="card" style={{ maxWidth: "800px", margin: "40px auto", padding: "40px" }}>
+        <h2 className="text-center" style={{ marginBottom: "30px" }}>
           Admin Questionnaire
-        </Typography>
-
-        <div>
-            Client Email
+        </h2>
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Client Email</p>
             <h3>{clientEmail}</h3>
+          </div>
         </div>
-        <div>
-            Business Name
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Business Name</p>
             <h3>{clientData.business_name}</h3>
+          </div>
         </div>
-        <div>
-            Industry Type
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Industry Type</p>
             <h3>{clientData.industry_type}</h3>
+          </div>
         </div>
-        <div>
-            Number of Employees: {clientData.num_employees}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Number of Employees</p>
+            <h3>{clientData.num_employees}</h3>
+          </div>
         </div>
-        <div>
-            Number of Daily Visitors: {clientData.dailyVisitors}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Number of Daily Visitors</p>
+            <h3>{clientData.dailyVisitors}</h3>
+          </div>
         </div>
-        <div>
-            Does this company has firearm detection technology? {clientData.hasDetectionTech ? "Yes" : "No"}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Does this company have firearm detection technology?</p>
+            <h3>{clientData.hasDetectionTech ? "Yes" : "No"}</h3>
+          </div>
         </div>
-        <div>
-            Safety Measures in Place
-            <h3>Surveillance cameras: {clientData.safetyMeasures[0] ? "Yes" : "No"}</h3>
-            <h3>Security guards: {clientData.safetyMeasures[1] ? "Yes" : "No"}</h3>
-            <h3>Panic buttons: {clientData.safetyMeasures[2] ? "Yes" : "No"}</h3>
-            <h3>Emergency lockdown procedures: {clientData.safetyMeasures[3] ? "Yes" : "No"}</h3>
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "10px" }}>Safety Measures in Place</p>
+            <p style={{ margin: "5px 0" }}>Surveillance cameras: <span className="text-light">{clientData.safetyMeasures[0] ? "Yes" : "No"}</span></p>
+            <p style={{ margin: "5px 0" }}>Security guards: <span className="text-light">{clientData.safetyMeasures[1] ? "Yes" : "No"}</span></p>
+            <p style={{ margin: "5px 0" }}>Panic buttons: <span className="text-light">{clientData.safetyMeasures[2] ? "Yes" : "No"}</span></p>
+            <p style={{ margin: "5px 0" }}>Emergency lockdown procedures: <span className="text-light">{clientData.safetyMeasures[3] ? "Yes" : "No"}</span></p>
+          </div>
         </div>
-        <div>
-            Current Effectiveness of Safety Measures: {clientData.currentEffectiveness}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Current Effectiveness of Safety Measures</p>
+            <h3>{clientData.currentEffectiveness}</h3>
+          </div>
         </div>
-        <div>
-            Interest in AI Firearm Detection Technology: {clientData.interestInAI ? "Yes" : "No"}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Interest in AI Firearm Detection Technology</p>
+            <h3>{clientData.interestInAI ? "Yes" : "No"}</h3>
+          </div>
         </div>
-        <div>
-            Priority Level for Firearm Detection: {clientData.priorityLevel}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Priority Level for Firearm Detection</p>
+            <h3>{clientData.priorityLevel}</h3>
+          </div>
         </div>
-        <div>
-            Importance of Police Response Speed: {clientData.responseSpeedImportance}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Importance of Police Response Speed</p>
+            <h3>{clientData.responseSpeedImportance}</h3>
+          </div>
         </div>
-        <div>
-            Comments: {clientData.comments}
+        
+        <div className="card" style={{ marginBottom: "20px", padding: "15px" }}>
+          <div className="text-center">
+            <p style={{ marginBottom: "5px" }}>Comments</p>
+            <p className="text-light">{clientData.comments}</p>
+          </div>
         </div>
-      </Box>
-    </Container>
+      </div>
+    </section>
   );
 };
 

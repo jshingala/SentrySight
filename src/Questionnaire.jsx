@@ -1,20 +1,6 @@
+import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from "react";
-import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import './Questionnaire.css'; // Import the CSS file
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  MenuItem,
-  Slider,
-  TextField,
-  Typography,
-} from '@mui/material';
 
 const validationSchema = yup.object({
   businessName: yup.string().required('Business name is required'),
@@ -67,14 +53,13 @@ const Questionnaire = ({userEmail}) => {
       })
     })      
       .then(response => {
-        //console.log(response);
-        return response.json()
+        return response.json();
       })
       .then(data => {
         if (data.error) {
             // If there's an error, display it to the user
             this.setState({ errorMessage: data.error });
-          }else {
+          } else {
             alert("Submitted Successfully");
             window.location.href = "/questionnaire";
             this.setState({ successMessage: "Submitted successfully!", errorMessage: '' });
@@ -82,8 +67,7 @@ const Questionnaire = ({userEmail}) => {
       })
       .catch(error => {
         console.error('Error:', error);
-
-        this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
+        this.setState({ errorMessage: error.message });
       });
   };
 
@@ -106,17 +90,17 @@ const Questionnaire = ({userEmail}) => {
         input.removeEventListener('wheel', handleWheel);
       });
     };
-  }, []); // Runs only once after the component mounts
+  }, []);
 
   return (
-    <Container maxWidth="md" className="Questionnaire">
-      <Box mt={5} p={4}>
-        <Typography variant="h4" gutterBottom className="title">
+    <section className="container">
+      <div className="card" style={{ maxWidth: "800px", margin: "40px auto", padding: "40px" }}>
+        <h2 className="text-center" style={{ marginBottom: "20px" }}>
           Firearm Detection Safety Assessment
-        </Typography>
-        <Typography variant="body1" className="subtitle" mb={4}>
+        </h2>
+        <p className="text-center text-light" style={{ marginBottom: "30px" }}>
           This survey assesses your current safety measures and explores the benefits of AI firearm detection technology.
-        </Typography>
+        </p>
 
         <Formik
           initialValues={values}
@@ -132,219 +116,298 @@ const Questionnaire = ({userEmail}) => {
             touched,
           }) => (
             <Form>
-              <Typography variant="h6" className="title" mb={2}>
-                Business Information
-              </Typography>
+              <h3 style={{ marginBottom: "16px" }}>Business Information</h3>
 
               {/* Business Name */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  label="Business Name"
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Business Name*
+                </label>
+                <input
+                  type="text"
                   name="businessName"
                   value={values.businessName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.businessName && Boolean(errors.businessName)}
-                  helperText={touched.businessName && errors.businessName}
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: touched.businessName && errors.businessName ? "1px solid red" : "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 />
-              </FormControl>
+                {touched.businessName && errors.businessName && (
+                  <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>{errors.businessName}</p>
+                )}
+              </div>
 
               {/* Industry Type */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  label="Industry Type"
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Industry Type*
+                </label>
+                <input
+                  type="text"
                   name="industryType"
                   value={values.industryType}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.industryType && Boolean(errors.industryType)}
-                  helperText={touched.industryType && errors.industryType}
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: touched.industryType && errors.industryType ? "1px solid red" : "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 />
-              </FormControl>
+                {touched.industryType && errors.industryType && (
+                  <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>{errors.industryType}</p>
+                )}
+              </div>
 
               {/* Number of Employees */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  label="Number of Employees"
-                  name="numEmployees"
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Number of Employees*
+                </label>
+                <input
                   type="number"
+                  name="numEmployees"
                   value={values.numEmployees}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={touched.numEmployees && Boolean(errors.numEmployees)}
-                  helperText={touched.numEmployees && errors.numEmployees}
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: touched.numEmployees && errors.numEmployees ? "1px solid red" : "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 />
-              </FormControl>
+                {touched.numEmployees && errors.numEmployees && (
+                  <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>{errors.numEmployees}</p>
+                )}
+              </div>
 
               {/* Daily Visitors */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  label="Daily Visitors"
-                  name="dailyVisitors"
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Daily Visitors*
+                </label>
+                <input
                   type="number"
+                  name="dailyVisitors"
                   value={values.dailyVisitors}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={
-                    touched.dailyVisitors && Boolean(errors.dailyVisitors)
-                  }
-                  helperText={touched.dailyVisitors && errors.dailyVisitors}
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: touched.dailyVisitors && errors.dailyVisitors ? "1px solid red" : "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 />
-              </FormControl>
+                {touched.dailyVisitors && errors.dailyVisitors && (
+                  <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>{errors.dailyVisitors}</p>
+                )}
+              </div>
 
               {/* Has Detection Technology */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  select
-                  label="Do you currently have firearm detection technology?"
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Do you currently have firearm detection technology?*
+                </label>
+                <select
                   name="hasDetectionTech"
                   value={values.hasDetectionTech}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={
-                    touched.hasDetectionTech &&
-                    Boolean(errors.hasDetectionTech)
-                  }
-                  helperText={
-                    touched.hasDetectionTech && errors.hasDetectionTech
-                  }
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: touched.hasDetectionTech && errors.hasDetectionTech ? "1px solid red" : "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 >
-                  <MenuItem value="yes">Yes</MenuItem>
-                  <MenuItem value="no">No</MenuItem>
-                </TextField>
-              </FormControl>
+                  <option value="">Select an option</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                {touched.hasDetectionTech && errors.hasDetectionTech && (
+                  <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>{errors.hasDetectionTech}</p>
+                )}
+              </div>
 
               {/* Safety Measures */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Safety Measures in Place</FormLabel>
-                <Box display="flex" flexDirection="column">
+              <div style={{ marginBottom: "30px" }}>
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
+                  Safety Measures in Place*
+                </label>
+                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                   {[
                     'Surveillance cameras',
                     'Security guards',
                     'Panic buttons',
                     'Emergency lockdown procedures',
                   ].map((measure) => (
-                    <FormControlLabel
-                      key={measure}
-                      control={
-                        <Checkbox
-                          checked={values.safetyMeasures.includes(measure)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setFieldValue('safetyMeasures', [
-                                ...values.safetyMeasures,
-                                measure,
-                              ]);
-                            } else {
-                              setFieldValue(
-                                'safetyMeasures',
-                                values.safetyMeasures.filter(
-                                  (item) => item !== measure
-                                )
-                              );
-                            }
-                          }}
-                        />
-                      }
-                      label={measure}
-                    />
+                    <div key={measure} style={{ display: "flex", alignItems: "center" }}>
+                      <input
+                        type="checkbox"
+                        id={measure}
+                        checked={values.safetyMeasures.includes(measure)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setFieldValue('safetyMeasures', [
+                              ...values.safetyMeasures,
+                              measure,
+                            ]);
+                          } else {
+                            setFieldValue(
+                              'safetyMeasures',
+                              values.safetyMeasures.filter(
+                                (item) => item !== measure
+                              )
+                            );
+                          }
+                        }}
+                        style={{ marginRight: "10px" }}
+                      />
+                      <label htmlFor={measure}>{measure}</label>
+                    </div>
                   ))}
-                </Box>
-              </FormControl>
+                </div>
+                {touched.safetyMeasures && errors.safetyMeasures && (
+                  <p style={{ color: "red", fontSize: "14px", marginTop: "4px" }}>{errors.safetyMeasures}</p>
+                )}
+              </div>
 
               {/* Current Effectiveness */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Current Effectiveness of Safety Measures</FormLabel>
-                <Slider
-                  name="currentEffectiveness"
+              <div style={{ marginBottom: "30px" }}>
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
+                  Current Effectiveness of Safety Measures: {values.currentEffectiveness}
+                </label>
+                <input 
+                  type="range"
+                  min="0"
+                  max="5"
+                  step="0.1"
                   value={values.currentEffectiveness}
-                  onChange={(e, newValue) => setFieldValue('currentEffectiveness', newValue)} // Smooth state update
-                  step={0.1} 
-                  min={0}
-                  max={5}
-                  valueLabelDisplay="auto"
+                  onChange={(e) => setFieldValue('currentEffectiveness', e.target.value)}
+                  style={{ width: "100%" }}
                 />
-              </FormControl>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span>0 (Not effective)</span>
+                  <span>5 (Very effective)</span>
+                </div>
+              </div>
 
               {/* Interest in AI */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  select
-                  label="Interest in AI Firearm Detection Technology"
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Interest in AI Firearm Detection Technology
+                </label>
+                <select
                   name="interestInAI"
                   value={values.interestInAI}
                   onChange={handleChange}
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 >
-                  <MenuItem value="yes">Yes, definitely</MenuItem>
-                  <MenuItem value="possibly">
-                    Possibly, I would like more information
-                  </MenuItem>
-                  <MenuItem value="no">No, I am not interested</MenuItem>
-                </TextField>
-              </FormControl>
+                  <option value="">Select an option</option>
+                  <option value="yes">Yes, definitely</option>
+                  <option value="possibly">Possibly, I would like more information</option>
+                  <option value="no">No, I am not interested</option>
+                </select>
+              </div>
 
               {/* Priority Level */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Priority Level for Firearm Detection</FormLabel>
-                <Slider
-                  name="priorityLevel"
+              <div style={{ marginBottom: "30px" }}>
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
+                  Priority Level for Firearm Detection: {values.priorityLevel}
+                </label>
+                <input 
+                  type="range"
+                  min="0"
+                  max="5"
+                  step="0.1"
                   value={values.priorityLevel}
-                  onChange={(e, newValue) => setFieldValue('priorityLevel', newValue)} // Smooth state update
-                  step={0.1} 
-                  min={0}
-                  max={5}
-                  valueLabelDisplay="auto"
+                  onChange={(e) => setFieldValue('priorityLevel', e.target.value)}
+                  style={{ width: "100%" }}
                 />
-              </FormControl>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span>0 (Low priority)</span>
+                  <span>5 (High priority)</span>
+                </div>
+              </div>
 
               {/* Response Speed Importance */}
-              <FormControl fullWidth margin="normal">
-                <FormLabel>Importance of Police Response Speed</FormLabel>
-                <Slider
-                  name="responseSpeedImportance"
+              <div style={{ marginBottom: "30px" }}>
+                <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
+                  Importance of Police Response Speed: {values.responseSpeedImportance}
+                </label>
+                <input 
+                  type="range"
+                  min="0"
+                  max="5"
+                  step="0.1"
                   value={values.responseSpeedImportance}
-                  onChange={(e, newValue) => setFieldValue('responseSpeedImportance', newValue)} // Smooth state update
-                  step={0.1} 
-                  min={0}
-                  max={5}
-                  valueLabelDisplay="auto"
+                  onChange={(e) => setFieldValue('responseSpeedImportance', e.target.value)}
+                  style={{ width: "100%" }}
                 />
-              </FormControl>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <span>0 (Not important)</span>
+                  <span>5 (Very important)</span>
+                </div>
+              </div>
 
               {/* Concerns */}
-              <FormControl fullWidth margin="normal">
-                <TextField
-                  label="Concerns about AI Detection Technology"
+              <div style={{ marginBottom: "30px" }}>
+                <label style={{ display: "block", marginBottom: "6px", fontWeight: "bold" }}>
+                  Concerns about AI Detection Technology
+                </label>
+                <textarea
                   name="concerns"
-                  multiline
-                  rows={4}
+                  rows="4"
                   value={values.concerns}
                   onChange={handleChange}
-                  fullWidth
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
                 />
-              </FormControl>
+              </div>
 
               {/* Submit Button */}
-              <Button
+              <button
                 type="submit"
-                variant="contained"
-                size="large"
-                fullWidth
-                className="submit-button"
+                className="btn"
+                style={{ width: "100%", padding: "12px", fontSize: "1.1rem" }}
               >
                 Submit
-              </Button>
+              </button>
             </Form>
           )}
         </Formik>
-      </Box>
-    </Container>
+      </div>
+    </section>
   );
 };
 

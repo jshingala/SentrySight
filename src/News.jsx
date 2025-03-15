@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { fetchWithCache } from "./apiService";
-import "./news.css";
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -21,19 +20,28 @@ const News = () => {
   }, []);
 
   return (
-    <section className="news-section">
+    <section style={{ padding: "60px 0" }}>
       <div className="container">
-        <h2 className="news-title">Latest News</h2>
+        <h2 className="text-center" style={{ marginBottom: "30px", fontSize: "2rem" }}>Latest News</h2>
         {loading ? (
-          <p>Loading news...</p>
+          <p className="text-center text-light">Loading news...</p>
         ) : news.length > 0 ? (
-          <ul className="news-list">
+          <ul style={{ listStyle: "none", padding: 0 }}>
             {news.map((article) => (
-              <li key={article.id} className="news-item">{article.title}</li>
+              <li 
+                key={article.id} 
+                className="card" 
+                style={{ 
+                  marginBottom: "20px",
+                  display: "block"
+                }}
+              >
+                {article.title}
+              </li>
             ))}
           </ul>
         ) : (
-          <p>No news available at the moment.</p>
+          <p className="text-center text-light">No news available at the moment.</p>
         )}
       </div>
     </section>

@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import './SignIn.css'; // Import the CSS file for styling
 
 class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        email: '',
-        password: '',
-        business_name: '',
-        contact_number: '',
-        _share: false,
-        successMessage: '',  //This will hold the success message
-        isCodeSent: false,
-        isVerified: false,
-        code: '',
-        verificationCode: ''
+      email: '',
+      password: '',
+      business_name: '',
+      contact_number: '',
+      _share: false,
+      successMessage: '',
+      isCodeSent: false,
+      isVerified: false,
+      code: '',
+      verificationCode: '',
+      errorMessage: ''
     };
   }
 
@@ -26,7 +26,7 @@ class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password, business_name, contact_number, _share } = this.state;
+    const { email } = this.state;
 
     // Send POST request to backend to send verification code
     this.sendVerificationCode(email);
@@ -108,87 +108,166 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="sign-up">
-        <h2>Sign Up / Register</h2>
-        {this.state.successMessage && 
-        <div className="success">
-            {this.state.successMessage}     {/*Success Message*/}
-            <div className="to_login">
-            <Link to="/sign-in">
-              <button>Go back to Sign-up</button>
+      <section className="container">
+        <div className="card" style={{ maxWidth: "500px", margin: "40px auto", padding: "40px" }}>
+          <h2 className="text-center" style={{ marginBottom: "24px" }}>Sign Up / Register</h2>
+          
+          {this.state.successMessage && (
+            <div style={{ 
+              backgroundColor: "rgba(0, 255, 0, 0.1)", 
+              color: "#4CAF50", 
+              padding: "20px", 
+              borderRadius: "8px", 
+              marginBottom: "20px",
+              textAlign: "center"
+            }}>
+              <p style={{ marginBottom: "15px" }}>{this.state.successMessage}</p>
+              <Link to="/sign-in">
+                <button className="btn">Go back to Sign-in</button>
+              </Link>
+            </div>
+          )}
+
+          {!this.state.successMessage && (
+            <form onSubmit={this.handleSubmit}>
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={this.handleChange}
+                  placeholder="xxx@xxx.xxx"
+                  required
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
+                />
+              </div>
+              
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}>Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={this.handleChange}
+                  required
+                  minLength="12"
+                  placeholder="Enter your password"
+                  title="Password must be at least 12 characters long"
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
+                />
+              </div>
+              
+              <div style={{ marginBottom: "20px" }}>
+                <label style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}>Business Name:</label>
+                <input
+                  type="text"
+                  name="business_name"
+                  onChange={this.handleChange}
+                  placeholder="Enter your business name"
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
+                />
+              </div>
+              
+              <div style={{ marginBottom: "30px" }}>
+                <label style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}>Contact Number:</label>
+                <input
+                  type="tel"
+                  name="contact_number"
+                  placeholder="(XXX)XXX-XXXX"
+                  pattern="\(\d{3}\)\d{3}-\d{4}"
+                  required
+                  onChange={this.handleChange}
+                  style={{ 
+                    width: "100%", 
+                    padding: "10px", 
+                    borderRadius: "8px", 
+                    border: "1px solid #444",
+                    backgroundColor: "#333",
+                    color: "white"
+                  }}
+                />
+              </div>
+              
+              <button type="submit" className="btn" style={{ width: "100%" }}>Register</button>
+              
+              <div className="text-center" style={{ marginTop: "20px" }}>
+                <p className="text-light">
+                  Already have an account? <Link to="/sign-in" style={{ color: "#8a89e6", textDecoration: "none" }}>Sign in here</Link>
+                </p>
+              </div>
+            </form>
+          )}
+
+          {/* Verification code section */}
+          {this.state.isCodeSent && !this.state.isVerified && (
+            <div className="card" style={{ marginTop: "20px", padding: "20px" }}>
+              <label style={{ display: "block", marginBottom: "10px", fontWeight: "bold" }}>
+                Enter the verification code sent to your email:
+              </label>
+              <input
+                type="text"
+                name="code"
+                value={this.state.code}
+                onChange={this.handleChange}
+                placeholder="Enter verification code"
+                required
+                style={{ 
+                  width: "100%", 
+                  padding: "10px", 
+                  borderRadius: "8px", 
+                  border: "1px solid #444",
+                  backgroundColor: "#333",
+                  color: "white",
+                  marginBottom: "15px"
+                }}
+              />
+              <button onClick={this.verifyCode} className="btn" style={{ width: "100%" }}>
+                Verify Code
+              </button>
+            </div>
+          )}
+          
+          {/* Display the error message */}
+          {this.state.errorMessage && (
+            <div style={{ 
+              backgroundColor: "rgba(255, 0, 0, 0.1)", 
+              color: "#ff6b6b", 
+              padding: "10px", 
+              borderRadius: "8px", 
+              marginTop: "20px",
+              textAlign: "center"
+            }}>
+              {this.state.errorMessage}
+            </div>
+          )}
+          
+          <div className="text-center" style={{ marginTop: "20px" }}>
+            <Link to="/sign-in" style={{ color: "#8a89e6", textDecoration: "none" }}>
+              Back to Sign In
             </Link>
-          </div>    
+          </div>
         </div>
-        } 
-
-        {!this.state.successMessage &&(
-        <form className="sign-up-form" onSubmit={this.handleSubmit}>
-          <div>
-            <label>Email: </label>
-            <input
-              type="email"
-              name="email"
-              onChange={this.handleChange}
-              placeholder="xxx@xxx.xxx"
-              //pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-              required
-            />
-          </div>
-          <div>
-            <label>Password: </label>
-            <input
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              required
-              minLength="12"
-              placeholder="Enter your password"
-              title="Password must be at least 12 characters long"
-            />
-          </div>
-          <div>
-            <label>Business Name: </label>
-            <input
-              type="text"
-              name="business_name"
-              onChange={this.handleChange}
-              placeholder="Enter your business name"
-            />
-          </div>
-          <div>
-            <label>Contact Number: </label>
-            <input
-              type="tel"
-              name="contact_number"
-              placeholder="(XXX)XXX-XXXX"
-              pattern = "\(\d{3}\)\d{3}-\d{4}"
-              required
-              onChange={this.handleChange}
-            />
-          </div>
-          <button type="submit">Register</button>
-        </form>
-        )}
-
-        {/* Verification code section */}
-        {this.state.isCodeSent && !this.state.isVerified && (
-          <div>
-            <label>Enter the verification code sent to your email: </label>
-            <input
-              type="text"
-              name="code"
-              value={this.state.code}
-              onChange={this.handleChange}
-              placeholder="Enter verification code"
-              required
-            />
-            <button onClick={this.verifyCode}>Verify Code</button>
-          </div>
-        )}
-        
-        {/* Display the error message */}
-        {this.state.errorMessage && <div className="error">{this.state.errorMessage}</div>}
-      </div>
+      </section>
     );
   }
 }

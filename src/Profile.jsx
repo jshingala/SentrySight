@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Profile.css'; // Import the CSS file
 
 function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     const navigate = useNavigate();
@@ -110,133 +109,167 @@ function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     };     
 
     return (
-        <section className="profile">
-            <h2 className="profile-title">Profile</h2>
-            <div>
-                <label>Business Name:</label>
-                <a> {userData.business_name} </a>
+        <section className="container">
+            <div className="card" style={{ maxWidth: "800px", margin: "40px auto" }}>
+                <h2 className="text-center" style={{ marginBottom: "24px" }}>Profile</h2>
+                
+                <div style={{ marginBottom: "16px" }}>
+                    <label style={{ fontWeight: "bold", marginRight: "10px" }}>Business Name:</label>
+                    <span className="text-light">{userData.business_name}</span>
+                </div>
+                
+                <div style={{ marginBottom: "16px" }}>
+                    <label style={{ fontWeight: "bold", marginRight: "10px" }}>Phone:</label>
+                    <span className="text-light">{userData.contact_number}</span>
+                </div>
+                
+                <div style={{ marginBottom: "16px" }}>
+                    <label style={{ fontWeight: "bold", marginRight: "10px" }}>Email:</label>
+                    <span className="text-light">{userData.email}</span>
+                </div>
+                
+                <div style={{ marginBottom: "24px" }}>
+                    {!userData.edit_address && (
+                        <div className="card" style={{ marginTop: "20px", padding: "20px" }}>
+                            <div style={{ marginBottom: "8px" }}><b>Address 1:</b> <span className="text-light">{userData.address1}</span></div>
+                            <div style={{ marginBottom: "8px" }}><b>Address 2:</b> <span className="text-light">{userData.address2}</span></div>
+                            <div style={{ marginBottom: "8px" }}><b>City:</b> <span className="text-light">{userData.city}</span></div>
+                            <div style={{ marginBottom: "8px" }}><b>State:</b> <span className="text-light">{userData.state}</span></div>
+                            <div style={{ marginBottom: "8px" }}><b>Postal Code:</b> <span className="text-light">{userData.postal_code}</span></div>
+                            <div style={{ marginBottom: "16px" }}><b>Country:</b> <span className="text-light">{userData.country}</span></div>
+                            
+                            <button
+                                type="button"
+                                className="btn"
+                                onClick={() => {
+                                    setUserData((prevData) => ({
+                                        ...prevData,
+                                        edit_address: true,
+                                    }));
+                                    setSelectedCountry(userData.country || "");
+                                }}
+                            >
+                                Edit
+                            </button>
+                        </div>
+                    )}
+                    
+                    {userData.edit_address && (
+                        <form onSubmit={handleSubmit} className="card" style={{ marginTop: "20px", padding: "20px" }}>
+                            <div style={{ marginBottom: "16px" }}>
+                                <label style={{ display: "block", marginBottom: "4px" }}><b>Address Line 1:</b></label>
+                                <input
+                                    type="text"
+                                    name="address1"
+                                    value={userData.address1}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Address Line 1"
+                                    style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #444" }}
+                                />
+                            </div>
+                            
+                            <div style={{ marginBottom: "16px" }}>
+                                <label style={{ display: "block", marginBottom: "4px" }}><b>Address Line 2:</b></label>
+                                <input
+                                    type="text"
+                                    name="address2"
+                                    value={userData.address2}
+                                    onChange={handleChange}
+                                    placeholder="Address Line 2"
+                                    style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #444" }}
+                                />
+                            </div>
+                            
+                            <div style={{ marginBottom: "16px" }}>
+                                <label style={{ display: "block", marginBottom: "4px" }}><b>City:</b></label>
+                                <input
+                                    type="text"
+                                    name="city"
+                                    value={userData.city}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="City"
+                                    style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #444" }}
+                                />
+                            </div>
+                            
+                            <div style={{ marginBottom: "16px" }}>
+                                <label style={{ display: "block", marginBottom: "4px" }}><b>State/Province/Region:</b></label>
+                                <input
+                                    type="text"
+                                    name="state"
+                                    value={userData.state}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="State/Province/Region"
+                                    style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #444" }}
+                                />
+                            </div>
+                            
+                            <div style={{ marginBottom: "16px" }}>
+                                <label style={{ display: "block", marginBottom: "4px" }}><b>Postal Code:</b></label>
+                                <input
+                                    type="text"
+                                    name="postal_code"
+                                    value={userData.postal_code}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Postal Code"
+                                    style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #444" }}
+                                />
+                            </div>
+                            
+                            <div style={{ marginBottom: "24px" }}>
+                                <label style={{ display: "block", marginBottom: "4px" }}><b>Country:</b></label>
+                                <select
+                                    name="country"
+                                    value={selectedCountry || userData.country}
+                                    onChange={(e) => {
+                                        const country = e.target.value;
+                                        setSelectedCountry(country);
+                                        setUserData((prevData) => ({ ...prevData, country }));
+                                    }}
+                                    required
+                                    style={{ width: "100%", padding: "8px", borderRadius: "8px", border: "1px solid #444" }}
+                                >
+                                    <option value="" disabled>-- Select a Country --</option>
+                                    <option value="United States">United States</option>
+                                    <option value="" disabled>-----------------------------------</option>
+                                    {countries
+                                        .filter((country) => country !== "United States")
+                                        .map((country, index) => (
+                                        <option key={index} value={country}>{country}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div style={{ display: "flex", gap: "10px" }}>
+                                <button type="submit" className="btn">Done</button>
+                                <button
+                                    type="button"
+                                    className="btn"
+                                    style={{ backgroundColor: "#e65100" }}
+                                    onClick={() => {
+                                        setUserData({
+                                            ...userData,
+                                            edit_address: false,
+                                        });
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>                
+                    )}
+                </div>
+                
+                <div className="text-center">
+                    <button type="button" onClick={handleLogout} className="btn" style={{ backgroundColor: "#e65100" }}>
+                        Sign Out
+                    </button>
+                </div>
             </div>
-            <div>
-                <label>Phone:</label>
-                <a> {userData.contact_number} </a>
-            </div>
-            <div>
-                <label>Email:</label>
-                <a> {userData.email} </a>
-            </div>
-            <div>
-                {!userData.edit_address && (
-                    <>
-                        <a> <b>Address 1:</b> {userData.address1} </a>
-                        <a> <b>Address 2:</b> {userData.address2} </a>
-                        <a> <b>City:</b> {userData.city} </a>
-                        <a> <b>State:</b> {userData.state} </a>
-                        <a> <b>Postal Code:</b> {userData.postal_code} </a>
-                        <a> <b>Country:</b> {userData.country} </a>
-                        <button
-                            type="button"
-                            className="edit-button"
-                            onClick={() => {
-                                setUserData((prevData) => ({
-                                    ...prevData,
-                                    edit_address: true,
-                                }));
-                                setSelectedCountry(userData.country || ""); // Ensure selectedCountry syncs
-                            }}
-                        >
-                            Edit
-                        </button>
-                    </>
-                )}
-                {userData.edit_address && (
-                    <form onSubmit={handleSubmit}>
-                        <b>Address Line 1: </b>
-                        <input
-                            type="text"
-                            name="address1"
-                            value={userData.address1}
-                            onChange={handleChange}
-                            required
-                            placeholder="Address Line 1"
-                        />
-                        <br />
-                        <b>Address Line 2: </b>
-                        <input
-                            type="text"
-                            name="address2"
-                            value={userData.address2}
-                            onChange={handleChange}
-                            placeholder="Address Line 2"
-                        />
-                        <br />
-                        <b>City: </b>
-                        <input
-                            type="text"
-                            name="city"
-                            value={userData.city}
-                            onChange={handleChange}
-                            required
-                            placeholder="City"
-                        />
-                        <br />
-                        <b>State/Province/Region: </b>
-                        <input
-                            type="text"
-                            name="state"
-                            value={userData.state}
-                            onChange={handleChange}
-                            required
-                            placeholder="State/Province/Region"
-                        />
-                        <br />
-                        <b>Postal Code: </b>
-                        <input
-                            type="text"
-                            name="postal_code"
-                            value={userData.postal_code}
-                            onChange={handleChange}
-                            required
-                            placeholder="Postal Code"
-                        />
-                        <br />
-                        <b>Country: </b>
-                        <select
-                            name="country"
-                            value={selectedCountry || userData.country}
-                            onChange={(e) => {
-                                const country = e.target.value;
-                                setSelectedCountry(country);
-                                setUserData((prevData) => ({ ...prevData, country }));
-                            }}
-                            required
-                        >
-                            <option value="" disabled>-- Select a Country --</option>
-                            <option value="United States">United States</option>
-                            <option value="" disabled>-----------------------------------</option>
-                            {countries
-                                .filter((country) => country !== "United States")
-                                .map((country, index) => (
-                                <option key={index} value={country}>{country}</option>
-                            ))}
-                        </select>
-                        <br />
-                        <button
-                            type="submit"
-                            className="edit-button"
-                        > Done </button>
-                        <button
-                            type="button"
-                            className="edit-button"
-                            onClick={() => {
-                                setUserData({
-                                    ...userData,
-                                    edit_address: false,
-                                });
-                            }}> Cancel </button>
-                    </form>                
-                )}
-            </div>
-            <button type="button" onClick={handleLogout} className="logout-button">Sign Out</button>
         </section>
     );
 }

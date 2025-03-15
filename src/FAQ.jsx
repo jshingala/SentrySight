@@ -1,6 +1,7 @@
 // FAQ.jsx
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
-import "./FAQ.css";
+import "./global.css";
 
 function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -40,55 +41,142 @@ function FAQ() {
     }
   };
 
+  const styles = {
+    faqSection: {
+      maxWidth: '1000px',
+      margin: '60px auto',
+      padding: '40px 20px',
+    },
+    faqTitle: {
+      fontSize: '2.5rem',
+      textAlign: 'center',
+      marginBottom: '40px',
+      backgroundImage: 'linear-gradient(to right, #8a89e6, #d084f3)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+    },
+    faqList: {
+      listStyle: 'none',
+      padding: 0,
+    },
+    faqItem: {
+      marginBottom: '15px',
+      borderRadius: '10px',
+      overflow: 'hidden',
+      backgroundColor: '#333333',
+      transition: 'box-shadow 0.3s ease',
+    },
+    faqItemActive: {
+      boxShadow: '0 8px 15px rgba(0, 0, 0, 0.3)',
+    },
+    faqQuestion: {
+      padding: '20px 25px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      cursor: 'pointer',
+      fontWeight: 'bold',
+      fontSize: '1.1rem',
+      color: '#FFFFFF',
+      transition: 'background-color 0.3s ease',
+    },
+    faqQuestionActive: {
+      backgroundColor: '#444444',
+    },
+    faqIcon: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#8a89e6',
+      transform: 'rotate(45deg)',
+      transition: 'transform 0.3s ease',
+    },
+    faqIconClosed: {
+      transform: 'rotate(0deg)',
+    },
+    faqAnswer: {
+      padding: '0 25px 20px 25px',
+      color: '#bfbfbf',
+      lineHeight: '1.6',
+      fontSize: '1rem',
+    }
+  };
+
   return (
-    <section className="faq">
-      <h2>Frequently Asked Questions</h2>
-      <ul>
+    <motion.section 
+      className="card"
+      style={styles.faqSection}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.h2
+        style={styles.faqTitle}
+        initial={{ y: -30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        Frequently Asked Questions
+      </motion.h2>
+      <ul style={styles.faqList}>
         {questions.map((item, index) => (
-          <li
+          <motion.li
             key={index}
-            className={`faq-item ${activeIndex === index ? "active" : ""}`}
+            style={{
+              ...styles.faqItem,
+              ...(activeIndex === index ? styles.faqItemActive : {})
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ 
+              backgroundColor: activeIndex === index ? '#444444' : '#3a3a3a'
+            }}
           >
-            <div className="faq-question" onClick={() => toggleAnswer(index)}>
+            <div 
+              style={{
+                ...styles.faqQuestion,
+                ...(activeIndex === index ? styles.faqQuestionActive : {})
+              }}
+              onClick={() => toggleAnswer(index)}
+            >
               <strong>{item.question}</strong>
-              <span className="faq-icon">
-                {/* SVG for plus icon */}
-                {activeIndex === index ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 1a1 1 0 0 1 1 1v6h6a1 1 0 0 1 0 2H9v6a1 1 0 0 1-2 0V9H1a1 1 0 0 1 0-2h6V2a1 1 0 0 1 1-1z"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 1a1 1 0 0 1 1 1v6h6a1 1 0 0 1 0 2H9v6a1 1 0 0 1-2 0V9H1a1 1 0 0 1 0-2h6V2a1 1 0 0 1 1-1z"
-                    />
-                  </svg>
-                )}
+              <span 
+                style={{
+                  ...styles.faqIcon,
+                  ...(activeIndex === index ? {} : styles.faqIconClosed)
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M8 1a1 1 0 0 1 1 1v6h6a1 1 0 0 1 0 2H9v6a1 1 0 0 1-2 0V9H1a1 1 0 0 1 0-2h6V2a1 1 0 0 1 1-1z"
+                  />
+                </svg>
               </span>
             </div>
-            {activeIndex === index && (
-              <p className="faq-answer">{item.answer}</p>
-            )}
-          </li>
+            <AnimatePresence>
+              {activeIndex === index && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <p style={styles.faqAnswer}>{item.answer}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.li>
         ))}
       </ul>
-    </section>
+    </motion.section>
   );
 }
 
