@@ -8,7 +8,7 @@ const Hero = () => {
   useEffect(() => {
     controls.start('visible');
   }, [controls]);
-
+  
   const heroVariants = {
     hidden: {},
     visible: {
@@ -17,15 +17,15 @@ const Hero = () => {
       },
     },
   };
-
+  
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.7, 
-        ease: "easeOut" 
+      transition: {
+        duration: 0.7,
+        ease: "easeOut"
       }
     }
   };
@@ -35,17 +35,17 @@ const Hero = () => {
       {/* Security detection overlay */}
       <div className="security-overlay">
         <div className="detection-box">
-          <motion.div 
+          <motion.div
             className="detection-marker"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0.3, 0.7, 0.3] }}
-            transition={{ 
-              repeat: Infinity, 
+            transition={{
+              repeat: Infinity,
               duration: 2.5,
               ease: "linear"
             }}
           />
-          <motion.div 
+          <motion.div
             className="detection-label"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,30 +55,33 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Main content */}
-      <motion.div 
+      
+      {/* Hero Content */}
+      <motion.div
         className="hero-content"
         initial="hidden"
         animate={controls}
         variants={heroVariants}
       >
-        <motion.h1 
-          variants={itemVariants} 
+        <motion.h1
+          variants={itemVariants}
+          whileHover={{ scale: 1.05 }}
+          style={{ fontSize: '3.5rem' }}
           className="hero-title"
         >
           Experience Peace of Mind
         </motion.h1>
         
-        <motion.p 
-          variants={itemVariants} 
+        <motion.p
+          variants={itemVariants}
+          style={{ fontSize: '1.4rem' }}
           className="hero-subtitle"
         >
           Cutting-edge technology to keep your home and business safe.
         </motion.p>
         
-        <motion.div 
-          className="cta-buttons" 
+        <motion.div
+          className="cta-buttons"
           variants={itemVariants}
         >
           <motion.a
@@ -99,9 +102,9 @@ const Hero = () => {
             Learn More
           </motion.a>
         </motion.div>
-
+        
         {/* Additional security features */}
-        <motion.div 
+        <motion.div
           className="security-features"
           variants={itemVariants}
         >
