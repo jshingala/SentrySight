@@ -1,10 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
-import Header from "./Header";
+import "./App.css";
 import Footer from "./Footer";
+import Header from "./Header";
 import Home from "./Home";
 import "./global.css";
-import "./App.css";
 
 // Lazy load other pages
 const ContactUs = lazy(() => import("./ContactUs"));

@@ -63,4 +63,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Admin; // This component is a mockup for an admin dashboard with user management functionality.          

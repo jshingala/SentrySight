@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa"; // FontAwesome icons
+import { NavLink, useNavigate } from "react-router-dom";
+import Logo from "./assets/Logo.png";
 import "./global.css";
 import "./header.css";
-import Logo from "./assets/Logo.png";
 
 function Header({ userEmail, isAdmin }) {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
