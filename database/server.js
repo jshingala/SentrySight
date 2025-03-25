@@ -84,6 +84,7 @@ app.get('/companies', (req, res) => {
   const limit = 10;
   const offset = (page - 1) * limit;
 
+  //load in one query
   const dataQuery = `
     SELECT q.business_id, q.submit_date, b.email, b.business_name
     FROM Questionnaire q
