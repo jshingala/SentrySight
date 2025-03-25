@@ -81,3 +81,17 @@
     font-size: 12px;
     color: #ffffff;
   }
+
+  .Questionnaire .client_info div{
+    margin-top: 15px;
+    font-size: 20px;
+    border: 2px solid grey; /* Adds a 2px solid grey border */
+    padding: 20px; /* Optional: Adds space between the content and the border */
+  }
+  .Questionnaire .client_info h3{
+    font-size: 30px;
+    background: linear-gradient(to right, #8a89e6, #d084f3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
