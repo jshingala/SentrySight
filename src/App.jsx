@@ -20,6 +20,7 @@ import CTA from "./CTA.jsx";
 import Footer from "./Footer.jsx";
 import Profile from "./Profile.jsx";
 import Admin from "./Admin.jsx";
+import QuestionnaireAdmin from "./Questionnaire-Admin.jsx";
 import "./CSS.css";
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
               path="/sign-in"
               element={<Login setUserEmail={setUserEmail} />}
             />
+            <Route path="/questionnaire-admin" element={<QuestionnaireAdmin />} /> {/* Add the new route here */}
             <Route path="/sign-up" element={<SignUp />} />
            <Route path="/profile" element={<Profile userEmail={userEmail} setUserEmail={setUserEmail}/>} />
            <Route path="/admin" element={<Admin />} />

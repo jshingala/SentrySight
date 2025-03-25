@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import './Pricing.css'; // Import the CSS file
+import './Pricing.css'; 
 
 function Pricing({ onContactClick }) {
   const [isModalOpen, setIsModalOpen] = useState(false);

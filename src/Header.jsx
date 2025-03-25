@@ -29,6 +29,7 @@ function Header({ userEmail }) {
           <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
           {/* Conditionally render Register/Sign In or Profile */}
           <li className="nav-item">
+          <Link className="nav-link" to="/questionnaire-admin">Questionnaire-Admin</Link>
             <Link className="nav-link" to={userEmail ? "/profile" : "/sign-in"}>
               {userEmail ? "Profile" : "Register / Sign In"}
             </Link>

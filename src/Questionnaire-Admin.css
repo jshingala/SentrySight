@@ -1,0 +1,63 @@
+
+.admin-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin-top: 200px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  .admin-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .admin-table th {
+    background-color: #c9ced4;
+    color: #292828;
+  }
+  
+  .admin-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .admin-table td {
+    font-size: 0.95rem;
+  }
+  
+  .admin-table .loading {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .admin-table .no-submissions {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    font-size: 1.1rem;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  

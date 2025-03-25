@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import './Questionnaire.css'; // Import the CSS file
+import './Questionnaire.css';
 import {
   Box,
   Button,
@@ -310,6 +310,19 @@ const Questionnaire = () => {
                   name="concerns"
                   multiline
                   rows={4}
+                  value={values.concerns}
+                  onChange={handleChange}
+                  fullWidth
+                />
+              </FormControl>
+
+              {/* Concerns */}
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  label="Preferred Email for follow back"
+                  name="email"
+                  multiline
+                  rows={1}
                   value={values.concerns}
                   onChange={handleChange}
                   fullWidth
