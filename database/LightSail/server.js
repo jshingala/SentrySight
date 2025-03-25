@@ -3,65 +3,38 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 
-// Determine the correct path to your build directory
-const possiblePaths = [
-  path.join(__dirname, '../../../dist'),
-  path.join(__dirname, '../../dist'),
-  path.join(__dirname, '../dist'),
-  path.join(__dirname, '/dist'),
-  path.join(__dirname, '../../../build'),
-  path.join(__dirname, '../../build'),
-  path.join(__dirname, '../build'),
-  path.join(__dirname, '/build')
-];
+// Point directly to your Vite build output
+const buildPath = path.join('/home/bitnami/SentrySight/dist');
 
-let buildPath = null;
-for (const testPath of possiblePaths) {
-  try {
-    if (fs.existsSync(testPath) && fs.existsSync(path.join(testPath, 'index.html'))) {
-      buildPath = testPath;
-      break;
-    }
-  } catch (err) {
-    console.error(`Error accessing path: ${testPath}`, err);
-  }
+// Check if build directory exists
+if (!fs.existsSync(buildPath)) {
+  console.error(`Build directory not found at: ${buildPath}`);
+  console.error('Please run "npm run build" in the SentrySight directory');
+  process.exit(1); // Exit if no build directory
 }
 
-if (!buildPath) {
-  console.error('Could not find build directory with index.html!');
-  console.log('Current directory:', __dirname);
-  console.log('Searched in:', possiblePaths);
-  console.log('Make sure the build directory exists and is accessible.');
-} else {
-  console.log(`Found build directory at: ${buildPath}`);
-}
-
-// Serve static files from the React app build directory
+// Serve static files from the Vite build output
 app.use(express.static(buildPath));
 
-// Log requests for debugging
+// Logging middleware
 app.use((req, res, next) => {  
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
 
-// The "catchall" handler: for any request that doesn't match one above,
-// send back React's index.html file
+// The "catchall" handler for client-side routing
 app.get('*', (req, res) => {
-  if (!buildPath) {
-    return res.status(500).send('Server configuration error: Build directory not found');
-  }
-  
   const indexPath = path.join(buildPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
   } else {
-    res.status(404).send('index.html not found');
+    res.status(404).send('index.html not found in build directory');
   }
 });
 
-const port = 3692;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-  console.log(`Serving files from: ${buildPath || 'UNKNOWN PATH'}`);
+// Use PORT environment variable or default to 3692
+const PORT = process.env.PORT || 3692;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`The server is runninng on 44.243.81.44:${PORT}`);
 });
