@@ -1,0 +1,233 @@
+/* ==========================
+   Global Styles - global.css
+   ========================== */
+
+/* 1. Global Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Body & Typography */
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* 3. Reusable Button Styles */
+.btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #8a89e6, #a73ded);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(138, 137, 230, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(138, 137, 230, 0.4);
+  background: linear-gradient(45deg, #7877d3, #9635d3);
+}
+
+/* 4. Card/Box Styling */
+.card {
+  padding: 40px;
+  background: rgba(51, 51, 51, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(138, 137, 230, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+  border-color: rgba(138, 137, 230, 0.4);
+}
+
+/* 5. Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-light {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* Section Spacing */
+section {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(138, 137, 230, 0.3), transparent);
+}
+
+/* Default Dark Mode */
+:root {
+  --background: #1A1A1A;
+  --text-color: white;
+  --button-bg: #8a89e6;
+  --button-hover: #7877d3;
+  --accent-color: #8a89e6;
+  --accent-hover: #a73ded;
+  --card-bg: rgba(51, 51, 51, 0.9);
+  --border-color: rgba(138, 137, 230, 0.2);
+}
+
+/* Light Mode */
+[data-theme="light"] {
+  --background: #ffffff;
+  --text-color: #1A1A1A;
+  --button-bg: #8a89e6;
+  --button-hover: #7877d3;
+  --accent-color: #8a89e6;
+  --accent-hover: #a73ded;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --border-color: rgba(138, 137, 230, 0.3);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  background: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.theme-toggle:hover {
+  background: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  position: relative;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 40px 0;
+  }
+
+  .card {
+    padding: 25px;
+  }
+}
+
+.footer {
+  margin-top: auto;
+  background: #1A1A1A;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer ul li {
+  margin-bottom: 5px;
+}
