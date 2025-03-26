@@ -77,7 +77,9 @@ const Questionnaire_Admin = ({ setClientEmail }) => {
     <Container maxWidth="md" className="Questionnaire">
       <Box className="questionnaire-container" textAlign="center">
         <Typography variant="h4" className="title">Admin Questionnaire</Typography>
-        <Typography variant="subtitle1" className="subtitle">Select a company to manage its questionnaire.</Typography>
+        <Typography variant="subtitle1" className="subtitle" textAlign="center" mt={5}>
+        Select a company to manage its questionnaire.
+        </Typography>
 
         {/* Search and Sorting Controls */}
         <Box display="flex" justifyContent="space-between" mt={2} mb={3}>

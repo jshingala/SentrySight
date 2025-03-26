@@ -14,7 +14,7 @@
   
   /* Subtitle styling */
   .Questionnaire .subtitle {
-    color: #B0B0B0; /* Light gray text */
+    color: #000000; /* Light gray text */
     text-align: center;
     margin-bottom: 40px;
   }
@@ -82,16 +82,28 @@
     color: #ffffff;
   }
 
-  .Questionnaire .client_info div{
-    margin-top: 15px;
-    font-size: 20px;
-    border: 2px solid grey; /* Adds a 2px solid grey border */
-    padding: 20px; /* Optional: Adds space between the content and the border */
-  }
-  .Questionnaire .client_info h3{
-    font-size: 30px;
-    background: linear-gradient(to right, #8a89e6, #d084f3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-  }
+.Questionnaire .row-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.Questionnaire .info-item {
+  flex: 1;
+  min-width: 250px;
+  margin-top: 15px;
+  font-size: 20px;
+  border: 2px solid grey;
+  padding: 20px;
+}
+.Questionnaire .info-item p {
+  color: #EAEAEA;
+}
+.Questionnaire .info-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, #8a89e6, #d084f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

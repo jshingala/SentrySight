@@ -20,7 +20,7 @@
   --secondary-bg: #1A1A1A;       /* Dark gray for sections */
   --card-bg: #262626;            /* Card background */
   --primary-text: #EAEAEA;       /* Off-white text */
-  --secondary-text: #B0B0B0;     /* Light gray text */
+  --secondary-text: #000000;     /* Light gray text */
   --accent-color: #635bff;       /* Vibrant cyan accent */
   --accent-hover: #a73ded;       /* Darker cyan for hover effect */
   --border-color: #2A2A2A;       /* Soft border color */
@@ -339,3 +339,74 @@ p {
   background-color: #0056b3; /* Darker blue on hover */
   transform: scale(1.05); /* Slight zoom-in effect */
 }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.info-grid div {
+    display: contents;
+    align-items: center;
+}
+
+.info-grid label {
+  font-weight: 600;
+  
+  text-align: right;
+  padding-right: 10px;
+}
+
+.info-grid label,
+.edit-form-grid label {
+  color: black !important;
+}
+
+.info-grid span {
+  text-align: left;
+  color: black;
+  font-size: 1rem;
+}
+
+.profile-title {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-family: var(--font-primary);
+  text-align: center;
+  color: var(--accent-color);
+}
+
+.edit-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px 20px;
+  margin-bottom: 25px;
+}
+
+.edit-form-grid div {
+  display: contents;
+}
+
+.edit-form-grid label {
+  font-weight: 600;
+  color: var(--primary-text);
+  text-align: right;
+  padding-right: 10px;
+}
+
+.edit-form-grid input,
+.edit-form-grid select {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.edit-buttons {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+

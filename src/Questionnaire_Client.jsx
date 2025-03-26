@@ -35,53 +35,84 @@ const Questionnaire_Client = ({clientEmail}) => {
       <Box className="questionnaire-container" textAlign="center" >
         <Typography variant="h4" className="title">
           Admin Questionnaire
-        </Typography>
-        <div className="client_info">
-            <div>
+          </Typography>
+          <div className="client_info">
+    
+            <div className="row-info">
+                <div className="info-item">
                 <h3>Client Email</h3>
                 {clientEmail}
-            </div>
-            <div>
+                </div>
+                <div className="info-item">
                 <h3>Business Name</h3>
                 {clientData.business_name}
+                </div>
             </div>
-            <div>
+
+            <div className="row-info">
+                <div className="info-item">
                 <h3>Industry Type</h3>
                 {clientData.industry_type}
+                </div>
+                <div className="info-item">
+                <h3>Number of Employees</h3>
+                {clientData.num_employees}
+                </div>
             </div>
-            <div>
-                <h3>Number of Employees:</h3> {clientData.num_employees}
+
+            <div className="row-info">
+                <div className="info-item">
+                <h3>Number of Daily Visitors</h3>
+                {clientData.dailyVisitors}
+                </div>
+                <div className="info-item">
+                <h3>Firearm Detection Technology</h3>
+                {clientData.hasDetectionTech ? "Yes" : "No"}
+                </div>
             </div>
-            <div>
-                <h3>Number of Daily Visitors:</h3> {clientData.dailyVisitors}
+
+            <div className="row-info">
+                <div className="info-item" style={{ width: '100%' }}>
+                    <h3>Safety Measures in Place</h3>
+                    <p>Surveillance cameras: {clientData.safetyMeasures[0] ? "Yes" : "No"}</p>
+                    <p>Security guards: {clientData.safetyMeasures[1] ? "Yes" : "No"}</p>
+                    <p>Panic buttons: {clientData.safetyMeasures[2] ? "Yes" : "No"}</p>
+                    <p>Emergency lockdown procedures: {clientData.safetyMeasures[3] ? "Yes" : "No"}</p>
+                </div>
+</div>
+
+            <div className="row-info">
+                <div className="info-item">
+                <h3>Effectiveness of Safety Measures</h3>
+                {clientData.currentEffectiveness}
+                </div>
+                <div className="info-item">
+                <h3>Interest in AI Firearm Detection</h3>
+                {clientData.interestInAI ? "Yes" : "No"}
+                </div>
             </div>
-            <div>
-                <h3>Does this company has firearm detection technology?</h3> {clientData.hasDetectionTech ? "Yes" : "No"}
+
+            <div className="row-info">
+                <div className="info-item">
+                <h3>Priority Level</h3>
+                {clientData.priorityLevel}
+                </div>
+                <div className="info-item">
+                <h3>Police Response Speed Importance</h3>
+                {clientData.responseSpeedImportance}
+                </div>
             </div>
-            <div>
-                <h3>Safety Measures in Place</h3>
-                <p>Surveillance cameras: {clientData.safetyMeasures[0] ? "Yes" : "No"}</p>
-                <p>Security guards: {clientData.safetyMeasures[1] ? "Yes" : "No"}</p>
-                <p>Panic buttons: {clientData.safetyMeasures[2] ? "Yes" : "No"}</p>
-                <p>Emergency lockdown procedures: {clientData.safetyMeasures[3] ? "Yes" : "No"}</p> 
+
+            <div className="row-info">
+                <div className="info-item" style={{ width: '100%' }}>
+                <h3>Comments</h3>
+                {clientData.comments}
+                </div>
             </div>
-            <div>
-                <h3>Current Effectiveness of Safety Measures:</h3> {clientData.currentEffectiveness}
             </div>
-            <div>
-                <h3>Interest in AI Firearm Detection Technology:</h3> {clientData.interestInAI ? "Yes" : "No"}
-            </div>
-            <div>
-                <h3>Priority Level for Firearm Detection:</h3> {clientData.priorityLevel}
-            </div>
-            <div>
-                <h3>Importance of Police Response Speed:</h3> {clientData.responseSpeedImportance}
-            </div>
-            <div>
-                <h3>Comments:</h3> {clientData.comments}
-            </div>
-        </div>
-      </Box>
+
+
+</Box>
     </Container>
   );
 };
