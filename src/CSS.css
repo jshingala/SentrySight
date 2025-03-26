@@ -195,24 +195,7 @@ p {
   gap: 20px;
 }
 
-.btn-primary {
-  background-color: var(--accent-color);
-  color: var(--primary-text);
-  padding: 12px 30px;
-  border: none;
-  border-radius: 30px;
-  font-family: var(--font-secondary);
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 10px rgba(47, 0, 255, 0.3);
-}
 
-.btn-primary:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-3px);
-}
 
 /* Footer */
 .footer {
@@ -238,10 +221,7 @@ p {
     font-size: 1.8rem;
   }
 
-  .btn-primary {
-    padding: 10px 25px;
-    font-size: 0.9rem;
-  }
+
 }
 
 @media (max-width: 480px) {
@@ -257,10 +237,7 @@ p {
     gap: 15px;
   }
 
-  .btn-primary {
-    padding: 8px 20px;
-    font-size: 0.85rem;
-  }
+
 }
 
 

@@ -1,3 +1,4 @@
+/* Hero section - kept exactly as provided */
 .hero {
   position: relative;
   height: 100vh;
@@ -8,7 +9,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url('src/assets/Rifle.png'); /* Adjust the path to your image */
+    url('src/assets/Rifle.png'); /* Kept the original image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,28 +32,44 @@
   margin-top: 20px;
 }
 
-.btn-primary,
+/* btn-secondary styled to match btn-primary from Demo.css but with blue color */
 .btn-secondary {
-  padding: 12px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #fff;
-  transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #4d4bea, #5b28db);
+  color: #FFFFFF;
+  font-size: 0.1rem;
+  font-weight: 700; /* Increased from 600 to match bolder appearance */
+  border-radius: 50px;
+  border: none;
+  font-family: var(--font-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(58, 110, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Increased letter spacing for more squared appearance */
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-primary {
-  background-color: #635bff;
-}
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-secondary);
 
-.btn-primary:hover {
-  background-color: #8549e6;
-}
-
-.btn-secondary {
-  background-color: #b82727;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s;
 }
 
 .btn-secondary:hover {
-  background-color: #a31e1e;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(58, 110, 255, 0.4);
+}
+
+.btn-secondary:hover::before {
+  left: 100%;
 }

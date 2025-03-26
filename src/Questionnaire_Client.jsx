@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Typography, Box, TextField } from "@mui/material";
-import jsPDF from "jspdf"
 import "./Questionnaire.css"; 
-  
 
 const Questionnaire_Client = ({clientEmail}) => {
     const [clientData, setClientData] = useState({
@@ -30,101 +28,58 @@ const Questionnaire_Client = ({clientEmail}) => {
             }));
         })
         .catch(error => console.error("Error fetching user data:", error));
-    }, [clientEmail]);  
-
-    const handleExportToPDF = (clientEmail, clientData) => {
-        const doc = new jsPDF();
-      
-        doc.setFontSize(18);
-        doc.text("Admin Questionnaire", 20, 20);
-      
-        doc.setFontSize(12);
-        doc.text(`Client Email: ${clientEmail}`, 20, 30);
-        doc.text(`Business Name: ${clientData.business_name}`, 20, 40);
-        doc.text(`Industry Type: ${clientData.industry_type}`, 20, 50);
-        doc.text(`Number of Employees: ${clientData.num_employees}`, 20, 60);
-        doc.text(`Number of Daily Visitors: ${clientData.dailyVisitors}`, 20, 70);
-        doc.text(`Has Firearm Detection Technology: ${clientData.hasDetectionTech ? "Yes" : "No"}`, 20, 80);
-      
-        doc.text("Safety Measures in Place:", 20, 90);
-        doc.text(`- Surveillance cameras: ${clientData.safetyMeasures[0] ? "Yes" : "No"}`, 30, 100);
-        doc.text(`- Security guards: ${clientData.safetyMeasures[1] ? "Yes" : "No"}`, 30, 110);
-        doc.text(`- Panic buttons: ${clientData.safetyMeasures[2] ? "Yes" : "No"}`, 30, 120);
-        doc.text(`- Emergency lockdown procedures: ${clientData.safetyMeasures[3] ? "Yes" : "No"}`, 30, 130);
-      
-        doc.text(`Current Effectiveness of Safety Measures: ${clientData.currentEffectiveness}`, 20, 140);
-        doc.text(`Interest in AI Firearm Detection Technology: ${clientData.interestInAI ? "Yes" : "No"}`, 20, 150);
-        doc.text(`Priority Level for Firearm Detection: ${clientData.priorityLevel}`, 20, 160);
-        doc.text(`Importance of Police Response Speed: ${clientData.responseSpeedImportance}`, 20, 170);
-      
-        // Check if comments exist and add them
-        if (clientData.comments) {
-          doc.text("Comments:", 20, 180);
-          doc.text(clientData.comments, 20, 190, { maxWidth: 170 });
-        }
-      
-        doc.save(clientData.business_name+"_Questionnaire.pdf");
-      };
+    }, [clientEmail]);   
 
   return (
     <Container maxWidth="md" className="Questionnaire">
-      <Box className="questionnaire-container" textAlign="center">
+      <Box className="questionnaire-container" textAlign="center" >
         <Typography variant="h4" className="title">
           Admin Questionnaire
         </Typography>
-
-
-    <div class = "pdf-button">
-
-            <button onClick={() => handleExportToPDF(clientEmail, clientData)}>
-                Export to PDF
-            </button>
-            
-        </div>
-        
-
-        <div>
-            Client Email
-            <h3>{clientEmail}</h3>
-        </div>
-        <div>
-            Business Name
-            <h3>{clientData.business_name}</h3>
-        </div>
-        <div>
-            Industry Type
-            <h3>{clientData.industry_type}</h3>
-        </div>
-        <div>
-            Number of Employees: {clientData.num_employees}
-        </div>
-        <div>
-            Number of Daily Visitors: {clientData.dailyVisitors}
-        </div>
-        <div>
-            Does this company has firearm detection technology? {clientData.hasDetectionTech ? "Yes" : "No"}
-        </div>
-        <div>
-            Safety Measures in Place
-            <h3>Surveillance cameras: {clientData.safetyMeasures[0] ? "Yes" : "No"}</h3>
-            <h3>Security guards: {clientData.safetyMeasures[1] ? "Yes" : "No"}</h3>
-            <h3>Panic buttons: {clientData.safetyMeasures[2] ? "Yes" : "No"}</h3>
-            <h3>Emergency lockdown procedures: {clientData.safetyMeasures[3] ? "Yes" : "No"}</h3>
-        </div>
-        <div>
-            Current Effectiveness of Safety Measures: {clientData.currentEffectiveness}
-        </div>
-        <div>
-            Interest in AI Firearm Detection Technology: {clientData.interestInAI ? "Yes" : "No"}
-        </div>
-        <div>
-            Priority Level for Firearm Detection: {clientData.priorityLevel}
-        </div>
-        <div>
-            Importance of Police Response Speed: {clientData.responseSpeedImportance}
-        </div>
-        <div>
-            Comments: {clientData.comments}
+        <div className="client_info">
+            <div>
+                <h3>Client Email</h3>
+                {clientEmail}
+            </div>
+            <div>
+                <h3>Business Name</h3>
+                {clientData.business_name}
+            </div>
+            <div>
+                <h3>Industry Type</h3>
+                {clientData.industry_type}
+            </div>
+            <div>
+                <h3>Number of Employees:</h3> {clientData.num_employees}
+            </div>
+            <div>
+                <h3>Number of Daily Visitors:</h3> {clientData.dailyVisitors}
+            </div>
+            <div>
+                <h3>Does this company has firearm detection technology?</h3> {clientData.hasDetectionTech ? "Yes" : "No"}
+            </div>
+            <div>
+                <h3>Safety Measures in Place</h3>
+                <p>Surveillance cameras: {clientData.safetyMeasures[0] ? "Yes" : "No"}</p>
+                <p>Security guards: {clientData.safetyMeasures[1] ? "Yes" : "No"}</p>
+                <p>Panic buttons: {clientData.safetyMeasures[2] ? "Yes" : "No"}</p>
+                <p>Emergency lockdown procedures: {clientData.safetyMeasures[3] ? "Yes" : "No"}</p> 
+            </div>
+            <div>
+                <h3>Current Effectiveness of Safety Measures:</h3> {clientData.currentEffectiveness}
+            </div>
+            <div>
+                <h3>Interest in AI Firearm Detection Technology:</h3> {clientData.interestInAI ? "Yes" : "No"}
+            </div>
+            <div>
+                <h3>Priority Level for Firearm Detection:</h3> {clientData.priorityLevel}
+            </div>
+            <div>
+                <h3>Importance of Police Response Speed:</h3> {clientData.responseSpeedImportance}
+            </div>
+            <div>
+                <h3>Comments:</h3> {clientData.comments}
+            </div>
         </div>
       </Box>
     </Container>

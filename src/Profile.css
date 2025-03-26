@@ -1,0 +1,175 @@
+/* CSS for Profile Component - Dark Theme */
+
+.profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+  }
+  
+  .profile-title {
+    color: #ff6b6b;
+    font-size: 28px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3a3a3a;
+    text-align: center;
+  }
+  
+  .profile div {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #333333;
+    border-radius: 6px;
+    position: relative;
+  }
+  
+  .profile label {
+    display: inline-block;
+    font-weight: 600;
+    width: 150px;
+    color: #b8b8b8;
+    margin-right: 10px;
+  }
+  
+  .profile a {
+    display: inline-block;
+    color: #e0e0e0;
+    font-weight: normal;
+  }
+  
+  /* Updated grid layout for address display */
+  .profile div:not(:first-child) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .profile b {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 10px;
+    color: #b8b8b8;
+  }
+  
+  /* Form button layouts */
+  .profile form .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .profile form .edit-button {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-top: 0;
+  }
+  
+  .profile form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .profile input,
+  .profile select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    transition: border-color 0.3s;
+    background-color: #222;
+    color: #e0e0e0;
+  }
+  
+  .profile input:focus,
+  .profile select:focus {
+    border-color: #ff6b6b;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+  }
+  
+  .edit-button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .edit-button:hover {
+    background-color: #ff5252;
+  }
+  
+  .logout-button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    display: block;
+    width: 150px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .logout-button:hover {
+    background-color: #ff5252;
+  }
+  
+  /* Media query adjustments */
+  @media (max-width: 768px) {
+    .profile {
+      padding: 20px;
+    }
+    
+    .profile div:not(:first-child) {
+      grid-template-columns: 1fr;
+    }
+    
+    .profile label,
+    .profile b {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    
+    .profile div {
+      padding: 12px;
+    }
+    
+    .edit-button {
+      width: 60px;
+      height: 60px;
+      font-size: 12px;
+    }
+  }

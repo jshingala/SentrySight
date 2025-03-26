@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./demo.css";
+import "./demo.css"; // Keep the original CSS import
 import { motion } from "framer-motion";
-import { useTranslation } from "./context/TranslationContext"; // Import translation hook
+import { useTranslation } from "./context/TranslationContext";
+// These icons would typically be imported from a library like react-icons
+// For this example, we'll use inline SVG components
+const ThumbUpIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M9 21h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2z" fill="none" stroke="currentColor" strokeWidth="2"/>
+  </svg>
+);
+
+const ThumbDownIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2z" fill="none" stroke="currentColor" strokeWidth="2"/>
+  </svg>
+);
 
 function Demo({ userEmail }) {
   const [file, setFile] = useState(null);
@@ -13,6 +26,8 @@ function Demo({ userEmail }) {
   const [progress, setProgress] = useState(0);
   const { translateText, language } = useTranslation();
   const [translatedText, setTranslatedText] = useState({});
+  const [rating, setRating] = useState(null); // null, 'like', or 'dislike'
+  const [ratingFeedback, setRatingFeedback] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,7 +47,11 @@ function Demo({ userEmail }) {
         signUpNow: "Sign Up Now",
         fullAccessDesc: "Sign up today to gain complete access to all features and benefits of SentrySight.",
         loginRequired: "Please log in to experiment with our Demo function",
-        loginButtonText: "Go to Login"
+        loginButtonText: "Go to Login",
+        rateResult: "How was the analysis?",
+        likeText: "Helpful",
+        dislikeText: "Not Helpful",
+        thankYouRating: "Thank you for your feedback!"
       };
 
       const translated = {};
@@ -56,6 +75,8 @@ function Demo({ userEmail }) {
         setFile(selectedFile);
         setPreviewUrl(URL.createObjectURL(selectedFile));
         setResult(null);
+        setRating(null);
+        setRatingFeedback('');
       } else {
         alert("Please select a valid image file (JPEG, PNG, GIF, or WEBP).");
       }
@@ -71,6 +92,8 @@ function Demo({ userEmail }) {
     setIsUploading(true);
     setIsProcessing(true);
     setProgress(0);
+    setRating(null);
+    setRatingFeedback('');
 
     const formData = new FormData();
     formData.append("image", file);
@@ -105,25 +128,73 @@ function Demo({ userEmail }) {
   const handleLoginRedirect = () => {
     navigate('/sign-in');
   };
+  
+  const handleRating = (type) => {
+    setRating(type);
+    setRatingFeedback(translatedText.thankYouRating || "Thank you for your feedback!");
+    
+    // Here you would typically send the rating to your backend
+    // For example:
+    // const sendRating = async () => {
+    //   try {
+    //     await fetch("http://3.133.147.122:3000/rating", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         imageId: result,
+    //         rating: type,
+    //         userEmail: userEmail
+    //       }),
+    //     });
+    //   } catch (error) {
+    //     console.error("Error sending rating:", error);
+    //   }
+    // };
+    // sendRating();
+  };
 
-  // Not logged in view
+  // Enhanced animations and transitions
+  const fadeIn = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8 }
+  };
+
+  const fadeInDelayed = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.3 }
+  };
+
+  // Not logged in view with improved styling
   if (!userEmail) {
     return (
       <div className="demo-container">
         <section className="hero-section">
           <div className="hero-content">
-            <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+            <motion.h1 
+              initial={{ opacity: 0, y: -30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8 }}
+            >
               {translatedText.demoTitle || "SentrySight Demo"}
             </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}>
+            <motion.p 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               {translatedText.loginRequired || "Please log in to experiment with our Demo function"}
             </motion.p>
             <motion.button 
               className="btn-primary" 
               onClick={handleLoginRedirect}
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 1, delay: 0.4 }}
+              initial={{ opacity: 0, scale: 0.9 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              transition={{ duration: 0.8, delay: 0.6 }}
+              whileHover={{ scale: 1.05, boxShadow: "0 15px 25px rgba(229, 57, 53, 0.4)" }}
             >
               {translatedText.loginButtonText || "Go to Login"}
             </motion.button>
@@ -133,45 +204,93 @@ function Demo({ userEmail }) {
     );
   }
 
-  // Logged in view - original demo functionality
+  // Logged in view - enhanced demo functionality
   return (
     <div className="demo-container">
+      {/* Hero Section with enhanced animations */}
       <section className="hero-section">
         <div className="hero-content">
-          <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <motion.h1 
+            initial={{ opacity: 0, y: -30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8 }}
+          >
             {translatedText.demoTitle || "SentrySight Demo"}
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}>
+          <motion.p 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
             {translatedText.demoDescription || "Experience the power of advanced security solutions with real-time monitoring and AI-powered insights."}
           </motion.p>
-          <motion.a href="#upload-section" className="btn-primary" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }}>
+          <motion.a 
+            href="#upload-section" 
+            className="btn-primary"
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            transition={{ duration: 0.8, delay: 0.6 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 15px 25px rgba(229, 57, 53, 0.4)" }}
+          >
             {translatedText.tryItNow || "Try It Now"}
           </motion.a>
         </div>
       </section>
+
+      {/* How It Works Section with improved layout */}
       <section className="how-it-works">
         <div className="content-wrapper">
-          <motion.h2 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <motion.h2 
+            {...fadeIn}
+            viewport={{ once: true }}
+          >
             {translatedText.howItWorks || "How It Works"}
           </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}>
+          <motion.p 
+            {...fadeInDelayed}
+            viewport={{ once: true }}
+          >
             {translatedText.howItWorksDesc || "Our system leverages cutting-edge AI technology to analyze images and provide actionable security insights in real-time."}
           </motion.p>
         </div>
       </section>
+
+      {/* Upload Section with improved UI elements */}
       <section className="upload-section" id="upload-section">
         <div className="content-wrapper">
-          <motion.h3 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+          <motion.h3 
+            {...fadeIn}
+            viewport={{ once: true }}
+          >
             {translatedText.uploadTitle || "Upload an Image for Analysis"}
           </motion.h3>
-          <motion.div className="upload-controls" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2 }}>
-            <input type="file" accept="image/*" onChange={handleFileChange} />
+          <motion.div 
+            className="upload-controls"
+            {...fadeInDelayed}
+            viewport={{ once: true }}
+          >
+            <div className="file-input-container">
+              <input type="file" accept="image/*" onChange={handleFileChange} />
+            </div>
+            
             {previewUrl && (
-              <div className="image-preview">
+              <motion.div 
+                className="image-preview"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 <img src={previewUrl} alt="Uploaded Preview" />
-              </div>
+              </motion.div>
             )}
-            <button className="upload-button" onClick={handleUpload} disabled={isUploading}>
+            
+            <motion.button 
+              className="upload-button" 
+              onClick={handleUpload} 
+              disabled={isUploading}
+              whileHover={!isUploading ? { scale: 1.05 } : {}}
+              whileTap={!isUploading ? { scale: 0.95 } : {}}
+            >
               {isUploading ? (
                 <>
                   <span className="spinner"></span> {translatedText.uploading || "Uploading..."}
@@ -179,23 +298,93 @@ function Demo({ userEmail }) {
               ) : (
                 translatedText.uploadButton || "Upload Image"
               )}
-            </button>
+            </motion.button>
+            
+            {isProcessing && (
+              <motion.div 
+                className="progress-bar-container"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div 
+                  className="progress-bar" 
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </motion.div>
+            )}
           </motion.div>
+          
           {(isProcessing || result) && (
-            <div className="result">
-              {isProcessing ? translatedText.running || "Running..." : <img src={result} alt="Server Processed Result" />}
-            </div>
+            <motion.div 
+              className="result"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {isProcessing ? 
+                translatedText.running || "Running..." : 
+                <>
+                  <img src={result} alt="Server Processed Result" />
+                  
+                  {result && !isProcessing && (
+                    <motion.div 
+                      className="rating-popup"
+                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    >
+                      <div className="rating-title">
+                        {translatedText.rateResult || "How was the analysis?"}
+                      </div>
+                      <div className="rating-buttons">
+                        <button 
+                          className={`rating-btn like ${rating === 'like' ? 'selected' : ''}`}
+                          onClick={() => handleRating('like')}
+                          disabled={rating !== null}
+                        >
+                          <span className="thumb-icon"><ThumbUpIcon /></span>
+                          <span className="btn-text">{translatedText.likeText || "Helpful"}</span>
+                        </button>
+                        <button 
+                          className={`rating-btn dislike ${rating === 'dislike' ? 'selected' : ''}`}
+                          onClick={() => handleRating('dislike')}
+                          disabled={rating !== null}
+                        >
+                          <span className="thumb-icon"><ThumbDownIcon /></span>
+                          <span className="btn-text">{translatedText.dislikeText || "Not Helpful"}</span>
+                        </button>
+                      </div>
+                      <div className="rating-feedback">
+                        {ratingFeedback}
+                      </div>
+                    </motion.div>
+                  )}
+                </>
+              }
+            </motion.div>
           )}
         </div>
       </section>
+
+      {/* CTA Section with enhanced visuals */}
       <section className="cta-section">
         <div className="content-wrapper">
-          <motion.div className="cta-content" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <motion.div 
+            className="cta-content"
+            {...fadeIn}
+            viewport={{ once: true }}
+          >
             <h2>{translatedText.fullAccess || "Unlock Full Access"}</h2>
             <p>{translatedText.fullAccessDesc || "Sign up today to gain complete access to all features and benefits of SentrySight."}</p>
-            <a href="/sign-in" className="btn-secondary">
+            <motion.a 
+              href="/sign-in" 
+              className="btn-primary"
+              whileHover={{ scale: 1.05, boxShadow: "0 15px 25px rgba(229, 57, 53, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
+            >
               {translatedText.signUpNow || "Sign Up Now"}
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </section>

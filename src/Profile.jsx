@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './CSS.css'; // Import the CSS file
+import './Profile.css'; // Import the CSS file
 
 function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     const navigate = useNavigate();
@@ -220,6 +221,7 @@ function Profile({ userEmail, setUserEmail, setIsAdmin }) {
                             ))}
                         </select>
                         <br />
+                        <div className="button-container">
                         <button
                             type="submit"
                             className="edit-button"
@@ -233,6 +235,7 @@ function Profile({ userEmail, setUserEmail, setIsAdmin }) {
                                     edit_address: false,
                                 });
                             }}> Cancel </button>
+                    </div>
                     </form>                
                 )}
             </div>
