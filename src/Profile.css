@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@400;600&family=Inter:wght@400;500&display=swap');
 
 /* Global Reset */
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 *,
 *::before,
@@ -210,7 +210,9 @@ p {
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background-color: #ff0000; /* red for hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
   transform: translateY(-3px);
 }
 

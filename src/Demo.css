@@ -1,11 +1,11 @@
 /* Root Variables for Theming */
 :root {
-  --primary-color: #b82727;
+  --primary-color: #8a89e6;
   --background-color: #121212;
   --text-color: #FFFFFF;
   --secondary-text-color: #B3B3B3;
   --section-background: #1E1E1E;
-  --button-hover-color: #a31e1e;
+  --button-hover-color: #8a89e6;
 }
 
 /* Global Styling */
@@ -85,12 +85,13 @@ section {
   font-weight: 600;
   border-radius: 30px;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4);
+  /* box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); Lift effect */
 }
 
 .btn-primary:hover {
-  background-color: var(--button-hover-color);
-  transform: translateY(-3px);
+  background-color: #ff0000; /* red for hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  transform: scale(1.05);
 }
 
 /* How It Works Section */
@@ -160,12 +161,14 @@ section {
   font-weight: 600;
   border-radius: 30px;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4);
+  /* box-shadow: 0 6px 15px rgba(138,137,230,1); */
 }
 
 .upload-button:hover {
-  background-color: var(--button-hover-color);
-  transform: translateY(-3px);
+  background-color: #ff0000; /* red for hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); Lift effect */
+  transform: scale(1.05);
 }
 
 .spinner {
@@ -244,12 +247,14 @@ section {
   font-size: 1rem;
   font-weight: 600;
   border-radius: 30px;
-  box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4);
+  /* box-shadow: 0 6px 15px rgba(184, 39, 39, 0.4); */
 }
 
 .btn-secondary:hover {
-  background-color: var(--button-hover-color);
-  transform: translateY(-3px);
+  background-color: #ff0000; /* red for hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
+  transform: scale(1.05);
 }
 
 /* Responsive Design */

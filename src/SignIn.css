@@ -1,6 +1,7 @@
 /* Main content wrapper to add space below the fixed header */
 .main-content {
-  padding-top: 120px; /* Adjust based on the exact height of your header */
+  padding-top: 50px; /* Adjust based on the exact height of your header */
+  padding-bottom: 50px;
 }
 
 /* Sign-up form styling */
@@ -67,7 +68,8 @@
 
 .sign-up-form button:hover {
   background-color: #ff0000; /* red for hover */
-  box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  transform: scale(1.05);
 }
 
 /* Error Message Styling */

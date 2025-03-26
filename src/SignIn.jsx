@@ -49,6 +49,7 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
   };
 
   return (
+    <div className="main-content">
     <div className="sign-up">
       <h2>Login</h2>
       {errorMessage && <div className="error">{errorMessage}</div>}
@@ -81,6 +82,7 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
           </p>
         </div>
       </form>
+    </div>
     </div>
   );
 }

@@ -6,6 +6,10 @@ function Pricing({ onContactClick }) {
   const [field2, setField2] = useState('');
   const [field3, setField3] = useState('');
   const [estimate, setEstimate] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isEstimateHovered, setIsEstimateHovered] = useState(false);
+
+
 
   const handleEstimate = () => {
     // Mock calculation logic until we figure out what will be the actual estimate according to the services provided
@@ -23,22 +27,53 @@ function Pricing({ onContactClick }) {
   };
 
   const flatHeaderStyle = {
-    backgroundColor: "#4CAF50",
-    padding: "24px 16px",
-    textAlign: "center"
-  };
+  backgroundColor: "#4CAF50",
+  padding: "24px 16px",
+  textAlign: "center",
+  height: "100px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
+};
 
-  const basicHeaderStyle = {
-    backgroundColor: "#3f51b5",
-    padding: "24px 16px",
-    textAlign: "center"
-  };
+const basicHeaderStyle = {
+  backgroundColor: "#8a89e6",
+  padding: "24px 16px",
+  textAlign: "center",
+  height: "100px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
+};
 
-  const premiumHeaderStyle = {
-    backgroundColor: "#e65100",
-    padding: "24px 16px",
-    textAlign: "center"
-  };
+const premiumHeaderStyle = {
+  backgroundColor: "#f4b400",
+  padding: "24px 16px",
+  textAlign: "center",
+  height: "100px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
+};
+
+
+  // const flatHeaderStyle = {
+  //   backgroundColor: "#4CAF50",
+  //   padding: "24px 16px",
+  //   textAlign: "center"
+  // };
+
+  // const basicHeaderStyle = {
+  //   backgroundColor: "#8a89e6",
+  //   padding: "24px 16px",
+  //   textAlign: "center"
+  // };
+
+  // const premiumHeaderStyle = {
+  //   backgroundColor: "#f4b400",
+  //   padding: "24px 16px",
+  //   textAlign: "center"
+  // };
 
   const headerTextStyle = {
     color: "white",
@@ -85,7 +120,7 @@ function Pricing({ onContactClick }) {
   };
 
   const orangeDotStyle = {
-    color: "#e65100",
+    color: "#f4b400",
     marginRight: "8px",
     fontSize: "1.25rem",
     lineHeight: "1.2"
@@ -106,7 +141,7 @@ function Pricing({ onContactClick }) {
   };
 
   const contactButtonStyle = {
-    backgroundColor: "#4CAF50",
+    backgroundColor: isHovered ? "#ff0000" : "#4CAF50", // red on hover
     color: "white",
     padding: "12px 32px",
     fontSize: "1.125rem",
@@ -115,11 +150,14 @@ function Pricing({ onContactClick }) {
     cursor: "pointer",
     width: "176px",
     marginBottom: "16px",
-    transition: "background-color 0.3s"
+    transition: "background-color 0.3s ease, transform 0.2s ease",
+    boxShadow: "0 4px 10px rgba(90, 12, 144, 0.4)",
+    transform: isHovered ? "scale(1.05)" : "scale(1)"
   };
+  
 
   const estimateButtonStyle = {
-    backgroundColor: "#3f51b5",
+    backgroundColor: isEstimateHovered ? "#ff0000" : "#8a89e6", // red on hover
     color: "white",
     padding: "12px 32px",
     fontSize: "1.125rem",
@@ -127,8 +165,11 @@ function Pricing({ onContactClick }) {
     border: "none",
     cursor: "pointer",
     width: "176px",
-    transition: "background-color 0.3s"
+    transition: "background-color 0.3s ease, transform 0.2s ease",
+    boxShadow: "0 4px 10px rgba(90, 12, 144, 0.4)",
+    transform: isEstimateHovered ? "scale(1.05)" : "scale(1)"
   };
+  
 
   const modalOverlayStyle = {
     position: "fixed",
@@ -257,22 +298,22 @@ function Pricing({ onContactClick }) {
         </div>
 
         <div style={buttonContainerStyle}>
-          <button 
-            onClick={onContactClick}
-            style={contactButtonStyle}
-            onMouseOver={(e) => e.target.style.backgroundColor = "#45a049"}
-            onMouseOut={(e) => e.target.style.backgroundColor = "#4CAF50"}
-          >
-            Contact Us
-          </button>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            style={estimateButtonStyle}
-            onMouseOver={(e) => e.target.style.backgroundColor = "#35489a"}
-            onMouseOut={(e) => e.target.style.backgroundColor = "#3f51b5"}
-          >
-            Press for Estimate
-          </button>
+        <button 
+          onClick={onContactClick}
+          style={contactButtonStyle}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          Contact Us
+        </button>
+        <button
+  onClick={() => setIsModalOpen(true)}
+  style={estimateButtonStyle}
+  onMouseEnter={() => setIsEstimateHovered(true)}
+  onMouseLeave={() => setIsEstimateHovered(false)}
+>
+  Press for Estimate
+</button>
         </div>
       </div>
 
