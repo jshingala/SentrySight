@@ -95,7 +95,8 @@ class Register extends Component {
     .then(data => {
       if (data.error) {
         // If there's an error, display it to the user
-        this.setState({ errorMessage: data.error });
+        alert(data.error);
+        window.location.reload();
       } else {
         this.setState({ successMessage: "You're successfully registered!", errorMessage: '' });
       }

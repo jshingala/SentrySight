@@ -84,7 +84,13 @@ app.get('/companies', (req, res) => {
   const limit = 10;
   const offset = (page - 1) * limit;
 
-  const dataQuery = "SELECT business_id FROM Questionnaire LIMIT ? OFFSET ?";
+  //load in one query
+  const dataQuery = `
+    SELECT q.business_id, q.submit_date, b.email, b.business_name
+    FROM Questionnaire q
+    JOIN Business b ON q.business_id = b.business_id
+    LIMIT ? OFFSET ?`;
+
   const countQuery = "SELECT COUNT(*) AS total FROM Questionnaire";
 
   con.query(countQuery, (err, countResult) => {
@@ -94,7 +100,7 @@ app.get('/companies', (req, res) => {
     }
 
     const totalCompanies = countResult[0].total;
-    
+
     con.query(dataQuery, [limit, offset], (err, results) => {
       if (err) {
         console.error("Database error (data):", err);
@@ -105,22 +111,10 @@ app.get('/companies', (req, res) => {
         return res.json({ companies: [], totalCompanies });
       }
 
-      // Extract all business IDs
-      const businessIds = results.map(row => row.business_id);
-
-      // Query to get company details for multiple business IDs
-      const companyQuery = `SELECT email, business_name FROM Business WHERE business_id IN (?)`;
-
-      con.query(companyQuery, [businessIds], (err, companyResults) => {
-        if (err) {
-          console.error("Database error (companies):", err);
-          return res.status(500).json({ error: 'Database query error' });
-        }
-
-        res.json({
-          companies: companyResults,
-          totalCompanies
-        });
+      // Send companies with submit_date included
+      res.json({
+        companies: results,
+        totalCompanies
       });
     });
   });
