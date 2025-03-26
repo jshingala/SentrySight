@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './CSS.css'; // Import the CSS file
 import './Profile.css'; // Import the CSS file
 
 function Profile({ userEmail, setUserEmail, setIsAdmin }) {
@@ -112,148 +113,138 @@ function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     return (
         <section className="profile">
             <h2 className="profile-title">Profile</h2>
-            
             <div>
-            {!userData.edit_address && (
-         <>
-             <div className="info-grid">
-                <label className="bold-label">Business Name:</label>
-                <span>{userData.business_name}</span>
-
-                <label className="bold-label">Phone:</label>
-                <span>{userData.contact_number}</span>
-
+                <label>Business Name:</label>
+                <a> {userData.business_name} </a>
+            </div>
+            <div>
+                <label>Phone:</label>
+                <a> {userData.contact_number} </a>
+            </div>
+            <div>
                 <label>Email:</label>
-                <span>{userData.email}</span>
-
-                <label className="bold-label">Address 1:</label>
-                <span>{userData.address1}</span>
-
-                <label className="bold-label">Address 2:</label>
-                <span>{userData.address2}</span>
-
-                <label>City:</label>
-                <span>{userData.city}</span>
-
-                <label>State:</label>
-                <span>{userData.state}</span>
-
-                <label>Postal Code:</label>
-                <span>{userData.postal_code}</span>
-
-                <label>Country:</label>
-                <span>{userData.country}</span>
-                </div>
-            <button
-                type="button"
-                className="edit-button"
-                onClick={() => {
-                setUserData((prevData) => ({
-                    ...prevData,
-                    edit_address: true,
-                }));
-                setSelectedCountry(userData.country || "");
-                }}
-            >
-                Edit
-            </button>
-            </>
-        )}
-
-            {userData.edit_address && (
-            <form onSubmit={handleSubmit} className="edit-form-grid">
-                <div>
-                <label>Address Line 1:</label>
-                <input
-                    type="text"
-                    name="address1"
-                    value={userData.address1}
-                    onChange={handleChange}
-                    required
-                    placeholder="Address Line 1"
-                />
-                </div>
-                <div>
-                <label>Address Line 2:</label>
-                <input
-                    type="text"
-                    name="address2"
-                    value={userData.address2}
-                    onChange={handleChange}
-                    placeholder="Address Line 2"
-                />
-                </div>
-                <div>
-                <label>City:</label>
-                <input
-                    type="text"
-                    name="city"
-                    value={userData.city}
-                    onChange={handleChange}
-                    required
-                    placeholder="City"
-                />
-                </div>
-                <div>
-                <label>State/Province/Region:</label>
-                <input
-                    type="text"
-                    name="state"
-                    value={userData.state}
-                    onChange={handleChange}
-                    required
-                    placeholder="State/Province/Region"
-                />
-                </div>
-                <div>
-                <label>Postal Code:</label>
-                <input
-                    type="text"
-                    name="postal_code"
-                    value={userData.postal_code}
-                    onChange={handleChange}
-                    required
-                    placeholder="Postal Code"
-                />
-                </div>
-                <div>
-                <label>Country:</label>
-                <select
-                    name="country"
-                    value={selectedCountry || userData.country}
-                    onChange={(e) => {
-                    const country = e.target.value;
-                    setSelectedCountry(country);
-                    setUserData((prevData) => ({ ...prevData, country }));
-                    }}
-                    required
-                >
-                    <option value="" disabled>-- Select a Country --</option>
-                    <option value="United States">United States</option>
-                    <option value="" disabled>-----------------------------------</option>
-                    {countries
-                    .filter((country) => country !== "United States")
-                    .map((country, index) => (
-                        <option key={index} value={country}>{country}</option>
-                    ))}
-                </select>
-                </div>
-
-                <div className="edit-buttons">
-                <button type="submit" className="edit-button">Done</button>
-                <button
-                    type="button"
-                    className="edit-button"
-                    onClick={() => {
-                    setUserData({ ...userData, edit_address: false });
-                    }}
-                >
-                    Cancel
-                </button>
-                </div>
-            </form>
-            )}
-
+                <a> {userData.email} </a>
+            </div>
+            <div>
+                {!userData.edit_address && (
+                    <>
+                        <a> <b>Address 1:</b> {userData.address1} </a>
+                        <a> <b>Address 2:</b> {userData.address2} </a>
+                        <a> <b>City:</b> {userData.city} </a>
+                        <a> <b>State:</b> {userData.state} </a>
+                        <a> <b>Postal Code:</b> {userData.postal_code} </a>
+                        <a> <b>Country:</b> {userData.country} </a>
+                        <button
+                            type="button"
+                            className="edit-button"
+                            onClick={() => {
+                                setUserData((prevData) => ({
+                                    ...prevData,
+                                    edit_address: true,
+                                }));
+                                setSelectedCountry(userData.country || ""); // Ensure selectedCountry syncs
+                            }}
+                        >
+                            Edit
+                        </button>
+                    </>
+                )}
+                {userData.edit_address && (
+                    <form onSubmit={handleSubmit}>
+                    <div className="address-grid">
+                      <div>
+                        <b>Address Line 1: </b>
+                        <input
+                          type="text"
+                          name="address1"
+                          value={userData.address1}
+                          onChange={handleChange}
+                          required
+                          placeholder="Address Line 1"
+                        />
+                      </div>
+                      <div>
+                        <b>Address Line 2: </b>
+                        <input
+                          type="text"
+                          name="address2"
+                          value={userData.address2}
+                          onChange={handleChange}
+                          placeholder="Address Line 2"
+                        />
+                      </div>
+                      <div>
+                        <b>City: </b>
+                        <input
+                          type="text"
+                          name="city"
+                          value={userData.city}
+                          onChange={handleChange}
+                          required
+                          placeholder="City"
+                        />
+                      </div>
+                      <div>
+                        <b>State/Province/Region: </b>
+                        <input
+                          type="text"
+                          name="state"
+                          value={userData.state}
+                          onChange={handleChange}
+                          required
+                          placeholder="State/Province/Region"
+                        />
+                      </div>
+                      <div>
+                        <b>Postal Code: </b>
+                        <input
+                          type="text"
+                          name="postal_code"
+                          value={userData.postal_code}
+                          onChange={handleChange}
+                          required
+                          placeholder="Postal Code"
+                        />
+                      </div>
+                      <div>
+                        <b>Country: </b>
+                        <select
+                          name="country"
+                          value={selectedCountry || userData.country}
+                          onChange={(e) => {
+                            const country = e.target.value;
+                            setSelectedCountry(country);
+                            setUserData((prevData) => ({ ...prevData, country }));
+                          }}
+                          required
+                        >
+                          <option value="" disabled>-- Select a Country --</option>
+                          <option value="United States">United States</option>
+                          <option value="" disabled>-----------------------------------</option>
+                          {countries
+                            .filter((country) => country !== "United States")
+                            .map((country, index) => (
+                              <option key={index} value={country}>{country}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  
+                    <div className="button-container">
+                      <button type="submit" className="edit-button">Done</button>
+                      <button
+                        type="button"
+                        className="edit-button"
+                        onClick={() => {
+                          setUserData({
+                            ...userData,
+                            edit_address: false,
+                          });
+                        }}>Cancel</button>
+                    </div>
+                  </form>
+                      
+                )}
             </div>
             <button type="button" onClick={handleLogout} className="logout-button">Sign Out</button>
         </section>
