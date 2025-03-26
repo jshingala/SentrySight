@@ -1,5 +1,3 @@
-/* CSS for Profile Component - Dark Theme */
-
 .profile {
     max-width: 800px;
     margin: 0 auto;
@@ -42,7 +40,6 @@
     font-weight: normal;
   }
   
-  /* Updated grid layout for address display */
   .profile div:not(:first-child) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
