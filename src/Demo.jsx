@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./demo.css"; // Keep the original CSS import
+import "./demo.css";
 import { motion } from "framer-motion";
 import { useTranslation } from "./context/TranslationContext";
 // These icons would typically be imported from a library like react-icons
@@ -17,6 +17,13 @@ const ThumbDownIcon = () => (
   </svg>
 );
 
+// Warning icon for rate limit
+const WarningIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-10h2v8h-2V7z" fill="currentColor"/>
+  </svg>
+);
+
 function Demo({ userEmail }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -29,6 +36,10 @@ function Demo({ userEmail }) {
   const [rating, setRating] = useState(null); // null, 'like', or 'dislike'
   const [ratingFeedback, setRatingFeedback] = useState('');
   const navigate = useNavigate();
+  
+  // Add state for rate limit warning
+  const [rateLimitWarning, setRateLimitWarning] = useState(null);
+  const [usageInfo, setUsageInfo] = useState(null);
 
   useEffect(() => {
     async function updateTranslations() {
@@ -51,7 +62,10 @@ function Demo({ userEmail }) {
         rateResult: "How was the analysis?",
         likeText: "Helpful",
         dislikeText: "Not Helpful",
-        thankYouRating: "Thank you for your feedback!"
+        thankYouRating: "Thank you for your feedback!",
+        // Add rate limit translation strings
+        rateLimitExceeded: "Rate limit exceeded. You can only make 5 requests per minute.",
+        usageStatus: "Usage: {current}/{limit} requests - Resets in 1 minute"
       };
 
       const translated = {};
@@ -77,6 +91,8 @@ function Demo({ userEmail }) {
         setResult(null);
         setRating(null);
         setRatingFeedback('');
+        // Clear any previous warnings when a new file is selected
+        setRateLimitWarning(null);
       } else {
         alert("Please select a valid image file (JPEG, PNG, GIF, or WEBP).");
       }
@@ -94,6 +110,8 @@ function Demo({ userEmail }) {
     setProgress(0);
     setRating(null);
     setRatingFeedback('');
+    // Clear any previous warnings
+    setRateLimitWarning(null);
 
     const formData = new FormData();
     formData.append("image", file);
@@ -105,20 +123,34 @@ function Demo({ userEmail }) {
         body: formData,
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
+        if (response.status === 429) {
+          // Rate limit exceeded
+          setRateLimitWarning(translatedText.rateLimitExceeded || "Rate limit exceeded. You can only make 5 requests per minute.");
+          throw new Error("Rate limit exceeded");
+        }
         throw new Error(`Upload failed with status: ${response.status}`);
       }
 
-      const data = await response.json();
       if (!data.imageUrl) {
         throw new Error("No imageUrl returned from server.");
       }
+      
+      // Set usage info if available in the response
+      if (data.usage) {
+        setUsageInfo(data.usage);
+      }
+      
       setResult(data.imageUrl + "?timestamp=" + new Date().getTime());
       setPreviewUrl(data.imageUrl + "?timestamp=" + new Date().getTime());
       setProgress(100);
     } catch (error) {
       console.error("Error uploading image:", error);
-      alert("Error uploading image. Check console for details.");
+      if (!error.message.includes("Rate limit exceeded")) {
+        alert("Error uploading image. Check console for details.");
+      }
     } finally {
       setIsUploading(false);
       setIsProcessing(false);
@@ -131,28 +163,8 @@ function Demo({ userEmail }) {
   
   const handleRating = (type) => {
     setRating(type);
-    setRatingFeedback(translatedText.thankYouRating || "Thank you for your feedback!");
-    
-    // Here you would typically send the rating to your backend
-    // For example:
-    // const sendRating = async () => {
-    //   try {
-    //     await fetch("http://3.133.147.122:3000/rating", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         imageId: result,
-    //         rating: type,
-    //         userEmail: userEmail
-    //       }),
-    //     });
-    //   } catch (error) {
-    //     console.error("Error sending rating:", error);
-    //   }
-    // };
-    // sendRating();
+    setRatingFeedback(translatedText.thankYouRating || "Thank you for your feedback!");// deal with ratings later
+        
   };
 
   // Enhanced animations and transitions
@@ -264,6 +276,42 @@ function Demo({ userEmail }) {
           >
             {translatedText.uploadTitle || "Upload an Image for Analysis"}
           </motion.h3>
+          
+          {/* Rate limit warning display */}
+          {rateLimitWarning && (
+            <motion.div 
+              className="rate-limit-warning"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="warning-icon"><WarningIcon /></span>
+              {rateLimitWarning}
+            </motion.div>
+          )}
+
+          {/* Usage information display */}
+          {usageInfo && (
+            <motion.div 
+              className="usage-info"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <p>
+                {(translatedText.usageStatus || "Usage: {current}/{limit} requests - Resets in 1 minute")
+                  .replace("{current}", usageInfo.current)
+                  .replace("{limit}", usageInfo.limit)}
+              </p>
+              <div className="usage-bar-container">
+                <div 
+                  className={`usage-bar ${usageInfo.current / usageInfo.limit >= 0.8 ? 'warning' : ''} ${usageInfo.current / usageInfo.limit >= 1 ? 'critical' : ''}`} 
+                  style={{ width: `${Math.min((usageInfo.current / usageInfo.limit) * 100, 100)}%` }}
+                ></div>
+              </div>
+            </motion.div>
+          )}
+          
           <motion.div 
             className="upload-controls"
             {...fadeInDelayed}
@@ -287,9 +335,9 @@ function Demo({ userEmail }) {
             <motion.button 
               className="upload-button" 
               onClick={handleUpload} 
-              disabled={isUploading}
-              whileHover={!isUploading ? { scale: 1.05 } : {}}
-              whileTap={!isUploading ? { scale: 0.95 } : {}}
+              disabled={isUploading || rateLimitWarning !== null}
+              whileHover={!isUploading && !rateLimitWarning ? { scale: 1.05 } : {}}
+              whileTap={!isUploading && !rateLimitWarning ? { scale: 0.95 } : {}}
             >
               {isUploading ? (
                 <>

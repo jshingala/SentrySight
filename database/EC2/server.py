@@ -6,15 +6,15 @@ import logging
 import boto3
 from ultralytics import YOLO
 import time
+from collections import defaultdict
+from datetime import datetime, timedelta
 
-
-# put actual credentials here
-S3_BUCKET_NAME = ""
+S3_BUCKET_NAME = "logbucketsentry"
 S3_LOGS_FOLDER = "ai_logs/"
-AWS_ACCESS_KEY = ""
-AWS_SECRET_KEY = ""
+AWS_ACCESS_KEY = "access key here"
+AWS_SECRET_KEY = "secret key here"
 
-# Configure logging BEFORE creating S3 client
+#configure logging before creating S3 client
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -47,10 +47,45 @@ logging.info("Loading YOLOv8 model...")
 model = YOLO("yolov8n.pt")
 logging.info("YOLOv8 model loaded successfully.")
 
+# Rate limiting implementation - track requests per IP per minute
+rate_limit_data = defaultdict(list)
+RATE_LIMIT = 5  # Maximum 5 requests per minute
+
+def clean_old_rate_limit_data():
+    """Remove entries older than 1 minute from the rate limiting data"""
+    current_time = datetime.now()
+    one_minute_ago = current_time - timedelta(minutes=1)
+    
+    for ip, timestamps in list(rate_limit_data.items()):
+        rate_limit_data[ip] = [ts for ts in timestamps if ts > one_minute_ago]
+        
+        # Remove empty entries
+        if not rate_limit_data[ip]:
+            del rate_limit_data[ip]
+
+def check_rate_limit(ip_address):
+    """Check if an IP has exceeded the rate limit
+    Returns: (bool) True if rate limit exceeded, False otherwise
+    """
+    clean_old_rate_limit_data()
+    
+    # Get the current timestamps for this IP
+    timestamps = rate_limit_data[ip_address]
+    
+    # If there are 5 or more timestamps and they're all within the last minute, 
+    # the rate limit is exceeded
+    if len(timestamps) >= RATE_LIMIT:
+        return True
+    
+    # Add the current timestamp
+    rate_limit_data[ip_address].append(datetime.now())
+    return False
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    user_ip = request.remote_addr.replace(".", "_")
-    log_file_path = os.path.join(LOGS_FOLDER, f"log_{user_ip}.log")
+    user_ip = request.remote_addr
+    user_ip_log = user_ip.replace(".", "_")  # For log filename
+    log_file_path = os.path.join(LOGS_FOLDER, f"log_{user_ip_log}.log")
 
     # Create a file handler specifically for this request
     file_handler = logging.FileHandler(log_file_path, mode="a")
@@ -61,17 +96,24 @@ def upload_file():
     root_logger.addHandler(file_handler)
 
     try:
-        logging.info(f"Received request from {request.remote_addr}")
+        logging.info(f"Received request from {user_ip}")
+        
+        if check_rate_limit(user_ip): # Check rate limit
+            logging.warning(f"IP {user_ip} has exceeded rate limit (5 requests per minute)")
+            return jsonify({
+                "error": "Rate limit exceeded", 
+                "message": "You can only make 5 requests per minute"
+            }), 429
 
         if 'image' not in request.files:
-            logging.warning(f"IP {request.remote_addr} attempted upload without a file.")
+            logging.warning(f"IP {user_ip} attempted upload without a file.")
             return jsonify({"error": "No file uploaded"}), 400
 
         file = request.files['image']
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         processed_path = os.path.join(app.config['PROCESSED_FOLDER'], f"inference_{file.filename}")
 
-        logging.info(f"Saving uploaded file: {file.filename} from IP: {request.remote_addr}")
+        logging.info(f"Saving uploaded file: {file.filename} from IP: {user_ip}")
         file.save(file_path)
 
         try:
@@ -96,15 +138,20 @@ def upload_file():
             logging.info(f"Saving inference image: inference_{file.filename}")
             cv2.imwrite(processed_path, annotated_img)
 
-            upload_logs_to_s3(log_file_path, user_ip)
+            upload_logs_to_s3(log_file_path, user_ip_log)
 
             return jsonify({
                 "imageUrl": f"http://{request.host}/processed/inference_{file.filename}",
-                "user_ip": request.remote_addr,
+                "user_ip": user_ip,
                 "timing": {
                     "preprocess": preprocess_time,
                     "inference": inference_time,
                     "postprocess": postprocess_time
+                },
+                "usage": {
+                    "current": len(rate_limit_data[user_ip]),
+                    "limit": RATE_LIMIT,
+                    "reset": "1 minute from your first request"
                 }
             })
 
