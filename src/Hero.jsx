@@ -32,30 +32,6 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      {/* Security detection overlay */}
-      <div className="security-overlay">
-        <div className="detection-box">
-          <motion.div 
-            className="detection-marker"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.3, 0.7, 0.3] }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 2.5,
-              ease: "linear"
-            }}
-          />
-          <motion.div 
-            className="detection-label"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-          >
-            Movement Detected 0.81
-          </motion.div>
-        </div>
-      </div>
-
       {/* Main content */}
       <motion.div 
         className="hero-content"
