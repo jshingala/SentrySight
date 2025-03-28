@@ -120,13 +120,14 @@ Our project timeline is managed through JIRA, outlining key milestones:
 ## Setup
 
 1. Clone the repository:
-   Use Github Desktop
+   Recommend Github Desktop
 
 2. Navigate to the project folder:
    Make sure you're on the correct folder, use cd command.
 
 3. Install dependencies:
-   npm install
+   npm install main directory, then cd database, npm install again.
+   then cd.. out to main.
 
-4. Run the development server:
-   npm run dev (run npm start to also turn on the server)
+5. Run the development server:
+   npm run dev ( npm start to run both server and website)
