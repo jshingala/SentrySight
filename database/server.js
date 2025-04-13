@@ -226,6 +226,34 @@ app.post('/update-address', (req, res) => {
   });
 });
 
+app.post('/update-password', (req, res) => {
+  const { email, password } = req.body;
+
+  const saltRounds = 10; // You can adjust this number for more security
+  bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
+    if (err) {
+      console.log('Error hashing the password:', err);
+      return res.status(500).json({ error: 'Error hashing the password' });
+    }
+
+    const updateQuery = `UPDATE Business SET login_password = ? WHERE email = ?`;
+  
+    con.query(updateQuery, [hashedPassword, email], (err, updateResults) => {
+      console.log("Received email:", email);
+      console.log("Running query:", updateQuery);
+      console.log("With values:", [hashedPassword, password, email]);
+
+      if (err) return res.status(500).json({ error: 'Database update error' });
+
+      if (updateResults.affectedRows === 0) {
+        return res.status(404).json({ error: 'Password update failed' });
+      }
+
+      res.json({ message: 'Password updated successfully' });
+    });
+  });
+});
+
 // Sign-Up Route
 app.post('/sign-up', (req, res) => {
   let { email, password, business_name, contact_number, _share } = req.body;
@@ -328,42 +356,6 @@ app.post('/sign-in', (req, res) => {
     } else {
       res.status(404).json({ error: 'Email not found.' });
     }
-  });
-});
-
-app.get('/questionnaire_client', (req, res) => {
-  const email = req.query.email;
-
-  if (!email) return res.status(400).json({ error: 'Email is required' });
-
-  const userQuery = "SELECT business_id, business_name FROM Business WHERE email = ?";
-  con.query(userQuery, [email], (err, results) => {
-      if (err) return res.status(500).json({ error: 'Database query error' });
-
-      if (results.length === 0) return res.status(404).json({ error: 'User not found' });
-
-      const user = results[0];
-      const q_Query = "SELECT * FROM Questionnaire WHERE business_id = ?";
-
-      con.query(q_Query, [user.business_id], (err, q_results) => {
-          if (err) return res.status(500).json({ error: 'Database query error' });
-
-          const questionnaire = q_results[0] || {};
-          res.json({
-            business_name: user.business_name || '',
-            industry_type: questionnaire.industry_type || '',
-            num_employees: questionnaire.num_employees || '',
-            dailyVisitors: questionnaire.num_visitors || '',
-            hasDetectionTech: questionnaire.en_detection || false,
-            safetyMeasures: [questionnaire.safety_0 || false, questionnaire.safety_1 || false, 
-              questionnaire.safety_2 || false, questionnaire.safety_3 || false],
-            currentEffectiveness: questionnaire.effectiveness || 0,
-            interestInAI: questionnaire.interest || false,
-            priorityLevel: questionnaire.priority || 0,
-            responseSpeedImportance: questionnaire.police_speed || 0,
-            comments: questionnaire.comments || ''
-          });
-      });
   });
 });
 

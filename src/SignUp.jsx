@@ -26,7 +26,7 @@ class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password, business_name, contact_number, _share } = this.state;
+    const { email } = this.state;
 
     // Send POST request to backend to send verification code
     this.sendVerificationCode(email);
@@ -41,7 +41,7 @@ class Register extends Component {
         body: JSON.stringify({ email })
       });
 
-      console.log(email);
+      //console.log(email);
 
       const data = await response.json();
       if (response.ok) {
@@ -110,13 +110,12 @@ class Register extends Component {
   render() {
     return (
       <div className="sign-up">
-        <h2>Sign Up / Register</h2>
         {this.state.successMessage && 
         <div className="success">
             {this.state.successMessage}     {/*Success Message*/}
             <div className="to_login">
             <Link to="/sign-in">
-              <button>Go back to Sign-up</button>
+              <button>Go back to Sign-in</button>
             </Link>
           </div>    
         </div>
@@ -124,6 +123,7 @@ class Register extends Component {
 
         {!this.state.successMessage &&(
         <form className="sign-up-form" onSubmit={this.handleSubmit}>
+          <h2>Sign Up / Register</h2>
           <div>
             <label htmlFor="email">Email: </label>
             <input
@@ -171,7 +171,7 @@ class Register extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" className="signIn">Register</button>
         </form>
         )}
 

@@ -20,6 +20,7 @@ const Login = lazy(() => import("./SignIn"));
 const SignUp = lazy(() => import("./SignUp"));
 const Profile = lazy(() => import("./Profile"));
 const NotFound = lazy(() => import("./404"));
+const FP = lazy(() => import("./ForgotPassword"));
 
 function App() {
   const [userEmail, setUserEmail] = useState(() => localStorage.getItem("userEmail") || "");
@@ -81,6 +82,7 @@ function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail,
               <Route path="/sign-in"
                 element={<Login setUserEmail={setUserEmail} setIsAdmin={setIsAdmin} />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/FP" element={<FP />} />
               <Route path="/profile"
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
               <Route path="*" element={<NotFound />} />
