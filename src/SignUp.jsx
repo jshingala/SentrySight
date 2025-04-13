@@ -11,7 +11,11 @@ class Register extends Component {
         business_name: '',
         contact_number: '',
         _share: false,
-        successMessage: ''  //This will hold the success message
+        successMessage: '',  //This will hold the success message
+        isCodeSent: false,
+        isVerified: false,
+        code: '',
+        verificationCode: ''
     };
   }
 
@@ -24,31 +28,83 @@ class Register extends Component {
     event.preventDefault();
     const { email, password, business_name, contact_number, _share } = this.state;
 
-    // Send POST request to backend
-    fetch('http://localhost:3306/sign-up', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password, business_name, contact_number, _share })
-      })
-        .then(response => {
-            //console.log(response);
-            return response.json()
-        })
-        .then(data => {
-            if (data.error) {
-                // If there's an error, display it to the user
-                this.setState({ errorMessage: data.error });
-              }else {
-                this.setState({ successMessage: "You're successfully registered!", errorMessage: '' });
-              }
-        })
-        .catch(error => {
-          console.error('Error:', error);
+    // Send POST request to backend to send verification code
+    this.sendVerificationCode(email);
+  };
 
-          this.setState({ errorMessage: error.message });   //display the UNIQUE key error to the user
-        });
+  // Handle sending verification code
+  sendVerificationCode = async (email) => {
+    try {
+      const response = await fetch('http://localhost:3306/send-verification-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      console.log(email);
+
+      const data = await response.json();
+      if (response.ok) {
+        this.setState({ isCodeSent: true, verificationCode: data.code });
+        alert('Verification code sent to your email!');
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error('Error sending code:', error);
+    }
+  };
+
+  // Handle verification code check
+  verifyCode = async () => {
+    const { email, code } = this.state;
+    try {
+      const response = await fetch('http://localhost:3306/verify-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        this.setState({ isVerified: true });
+        alert('Email verified successfully! Proceeding to registration...');
+        // After successful verification, submit the actual registration request
+        this.registerUser();
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error('Error verifying code:', error);
+    }
+  };
+
+  // Register user after email is verified
+  registerUser = () => {
+    const { email, password, business_name, contact_number, _share } = this.state;
+
+    // Send POST request to backend to register user
+    fetch('http://localhost:3306/sign-up', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password, business_name, contact_number, _share })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        // If there's an error, display it to the user
+        alert(data.error);
+        window.location.reload();
+      } else {
+        this.setState({ successMessage: "You're successfully registered!", errorMessage: '' });
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      this.setState({ errorMessage: error.message });
+    });
   };
 
   render() {
@@ -113,6 +169,22 @@ class Register extends Component {
           </div>
           <button type="submit">Register</button>
         </form>
+        )}
+
+        {/* Verification code section */}
+        {this.state.isCodeSent && !this.state.isVerified && (
+          <div>
+            <label>Enter the verification code sent to your email: </label>
+            <input
+              type="text"
+              name="code"
+              value={this.state.code}
+              onChange={this.handleChange}
+              placeholder="Enter verification code"
+              required
+            />
+            <button onClick={this.verifyCode}>Verify Code</button>
+          </div>
         )}
         
         {/* Display the error message */}
