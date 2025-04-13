@@ -141,3 +141,9 @@ html, body {
 .footer ul li {
   margin-bottom: 5px;
 }
+
+
+html, body {
+  overflow-x: hidden;  /* Ensures no horizontal scroll */
+  width: 100%;
+}
