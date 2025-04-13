@@ -42,6 +42,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
     "@eslint/js": "^9.13.0",
@@ -62,11 +63,6 @@
     "tailwindcss": "3.4.14",
     "vite": "^5.4.11"
   },
-"jest": {
-  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
-  "testEnvironment": "jsdom"
-},
-
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "keywords": [],
   "author": "",
