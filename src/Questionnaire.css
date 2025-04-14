@@ -1,0 +1,97 @@
+/* Styles for the Questionnaire component */
+.Questionnaire {
+    background-color: #636363; /* Dark background */
+    color: #EAEAEA; /* Off-white text */
+    padding: 40px;
+    border-radius: 8px;
+  }
+  
+  /* Title styling */
+  .Questionnaire .title {
+    color: #635bff; /* Purple color for the title */
+    text-align: center;
+  }
+  
+  /* Subtitle styling */
+  .Questionnaire .subtitle {
+    color: #B0B0B0; /* Light gray text */
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  /* Form control margins */
+  .Questionnaire .MuiFormControl-root {
+    margin-bottom: 20px;
+  }
+  
+  /* TextFields styling */
+  .Questionnaire .MuiInputBase-root {
+    background-color: #262626; /* Card background */
+    color: #EAEAEA; /* Off-white text */
+  }
+  
+  .Questionnaire .MuiInputBase-input::placeholder {
+    color: #EAEAEA; /* White placeholder text */
+    opacity: 1;
+  }
+  
+  .Questionnaire .MuiFormLabel-root {
+    color: #B0B0B0; /* Light gray labels */
+  }
+  
+  .Questionnaire .MuiFormHelperText-root {
+    color: red; /* Error messages in red */
+  }
+  
+  /* Checkbox labels */
+  .Questionnaire .MuiFormControlLabel-label {
+    color: #EAEAEA; /* Off-white text */
+  }
+  
+  /* Checkbox icons */
+  .Questionnaire .MuiCheckbox-root .MuiSvgIcon-root {
+    color: #EAEAEA; /* Off-white */
+  }
+  
+  /* Slider thumb and track */
+  .Questionnaire .MuiSlider-thumb {
+    color: #635bff; /* Purple thumb */
+  }
+  
+  .Questionnaire .MuiSlider-track {
+    color: #635bff; /* Purple track */
+  }
+  
+  /* Submit button styling */
+  .Questionnaire .submit-button {
+    background-color: #635bff; /* Purple background */
+    color: #EAEAEA; /* Off-white text */
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Questionnaire .submit-button:hover {
+    background-color: #ff0000; /* Darker purple on hover */
+  }
+  
+  .submit-date {
+    font-size: 12px;
+    color: #ffffff;
+  }
+
+  .Questionnaire .client_info div{
+    margin-top: 15px;
+    font-size: 20px;
+    border: 2px solid grey; /* Adds a 2px solid grey border */
+    padding: 20px; /* Optional: Adds space between the content and the border */
+  }
+  .Questionnaire .client_info h3{
+    font-size: 30px;
+    background: linear-gradient(to right, #8a89e6, #d084f3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
