@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
@@ -25,6 +26,8 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: vi.fn(),
   })),
 =======
+=======
+>>>>>>> Stashed changes
 // jest-dom adds custom jest matchers for asserting on DOM nodes.
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
@@ -152,6 +155,9 @@ Object.defineProperty(window, 'localStorage', {
 afterEach(() => {
   jest.clearAllMocks();
   window.localStorage.clear();
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 });
 
