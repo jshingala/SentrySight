@@ -45,7 +45,7 @@ function Header({ userEmail, isAdmin }) {
       </div>
 
       {isMobile ? (
-        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className="menu-icon" data-testid="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
         </div>
       ) : (
