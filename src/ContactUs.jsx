@@ -152,7 +152,6 @@ function ContactUs() {
           <span style={purpleLinkStyle}>24/7 Emergency Support</span>
         </div>
       </div>
-
       <div style={footerStyle}>
         <p style={footerTextStyle}>Experience the future of security with SentrySight's AI-powered solutions</p>
       </div>

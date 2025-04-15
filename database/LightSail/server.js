@@ -40,7 +40,7 @@ if (!buildPath) {
 app.use(express.static(buildPath));
 
 // Log requests for debugging
-app.use((req, res, next) => {  
+app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
