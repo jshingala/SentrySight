@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Typography, Box, TextField } from "@mui/material";
+import { Container, Typography, Box, Grid, Paper, Divider, CircularProgress } from "@mui/material";
 import "./Questionnaire.css"; 
 
 const Questionnaire_Client = ({clientEmail}) => {
@@ -16,8 +16,10 @@ const Questionnaire_Client = ({clientEmail}) => {
             responseSpeedImportance: 0,
             comments: ''
         });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         fetch(`http://localhost:3306/questionnaire_client?email=${clientEmail}`)
         .then(response => response.json())
         .then(data => {
@@ -26,64 +28,152 @@ const Questionnaire_Client = ({clientEmail}) => {
             ...prevData,
             ...data
             }));
+            setLoading(false);
         })
-        .catch(error => console.error("Error fetching user data:", error));
+        .catch(error => {
+            console.error("Error fetching user data:", error);
+            setLoading(false);
+        });
     }, [clientEmail]);   
+
+    // Helper function to render ratings as text
+    const getRatingText = (value) => {
+        if (value <= 2) return `Low (${value}/10)`;
+        if (value <= 6) return `Medium (${value}/10)`;
+        return `High (${value}/10)`;
+    };
 
   return (
     <Container maxWidth="md" className="Questionnaire">
-      <Box className="questionnaire-container" textAlign="center" >
+      <Box className="questionnaire-container-compact" textAlign="center">
         <Typography variant="h4" className="title">
-          Admin Questionnaire
+          Client Assessment
         </Typography>
-        <div className="client_info">
-            <div>
-                <h3>Client Email</h3>
-                {clientEmail}
+        <Typography variant="subtitle1" className="subtitle">
+          Detailed information for {clientData.business_name || clientEmail}
+        </Typography>
+        
+        {loading ? (
+          <Box display="flex" justifyContent="center" my={4}>
+            <CircularProgress style={{ color: "#635bff" }} />
+          </Box>
+        ) : (
+          <div className="client_info_compact">
+            <div className="client-summary-section">
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
+                  <div className="info-card">
+                    <span className="info-label">Business Name</span>
+                    <span className="info-value">{clientData.business_name}</span>
+                  </div>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <div className="info-card">
+                    <span className="info-label">Email</span>
+                    <span className="info-value">{clientEmail}</span>
+                  </div>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <div className="info-card">
+                    <span className="info-label">Industry</span>
+                    <span className="info-value">{clientData.industry_type}</span>
+                  </div>
+                </Grid>
+              </Grid>
             </div>
-            <div>
-                <h3>Business Name</h3>
-                {clientData.business_name}
+
+            <div className="client-details-section">
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <div className="detail-card">
+                    <h3>Business Size</h3>
+                    <Grid container spacing={1}>
+                      <Grid item xs={6}>
+                        <span className="detail-label">Employees</span>
+                        <span className="detail-value">{clientData.num_employees}</span>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <span className="detail-label">Daily Visitors</span>
+                        <span className="detail-value">{clientData.dailyVisitors}</span>
+                      </Grid>
+                    </Grid>
+                  </div>
+                </Grid>
+                
+                <Grid item xs={12} md={6}>
+                  <div className="detail-card">
+                    <h3>Security Status</h3>
+                    <Grid container spacing={1}>
+                      <Grid item xs={6}>
+                        <span className="detail-label">Has Detection</span>
+                        <span className="detail-value highlight">{clientData.hasDetectionTech ? "Yes" : "No"}</span>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <span className="detail-label">Effectiveness</span>
+                        <span className="detail-value">{getRatingText(clientData.currentEffectiveness)}</span>
+                      </Grid>
+                    </Grid>
+                  </div>
+                </Grid>
+              </Grid>
             </div>
-            <div>
-                <h3>Industry Type</h3>
-                {clientData.industry_type}
+
+            <div className="safety-interest-section">
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <div className="detail-card">
+                    <h3>Safety Measures</h3>
+                    <div className="measures-grid">
+                      <div className={`measure-item ${clientData.safetyMeasures[0] ? 'active' : 'inactive'}`}>
+                        <span>Surveillance</span>
+                      </div>
+                      <div className={`measure-item ${clientData.safetyMeasures[1] ? 'active' : 'inactive'}`}>
+                        <span>Security Guards</span>
+                      </div>
+                      <div className={`measure-item ${clientData.safetyMeasures[2] ? 'active' : 'inactive'}`}>
+                        <span>Panic Buttons</span>
+                      </div>
+                      <div className={`measure-item ${clientData.safetyMeasures[3] ? 'active' : 'inactive'}`}>
+                        <span>Lockdown Proc.</span>
+                      </div>
+                    </div>
+                  </div>
+                </Grid>
+                
+                <Grid item xs={12} md={6}>
+                  <div className="detail-card">
+                    <h3>Interest Assessment</h3>
+                    <Grid container spacing={1}>
+                      <Grid item xs={12}>
+                        <span className="detail-label">AI Interest</span>
+                        <span className="detail-value highlight">{clientData.interestInAI ? "Yes" : "No"}</span>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <span className="detail-label">Priority Level</span>
+                        <span className="detail-value">{getRatingText(clientData.priorityLevel)}</span>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <span className="detail-label">Response Speed</span>
+                        <span className="detail-value">{getRatingText(clientData.responseSpeedImportance)}</span>
+                      </Grid>
+                    </Grid>
+                  </div>
+                </Grid>
+              </Grid>
             </div>
-            <div>
-                <h3>Number of Employees:</h3> {clientData.num_employees}
-            </div>
-            <div>
-                <h3>Number of Daily Visitors:</h3> {clientData.dailyVisitors}
-            </div>
-            <div>
-                <h3>Does this company has firearm detection technology?</h3> {clientData.hasDetectionTech ? "Yes" : "No"}
-            </div>
-            <div>
-                <h3>Safety Measures in Place</h3>
-                <p>Surveillance cameras: {clientData.safetyMeasures[0] ? "Yes" : "No"}</p>
-                <p>Security guards: {clientData.safetyMeasures[1] ? "Yes" : "No"}</p>
-                <p>Panic buttons: {clientData.safetyMeasures[2] ? "Yes" : "No"}</p>
-                <p>Emergency lockdown procedures: {clientData.safetyMeasures[3] ? "Yes" : "No"}</p> 
-            </div>
-            <div>
-                <h3>Current Effectiveness of Safety Measures:</h3> {clientData.currentEffectiveness}
-            </div>
-            <div>
-                <h3>Interest in AI Firearm Detection Technology:</h3> {clientData.interestInAI ? "Yes" : "No"}
-            </div>
-            <div>
-                <h3>Priority Level for Firearm Detection:</h3> {clientData.priorityLevel}
-            </div>
-            <div>
-                <h3>Importance of Police Response Speed:</h3> {clientData.responseSpeedImportance}
-            </div>
-            <div>
-                <h3>Comments:</h3> {clientData.comments}
-            </div>
-        </div>
+
+            {clientData.comments && (
+              <div className="comments-section">
+                <h3>Additional Comments</h3>
+                <p className="comments">{clientData.comments}</p>
+              </div>
+            )}
+          </div>
+        )}
       </Box>
     </Container>
   );
 };
 
 export default Questionnaire_Client;
+

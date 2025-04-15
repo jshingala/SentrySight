@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "./demo.css";
 import { motion } from "framer-motion";
 import { useTranslation } from "./context/TranslationContext";
-// These icons would typically be imported from a library like react-icons
-// For this example, we'll use inline SVG components
 const ThumbUpIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
     <path d="M9 21h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2z" fill="none" stroke="currentColor" strokeWidth="2"/>
@@ -17,7 +15,6 @@ const ThumbDownIcon = () => (
   </svg>
 );
 
-// Warning icon for rate limit
 const WarningIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v2h-2v-2zm0-10h2v8h-2V7z" fill="currentColor"/>
