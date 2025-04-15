@@ -10,7 +10,12 @@
     "preview": "vite preview",
     "start": "concurrently \"npm run start-server\" \"npm run dev\"",
     "start-server": "node database/server.js",
+<<<<<<< Updated upstream
     "test": "vitest"
+=======
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+>>>>>>> Stashed changes
   },
   "dependencies": {
     "@chakra-ui/react": "^3.1.1",
@@ -28,6 +33,7 @@
     "express": "^4.21.1",
     "formik": "^2.4.6",
     "framer-motion": "^11.11.15",
+    "history": "^5.3.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.4",
     "react": "^18.3.1",
@@ -44,8 +50,9 @@
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
     "@eslint/js": "^9.13.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.7.2",
@@ -57,17 +64,47 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
+<<<<<<< Updated upstream
     "jest": "^27.5.1",
     "jsdom": "^26.1.0",
+=======
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+>>>>>>> Stashed changes
     "tailwindcss": "3.4.14",
     "vite": "^5.4.11",
     "vitest": "^3.1.1"
   },
-"jest": {
-  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
-  "testEnvironment": "jsdom"
-},
-
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx}"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@babel|@testing-library)/)"
+    ],
+    "testEnvironmentOptions": {
+      "url": "http://localhost"
+    }
+  },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "keywords": [],
   "author": "",

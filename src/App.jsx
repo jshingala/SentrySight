@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation, Navigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
@@ -21,11 +21,20 @@ const SignUp = lazy(() => import("./SignUp"));
 const Profile = lazy(() => import("./Profile"));
 const NotFound = lazy(() => import("./404"));
 
-function App() {
+// Protected Route component
+const ProtectedRoute = ({ children, userEmail }) => {
+  if (!userEmail) {
+    return <Navigate to="/sign-in" replace />;
+  }
+  return children;
+};
+
+function App({ CustomRouter }) {
   const [userEmail, setUserEmail] = useState(() => localStorage.getItem("userEmail") || "");
 
   const [isAdmin, setIsAdmin] = useState(() => {
-    return localStorage.getItem("isAdmin") || false;
+    const adminStatus = localStorage.getItem("isAdmin");
+    return adminStatus === "true";
   });
 
   const [clientEmail, setClientEmail] = useState(() => {
@@ -43,27 +52,49 @@ function App() {
     if (clientEmail) {
       localStorage.setItem("clientEmail", clientEmail);
     }
-  }, []);  // ✅ Empty dependency array ensures this effect runs only once
+  }, [isAdmin, userEmail, clientEmail]);  // Update dependencies to match state variables being used
 
   return (
-    <Router>
-      <AppContent
+    <AppContent 
+      CustomRouter={CustomRouter}
+      userEmail={userEmail}
+      setUserEmail={setUserEmail}
+      isAdmin={isAdmin}
+      setIsAdmin={setIsAdmin}
+      clientEmail={clientEmail}
+      setClientEmail={setClientEmail}
+    />
+  );
+}
+
+function AppContent({ 
+  CustomRouter = Router,
+  userEmail,
+  setUserEmail,
+  isAdmin,
+  setIsAdmin,
+  clientEmail,
+  setClientEmail
+}) {
+  return (
+    <CustomRouter>
+      <AppRoutes
         userEmail={userEmail}
         setUserEmail={setUserEmail}
         isAdmin={isAdmin}
         setIsAdmin={setIsAdmin}
-        setClientEmail={setClientEmail}
         clientEmail={clientEmail}
+        setClientEmail={setClientEmail}
       />
-    </Router>
+    </CustomRouter>
   );
 }
 
-function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail, setClientEmail}) {
+function AppRoutes({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail, setClientEmail }) {
   const location = useLocation();
 
   return (
-    <div className="App">
+    <div className="app-container">
       <Header userEmail={userEmail} isAdmin={isAdmin} />
       <div className="content-wrapper">
         <main className="main-content">
@@ -72,17 +103,32 @@ function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail,
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/demo" element={<Demo />} />
-              <Route path="/questionnaire" element={<Questionnaire userEmail={userEmail}/>} />
-              <Route path="/questionnaire_A" element={<Questionnaire_Admin setClientEmail={setClientEmail}/>} />
-              <Route path="/questionnaire_C" element={<Questionnaire_Client clientEmail={clientEmail} />} />
+              <Route path="/questionnaire" element={
+                <ProtectedRoute userEmail={userEmail}>
+                  <Questionnaire userEmail={userEmail}/>
+                </ProtectedRoute>
+              } />
+              <Route path="/questionnaire_A" element={
+                <ProtectedRoute userEmail={userEmail}>
+                  <Questionnaire_Admin setClientEmail={setClientEmail}/>
+                </ProtectedRoute>
+              } />
+              <Route path="/questionnaire_C" element={
+                <ProtectedRoute userEmail={userEmail}>
+                  <Questionnaire_Client clientEmail={clientEmail} />
+                </ProtectedRoute>
+              } />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/sign-in"
                 element={<Login setUserEmail={setUserEmail} setIsAdmin={setIsAdmin} />} />
               <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/profile"
-                element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
+              <Route path="/profile" element={
+                <ProtectedRoute userEmail={userEmail}>
+                  <Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>
+                </ProtectedRoute>
+              } />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
