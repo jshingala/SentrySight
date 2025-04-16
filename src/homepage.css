@@ -1,0 +1,335 @@
+:root {
+    --primary-color: #b82727;
+    --accent-color: #635bff;
+    --highlight-color: #ffc83d;
+    --background-color: #1a1a1a;
+    --card-background: #2c2c2c;
+    --card-hover: #3a3a3a;
+    --text-color: #ffffff;
+    --text-muted: #b3b3b3;
+    --text-secondary: #888;
+    --section-bg: #121212;
+    --radius: 8px;
+    --shadow: 0 4px 15px rgba(99, 91, 255, 0.4);
+  }
+  
+  /* Utility Styles */
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+  }
+  
+  .btn-primary:hover {
+    background-color: #a31e1e;
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--accent-color);
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+  
+  .card {
+    background-color: var(--card-background);
+    border: 1px solid #444;
+    border-radius: var(--radius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* News Section */
+  .news-section {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .news-section h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+  }
+  
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    gap: 20px;
+  }
+  
+  .news-item {
+    
+    padding: 20px;
+    max-width: 700px;
+    color: var(--text-muted);
+  }
+  
+  .news-item:hover {
+    background-color: var(--card-hover);
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 80px 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+  
+  .testimonial-card {
+    background-color: #2c2c2c; 
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-image-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-placeholder {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .profile-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-color);
+    text-align: center;
+  }
+  
+  .profile-company {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  
+  .quote-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .quote-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--highlight-color);
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .quote-text {
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 90%;
+  }
+  
+  /* CTA Section */
+  .cta {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .cta .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  /* FAQ Section */
+  .faq {
+    background-color: var(--section-bg);
+    padding: 40px 20px;
+    margin: 20px 0;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .faq h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  .faq ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 5px rgba(255, 153, 153, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    box-shadow: 0 4px 10px rgba(172, 116, 246, 0.8);
+    transform: translateY(-2px);
+  }
+  
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+  
+  .faq-answer {
+    padding-top: 10px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  
+  .faq-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .faq-item.active {
+    background-color: rgba(52, 46, 46, 0.07);
+  }
+  
+  .faq-item.active .faq-question {
+    color: var(--primary-color);
+  }
+  
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Socials */
+  .socials-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .social-link {
+    font-size: 2em;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .social-link:hover {
+    color: var(--text-color);
+  }
+  
+  .socials-title {
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .section-title {
+      font-size: 2rem;
+    }
+  
+    .testimonial-card {
+      margin-bottom: 20px;
+    }
+  
+    .profile-image-container {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .profile-placeholder {
+      font-size: 1.5rem;
+    }
+  }
+  

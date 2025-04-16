@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './AboutUs.css'; 
+import './headline.css'; 
 import { motion } from 'framer-motion';
 
 function AboutUs() {

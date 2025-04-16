@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchWithCache } from "./apiService";
-import "./news.css";
+import "./homepage.css";
 
 const News = () => {
   const [news, setNews] = useState([]);

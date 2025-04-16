@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import PricingPage from './Pricing'; // Adjust this to your actual component path
+import PricingPage from '../Pricing'; // Adjust this to your actual component path
 
 describe('Pricing Page', () => {
   test('renders all three pricing cards', () => {

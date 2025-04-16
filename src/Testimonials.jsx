@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import './testimonials.css';
+import './homepage.css';
 
 function Testimonials() {
   // Your original testimonial content

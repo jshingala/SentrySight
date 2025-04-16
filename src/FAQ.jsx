@@ -1,6 +1,6 @@
 // FAQ.jsx
 import React, { useState } from "react";
-import "./FAQ.css";
+import "./homepage.css";
 
 function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
