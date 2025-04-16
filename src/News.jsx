@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fetchWithCache } from "./apiService";
-import "./news.css";
+import "./homepage.css";
 
 const News = () => {
   const [news, setNews] = useState([]);
