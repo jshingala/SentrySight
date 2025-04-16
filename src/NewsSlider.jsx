@@ -68,8 +68,8 @@ const NewsSlider = () => {
               >
                 <h3 className="news-headline">{article.title}</h3>
                 <p className="news-summary">{article.summary}</p>
-                <a href={article.link} target="_blank" rel="noopener noreferrer" className="read-more-btn">
-                  Read More
+                <a href={article.link} target="_blank" rel="noopener noreferrer" className="btn">
+                Read More
                 </a>
               </motion.div>
             ))}

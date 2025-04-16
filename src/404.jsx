@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "./404.css";
+//import "./404.css";
 
 function NotFound() {
   return (

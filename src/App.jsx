@@ -2,10 +2,11 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import Socials from './Socials';
+import LoadingSpinner from './LoadingSpinner';
 import Home from "./Home";
 import "./global.css";
 import "./App.css";
-import LoadingSpinner from './LoadingSpinner';  // Import the new spinner
 
 // Lazy load other pages
 const ContactUs = lazy(() => import("./ContactUs"));
@@ -20,6 +21,7 @@ const Login = lazy(() => import("./SignIn"));
 const SignUp = lazy(() => import("./SignUp"));
 const Profile = lazy(() => import("./Profile"));
 const NotFound = lazy(() => import("./404"));
+const FP = lazy(() => import("./ForgotPassword"));
 
 function App() {
   const [userEmail, setUserEmail] = useState(() => localStorage.getItem("userEmail") || "");
@@ -81,9 +83,11 @@ function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail,
               <Route path="/sign-in"
                 element={<Login setUserEmail={setUserEmail} setIsAdmin={setIsAdmin} />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/FP" element={<FP />} />
               <Route path="/profile"
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/socials" element={<Socials />} />
             </Routes>
           </Suspense>
         </main>

@@ -58,19 +58,6 @@
     color: #B3B3B3;
   }
   
-  .read-more-btn {
-    padding: 10px 25px;
-    background-color: #635bff;
-    color: #FFFFFF;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .read-more-btn:hover {
-    background-color: #5149cc;
-  }
-  
   .slider-item.inactive {
     pointer-events: none;
   }

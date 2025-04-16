@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AIChatbot from "./Chatbot";
 import "./global.css";
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -19,7 +20,9 @@ function Footer() {
           </ul>
         </div>
         <div className="footer-socials">
-          <h4>Follow Us</h4>
+        <Link to="/socials" className="footer-heading-link">
+  <h4>Follow Us</h4>
+</Link>
           <ul>
             <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
             <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>

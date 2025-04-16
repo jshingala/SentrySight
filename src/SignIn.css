@@ -3,17 +3,6 @@
   padding-top: 120px; /* Adjust based on the exact height of your header */
 }
 
-/* Sign-up form styling */
-.sign-up {
-  padding: 20px;
-  max-width: 400px;
-  margin: 0 auto; /* Center the form */
-  background-color: #333333; /* Dark gray for contrast */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #FFFFFF; /* White text */
-}
-
 .sign-up h2 {
   font-size: 2rem;
   margin-bottom: 15px;
@@ -21,16 +10,8 @@
   text-align: center;
 }
 
-/* Label Styling */
-.sign-up-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #B3B3B3; /* Light gray text */
-}
-
 /* Input Styling */
-.sign-up-form input {
+.sign-up input {
   width: 100%;
   padding: 12px;
   margin-top: 5px;
@@ -43,31 +24,113 @@
   transition: border-color 0.3s; /* Smooth transition for focus */
 }
 
-.sign-up-form input::placeholder {
+/* Sign-up form styling */
+.sign-up-form {
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto; /* Center the form */
+  background-color: #333333; /* Dark gray for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #FFFFFF; /* White text */
+}
+
+/* Label Styling */
+.sign-up-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #B3B3B3; /* Light gray text */
+}
+
+.sign-up input::placeholder {
   color: #888; /* Gray placeholder */
 }
 
-.sign-up-form input:focus {
+.sign-up input:focus {
   border-color: #635bff; /* Purple border on focus */
   outline: none;
 }
 
 /* Button Styling */
-.sign-up-form button {
+.sign-up .signIn {
+  width: 100%;
   padding: 12px 20px;
   font-size: 1rem;
   color: #FFFFFF;
-  background-color: #635bff; /* Purple button */
+  background-color: #635bff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.sign-up-form button:hover {
+.sign-up .signIn:hover {
   background-color: #ff0000; /* red for hover */
   box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
+}
+
+.sign-up-button{
+  color: #007bff;
+}
+
+.sign-up-button:hover{
+  color: #0056b3;
+}
+
+.FP-form {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto; /* Center the form */
+  background-color: #333333; /* Dark gray for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #FFFFFF; /* White text */
+}
+
+.FP {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.FP:hover {
+  color: #0056b3;
+}
+
+.FP-back {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* add right padding for icon space */
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
 }
 
 /* Error Message Styling */
@@ -75,7 +138,6 @@
   color: #FF4D4D; /* Red for error messages */
   font-size: 0.9rem;
   font-weight: bold;
-  margin-top: 5px;
 }
 
 /* Responsive Styles */
