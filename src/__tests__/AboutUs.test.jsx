@@ -33,7 +33,6 @@ describe('AboutUs Component', () => {
     expect(screen.getByAltText(/Award 3/i)).toBeInTheDocument();
     expect(screen.getByText(/2nd Place Statewide Competition/i)).toBeInTheDocument();
   });
-
   test('opens and closes the modal when award images are clicked', () => {
     render(<AboutUs />);
     const awardImages = screen.getAllByRole('img');
@@ -41,13 +40,22 @@ describe('AboutUs Component', () => {
     fireEvent.click(awardImages[0]);
     expect(screen.getByAltText(/Full Screen Award/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByClassName('modal-overlay'));
+    // Option 1: Target by role='dialog' (if you add this role to your modal overlay or content)
+    // fireEvent.click(screen.getByRole('dialog'));
+
+    // Option 2: Add a data-testid to your modal overlay in AboutUs.jsx
+    // <div className="modal-overlay" data-testid="modal-overlay" onClick={closeModal}>
+    fireEvent.click(screen.getByTestId('modal-overlay'));
     expect(screen.queryByAltText(/Full Screen Award/i)).toBeNull();
 
     fireEvent.click(awardImages[1]);
     expect(screen.getByAltText(/Full Screen Award/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByClassName('modal-content'));
+    // Option 1: Target by role='dialog'
+    // fireEvent.click(screen.getByRole('dialog'));
+
+    // Option 2: Target by data-testid
+    fireEvent.click(screen.getByTestId('modal-overlay'));
     expect(screen.queryByAltText(/Full Screen Award/i)).toBeNull();
   });
 
@@ -59,6 +67,4 @@ describe('AboutUs Component', () => {
     expect(container.querySelectorAll('.award-item')).toHaveLength(3);
     expect(container.querySelector('.modal-overlay')).toBeNull(); // Initially modal is closed
   });
-
-
 });

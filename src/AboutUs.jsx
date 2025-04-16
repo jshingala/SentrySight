@@ -130,13 +130,13 @@ function AboutUs() {
         </div>
       </div>
 
-        {isModalOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content">
-            <img src={modalImage} alt="Full Screen Award" className="modal-image" />
-          </div>
-        </div>
-      )}
+      {isModalOpen && (
+  <div className="modal-overlay" data-testid="modal-overlay" onClick={closeModal}>
+    <div className="modal-content">
+      <img src={modalImage} alt="Full Screen Award" className="modal-image" />
+    </div>
+  </div>
+)}
     </motion.div>
   );
 }
