@@ -18,17 +18,17 @@ function FAQ() {
     },
     {
       question: "Can I customize my settings?",
-      answer: "Absolutely! Sentry Sight offers extensive customization options to ensure the system works exactly as you need it to. You can define specific monitoring zones, set up notification preferences, and create unique security protocols for different scenarios. Our intuitive interface makes it easy to modify these settings at any time, and our support team is always available to help you optimize your configuration.",
+      answer: "Absolutely! Sentry Sight offers extensive customization options to ensure the system works exactly as you need it to. You can define dpecific monitoring zones, set up notification preferences, and create unique security protocals for different scenarios. Our intuative interface makes it easy to modify these settings at any time, and our support team is always available to help you optimize your configuration.",
     },
     {
       question: "What devices are compatible?",
       answer:
-        "Our solution is compatible with most modern devices, including smartphones, tablets, and desktops. The Sentry Sight mobile app is available for both iOS and Android smartphones and tablets, with full functionality on the latest versions. For desktop users, we offer a web-based dashboard that works on all major browsers including Chrome, Firefox, Safari, and Edge.",
+        "Our solution is compatible with most modern devices, including smartphones, tablets, and desktops. The Sentry Sight mobile app is avaible for both iOS ans Android smartphones and tabletys, with full functionality on the latest versions. For desktop users, we offer a web-based dashboard that works on all major browsers including Cgrome, Firefox, Safari, and Edge.",
     },
     {
       question: "Is there a trial version?",
       answer:
-        "Yes, we offer a 14-day free trial with full access to all features during this period, you can test our advanced AI detection capabilities, mobile app functionality, and customization options without any commitment. After the trial period, you can choose from our different subscription plans to pick the best that suits your needs.",
+        "Yes, we offer a 14-day free trial with full access to all features. during this period, you can test our advanced AI detection capabilities, mobile app functionality, and customization options without any commitment. After the trial period, you can choose from our different subscription plans to pick the best that suits your needs.",
     },
   ];
 

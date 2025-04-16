@@ -26,7 +26,7 @@ class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password, business_name, contact_number, _share } = this.state;
+    const { email } = this.state;
 
     // Send POST request to backend to send verification code
     this.sendVerificationCode(email);
@@ -41,7 +41,7 @@ class Register extends Component {
         body: JSON.stringify({ email })
       });
 
-      console.log(email);
+      //console.log(email);
 
       const data = await response.json();
       if (response.ok) {
@@ -110,13 +110,12 @@ class Register extends Component {
   render() {
     return (
       <div className="sign-up">
-        <h2>Sign Up / Register</h2>
         {this.state.successMessage && 
         <div className="success">
             {this.state.successMessage}     {/*Success Message*/}
             <div className="to_login">
             <Link to="/sign-in">
-              <button>Go back to Sign-up</button>
+              <button>Go back to Sign-in</button>
             </Link>
           </div>    
         </div>
@@ -124,9 +123,11 @@ class Register extends Component {
 
         {!this.state.successMessage &&(
         <form className="sign-up-form" onSubmit={this.handleSubmit}>
+          <h2>Sign Up / Register</h2>
           <div>
-            <label>Email: </label>
+            <label htmlFor="email">Email: </label>
             <input
+              id = "email"
               type="email"
               name="email"
               onChange={this.handleChange}
@@ -136,8 +137,9 @@ class Register extends Component {
             />
           </div>
           <div>
-            <label>Password: </label>
+            <label htmlFor="password">Password: </label>
             <input
+              id = "password"
               type="password"
               name="password"
               onChange={this.handleChange}
@@ -148,8 +150,9 @@ class Register extends Component {
             />
           </div>
           <div>
-            <label>Business Name: </label>
+            <label htmlFor="business_name">Business Name: </label>
             <input
+              id = "business_name"
               type="text"
               name="business_name"
               onChange={this.handleChange}
@@ -157,8 +160,9 @@ class Register extends Component {
             />
           </div>
           <div>
-            <label>Contact Number: </label>
+            <label htmlFor="contact_number">Contact Number: </label>
             <input
+              id="contact_number"
               type="tel"
               name="contact_number"
               placeholder="(XXX)XXX-XXXX"
@@ -167,7 +171,7 @@ class Register extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" className="signIn">Register</button>
         </form>
         )}
 
