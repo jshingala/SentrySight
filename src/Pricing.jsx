@@ -1,6 +1,32 @@
-import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import './Pricing.css'; 
+
+const theme = {
+  colors: {
+    background: "#2D2D2D",
+    modalOverlay: "rgba(0, 0, 0, 0.5)",
+    textPrimary: "white",
+    textSecondary: "#ccc",
+    textMuted: "#888",
+    textDark: "#1A1A1A",
+    priceBorder: "#444",
+    headerFlat: "#4CAF50",
+    headerBasic: "#3f51b5",
+    headerPremium: "#e65100",
+    modalCard: "#f9f9f9"
+  },
+  card: {
+    borderRadius: "8px",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    padding: "24px"
+  },
+  fontSizes: {
+    sm: "1rem",
+    md: "1.125rem",
+    lg: "1.5rem",
+    xl: "1.875rem",
+    xxl: "2.25rem"
+  }
+};
 
 function Pricing({ onContactClick }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,48 +36,150 @@ function Pricing({ onContactClick }) {
   const [estimate, setEstimate] = useState(null);
 
   const handleEstimate = () => {
-    // Mock calculation logic until we figure out what will be the actual estimate according to the services provided
     const mockEstimate = `$${Math.floor(Math.random() * 1000 + 500)}`;
     setEstimate(mockEstimate);
   };
 
+  const headerTextStyle = {
+    color: theme.colors.textPrimary,
+    fontSize: theme.fontSizes.lg,
+    fontWeight: "normal",
+    letterSpacing: "0.05em",
+    margin: "0"
+  };
+
+  const featureTextStyle = {
+    color: theme.colors.textPrimary,
+    fontSize: theme.fontSizes.sm,
+    lineHeight: "1.5"
+  };
+
+  const featureItemStyle = {
+    display: "flex",
+    alignItems: "flex-start",
+    marginBottom: "16px"
+  };
+
+  const dotStyle = (color) => ({
+    color,
+    marginRight: "8px",
+    fontSize: "1.25rem",
+    lineHeight: "1.2"
+  });
+
+  const priceStyle = {
+    textAlign: "center",
+    fontSize: "clamp(1rem, 2.5vw, 1.875rem)", 
+    fontWeight: "normal",
+    color: theme.colors.textPrimary,
+    padding: "12px",
+    borderBottom: `1px solid ${theme.colors.priceBorder}`,
+    margin: "0",
+    backgroundColor: theme.colors.background,
+    whiteSpace: "nowrap",
+    overflow: "hidden",            
+   
+  };
+
+  const buttonStyle = (bg) => ({
+    backgroundColor: bg,
+    color: theme.colors.textPrimary,
+    padding: "12px 32px",
+    fontSize: theme.fontSizes.md,
+    borderRadius: "8px",
+    border: "none",
+    cursor: "pointer",
+    width: "176px",
+    marginBottom: "16px",
+    transition: "background-color 0.3s"
+  });
+
+  const modalSectionStyle = {
+    ...theme.card,
+    backgroundColor: theme.colors.modalCard,
+    marginBottom: "32px"
+  };
+
+  const labelStyle = {
+    display: "block",
+    fontSize: theme.fontSizes.md,
+    fontWeight: "bold",
+    color: theme.colors.textDark,
+    marginBottom: "4px"
+  };
+
   return (
-    <main className="min-h-screen bg-[#1A1A1A] pt-24">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Flat Purchase */}
-        <motion.div
-          className="bg-white rounded-lg shadow-lg overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="bg-[#4CAF50] py-6 px-4">
-            <h2 className="text-white text-center text-2xl font-normal">FLAT PURCHASE</h2>
-          </div>
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-center text-3xl font-normal text-gray-800">$2,000/appliance</h3>
-          </div>
-          <div className="p-6">
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
-                <span className="text-gray-600">Flat license fee of $500</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
-                <span className="text-gray-600">Receive the newest update and feature with no additional cost</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
-                <span className="text-gray-600">Receive a robust hardware equipped with strong capacity for 10+ cameras</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-[#4CAF50] mr-2 text-lg">•</span>
-                <span className="text-gray-600">Cameras not included</span>
-              </li>
-            </ul>
-          </div>
-        </motion.div>
+    <main style={{
+      minHeight: "100vh",
+      backgroundColor: "#1A1A1A",
+      paddingTop: "96px",
+      color: theme.colors.textPrimary
+    }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "32px"
+        }}>
+          {[
+            {
+              title: "FLAT PURCHASE",
+              price: "$2,000/appliance",
+              bgColor: theme.colors.headerFlat,
+              features: [
+                "Flat license fee of $500",
+                "Receive the newest update and feature with no additional cost",
+                "Receive a robust hardware equipped with strong capacity for 10+ cameras",
+                "Cameras not included"
+              ],
+              dotColor: theme.colors.headerFlat
+            },
+            {
+              title: "BASIC SUBSCRIPTION",
+              price: "$15/camera/month",
+              bgColor: theme.colors.headerBasic,
+              features: [
+                "Flat license fee of $500",
+                "Receive the newest update and feature through subscription period",
+                "Free customer and technical support 24/7",
+                "SMS fees at additional cost"
+              ],
+              dotColor: theme.colors.headerBasic
+            },
+            {
+              title: "PREMIUM SUBSCRIPTION",
+              price: "$50/camera/month",
+              bgColor: theme.colors.headerPremium,
+              features: [
+                "All of the previous subscription benefits PLUS additional safety detection features tailored for businesses",
+                "Receive further discounts by opting for an extended contract term"
+              ],
+              dotColor: theme.colors.headerPremium
+            }
+          ].map((plan, index) => (
+            <div key={index} style={{
+              backgroundColor: theme.colors.background,
+              borderRadius: theme.card.borderRadius,
+              overflow: "hidden",
+              boxShadow: theme.card.boxShadow
+            }}>
+              <div style={{ backgroundColor: plan.bgColor, padding: "24px 16px", textAlign: "center" }}>
+                <h2 style={headerTextStyle}>{plan.title}</h2>
+              </div>
+              <div style={priceStyle}>{plan.price}</div>
+              <div style={{ padding: "24px", backgroundColor: theme.colors.background }}>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {plan.features.map((feature, i) => (
+                    <li key={i} style={featureItemStyle}>
+                      <span style={dotStyle(plan.dotColor)}>•</span>
+                      <span style={featureTextStyle}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Basic Subscription */}
         <motion.div
