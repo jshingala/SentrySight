@@ -227,7 +227,6 @@ function Pricing({ onContactClick }) {
             }}>
               Estimate Based on Your Requirements
             </h2>
-            <div>
             {[
               { label: "How many cameras?", value: field1, setter: setField1 },
               { label: "How many server/workstations?", value: field2, setter: setField2 }
@@ -371,7 +370,7 @@ function Pricing({ onContactClick }) {
               </button>
             </div>
           </div>
-        </div>
+        
 )}
 
 

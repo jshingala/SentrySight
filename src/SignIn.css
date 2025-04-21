@@ -1,6 +1,6 @@
 /* Main content wrapper to add space below the fixed header */
 .main-content {
-  padding-top: 10px; /* Adjust based on the exact height of your header */
+  padding-top: 120px; /* Adjust based on the exact height of your header */
 }
 
 .sign-up h2 {
