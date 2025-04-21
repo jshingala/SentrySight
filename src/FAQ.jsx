@@ -1,6 +1,6 @@
 // FAQ.jsx
 import React, { useState } from "react";
-import "./FAQ.css";
+import "./homepage.css";
 
 function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -9,26 +9,26 @@ function FAQ() {
     {
       question: "What is Sentry Sight?",
       answer:
-        "Sentry Sight is a security solution designed to help you stay safe.",
+        "Sentry Sight is a security solution designed to help you stay safe. We provide a AI-driven technology that helps detect any potential risk of a firearm, providing an efficient and effective security metric. Our platform combines real-time monitoring, intelligent threat detection, and instant notifications to provide comprehensive sec",
     },
     {
       question: "How does it work?",
       answer:
-        "Our system utilizes advanced technology to monitor and protect you.",
+        "Our system utilizes advanced technology to monitor and protect you. When unusual activity is detected, our AI analyzes the situation using advanced computer vision algorithms to determine potential threats. If a security concern is identified, you'll receive immediate notifications through our website or mobile app. The entire process happens within seconds, ensuring rapid response to any security incidents.",
     },
     {
       question: "Can I customize my settings?",
-      answer: "Yes! You can tailor the settings to your specific needs.",
+      answer: "Absolutely! Sentry Sight offers extensive customization options to ensure the system works exactly as you need it to. You can define dpecific monitoring zones, set up notification preferences, and create unique security protocals for different scenarios. Our intuative interface makes it easy to modify these settings at any time, and our support team is always available to help you optimize your configuration.",
     },
     {
       question: "What devices are compatible?",
       answer:
-        "Our solution is compatible with most modern devices, including smartphones, tablets, and desktops.",
+        "Our solution is compatible with most modern devices, including smartphones, tablets, and desktops. The Sentry Sight mobile app is avaible for both iOS ans Android smartphones and tabletys, with full functionality on the latest versions. For desktop users, we offer a web-based dashboard that works on all major browsers including Cgrome, Firefox, Safari, and Edge.",
     },
     {
       question: "Is there a trial version?",
       answer:
-        "Yes, we offer a 14-day free trial with full access to all features.",
+        "Yes, we offer a 14-day free trial with full access to all features. during this period, you can test our advanced AI detection capabilities, mobile app functionality, and customization options without any commitment. After the trial period, you can choose from our different subscription plans to pick the best that suits your needs.",
     },
   ];
 

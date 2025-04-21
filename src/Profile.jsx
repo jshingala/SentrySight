@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './CSS.css'; // Import the CSS file
+import './Profile.css'; // Import the CSS file
 
-function Profile({ userEmail, setUserEmail }) {
+function Profile({ userEmail, setUserEmail, setIsAdmin }) {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({
         email: userEmail,
@@ -53,7 +53,9 @@ function Profile({ userEmail, setUserEmail }) {
     const handleLogout = () => {
         // Clear the userEmail from localStorage and reset the state
         localStorage.removeItem('userEmail');
+        localStorage.removeItem('isAdmin');
         setUserEmail(''); // Reset the userEmail state to ''
+        setIsAdmin(false);
         
         navigate('/');
       };
