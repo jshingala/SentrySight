@@ -111,17 +111,19 @@ class Register extends Component {
     return (
       <div className="sign-up">
         {this.state.successMessage && 
-        <div className="success">
-            {this.state.successMessage}     {/*Success Message*/}
-            <div className="to_login">
-            <Link to="/sign-in">
-              <button>Go back to Sign-in</button>
-            </Link>
-          </div>    
-        </div>
+          <form className="sign-up-form">
+            <div className="success">
+                <h2>{this.state.successMessage}</h2>    {/*Success Message*/}
+                <div className="to_login">
+                <Link to="/sign-in">
+                  <button type="submit" className="signIn">Go back to Sign-in</button>
+                </Link>
+              </div>    
+            </div>
+          </form>
         } 
 
-        {!this.state.successMessage &&(
+        {!this.state.successMessage && !this.state.isCodeSent && !this.state.isVerified &&(
         <form className="sign-up-form" onSubmit={this.handleSubmit}>
           <h2>Sign Up / Register</h2>
           <div>
@@ -176,19 +178,21 @@ class Register extends Component {
         )}
 
         {/* Verification code section */}
-        {this.state.isCodeSent && !this.state.isVerified && (
-          <div>
-            <label>Enter the verification code sent to your email: </label>
-            <input
-              type="text"
-              name="code"
-              value={this.state.code}
-              onChange={this.handleChange}
-              placeholder="Enter verification code"
-              required
-            />
-            <button onClick={this.verifyCode}>Verify Code</button>
-          </div>
+        {!this.state.successMessage && this.state.isCodeSent && !this.state.isVerified && (
+          <form className="FP-form">
+            <div className="verify-section">
+              <label>Enter the verification code sent to your email: </label>
+              <input
+                type="text"
+                name="code"
+                value={this.state.code}
+                onChange={this.handleChange}
+                placeholder="Enter verification code"
+                required
+              />
+              <button type="button" className="signIn" onClick={this.verifyCode}>Verify Code</button>
+            </div>
+          </form>
         )}
         
         {/* Display the error message */}
