@@ -99,7 +99,7 @@ function Pricing({ onContactClick }) {
     backgroundColor: theme.colors.modalCard,
     marginBottom: "32px"
   };
-
+  
   const labelStyle = {
     display: "block",
     fontSize: theme.fontSizes.md,
@@ -285,6 +285,21 @@ function Pricing({ onContactClick }) {
           </div>
         </div>
       )}
+
+      {/* Close Button */}
+      <div style={{ textAlign: "center", marginTop: "16px" }}>
+        <button
+          onClick={() => setIsModalOpen(false)}
+          style={buttonStyle(theme.colors.headerPremium)}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#d84315"}
+          onMouseOut={(e) => e.target.style.backgroundColor = theme.colors.headerPremium}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   );
 }

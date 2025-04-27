@@ -1,6 +1,8 @@
 import React from "react";
+import './homepage.css'; // Import CSS
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
-import './Socials.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Socials = () => {
   return (
