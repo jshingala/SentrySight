@@ -2,10 +2,11 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import Socials from './Socials';
+import LoadingSpinner from './LoadingSpinner';
 import Home from "./Home";
 import "./global.css";
 import "./App.css";
-import LoadingSpinner from './LoadingSpinner';  // Import the new spinner
 
 // Lazy load other pages
 const ContactUs = lazy(() => import("./ContactUs"));
@@ -86,6 +87,7 @@ function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail,
               <Route path="/profile"
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin}/>} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/socials" element={<Socials />} />
             </Routes>
           </Suspense>
         </main>
