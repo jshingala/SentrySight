@@ -31,6 +31,11 @@ function Testimonials() {
       name: "Carlos Diaz",
       company: "Safeguard Technologies",
       text: "The user-friendly interface made training our staff a breeze. SentrySight is truly a game-changer in security tech."
+    }, 
+    {
+      name: "Bilal Patel",
+      company: "ABS Security",
+      text: "Making SentrySight a part of our system was a very easy and fluid process. We have been able to integrate into our functionalities very effectively."
     }
   ];
 

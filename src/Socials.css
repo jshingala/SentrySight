@@ -1,0 +1,44 @@
+.socials-page {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background-color: #1A1A1A;
+    color: white;
+    min-height: calc(100vh - 80px); /* full viewport minus navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .socials-title {
+    font-size: 2.8rem;
+    color: #8a89e6;
+    margin-bottom: 25px;
+    font-weight: 700;
+  }
+  
+  .socials-icons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .icon {
+    color: #c1a9ff;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .icon:hover {
+    color: #a73ded;
+    transform: scale(1.1);
+  }
+  
+  .socials-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 500px;
+    margin: 0 auto;
+  }

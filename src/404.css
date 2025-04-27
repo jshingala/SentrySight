@@ -1,0 +1,31 @@
+.error-page-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a23;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-page-container h1 {
+    font-size: 8rem;
+    margin-bottom: 0.5rem;
+}
+
+.error-page-container p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.error-page-container a {
+    color: #4ea8de;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.error-page-container a:hover {
+    text-decoration: underline;
+}
