@@ -1,9 +1,4 @@
 /* about us page */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
   
   body {
     font-family: 'Poppins', sans-serif;
@@ -188,7 +183,9 @@
   }
   
   .demo-container {
-    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
     overflow-x: hidden;
   }
   
@@ -196,12 +193,6 @@
   section {
     position: relative;
     padding: 60px 20px;
-  }
-  
-  .content-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
   }
   
   /* Hero Section */

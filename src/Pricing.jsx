@@ -297,9 +297,6 @@ function Pricing({ onContactClick }) {
           Close
         </button>
       </div>
-    </div>
-  </div>
-)}
     </main>
   );
 }
