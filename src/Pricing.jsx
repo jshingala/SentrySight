@@ -285,18 +285,6 @@ function Pricing({ onContactClick }) {
           </div>
         </div>
       )}
-
-      {/* Close Button */}
-      <div style={{ textAlign: "center", marginTop: "16px" }}>
-        <button
-          onClick={() => setIsModalOpen(false)}
-          style={buttonStyle(theme.colors.headerPremium)}
-          onMouseOver={(e) => e.target.style.backgroundColor = "#d84315"}
-          onMouseOut={(e) => e.target.style.backgroundColor = theme.colors.headerPremium}
-        >
-          Close
-        </button>
-      </div>
     </main>
   );
 }

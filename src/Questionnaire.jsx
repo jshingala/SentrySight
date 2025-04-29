@@ -211,6 +211,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>1. Business Name:</Typography>
               <TextField
                 name="businessName"
+                data-testid="businessName"
                 value={formData.businessName}
                 onChange={handleChange}
                 error={!!errors.businessName}
@@ -223,6 +224,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>2. Industry Type (e.g., retail, office, restaurant):</Typography>
               <TextField
                 name="industryType"
+                data-testid="industryType"
                 value={formData.industryType}
                 onChange={handleChange}
                 error={!!errors.industryType}
@@ -235,6 +237,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>3. Number of employees at this location:</Typography>
               <TextField
                 name="numEmployees"
+                data-testid="numEmployees"
                 type="number"
                 value={formData.numEmployees}
                 onChange={handleChange}
@@ -248,6 +251,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>4. Approx. daily customers or visitors:</Typography>
               <TextField
                 name="dailyVisitors"
+                data-testid="dailyVisitors"
                 type="number"
                 value={formData.dailyVisitors}
                 onChange={handleChange}
@@ -269,6 +273,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>5. Do you currently have any firearm detection technology installed?</Typography>
               <RadioGroup
                 name="hasDetectionTech"
+                data-testid="hasDetectionTech"
                 value={formData.hasDetectionTech}
                 onChange={handleChange}
               >
@@ -296,6 +301,7 @@ const Questionnaire = ({ userEmail }) => {
                       <Checkbox
                         checked={formData.safetyMeasures.includes(measure)}
                         onChange={(e) => handleCheckboxChange(e, measure)}
+                        data-testid="checkbox-group"
                       />
                     }
                     label={measure}
@@ -313,6 +319,7 @@ const Questionnaire = ({ userEmail }) => {
                 <Typography variant="caption">Not Effective</Typography>
                 <Slider
                   name="currentEffectiveness"
+                  data-testid="currentEffectiveness"
                   value={formData.currentEffectiveness}
                   onChange={handleSliderChange('currentEffectiveness')}
                   step={1}
@@ -337,6 +344,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>8. Interested in AI firearm detection with instant law enforcement alerts?</Typography>
               <RadioGroup
                 name="interestInAI"
+                data-testid="interestInAI"
                 value={formData.interestInAI}
                 onChange={handleChange}
               >
@@ -355,6 +363,7 @@ const Questionnaire = ({ userEmail }) => {
                 <Typography variant="caption">Low Priority</Typography>
                 <Slider
                   name="priorityLevel"
+                  data-testid="priorityLevel"
                   value={formData.priorityLevel}
                   onChange={handleSliderChange('priorityLevel')}
                   step={1}
@@ -373,6 +382,7 @@ const Questionnaire = ({ userEmail }) => {
                 <Typography variant="caption">Not Important</Typography>
                 <Slider
                   name="responseSpeedImportance"
+                  data-testid="responseSpeedImportance"
                   value={formData.responseSpeedImportance}
                   onChange={handleSliderChange('responseSpeedImportance')}
                   step={1}
@@ -389,6 +399,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>11. Concerns about integrating AI firearm detection?</Typography>
               <TextField
                 name="concerns"
+                data-testid="concerns"
                 multiline
                 rows={4}
                 value={formData.concerns}
@@ -401,6 +412,7 @@ const Questionnaire = ({ userEmail }) => {
               <Typography>12. Other thoughts or suggestions on safety improvements?</Typography>
               <TextField
                 name="otherSuggestions"
+                data-testid="otherSuggestions"
                 multiline
                 rows={4}
                 value={formData.otherSuggestions}
