@@ -99,7 +99,7 @@ function Pricing({ onContactClick }) {
     backgroundColor: theme.colors.modalCard,
     marginBottom: "32px"
   };
-
+  
   const labelStyle = {
     display: "block",
     fontSize: theme.fontSizes.md,
@@ -394,9 +394,11 @@ function Pricing({ onContactClick }) {
           Close
         </button>
       </div>
+
     </div>
   </div>
 )}
+
     </main>
   );
 }
