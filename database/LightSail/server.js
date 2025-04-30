@@ -1,57 +1,79 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const morgan = require('morgan'); // For better logging
+const helmet = require('helmet'); // For security
+const compression = require('compression'); // For performance
+
 const app = express();
 
-// Determine the correct path to your build directory
-const possiblePaths = [
-  path.join(__dirname, '../../../dist'),
-  path.join(__dirname, '../../dist'),
-  path.join(__dirname, '../dist'),
-  path.join(__dirname, '/dist'),
-  path.join(__dirname, '../../../build'),
-  path.join(__dirname, '../../build'),
-  path.join(__dirname, '../build'),
-  path.join(__dirname, '/build')
-];
+// Environment configuration
+const PORT = process.env.PORT || 3692;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
-let buildPath = null;
-for (const testPath of possiblePaths) {
-  try {
-    if (fs.existsSync(testPath) && fs.existsSync(path.join(testPath, 'index.html'))) {
-      buildPath = testPath;
-      break;
+// Helper function to find the build directory
+function findBuildDirectory() {
+  const possiblePaths = [
+    path.join(__dirname, '../../../dist'),
+    path.join(__dirname, '../../dist'),
+    path.join(__dirname, '../dist'),
+    path.join(__dirname, '/dist'),
+    path.join(__dirname, '../../../build'),
+    path.join(__dirname, '../../build'),
+    path.join(__dirname, '../build'),
+    path.join(__dirname, '/build')
+  ];
+  
+  for (const testPath of possiblePaths) {
+    try {
+      if (fs.existsSync(testPath) && fs.existsSync(path.join(testPath, 'index.html'))) {
+        console.log(`Found build directory at: ${testPath}`);
+        return testPath;
+      }
+    } catch (err) {
+      console.error(`Error accessing path: ${testPath}`, err);
     }
-  } catch (err) {
-    console.error(`Error accessing path: ${testPath}`, err);
   }
-}
-
-if (!buildPath) {
+  
   console.error('Could not find build directory with index.html!');
   console.log('Current directory:', __dirname);
   console.log('Searched in:', possiblePaths);
   console.log('Make sure the build directory exists and is accessible.');
-} else {
-  console.log(`Found build directory at: ${buildPath}`);
+  return null;
 }
 
-// Serve static files from the React app build directory
-app.use(express.static(buildPath));
+// Find build directory
+const buildPath = findBuildDirectory();
+if (!buildPath) {
+  throw new Error('Build directory not found. Please build the React app first.');
+}
 
-// Log requests for debugging
-app.use((req, res, next) => {  
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
-  next();
-});
+// Apply middlewares
+// Security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP for simplicity, enable in production with proper config
+}));
 
-// The "catchall" handler: for any request that doesn't match one above,
-// send back React's index.html file
+// Compression for better performance
+app.use(compression());
+
+// Logging middleware
+if (NODE_ENV === 'production') {
+  app.use(morgan('combined')); // More detailed logs for production
+} else {
+  app.use(morgan('dev')); // Concise colored output for development
+}
+
+// Serve static files
+app.use(express.static(buildPath, {
+  maxAge: NODE_ENV === 'production' ? '1d' : 0 // Cache for 1 day in production
+}));
+
+// API routes can be added here
+// app.use('/api', apiRoutes);
+
+// Catchall handler for client-side routing
 app.get('*', (req, res) => {
-  if (!buildPath) {
-    return res.status(500).send('Server configuration error: Build directory not found');
-  }
-  
   const indexPath = path.join(buildPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
@@ -60,8 +82,14 @@ app.get('*', (req, res) => {
   }
 });
 
-const port = 3692;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-  console.log(`Serving files from: ${buildPath || 'UNKNOWN PATH'}`);
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke on our end! Please try again later.');
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server is running in ${NODE_ENV} mode on port ${PORT}`);
+  console.log(`Serving files from: ${buildPath}`);
 });

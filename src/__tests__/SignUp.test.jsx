@@ -93,7 +93,7 @@ describe("Register Component", () => {
 
     await waitFor(() => {
       fireEvent.change(screen.getByPlaceholderText(/Enter verification code/i), { target: { value: "123456" } });
-      fireEvent.click(screen.getByText(/Verify Code/i));
+      fireEvent.click(screen.getByText(/Verify Code/i));'
     });
 
     await waitFor(() => {
