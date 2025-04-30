@@ -120,7 +120,7 @@ const FP = () => {
             </form>
         )}
         {isCodeSent && !isVerified && (
-            <form className="FP-form" onSubmit={sendVerification}>
+            <form className="FP-form">
                 <h2>Forgot your password?</h2>
                 <div className="verify-section">
                 <p>Enter Verification Code</p>
@@ -135,9 +135,8 @@ const FP = () => {
             </form>    
         )}
         {isVerified && (
-        <form className="FP-form">
+        <form className="FP-form" onSubmit={changePassword}>
             <h2>Reset Password</h2>
-            <div>The password should have at least 12 characters</div>
                 <p>New password</p>
                 <div className="input-container">
                 <input
@@ -168,7 +167,7 @@ const FP = () => {
                 <div className="error">Password Not Matching</div>
             )}
             <div>
-                <button type="button" className="signIn" onClick={changePassword}>Reset password</button>
+                <button type="submit" className="signIn">Reset password</button>
             </div>
             </form>
             )}
