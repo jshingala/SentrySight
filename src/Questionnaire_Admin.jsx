@@ -106,7 +106,7 @@ const Questionnaire_Admin = ({ setClientEmail }) => {
   };
 
   return (
-    <Container maxWidth={false} disableGutters className="Questionnaire">
+    <Container maxWidth="lg" className="Questionnaire">
       <Box className="questionnaire-container" textAlign="center">
         <Typography variant="h4" className="title">
           Admin Questionnaire
