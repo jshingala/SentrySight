@@ -2,9 +2,13 @@
   background-color: #0D0D0D;
   color: #EAEAEA;
   min-height: 100vh;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  width: 100vw;
+  margin: 0;
+  padding: 100px 0 40px 0;
+  overflow-x: hidden;
 }
+
+
 
 .questionnaire-content {
   background-color: #111111;
@@ -359,7 +363,7 @@
 /* Main container refinements */
 .Questionnaire .questionnaire-container {
   background-color: transparent;
-  padding: 15px 0;
+  padding: 15px 20px 40px 20px;
 }
 
 /* Title styling */
@@ -408,11 +412,12 @@
 .Questionnaire .companies-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px;
+  border-spacing: 0 20px;
 }
 
 .Questionnaire .company-row {
   background-color: #1a1a1a;
+  border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -498,6 +503,7 @@
   padding: 8px 15px;
   border-radius: 4px;
   font-weight: 500;
+  width: 100px;
 }
 
 .Questionnaire .nav-button:not(:disabled):hover {
