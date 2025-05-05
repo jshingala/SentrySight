@@ -1,3 +1,16 @@
+# Team TechSupport
+
+**Members:**
+* David Pham
+* Jenil Shingala
+- \[Name Placeholder]
+- CJ Pallari
+
+
+**Client:** Ritchie Martinez
+
+---
+
 # SentrySight Website Development
 
 *Developed by *TechSupport* for AI Firearm Detection Solutions.*
@@ -18,7 +31,7 @@
 
 ## Project Overview
 
-Our web development team was assigned to build a comprehensive website for **SentrySight**, a company specializing in real-time firearm detection using advanced AI technology. The website serves as an informational and interactive platform for businesses interested in enhancing their security measures through AI-driven solutions.
+Our web development team was assigned to build a comprehensive website for **SentrySight**, a company specializing in real-time firearm detection using advanced AI technology. The website serves as an informational and interactive platform for businesses interested in enhancing their security measures through AI-driven solutions. This platform not only highlights SentrySight's technological innovation but also empowers potential clients to explore, understand, and engage with its cutting-edge security solutions.
 
 ## Features
 
@@ -33,43 +46,87 @@ Our web development team was assigned to build a comprehensive website for **Sen
 ## Prototype Images
 
 - **Main Page**
-<img src="src/assets/readme_assets/main.png" alt="Main" width="1024" height="auto">
+
+  <img src="src/assets/readme_assets/main.png" alt="Main" width="1024" height="auto">
 
 - **About Us Page**
-<img src="src/assets/readme_assets/about_us.png" alt="About_Us" width="1024" height="auto">
+
+  <img src="src/assets/readme_assets/about_us.png" alt="About_Us" width="1024" height="auto">
 
 - **Demo Page**
-<img src="src/assets/readme_assets/demo.png" alt="Demo" width="1024" height="auto">
 
-Product Testing
-<img src="src/assets/readme_assets/demo.gif" alt="Demo Video" width="1024" height="auto">
+  <img src="src/assets/readme_assets/demo.png" alt="Demo" width="1024" height="auto">
+
+Product Testing <img src="src/assets/readme_assets/demo.gif" alt="Demo Video" width="1024" height="auto">
 
 - **Questionnaire Page**
-<img src="src/assets/readme_assets/questionnaire.png" alt="Questionnaire" width="1024" height="auto">
+
+  <img src="src/assets/readme_assets/questionnaire.png" alt="Questionnaire" width="1024" height="auto">
 
 - **Pricing Page**
-<img src="src/assets/readme_assets/pricing.png" alt="Pricing" width="1024" height="auto">
+
+  <img src="src/assets/readme_assets/pricing.png" alt="Pricing" width="1024" height="auto">
 
 - **Login/Register Page**
-<img src="src/assets/readme_assets/login.png" alt="Login" width="1024" height="auto">
+
+  <img src="src/assets/readme_assets/login.png" alt="Login" width="1024" height="auto">
+
 <img src="src/assets/readme_assets/register.png" alt="Register" width="1024" height="auto">
 
 - **Profile Page**
-<img src="src/assets/readme_assets/profile.png" alt="Profile" width="1024" height="auto">
+
+  <img src="src/assets/readme_assets/profile.png" alt="Profile" width="1024" height="auto">
 
 ## Testing
 
-*This section will be developed in CSC 191.*
+_This section will be developed in CSC 191._
 
 ## Deployment
 
-*This section will be developed in CSC 191.*
+### AWS Lightsail Setup
+
+1. **Create Ubuntu 20.04 LTS instance**
+2. **Configure security for ports 3306 and 5173**
+3. **Attach static IP**
+
+### Installation Steps
+
+```bash
+# SSH into server
+ssh -i your-key.pem ubuntu@your-instance-ip
+
+# Clone repo
+git clone https://github.com/jshingala/SentrySight.git
+cd SentrySight/database/LightSail
+
+# Install dependencies
+npm install
+
+# Create .env file with required variables
+
+# Build application
+npm run build
+
+# Start with PM2
+pm2 restart sentrysite
+```
+
+### Verification
+
+- Access via instance IP
+- Test core functionalities
+- Create snapshot before major updates
+
+### Backup
+
+Ensure regular snapshots and off‑site backups are maintained before any major update or migration.
 
 ## Developer Instructions
 
 This section is for anyone working on the SentrySight project and includes important notes on how to set up, run, and contribute to the codebase.
 
 ### Frontend Overview
+
 The frontend is built with React and uses Vite as the build tool. All source code is located inside the src/ folder.
 
 #### Key files and folders to know:
@@ -89,9 +146,10 @@ _Always pull the latest changes before working on new features._
 ### To run the frontend locally:
 
 **npm run dev** :
-This will start the development server at http://localhost:5173.
+This will start the development server at [http://localhost:5173](http://localhost:5173).
 
 ### Backend Overview
+
 Backend files are located inside the database/ folder. There are two versions:
 
 EC2/server.js and server.py (for EC2 setup)
@@ -102,16 +160,18 @@ LightSail/server.js (for AWS Lightsail deployment)
 
 node database/LightSail/server.js
 
-*Make sure you have your .env file properly configured before starting the server.*
+_Make sure you have your .env file properly configured before starting the server._
 
 ### Running Tests
-Frontend tests are written using Jest and React Testing Library, and are located in src/__tests__/.
+
+Frontend tests are written using Jest and React Testing Library, and are located in src/**tests**/.
 
 ### To run tests:
 
 npm run test
 
 #### Follow these conventions:
+
 Keep your branch names clear (e.g., feature/quiz-form, fix/navbar-bug).
 
 Use consistent naming for your JSX and CSS files.
@@ -126,21 +186,25 @@ Use camelCase for variables
 
 Our project timeline is managed through JIRA, outlining key milestones:
 
-1. **Client Consultation (Sprint 1):**
+1. **Client Consultation (Sprint 1):**
+
    - Met with the client to understand their needs and objectives.
    - Gathered initial requirements and project scope.
 
-2. **Planning and Design (Sprint 2):**
+2. **Planning and Design (Sprint 2):**
+
    - Created mockups of the website.
    - Developed tech stack to be used.
    - Developed ERD
 
-3. **Development Phase (Sprint 3):**
+3. **Development Phase (Sprint 3):**
+
    - Built the frontend using HTML, CSS, and React.
    - Integrated interactive elements like forms and upload features.
    - Backend development for user authentication
 
-4. **Content Integration (Week 4):**
+4. **Content Integration (Week 4):**
+
    - Added content provided by the client, including text and images.
    - Redesign Website UI with dark theme
    - Optimize the website to satisfy the remaining requirements
@@ -151,20 +215,22 @@ Our project timeline is managed through JIRA, outlining key milestones:
 
 #### Prerequisites
 
-1) Install Node JS on your local machine
-2) VS Code or any other similar IDE
+1. Install Node JS on your local machine
+2. VS Code or any other similar IDE
 
 #### Installation
-3) Clone the repository to you local machine ```https://github.com/jshingala/SentrySight.git```
-4) Install the application dependencies ```npm install```
+
+3. Clone the repository to you local machine `https://github.com/jshingala/SentrySight.git`
+4. Install the application dependencies `npm install`
 
 #### Build the application
-5) To build the application ```npm run build```
-6) To run the application ```npm run start```
+
+5. To build the application `npm run build`
+6. To run the application `npm run start`
 
 #### Output
-##### <http://localhost:5173/>
 
+##### [http://localhost:5173/](http://localhost:5173/)
 
 ## Setup
 
