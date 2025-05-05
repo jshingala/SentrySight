@@ -1,22 +1,24 @@
-# Team TechSupport
-
-**Members:**
-* David Pham
-* Jenil Shingala
-* Taekjin Jung
-- \[Name Placeholder]
-- CJ Pallari
-
-
-**Client:** Ritchie Martinez
-
----
-
 # SentrySight Website Development
 
 *Developed by *TechSupport* for AI Firearm Detection Solutions.*
 
 <img src="src/assets/logo.png" alt="Logo" width="200" height="auto">
+
+## Team TechSupport
+
+**Developers:**
+* David Pham
+* Arju Shrestha
+* Jenil Shingala
+* Gavin Garcia
+* Huy Dao
+* Taekjin Jung
+* Jagjot Mann
+* Adnan Baig
+* CJ Pallari
+
+
+**Client:** Ritchie Martinez
 
 ## Table of Contents
 
@@ -80,7 +82,14 @@ Product Testing <img src="src/assets/readme_assets/demo.gif" alt="Demo Video" wi
 
 ## Testing
 
-_This section will be developed in CSC 191._
+### Set up Jest for unit testing
+1. Install Jest using npm command on the terminal: npm install --save-dev jest
+2. Create a configuration file for Jest (jest.config.js)
+3. Add this code on the package.json file:
+`"scripts": {
+  "test": "react-scripts test --env=jsdom"
+}`
+4. run whole units: `npm test` (or put file name for individual testing: `npm test [file_name]`
 
 ## Deployment
 
@@ -185,7 +194,8 @@ Use camelCase for variables
 
 ## Timeline and Milestones
 
-Our project timeline is managed through JIRA, outlining key milestones:
+Our project timeline is managed through JIRA, outlining key milestones.
+Each Sprint was made bi-weekly:
 
 1. **Client Consultation (Sprint 1):**
 
@@ -204,13 +214,35 @@ Our project timeline is managed through JIRA, outlining key milestones:
    - Integrated interactive elements like forms and upload features.
    - Backend development for user authentication
 
-4. **Content Integration (Week 4):**
+4. **Content Integration (Sprint 4):**
 
    - Added content provided by the client, including text and images.
    - Redesign Website UI with dark theme
    - Optimize the website to satisfy the remaining requirements
 
----
+5. **Content Integration (Sprint 5):**
+
+   - //needs to work
+
+6. **Content Integration (Sprint 6):**
+
+   - //needs to work
+  
+7. **Content Integration (Sprint 7):**
+
+   - //needs to work
+
+8. **Content Integration (Sprint 8):**
+
+   - //needs to work
+
+9. **Content Integration (Sprint 9):**
+
+   - //needs to work
+
+10. **Content Integration (Sprint 10):**
+
+   - //needs to work
 
 ## Installation and Setup
 
@@ -232,17 +264,3 @@ Our project timeline is managed through JIRA, outlining key milestones:
 #### Output
 
 ##### [http://localhost:5173/](http://localhost:5173/)
-
-## Setup
-
-1. Clone the repository:
-   Use Github Desktop
-
-2. Navigate to the project folder:
-   Make sure you're on the correct folder, use cd command.
-
-3. Install dependencies:
-   npm install
-
-4. Run the development server:
-   npm run dev (run npm start to also turn on the server)
