@@ -147,10 +147,9 @@ const Questionnaire_Admin = ({ setClientEmail }) => {
           <table className="companies-table">
             <tbody>
               {filteredCompanies.map((company, index) => (
-                <tr key={index} className="company-row">
+                <tr onClick={() => handleCompanyClick(company)} key={index} className="company-row">
                   <td
                     className="company-name-cell"
-                    onClick={() => handleCompanyClick(company)}
                   >
                     <Typography className="company-name">
                       {company.business_name}
@@ -170,7 +169,10 @@ const Questionnaire_Admin = ({ setClientEmail }) => {
                     <Button
                       variant="outlined"
                       size="small"
-                      onClick={() => handleOpenEmailModal(company)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent row click from firing
+                        handleOpenEmailModal(company);
+                      }}
                     >
                       Email
                     </Button>
