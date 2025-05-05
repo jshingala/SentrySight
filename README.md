@@ -60,7 +60,8 @@ Our web development team was assigned to build a comprehensive website for **Sen
 
   <img src="src/assets/readme_assets/demo.png" alt="Demo" width="1024" height="auto">
 
-Product Testing <img src="src/assets/readme_assets/demo.gif" alt="Demo Video" width="1024" height="auto">
+  ***Product Testing*** 
+  <img src="src/assets/readme_assets/demo.gif" alt="Demo Video" width="1024" height="auto">
 
 - **Questionnaire Page**
 
@@ -79,6 +80,10 @@ Product Testing <img src="src/assets/readme_assets/demo.gif" alt="Demo Video" wi
 - **Profile Page**
 
   <img src="src/assets/readme_assets/profile.png" alt="Profile" width="1024" height="auto">
+
+- **Contact Us Page**
+
+  <img src="src/assets/readme_assets/contact.png" alt="Profile" width="1024" height="auto">
 
 ## Testing
 
@@ -174,7 +179,7 @@ _Make sure you have your .env file properly configured before starting the serve
 
 ### Running Tests
 
-Frontend tests are written using Jest and React Testing Library, and are located in src/**tests**/.
+Frontend tests are written using Jest and React Testing Library, and are located in src/\_\_tests\_\_/.
 
 ### To run tests:
 
@@ -220,27 +225,33 @@ Each Sprint was made bi-weekly:
    - Redesign Website UI with dark theme
    - Optimize the website to satisfy the remaining requirements
 
-5. **Content Integration (Sprint 5):**
+5. **(Sprint 5):**
 
-   - //needs to work
+   - Updated PDF Generation from Questionnaire submission
+   - Added Light/Dark Theme Toggle
+   - Questionnaire (admin view): Filtering functionality
+   - UI update: Smooth transitions of pages
 
-6. **Content Integration (Sprint 6):**
+6. **(Sprint 6):**
 
-   - //needs to work
+   - LightSail server setup and hosting
+   - Added AI image processing functionality
   
-7. **Content Integration (Sprint 7):**
+7. **Security Improvement (Sprint 7):**
+
+   - Implemented hashing for users' password
+   - Added Email verification system for account registration
+   - Improved security measures for AI demo usage
+
+8. **(Sprint 8):**
 
    - //needs to work
 
-8. **Content Integration (Sprint 8):**
+9. **(Sprint 9):**
 
    - //needs to work
 
-9. **Content Integration (Sprint 9):**
-
-   - //needs to work
-
-10. **Content Integration (Sprint 10):**
+10. **(Sprint 10):**
 
    - //needs to work
 

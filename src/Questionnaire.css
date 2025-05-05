@@ -191,7 +191,7 @@
 
 .Questionnaire .next-button, 
 .Questionnaire .submit-button {
-  background-color: #FF3366;
+  background-color: #635bff;
   color: white;
   border-radius: 4px;
   padding: 8px 24px;
@@ -201,7 +201,7 @@
 
 .Questionnaire .next-button:hover,
 .Questionnaire .submit-button:hover {
-  background-color: #FF1A53;
+  background-color: #514ad4;
 }
 
 /* Error text */
