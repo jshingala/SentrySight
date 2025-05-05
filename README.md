@@ -2,13 +2,14 @@
 
 **Members:**
 * David Pham
-
-- Arju Shrestha
+* Arju Shrestha
 * Jenil Shingala
-* CJ Pallari
+* Gavin Garcia
+* Huy Dao
+* Taekjin Jung
 * Jagjot Mann
-- Adnan Baig
-- \[Name Placeholder]
+* Adnan Baig
+* CJ Pallari
 
 
 **Client:** Ritchie Martinez
