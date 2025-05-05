@@ -5,10 +5,10 @@
 
 - Arju Shrestha
 * Jenil Shingala
+* CJ Pallari
+* Jagjot Mann
 - Adnan Baig
 - \[Name Placeholder]
-- CJ Pallari
-
 
 
 **Client:** Ritchie Martinez
