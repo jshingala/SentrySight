@@ -3,6 +3,7 @@
 **Members:**
 * David Pham
 * Jenil Shingala
+* Taekjin Jung
 - \[Name Placeholder]
 - CJ Pallari
 
