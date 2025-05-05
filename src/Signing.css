@@ -44,7 +44,8 @@
 }
 
 .sign-up input::placeholder {
-  color: #888; /* Gray placeholder */
+  /*Slightly lighter gray for placeholder text*/
+  color: #aaa; /* Gray placeholder */
 }
 
 .sign-up input:focus {
@@ -69,7 +70,7 @@
 
 .sign-up .signIn:hover {
   background-color: #ff0000; /* red for hover */
-  box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4); /* Red Shadow on hover */
 }
 
 .sign-up-button{
