@@ -3,8 +3,9 @@
 **Members:**
 * David Pham
 * Jenil Shingala
-- \[Name Placeholder]
+- Arju Shrestha
 - CJ Pallari
+
 
 
 **Client:** Ritchie Martinez
