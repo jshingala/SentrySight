@@ -1,10 +1,16 @@
 # Team TechSupport
 
 **Members:**
+David Pham
+Huy Dao
+Gavin Gracia
+Jenil Shingala
+Arju Shrestha
+Taekjin Jung
+Jagjot Mann
+Adnan Baig
+CJ Pallari
 
-* \[Name Placeholder]
-* \[Name Placeholder]
-* \[Name Placeholder]
 
 **Client:** Ritchie Martinez
 
