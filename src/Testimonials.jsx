@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
-import './testimonials.css';
+import './homepage.css';
 
 function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
