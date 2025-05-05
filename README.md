@@ -3,8 +3,9 @@
 **Members:**
 * David Pham
 * Jenil Shingala
-- \[Name Placeholder]
-- CJ Pallari
+* Huy Dao
+* CJ Pallari
+* Gavin Garcia
 
 
 **Client:** Ritchie Martinez
