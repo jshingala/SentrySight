@@ -202,87 +202,184 @@ function Pricing({ onContactClick }) {
       </div>
 
       {isModalOpen && (
+  <div style={{
+    position: "fixed",
+    top: "0", left: "0", right: "0", bottom: "0",
+    backgroundColor: theme.colors.modalOverlay,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: "50"
+  }}>
+    <div style={{
+      backgroundColor: theme.colors.background,
+      width: "60%", height: "80%",
+      padding: "32px", borderRadius: "8px",
+      overflowY: "auto",
+      color: theme.colors.textPrimary
+    }}>
+      <h2 style={{
+        fontSize: theme.fontSizes.xxl,
+        fontWeight: "bold",
+        marginBottom: "24px",
+        textAlign: "center",
+        letterSpacing: "0.05em"
+      }}>
+        Estimate Based on Your Requirements
+      </h2>
+
+      {/* Appliances Section */}
+      <div style={modalSectionStyle}>
+        <h3 style={{ fontSize: theme.fontSizes.xl, marginBottom: "16px", color: theme.colors.textDark }}>Appliances</h3>
+        <label style={labelStyle}>How many cameras?</label>
+        <select
+          style={{
+            width: "100%", padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            fontSize: theme.fontSizes.md,
+            color: theme.colors.textDark
+          }}
+          value={field1}
+          onChange={(e) => setField1(e.target.value)}
+        >
+          <option value="">Select</option>
+          {[...Array(10)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>{i + 1}</option>
+          ))}
+        </select>
+
+        <label style={labelStyle}>How many server/workstations?</label>
+        <select
+          style={{
+            width: "100%", padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            fontSize: theme.fontSizes.md,
+            color: theme.colors.textDark
+          }}
+          value={field2}
+          onChange={(e) => setField2(e.target.value)}
+        >
+          <option value="">Select</option>
+          {[...Array(10)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>{i + 1}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Storage Section */}
+      <div style={modalSectionStyle}>
+        <h3 style={{ fontSize: theme.fontSizes.xl, marginBottom: "16px", color: theme.colors.textDark }}>Storage</h3>
+        <label style={labelStyle}>Storage Type</label>
+        <select
+          style={{
+            width: "100%", padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            fontSize: theme.fontSizes.md,
+            color: theme.colors.textDark
+          }}
+          value={field3}
+          onChange={(e) => setField3(e.target.value)}
+        >
+          <option value="">Select Storage Type</option>
+          <option value="Cloud">Cloud</option>
+          <option value="Physical">Physical</option>
+        </select>
+
+        <label style={labelStyle}>Select Storage Size</label>
+        <select
+          style={{
+            width: "100%", padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            fontSize: theme.fontSizes.md,
+            color: theme.colors.textDark
+          }}
+          value={field3}
+          onChange={(e) => setField3(e.target.value)}
+        >
+          <option value="">Select Size</option>
+          <option value="64GB">64GB</option>
+          <option value="128GB">128GB</option>
+          <option value="256GB">256GB</option>
+          <option value="512GB">512GB</option>
+          <option value="1TB">1TB</option>
+          <option value="2TB">2TB</option>
+          <option value="4TB">4TB</option>
+          <option value="8TB">8TB</option>
+          <option value="16TB">16TB</option>
+        </select>
+      </div>
+
+      {/* Network Requirements Section */}
+      <div style={modalSectionStyle}>
+        <h3 style={{ fontSize: theme.fontSizes.xl, marginBottom: "16px", color: theme.colors.textDark }}>Network Requirements</h3>
+        <label style={labelStyle}>Routers and Switches</label>
+        <select
+          style={{
+            width: "100%", padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            fontSize: theme.fontSizes.md,
+            color: theme.colors.textDark
+          }}
+          value={field1}
+          onChange={(e) => setField1(e.target.value)}
+        >
+          <option value="">Select</option>
+          {[...Array(10)].map((_, i) => (
+            <option key={i + 1} value={i + 1}>{i + 1}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Security Features Section */}
+      <div style={modalSectionStyle}>
+        <h3 style={{ fontSize: theme.fontSizes.xl, marginBottom: "16px", color: theme.colors.textDark }}>Security Features</h3>
+        <label style={labelStyle}>Select Security Features</label>
+        <select
+          style={{
+            width: "100%", padding: "8px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            fontSize: theme.fontSizes.md,
+            color: theme.colors.textDark
+          }}
+          value={field2}
+          onChange={(e) => setField2(e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="Encryption of data">Encryption of data</option>
+          <option value="Role-based access control">Role-based access control</option>
+          <option value="Secure cloud storage">Secure cloud storage</option>
+          <option value="Secure physical storage">Secure physical storage</option>
+          <option value="No specific security features">No specific security features</option>
+        </select>
+      </div>
+
+      {/* Get Estimate Button */}
+      <div style={{ textAlign: "center", marginTop: "16px" }}>
+        <button
+          onClick={handleEstimate}
+          style={buttonStyle(theme.colors.headerFlat)}
+          onMouseOver={(e) => e.target.style.backgroundColor = "#45a049"}
+          onMouseOut={(e) => e.target.style.backgroundColor = theme.colors.headerFlat}
+        >
+          Get Estimate
+        </button>
+      </div>
+
+      {/* Estimate Display */}
+      {estimate && (
         <div style={{
-          position: "fixed",
-          top: "0", left: "0", right: "0", bottom: "0",
-          backgroundColor: theme.colors.modalOverlay,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: "50"
+          marginTop: "16px",
+          fontSize: theme.fontSizes.xxl,
+          color: theme.colors.textPrimary,
+          textAlign: "center"
         }}>
-          <div style={{
-            backgroundColor: theme.colors.background,
-            width: "60%", height: "80%",
-            padding: "32px", borderRadius: "8px",
-            overflowY: "auto",
-            color: theme.colors.textPrimary
-          }}>
-            <h2 style={{
-              fontSize: theme.fontSizes.xxl,
-              fontWeight: "bold",
-              marginBottom: "24px",
-              textAlign: "center",
-              letterSpacing: "0.05em"
-            }}>
-              Estimate Based on Your Requirements
-            </h2>
-
-            {[
-              { label: "How many cameras?", value: field1, setter: setField1 },
-              { label: "How many server/workstations?", value: field2, setter: setField2 }
-            ].map((input, idx) => (
-              <div key={idx} style={modalSectionStyle}>
-                <label style={labelStyle}>{input.label}</label>
-                <select
-                  style={{
-                    width: "100%", padding: "8px",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    fontSize: theme.fontSizes.md,
-                    color: theme.colors.textDark
-                  }}
-                  value={input.value}
-                  onChange={(e) => input.setter(e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {[...Array(10)].map((_, i) => (
-                    <option key={i + 1} value={i + 1}>{i + 1}</option>
-                  ))}
-                </select>
-              </div>
-            ))}
-
-            <div style={{ ...modalSectionStyle, textAlign: "center" }}>
-              <button
-                onClick={handleEstimate}
-                style={buttonStyle(theme.colors.headerFlat)}
-                onMouseOver={(e) => e.target.style.backgroundColor = "#45a049"}
-                onMouseOut={(e) => e.target.style.backgroundColor = theme.colors.headerFlat}
-              >
-                Get Estimate
-              </button>
-              {estimate && (
-                <div style={{
-                  marginTop: "16px",
-                  fontSize: theme.fontSizes.xxl,
-                  color: theme.colors.textPrimary
-                }}>
-                  <strong>Estimated Price: </strong> {estimate}
-                </div>
-              )}
-              <div style={{ marginTop: "16px" }}>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  style={buttonStyle(theme.colors.headerPremium)}
-                  onMouseOver={(e) => e.target.style.backgroundColor = "#d84315"}
-                  onMouseOut={(e) => e.target.style.backgroundColor = theme.colors.headerPremium}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
+          <strong>Estimated Price: </strong> {estimate}
         </div>
       )}
     </main>
