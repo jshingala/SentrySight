@@ -1,28 +1,29 @@
 import React from "react";
-import './socials.css'; // Import CSS
+import './homepage.css'; // Import CSS
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
-function Socials() {
+const Socials = () => {
   return (
-    <section className="socials">
-      <h2 className="socials-title">Follow Us</h2>
-      <div className="socials-links">
-        <a className="social-link" href="https://facebook.com" aria-label="Facebook">
-          <FontAwesomeIcon icon={faFacebook} />
-        </a>
-        <a className="social-link" href="https://twitter.com" aria-label="Twitter">
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-        <a className="social-link" href="https://instagram.com" aria-label="Instagram">
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
-        <a className="social-link" href="https://linkedin.com" aria-label="LinkedIn">
-          <FontAwesomeIcon icon={faLinkedin} />
-        </a>
-      </div>
-    </section>
+    <div className="socials-page">
+      <h1 className="socials-title">Stay Updated</h1>
+      <div className="socials-icons">
+  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+    <FaFacebookF className="icon" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+    <FaTwitter className="icon" />
+  </a>
+  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+    <FaInstagram className="icon" />
+  </a>
+</div>
+      <p className="socials-text">
+        Follow us on our official social platforms for the latest updates.
+      </p>
+    </div>
   );
-}
+};
 
 export default Socials;

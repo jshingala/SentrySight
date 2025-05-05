@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./global.css";
-import "./CTA.css";
+import "./homepage.css";
 
 const buttonVariant = {
   hover: { scale: 1.1, transition: { duration: 0.3 } },

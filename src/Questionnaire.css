@@ -1,97 +1,579 @@
-/* Styles for the Questionnaire component */
 .Questionnaire {
-    background-color: #636363; /* Dark background */
-    color: #EAEAEA; /* Off-white text */
-    padding: 40px;
-    border-radius: 8px;
-  }
-  
-  /* Title styling */
-  .Questionnaire .title {
-    color: #635bff; /* Purple color for the title */
-    text-align: center;
-  }
-  
-  /* Subtitle styling */
-  .Questionnaire .subtitle {
-    color: #B0B0B0; /* Light gray text */
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  /* Form control margins */
-  .Questionnaire .MuiFormControl-root {
-    margin-bottom: 20px;
-  }
-  
-  /* TextFields styling */
-  .Questionnaire .MuiInputBase-root {
-    background-color: #262626; /* Card background */
-    color: #EAEAEA; /* Off-white text */
-  }
-  
-  .Questionnaire .MuiInputBase-input::placeholder {
-    color: #EAEAEA; /* White placeholder text */
-    opacity: 1;
-  }
-  
-  .Questionnaire .MuiFormLabel-root {
-    color: #B0B0B0; /* Light gray labels */
-  }
-  
-  .Questionnaire .MuiFormHelperText-root {
-    color: red; /* Error messages in red */
-  }
-  
-  /* Checkbox labels */
-  .Questionnaire .MuiFormControlLabel-label {
-    color: #EAEAEA; /* Off-white text */
-  }
-  
-  /* Checkbox icons */
-  .Questionnaire .MuiCheckbox-root .MuiSvgIcon-root {
-    color: #EAEAEA; /* Off-white */
-  }
-  
-  /* Slider thumb and track */
-  .Questionnaire .MuiSlider-thumb {
-    color: #635bff; /* Purple thumb */
-  }
-  
-  .Questionnaire .MuiSlider-track {
-    color: #635bff; /* Purple track */
-  }
-  
-  /* Submit button styling */
-  .Questionnaire .submit-button {
-    background-color: #635bff; /* Purple background */
-    color: #EAEAEA; /* Off-white text */
-    padding: 12px 30px;
-    font-size: 1rem;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .Questionnaire .submit-button:hover {
-    background-color: #ff0000; /* Darker purple on hover */
-  }
-  
-  .submit-date {
-    font-size: 12px;
-    color: #ffffff;
-  }
+  background-color: #0D0D0D;
+  color: #EAEAEA;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 100px 0 40px 0;
+  overflow-x: hidden;
+}
 
-  .Questionnaire .client_info div{
-    margin-top: 15px;
-    font-size: 20px;
-    border: 2px solid grey; /* Adds a 2px solid grey border */
-    padding: 20px; /* Optional: Adds space between the content and the border */
+
+
+.questionnaire-content {
+  background-color: #111111;
+  padding: 40px;
+  border-radius: 8px;
+  margin-bottom: 60px;
+}
+
+/* Title and subtitle styling */
+.Questionnaire .title {
+  color: #635bff;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.Questionnaire .subtitle {
+  color: #B0B0B0;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* Progress bar styling */
+.Questionnaire .progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 36px;
+  border-radius: 18px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.Questionnaire .progress-step {
+  background: linear-gradient(90deg, #4a7cff 0%, #635bff 100%);
+  color: white;
+  height: 100%;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: width 0.3s ease;
+}
+
+/* Section title */
+.Questionnaire .section-title {
+  color: #635bff;
+  margin-bottom: 30px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.Questionnaire .section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #635bff 0%, rgba(99, 91, 255, 0.1) 100%);
+}
+
+/* Form fields */
+.Questionnaire .form-field {
+  margin-bottom: 30px;
+}
+
+.Questionnaire .form-field > p {
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* Input styling */
+.Questionnaire .MuiInputBase-root {
+  background-color: #1E1E2D;
+  border-radius: 4px;
+  color: #EAEAEA;
+}
+
+.Questionnaire .MuiOutlinedInput-notchedOutline {
+  border-color: #333344;
+}
+
+.Questionnaire .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #4a4a5a;
+}
+
+.Questionnaire .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #635bff;
+}
+
+/* Radio and Checkbox styling */
+.Questionnaire .MuiRadio-root {
+  color: #635bff;
+}
+
+.Questionnaire .MuiCheckbox-root {
+  color: #635bff;
+}
+
+.Questionnaire .MuiRadio-root.Mui-checked {
+  color: #635bff;
+}
+
+.Questionnaire .MuiCheckbox-root.Mui-checked {
+  color: #635bff;
+}
+
+.Questionnaire .MuiFormControlLabel-label {
+  color: #EAEAEA;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Slider styling */
+.Questionnaire .slider-container {
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.Questionnaire .slider-container .MuiTypography-caption {
+  color: #b0b0b0;
+  display: inline-block;
+  width: 50%;
+}
+
+.Questionnaire .slider-container .MuiTypography-caption:last-child {
+  text-align: right;
+}
+
+.Questionnaire .MuiSlider-root {
+  color: #635bff;
+  margin-bottom: 6px;
+}
+
+.Questionnaire .MuiSlider-track {
+  background-color: #635bff;
+}
+
+.Questionnaire .MuiSlider-thumb {
+  background-color: #eb2f96;
+  border: 2px solid #eb2f96;
+}
+
+.Questionnaire .MuiSlider-thumb.Mui-active {
+  box-shadow: 0 0 0 8px rgba(235, 47, 150, 0.16);
+}
+
+.Questionnaire .MuiSlider-valueLabel {
+  background-color: #eb2f96;
+}
+
+/* Buttons container */
+.Questionnaire .buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+/* Button styling */
+.Questionnaire .prev-button {
+  background-color: #2A2A3C;
+  color: #EAEAEA;
+  border-radius: 4px;
+  padding: 8px 24px;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.Questionnaire .prev-button:hover {
+  background-color: #3A3A4C;
+}
+
+.Questionnaire .next-button, 
+.Questionnaire .submit-button {
+  background-color: #FF3366;
+  color: white;
+  border-radius: 4px;
+  padding: 8px 24px;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.Questionnaire .next-button:hover,
+.Questionnaire .submit-button:hover {
+  background-color: #FF1A53;
+}
+
+/* Error text */
+.Questionnaire .MuiFormHelperText-root.Mui-error {
+  color: #FF3366;
+  margin-top: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .questionnaire-content {
+    padding: 20px;
   }
-  .Questionnaire .client_info h3{
-    font-size: 30px;
-    background: linear-gradient(to right, #8a89e6, #d084f3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
+  
+  .Questionnaire .title {
+    font-size: 1.8rem;
   }
+  
+  .Questionnaire .slider-container .MuiTypography-caption {
+    font-size: 0.7rem;
+  }
+}
+
+/* ------------- Admin Client View ------------- */
+
+/* Container for compact view */
+.questionnaire-container-compact {
+  background-color: #1A1A1A;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Section layouts */
+.client-summary-section {
+  margin-bottom: 20px;
+}
+
+.client-details-section,
+.safety-interest-section {
+  margin-bottom: 20px;
+}
+
+/* Info cards for top row */
+.info-card {
+  background-color: #262626;
+  border-radius: 8px;
+  padding: 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #B0B0B0;
+  margin-bottom: 4px;
+}
+
+/* Detail cards for lower sections */
+.detail-card {
+  background-color: #262626;
+  border-radius: 8px;
+  padding: 16px;
+  height: 100%;
+}
+
+.detail-card h3 {
+  font-size: 18px;
+  background: linear-gradient(to right, #8a89e6, #d084f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.detail-label {
+  display: block;
+  font-size: 14px;
+  color: #B0B0B0;
+  margin-bottom: 2px;
+}
+
+.detail-value {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #EAEAEA;
+  margin-bottom: 8px;
+}
+
+.detail-value.highlight {
+  color: #635bff;
+  font-weight: 600;
+}
+
+/* Safety measures grid layout */
+.measures-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.measure-item {
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.measure-item.active {
+  background-color: rgba(99, 91, 255, 0.2);
+  border: 1px solid #635bff;
+  color: #EAEAEA;
+}
+
+.measure-item.inactive {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #3D3D3D;
+  color: #999999;
+}
+
+/* Comments section */
+.comments-section {
+  background-color: #262626;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.comments-section h3 {
+  font-size: 18px;
+  background: linear-gradient(to right, #8a89e6, #d084f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.comments {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 12px;
+  border-radius: 8px;
+  font-style: italic;
+  text-align: left;
+  border-left: 3px solid #635bff;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #EAEAEA;
+}
+
+/* ------------- Questionnaire Admin View ------------- */
+
+/* Main container refinements */
+.Questionnaire .questionnaire-container {
+  background-color: transparent;
+  padding: 15px 20px 40px 20px;
+}
+
+/* Title styling */
+.Questionnaire .title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #635bff;
+}
+
+/* Subtitle refinements */
+.Questionnaire .subtitle {
+  font-size: 1rem;
+  color: #b0b0b0;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+/* Search and sort container */
+.Questionnaire .search-sort-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+/* Search field styling */
+.Questionnaire .MuiInputBase-root {
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+
+.Questionnaire .MuiInputBase-root:focus-within {
+  border-color: #635bff;
+}
+
+/* Sort dropdown styling */
+.Questionnaire .MuiSelect-select {
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  color: #EAEAEA;
+}
+
+/* Table layout for companies */
+.Questionnaire .companies-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+
+.Questionnaire .company-row {
+  background-color: #1a1a1a;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.Questionnaire .company-row:hover {
+  background-color: #252525;
+}
+
+.Questionnaire .company-row td {
+  padding: 12px 15px;
+}
+
+/* First cell rounded left corners */
+.Questionnaire .company-row td:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Last cell rounded right corners */
+.Questionnaire .company-row td:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  text-align: right;
+}
+
+/* Company name styling */
+.Questionnaire .company-name-cell {
+  width: 30%;
+}
+
+.Questionnaire .company-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: white;
+  margin: 0;
+}
+
+/* Company email styling */
+.Questionnaire .company-email-cell {
+  width: 40%;
+}
+
+.Questionnaire .company-email {
+  font-size: 0.9rem;
+  color: #b0b0b0;
+  margin: 0;
+}
+
+/* Date cell styling */
+.Questionnaire .date-cell {
+  width: 30%;
+  text-align: right;
+}
+
+/* Submit date styling */
+.Questionnaire .submit-date {
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  background-color: rgba(99, 91, 255, 0.3);
+  border-radius: 12px;
+  color: #d0d0d0;
+  display: inline-block;
+}
+
+/* Pagination controls */
+.Questionnaire .pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.Questionnaire .page-indicator {
+  color: #b0b0b0;
+  font-weight: 500;
+}
+
+/* Page navigation buttons */
+.Questionnaire .nav-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: 500;
+  width: 100px;
+}
+
+.Questionnaire .nav-button:not(:disabled):hover {
+  background-color: #444;
+}
+
+.Questionnaire .nav-button:disabled {
+  background-color: #222;
+  color: #555;
+  cursor: not-allowed;
+}
+
+/* Empty state */
+.Questionnaire .empty-state {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+/* Loading state */
+.Questionnaire .loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Questionnaire .title {
+    font-size: 1.8rem;
+  }
+  
+  .Questionnaire .search-sort-container {
+    flex-direction: column;
+  }
+  
+  /* Stack the table on mobile */
+  .Questionnaire .companies-table,
+  .Questionnaire .company-row,
+  .Questionnaire .company-row td {
+    display: block;
+  }
+  
+  .Questionnaire .company-row {
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .Questionnaire .company-row td {
+    width: 100%;
+    text-align: left;
+    padding: 8px 15px;
+  }
+  
+  .Questionnaire .company-row td:first-child {
+    border-radius: 4px 4px 0 0;
+    padding-bottom: 4px;
+  }
+  
+  .Questionnaire .company-row td:last-child {
+    border-radius: 0 0 4px 4px;
+    text-align: left;
+    padding-top: 4px;
+  }
+  
+  .Questionnaire .company-email-cell {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}

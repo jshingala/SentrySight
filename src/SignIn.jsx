@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import './SignUp.css';
+import { Eye, EyeOff } from "lucide-react";
+import './Signing.css';
 
 const Login = ({ setUserEmail, setIsAdmin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -50,9 +52,8 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
 
   return (
     <div className="sign-up">
-      <h2>Login</h2>
-      {errorMessage && <div className="error">{errorMessage}</div>}
       <form className="sign-up-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <label>Email:</label>
         <input
           type="email"
@@ -63,19 +64,24 @@ const Login = ({ setUserEmail, setIsAdmin }) => {
           required
         />
         <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          placeholder="Enter your password"
-          value={password}
-        />
-        <button type="submit">Submit</button>
+        <div className="input-container">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            onChange={handleChange}
+            placeholder="Enter your password"
+            value={password}
+          />
+          <span className="eye-icon" onClick={() => setShowPassword(prev => !prev)}>
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </span>
+        </div>
+        {errorMessage && <div className="error">{errorMessage}</div>}
+        <Link to="/FP" className="FP">Forgot password?</Link>
+        <div>
+          <button type="submit" className="signIn">Sign in</button>
+        </div>
         <div className="register">
-          <Link to="/sign-up">
-            <button type="button">Go to Register</button>
-          </Link>
-          {/* "Don't have an account?" as a clickable link */}
           <p>
           Don't have an account? <Link to="/sign-up" className="sign-up-button">Sign up here</Link>
           </p>
