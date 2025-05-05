@@ -1,83 +1,242 @@
-from flask import Flask, request, send_from_directory, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
 import cv2
 import logging
+import boto3
 from ultralytics import YOLO
+import time
+from collections import defaultdict
+from datetime import datetime, timedelta
+import threading
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+S3_BUCKET_NAME = ""
+S3_LOGS_FOLDER = ""
+AWS_ACCESS_KEY = ""
+AWS_SECRET_KEY = ""
+
+# Configure logging BEFORE creating S3 client
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.StreamHandler()  # Always log to console
+    ]
+)
+
+s3_client = boto3.client(
+    "s3",
+    aws_access_key_id=AWS_ACCESS_KEY,
+    aws_secret_access_key=AWS_SECRET_KEY
+)
 
 app = Flask(__name__)
-CORS(app)  
+CORS(app)
 
-# make sure upload folders exist
 UPLOAD_FOLDER = 'uploads'
 PROCESSED_FOLDER = 'processed'
+LOGS_FOLDER = "/home/ubuntu/logs"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(PROCESSED_FOLDER, exist_ok=True)
+os.makedirs(LOGS_FOLDER, exist_ok=True)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PROCESSED_FOLDER'] = PROCESSED_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 
-logging.info("loading yolo model...")
-model = YOLO("yolov8n.pt")  
-logging.info("yolo model loaded.")
+logging.info("Loading YOLOv8 model...")
+model = YOLO("yolov8n.pt")
+logging.info("YOLOv8 model loaded successfully.")
+
+# Rate limiting implementation - track requests per IP per minute
+# Dictionary structure: {ip_address: [(timestamp1), (timestamp2), ...]}
+rate_limit_data = defaultdict(list)
+RATE_LIMIT = 5  # Maximum 5 requests per minute
+
+def clean_old_rate_limit_data():
+    """Remove entries older than 1 minute from the rate limiting data"""
+    current_time = datetime.now()
+    one_minute_ago = current_time - timedelta(minutes=1)
+    
+    for ip, timestamps in list(rate_limit_data.items()):
+        # Keep only timestamps that are less than a minute old
+        rate_limit_data[ip] = [ts for ts in timestamps if ts > one_minute_ago]
+        
+        # Remove empty entries
+        if not rate_limit_data[ip]:
+            del rate_limit_data[ip]
+
+def check_rate_limit(ip_address):
+    """Check if an IP has exceeded the rate limit
+    Returns: (bool) True if rate limit exceeded, False otherwise
+    """
+    clean_old_rate_limit_data()
+    
+    # Get the current timestamps for this IP
+    timestamps = rate_limit_data[ip_address]
+    
+    # If we have 5 or more timestamps and they're all within the last minute, 
+    # the rate limit is exceeded
+    if len(timestamps) >= RATE_LIMIT:
+        return True
+    
+    # Add the current timestamp
+    rate_limit_data[ip_address].append(datetime.now())
+    return False
+
+def cleanup_old_files():
+    """Remove files older than 1 month from uploads and processed folders"""
+    while True:
+        try:
+            current_time = datetime.now()
+            one_month_ago = current_time - timedelta(days=30)
+            
+            # Clean uploads folder
+            for filename in os.listdir(UPLOAD_FOLDER):
+                file_path = os.path.join(UPLOAD_FOLDER, filename)
+                if os.path.isfile(file_path):
+                    file_modified = datetime.fromtimestamp(os.path.getmtime(file_path))
+                    if file_modified < one_month_ago:
+                        os.remove(file_path)
+                        logging.info(f"Deleted old file: {file_path}")
+            
+            # Clean processed folder
+            for filename in os.listdir(PROCESSED_FOLDER):
+                file_path = os.path.join(PROCESSED_FOLDER, filename)
+                if os.path.isfile(file_path):
+                    file_modified = datetime.fromtimestamp(os.path.getmtime(file_path))
+                    if file_modified < one_month_ago:
+                        os.remove(file_path)
+                        logging.info(f"Deleted old file: {file_path}")
+            
+        except Exception as e:
+            logging.error(f"Error during cleanup: {str(e)}")
+        
+        # Sleep for 30 minutes before next cleanup
+        time.sleep(1800)
+
+# Start cleanup thread
+cleanup_thread = threading.Thread(target=cleanup_old_files, daemon=True)
+cleanup_thread.start()
+logging.info("Automatic cleanup thread started")
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-    logging.info("got a request to /upload")
+    user_ip = request.remote_addr
+    user_ip_log = user_ip.replace(".", "_")  # For log filename
+    log_file_path = os.path.join(LOGS_FOLDER, f"log_{user_ip_log}.log")
 
-    if 'image' not in request.files:
-        logging.warning("no file found in request")
-        return jsonify({"error": "no file uploaded"}), 400
+    # Create a file handler specifically for this request
+    file_handler = logging.FileHandler(log_file_path, mode="a")
+    file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     
-    file = request.files['image']
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-    processed_path = os.path.join(app.config['PROCESSED_FOLDER'], f"inference_{file.filename}")
-
-    logging.info(f"saving file: {file.filename}")
-    file.save(file_path)
+    # Get the root logger and add the file handler
+    root_logger = logging.getLogger()
+    root_logger.addHandler(file_handler)
 
     try:
-        logging.info(f"running yolo inference on {file.filename} (size=224)")
-        results = model.predict(file_path, imgsz=224, verbose=True)
+        logging.info(f"Received request from {user_ip}")
+        
+        # Check rate limit
+        if check_rate_limit(user_ip):
+            logging.warning(f"IP {user_ip} has exceeded rate limit (5 requests per minute)")
+            return jsonify({
+                "error": "Rate limit exceeded", 
+                "message": "You can only make 5 requests per minute"
+            }), 429
 
-        if not results:
-            raise ValueError("yolo returned no results")
+        if 'image' not in request.files:
+            logging.warning(f"IP {user_ip} attempted upload without a file.")
+            return jsonify({"error": "No file uploaded"}), 400
 
-        for result in results:
-            inference_time = result.speed["inference"]
-            preprocess_time = result.speed["preprocess"]
-            postprocess_time = result.speed["postprocess"]
+        file = request.files['image']
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        processed_path = os.path.join(app.config['PROCESSED_FOLDER'], f"inference_{file.filename}")
 
-            logging.info(f"timing for {file.filename} -> preprocess: {preprocess_time:.2f} ms, inference: {inference_time:.2f} ms, postprocess: {postprocess_time:.2f} ms")
+        logging.info(f"Saving uploaded file: {file.filename} from IP: {user_ip}")
+        file.save(file_path)
 
-            annotated_img = result.plot()
+        try:
+            logging.info(f"Running YOLOv8 inference on {file.filename}...")
+            results = model.predict(file_path, imgsz=224, verbose=True)
 
-        logging.info(f"saving inference result: inference_{file.filename}")
-        cv2.imwrite(processed_path, annotated_img)
+            if not results:
+                raise ValueError("YOLOv8 returned no results!")
 
-        logging.info(f"done. returning image url: http://{request.host}/processed/inference_{file.filename}")
+            for result in results:
+                inference_time = result.speed["inference"]
+                preprocess_time = result.speed["preprocess"]
+                postprocess_time = result.speed["postprocess"]
 
-        return jsonify({
-            "imageUrl": f"http://{request.host}/processed/inference_{file.filename}",
-            "timing": {
-                "preprocess": preprocess_time,
-                "inference": inference_time,
-                "postprocess": postprocess_time
-            }
-        })
+                logging.info(f"Inference results for {file.filename}:")
+                logging.info(f"Preprocessing: {preprocess_time:.2f} ms")
+                logging.info(f"Inference: {inference_time:.2f} ms")
+                logging.info(f"Postprocessing: {postprocess_time:.2f} ms")
 
-    except Exception as e:
-        logging.error(f"error processing {file.filename}: {str(e)}")
-        return jsonify({"error": "failed to process image", "details": str(e)}), 500
+                annotated_img = result.plot()
+
+            logging.info(f"Saving inference image: inference_{file.filename}")
+            cv2.imwrite(processed_path, annotated_img)
+
+            upload_logs_to_s3(log_file_path, user_ip_log)
+
+            return jsonify({
+                "imageUrl": f"http://{request.host}/processed/inference_{file.filename}",
+                "user_ip": user_ip,
+                "timing": {
+                    "preprocess": preprocess_time,
+                    "inference": inference_time,
+                    "postprocess": postprocess_time
+                },
+                "usage": {
+                    "current": len(rate_limit_data[user_ip]),
+                    "limit": RATE_LIMIT,
+                    "reset": "1 minute from your first request"
+                }
+            })
+
+        except Exception as e:
+            logging.error(f"Error processing image {file.filename}: {str(e)}")
+            return jsonify({"error": "Failed to process image", "details": str(e)}), 500
+
+    finally:
+        # Remove the file handler to prevent duplicate logging
+        root_logger.removeHandler(file_handler)
+        file_handler.close()
 
 @app.route('/processed/<filename>')
 def processed_file(filename):
-    logging.info(f"serving image: {filename}")
+    logging.info(f"Serving processed image: {filename}")
     return send_from_directory(app.config['PROCESSED_FOLDER'], filename)
 
+def upload_logs_to_s3(log_file_path, user_ip):
+    try:
+        if not os.path.exists(log_file_path):
+            logging.error("Log file does not exist.")
+            return
+
+        with open(log_file_path, "r") as f:
+            log_content = f.read()
+
+        if not log_content.strip():
+            logging.warning("Log file is empty.")
+            return
+
+        timestamp = time.strftime("%Y%m%d-%H%M%S")
+        log_filename = f"{S3_LOGS_FOLDER}log_{user_ip}_{timestamp}.txt"
+
+        s3_client.put_object(
+            Bucket=S3_BUCKET_NAME,
+            Key=log_filename,
+            Body=log_content,
+            ContentType="text/plain"
+        )
+
+        logging.info(f"Logs uploaded to S3: {S3_BUCKET_NAME}/{log_filename}")
+
+    except Exception as e:
+        logging.error(f"Failed to upload logs to S3: {str(e)}")
+
 if __name__ == '__main__':
-    logging.info("starting server on port 3000...")
+    logging.info("Starting Flask server on port 3000...")
     app.run(host='0.0.0.0', port=3000, debug=True)
