@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import './newsSlider.css';
+import './homepage.css';
 
 const NewsSlider = () => {
   const [news, setNews] = useState([]);
