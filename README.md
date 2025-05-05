@@ -3,6 +3,7 @@
 **Members:**
 * David Pham
 * Jenil Shingala
+- Adnan Baig
 - \[Name Placeholder]
 - CJ Pallari
 
