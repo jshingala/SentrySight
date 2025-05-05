@@ -2,10 +2,11 @@
 
 **Members:**
 
-- \[Name Placeholder]
+* David Pham
 - \[Name Placeholder]
 - \[Name Placeholder]
 - CJ Pallari
+
 
 **Client:** Ritchie Martinez
 
