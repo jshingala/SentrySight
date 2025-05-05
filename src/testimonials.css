@@ -1,6 +1,6 @@
 .testimonials {
   padding: 40px;
-  background-color: #1A1A1A; /* Dark background */
+  background-color: var(--darkest-bg);
   text-align: center;
   color: #FFFFFF; /* White text */
 }

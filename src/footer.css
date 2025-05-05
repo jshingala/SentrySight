@@ -1,5 +1,5 @@
 .footer {
-  background-color: #1A1A1A; /* Dark background */
+  background-color: var(--darker-bg); /* Dark background */
   color: #FFFFFF;
   text-align: center;
   padding: 20px;

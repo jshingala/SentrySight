@@ -1,6 +1,6 @@
 .cta {
   padding: 40px;
-  background-color: #1A1A1A; /* Dark background */
+  background-color: var(--darker-bg); /* Dark background */
   color: #FFFFFF;
   text-align: center;
 }
@@ -36,7 +36,6 @@
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
-
 
 /* Secondary Button Styling */
 .btn-secondary {

@@ -4,7 +4,7 @@
   --primary-color: #e53935;
   --primary-light: #ff6f60;
   --primary-dark: #ab000d;
-  --background-color: #121212;
+  --background-color: var(--darker-bg);
   --surface-color: #1e1e1e;
   --surface-color-light: #2d2d2d;
   --text-color: #FFFFFF;
@@ -19,6 +19,7 @@
   /* Rate limit colors */
   --warning-color: #ffb300;
   --error-color: #ff5252;
+  --darker-bg: #1E1E1E;
 }
 
 /* Global Styling */
@@ -56,7 +57,6 @@ section {
   text-align: center;
 }
 
-
 /* Hero Section */
 .hero-section {
   display: flex;
@@ -82,7 +82,6 @@ section {
   max-width: 800px;
   text-align: center;
 }
-
 
 .hero-section h1 {
   font-size: 3.5rem;
@@ -146,10 +145,9 @@ section {
   left: 100%;
 }
 
-
 /* How It Works Section */
 .how-it-works {
-  background-color: var(--surface-color);
+  background-color: var(--darker-bg);
   position: relative;
   z-index: 1;
 }
@@ -196,7 +194,7 @@ section {
 /* Upload Section */
 .upload-section {
   padding: 100px 24px;
-  background-color: var(--background-color);
+  background-color: var(--darkest-bg);
   position: relative;
 }
 
@@ -451,7 +449,7 @@ section {
 /* Rating Component */
 .rating-popup {
   margin-top: 25px;
-  background-color: #1E1E1E;
+  background-color: var(--darker-bg);
   padding: 16px 20px;
   border-radius: 4px;
   position: relative;
@@ -536,7 +534,7 @@ section {
 
 /* Call to Action Section */
 .cta-section {
-  background-color: var(--surface-color);
+  background-color: var(--darker-bg);
   position: relative;
   overflow: hidden;
 }

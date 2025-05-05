@@ -195,8 +195,6 @@ p {
   gap: 20px;
 }
 
-
-
 /* Footer */
 .footer {
   background-color: var(--secondary-bg);
@@ -211,82 +209,25 @@ p {
   font-size: 0.9rem;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  .nav-list {
-    gap: 15px;
-  }
-
-
-}
-
-
-.profile {
-  color: black;
-  padding: 20px 40px;
+/* Buttons (assuming part of global CSS) */
+.button-primary {
   background-color: #fff;
   border: none;
   border-radius: 8px;
   margin-bottom: 15px;
-  width: 120%;
-  max-width: 600px;
-  font-size: 1.2em;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
+  color: #000;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
-.profile div {
-  margin: 15px 0;
-}
-
-.profile label {
-  font-weight: bold;
-  display: block;
-}
-
-.profile a {
-  display: block;
-  font-weight: normal;
-}
-
-.profile input,
-.profile select {
-    background-color: white;
-    color: black;
-    margin-bottom: 15px; /* Space out inputs */
-    padding: 8px;        /* Add padding inside the input box */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 4px;  /* Rounded corners */
-    font-size: 16px;     /* Adjust font size */
-    width: 100%;         /* Make inputs full-width */
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-.edit-button {
-  padding: 2px;
-  width: 50px;
-  font-size: 0.9rem;
+.button-secondary {
+  background-color: white;
   color: black;
+  margin-bottom: 15px; /* Space out inputs */
+  padding: 8px;        /* Add padding inside the input box */
+}
+
+.button-secondary:hover {
   background-color: white;
   border: 2px solid black;
   border-radius: 4px;
@@ -299,17 +240,14 @@ p {
   transform: scale(1.05);
 }
 
-/* Logout Button Styling */
+/* Logout Button (if applicable) */
 .logout-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-style: bold;
-  color: white;
   background-color: #007bff; /* Blue */
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 10px 20px;
+  color: white;
 }
 
 .logout-button:hover {

@@ -47,7 +47,7 @@
   transition: all 0.3s ease;
   box-shadow: 0 10px 20px rgba(58, 110, 255, 0.3);
   text-transform: uppercase;
-  letter-spacing: 1.5px; /* Increased letter spacing for more squared appearance */
+  letter-spacing: 1.5px; /* Increased letter spacing for more squared appearance  */
   position: relative;
   overflow: hidden;
 }
@@ -60,7 +60,6 @@
   width: 100%;
   height: 100%;
   font-family: var(--font-secondary);
-
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: all 0.6s;
 }

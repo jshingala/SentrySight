@@ -1,3 +1,4 @@
+/* Light Mode Styles */
 .light-mode {
   background: white;
   color: black;
@@ -13,6 +14,7 @@
   color: white;
 }
 
+/* Toggle Button Styles */
 .toggle-btn {
   cursor: pointer;
   background: rgb(41, 41, 41);
@@ -20,7 +22,7 @@
   border-radius: 5px;
   color: white;
   font-size: 14px;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
 
 .toggle-btn:hover {
@@ -32,47 +34,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1A1A1A; /* Dark background */
+  background-color: #0c0d1a !important;
   color: #FFFFFF;
-  padding: 12px 20px;
+  padding: 15px 24px;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Logo Styles */
 .logo-link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  transition: transform 0.3s ease, color 0.3s ease; /* Smooth scale and color transition */
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .logo-link h1 {
   font-size: 1.5rem;
   font-weight: 200;
   margin: 0;
-  color: #635bff; /* Purple accent for logo */
-  display: inline-block; /* Ensure scaling works */
+  color: #635bff;
+  display: inline-block;
 }
 
 .logo-link h1:hover {
-  transform: scale(1.1); /* Slightly enlarge the text */
+  transform: scale(1.05);
 }
 
 .logo-image {
-  width: 40px; /* Adjust the size as needed */
+  width: 40px;
   height: 50px;
   margin-right: 10px;
+  object-fit: contain;
 }
 
-.logo h1 {
-  font-size: 1.5rem;
-  font-weight: 200;
-  margin: 0;
-  color: #635bff; /* Purple accent for logo */
-}
-
+/* Navigation Styles */
 .nav-desktop {
   display: flex;
 }
@@ -80,34 +81,57 @@
 .nav-list {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 .nav-item .nav-link {
-  color: #838383;
+  color: #c5c5c5;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
-  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Added text-shadow transition */
-  display: inline-block; /* Ensure scaling works */
+  transition: 
+    transform 0.3s ease, 
+    color 0.3s ease, 
+    text-shadow 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.nav-item .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 50%;
+  background-color: #635bff;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 .nav-item .nav-link:hover {
-  color: #635bff; /* Purple accent on hover */
-  transform: scale(1.1); /* Slightly enlarge the text */
+  color: #635bff;
+}
+
+.nav-item .nav-link:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .nav-item .nav-link[href="/sign-in"] {
-  color: #ff0000; /* Set text color to red */
-  font-size: 1rem;
-  font-weight: 700; /* Set font weight to bold */
-  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Ensure smooth transition */
+  color: #ff0000;
+  font-weight: 700;
+  transition: 
+    transform 0.3s ease, 
+    color 0.3s ease, 
+    text-shadow 0.3s ease;
 }
 
 .nav-item .nav-link[href="/sign-in"]:hover {
-  transform: scale(1.1); /* Slightly enlarge the text */
-  text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   color: #ff5050;
+  transform: scale(1.05);
 }
 
 /* Hamburger Menu */
@@ -132,7 +156,7 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: #1A1A1A; /* Dark overlay background */
+  background-color: var(--darker-bg) !important;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
@@ -146,7 +170,7 @@
   top: 20px;
   left: 20px;
   font-size: 1.5rem;
-  color: #261aff; /* Purple accent for back arrow */
+  color: #261aff;
   cursor: pointer;
 }
 
@@ -159,22 +183,11 @@
   font-size: 1.5rem;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .nav-desktop {
-    display: none; /* Hide the desktop nav on small screens */
-  }
-
-  .hamburger {
-    display: flex;
-  }
-}
-
-/* Language Switcher (added for easier styling of language buttons) */
+/* Language Switcher */
 .language-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .language-switcher button {
@@ -191,7 +204,6 @@
   transform: scale(1.1);
 }
 
-
 .translation-dropdown {
   display: flex;
   align-items: center;
@@ -204,10 +216,47 @@
   font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
 
 .lang-select:focus {
   outline: none;
   border-color: #635bff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .header {
+    padding: 12px 16px;
+  }
+}
+/* Active link styles */
+.nav-item .nav-link.active {
+  color: white !important;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Special underline for active links */
+.nav-item .nav-link.active::after {
+  content: '';
+  position: absolute;
+  width: 100% !important;
+  height: 2px;
+  bottom: -4px;
+  left: 0 !important;
+  background-color: white !important;
+}
+
+/* Override hover effect for active links */
+.nav-item .nav-link.active:hover {
+  color: white !important;
 }
