@@ -2,9 +2,10 @@
 
 **Members:**
 
-* \[Name Placeholder]
-* \[Name Placeholder]
-* \[Name Placeholder]
+- \[Name Placeholder]
+- \[Name Placeholder]
+- \[Name Placeholder]
+- CJ Pallari
 
 **Client:** Ritchie Martinez
 
@@ -18,15 +19,15 @@
 
 ## Table of Contents
 
-* [Project Overview](#project-overview)
-* [Features](#features)
-* [Prototype Images](#prototype-images)
-* [Testing](#testing)
-* [Deployment](#deployment)
-* [Developer Instructions](#developer-instructions)
-* [Entity-Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-* [Timeline and Milestones](#timeline-and-milestones)
-* [Contact](#contact)
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Prototype Images](#prototype-images)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Developer Instructions](#developer-instructions)
+- [Entity-Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+- [Timeline and Milestones](#timeline-and-milestones)
+- [Contact](#contact)
 
 ## Project Overview
 
@@ -34,51 +35,51 @@ Our web development team was assigned to build a comprehensive website for **Sen
 
 ## Features
 
-* **Responsive Design:** The website is fully responsive and accessible on various devices and screen sizes.
-* **Informative Content:** Detailed pages about the company's services, technology, and benefits.
-* **Interactive Questionnaire:** A survey for businesses to assess their current safety measures and interest in AI integration.
-* **Demo Page:** Allows users to upload images to test the AI firearm detection system.
-* **User Authentication:** Sign-in and login functionality with a user profile page.
-* **Pricing Plans:** Overview of service packages with features and plan selection options.
-* **FAQ Section:** Answers to common questions about the company's services and technology.
+- **Responsive Design:** The website is fully responsive and accessible on various devices and screen sizes.
+- **Informative Content:** Detailed pages about the company's services, technology, and benefits.
+- **Interactive Questionnaire:** A survey for businesses to assess their current safety measures and interest in AI integration.
+- **Demo Page:** Allows users to upload images to test the AI firearm detection system.
+- **User Authentication:** Sign-in and login functionality with a user profile page.
+- **Pricing Plans:** Overview of service packages with features and plan selection options.
+- **FAQ Section:** Answers to common questions about the company's services and technology.
 
 ## Prototype Images
 
-* **Main Page**
+- **Main Page**
 
   <img src="src/assets/readme_assets/main.png" alt="Main" width="1024" height="auto">
 
-* **About Us Page**
+- **About Us Page**
 
   <img src="src/assets/readme_assets/about_us.png" alt="About_Us" width="1024" height="auto">
 
-* **Demo Page**
+- **Demo Page**
 
   <img src="src/assets/readme_assets/demo.png" alt="Demo" width="1024" height="auto">
 
 Product Testing <img src="src/assets/readme_assets/demo.gif" alt="Demo Video" width="1024" height="auto">
 
-* **Questionnaire Page**
+- **Questionnaire Page**
 
   <img src="src/assets/readme_assets/questionnaire.png" alt="Questionnaire" width="1024" height="auto">
 
-* **Pricing Page**
+- **Pricing Page**
 
   <img src="src/assets/readme_assets/pricing.png" alt="Pricing" width="1024" height="auto">
 
-* **Login/Register Page**
+- **Login/Register Page**
 
   <img src="src/assets/readme_assets/login.png" alt="Login" width="1024" height="auto">
 
 <img src="src/assets/readme_assets/register.png" alt="Register" width="1024" height="auto">
 
-* **Profile Page**
+- **Profile Page**
 
   <img src="src/assets/readme_assets/profile.png" alt="Profile" width="1024" height="auto">
 
 ## Testing
 
-*This section will be developed in CSC 191.*
+_This section will be developed in CSC 191._
 
 ## Deployment
 
@@ -112,9 +113,9 @@ pm2 restart sentrysite
 
 ### Verification
 
-* Access via instance IP
-* Test core functionalities
-* Create snapshot before major updates
+- Access via instance IP
+- Test core functionalities
+- Create snapshot before major updates
 
 ### Backup
 
@@ -134,13 +135,13 @@ The frontend is built with React and uses Vite as the build tool. All source cod
 
 **Demo.jsx:** Handles image uploads and displays results from the AI.
 
-**Questionnaire\_Client.jsx:** Displays the business safety questionnaire.
+**Questionnaire_Client.jsx:** Displays the business safety questionnaire.
 
 **Profile.jsx:** Allows users to update their business address.
 
 Component-specific CSS files are used for styling (e.g., Footer.css, Header.css).
 
-*Always pull the latest changes before working on new features.*
+_Always pull the latest changes before working on new features._
 
 ### To run the frontend locally:
 
@@ -159,7 +160,7 @@ LightSail/server.js (for AWS Lightsail deployment)
 
 node database/LightSail/server.js
 
-*Make sure you have your .env file properly configured before starting the server.*
+_Make sure you have your .env file properly configured before starting the server._
 
 ### Running Tests
 
@@ -187,26 +188,26 @@ Our project timeline is managed through JIRA, outlining key milestones:
 
 1. **Client Consultation (Sprint 1):**
 
-   * Met with the client to understand their needs and objectives.
-   * Gathered initial requirements and project scope.
+   - Met with the client to understand their needs and objectives.
+   - Gathered initial requirements and project scope.
 
 2. **Planning and Design (Sprint 2):**
 
-   * Created mockups of the website.
-   * Developed tech stack to be used.
-   * Developed ERD
+   - Created mockups of the website.
+   - Developed tech stack to be used.
+   - Developed ERD
 
 3. **Development Phase (Sprint 3):**
 
-   * Built the frontend using HTML, CSS, and React.
-   * Integrated interactive elements like forms and upload features.
-   * Backend development for user authentication
+   - Built the frontend using HTML, CSS, and React.
+   - Integrated interactive elements like forms and upload features.
+   - Backend development for user authentication
 
 4. **Content Integration (Week 4):**
 
-   * Added content provided by the client, including text and images.
-   * Redesign Website UI with dark theme
-   * Optimize the website to satisfy the remaining requirements
+   - Added content provided by the client, including text and images.
+   - Redesign Website UI with dark theme
+   - Optimize the website to satisfy the remaining requirements
 
 ---
 
