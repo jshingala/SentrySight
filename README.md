@@ -67,7 +67,56 @@ Product Testing
 
 ## Developer Instructions
 
-*This section will be developed in CSC 191.*
+This section is for anyone working on the SentrySight project and includes important notes on how to set up, run, and contribute to the codebase.
+
+### Frontend Overview
+The frontend is built with React and uses Vite as the build tool. All source code is located inside the src/ folder.
+
+#### Key files and folders to know:
+
+**App.jsx:** The main entry point of the app.
+
+**Demo.jsx:** Handles image uploads and displays results from the AI.
+
+**Questionnaire_Client.jsx:** Displays the business safety questionnaire.
+
+**Profile.jsx:** Allows users to update their business address.
+
+Component-specific CSS files are used for styling (e.g., Footer.css, Header.css).
+
+_Always pull the latest changes before working on new features._
+
+### To run the frontend locally:
+
+**npm run dev** :
+This will start the development server at http://localhost:5173.
+
+### Backend Overview
+Backend files are located inside the database/ folder. There are two versions:
+
+EC2/server.js and server.py (for EC2 setup)
+
+LightSail/server.js (for AWS Lightsail deployment)
+
+### To run the backend locally, use:
+
+node database/LightSail/server.js
+
+*Make sure you have your .env file properly configured before starting the server.*
+
+### Running Tests
+Frontend tests are written using Jest and React Testing Library, and are located in src/__tests__/.
+
+### To run tests:
+
+npm run test
+
+#### Follow these conventions:
+Keep your branch names clear (e.g., feature/quiz-form, fix/navbar-bug).
+
+Use consistent naming for your JSX and CSS files.
+
+Use camelCase for variables
 
 ## Entity-Relationship Diagram (ERD)
 
