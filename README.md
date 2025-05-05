@@ -1,9 +1,8 @@
 # Team TechSupport
 
 **Members:**
-
 * David Pham
-- \[Name Placeholder]
+* Jenil Shingala
 - \[Name Placeholder]
 - CJ Pallari
 
