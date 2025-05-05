@@ -2,8 +2,11 @@
 
 **Members:**
 * David Pham
-* Jenil Shingala
+
 - Arju Shrestha
+* Jenil Shingala
+- Adnan Baig
+- \[Name Placeholder]
 - CJ Pallari
 
 
