@@ -2,7 +2,7 @@
 
 **Members:**
 
-* \[Name Placeholder]
+* David Pham
 * \[Name Placeholder]
 * \[Name Placeholder]
 
