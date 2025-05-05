@@ -18,7 +18,7 @@
 
 ## Project Overview
 
-Our web development team was assigned to build a comprehensive website for **SentrySight**, a company specializing in real-time firearm detection using advanced AI technology. The website serves as an informational and interactive platform for businesses interested in enhancing their security measures through AI-driven solutions.
+Our web development team was assigned to build a comprehensive website for **SentrySight**, a company specializing in real-time firearm detection using advanced AI technology. The website serves as an informational and interactive platform for businesses interested in enhancing their security measures through AI-driven solutions. This platform not only highlights SentrySight's technological innovation but also empowers potential clients to explore, understand, and engage with its cutting-edge security solutions.
 
 ## Features
 
