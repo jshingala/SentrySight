@@ -1,17 +1,21 @@
-/* Base styles for the Questionnaire component */
 .Questionnaire {
   background-color: var(--darkest-bg);
   color: #EAEAEA;
   min-height: 100vh;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  width: 100vw;
+  margin: 0;
+  padding: 100px 0 40px 0;
+  overflow-x: hidden;
 }
+
+
 
 .questionnaire-content {
   background-color: var(--darkest-bg);
   padding: 40px;
   border-radius: 8px;
   margin-bottom: 60px;
+  overflow: hidden; /* Contain transitions */
 }
 
 /* Title and subtitle styling */
@@ -29,27 +33,47 @@
   font-size: 1rem;
 }
 
-/* Progress bar styling */
+/* Progress bar styling - Updated */
 .Questionnaire .progress-bar {
-  background-color: rgba(255, 255, 255, 0.1);
-  height: 36px;
-  border-radius: 18px;
+  background-color: #1E1E2D; /* Darker background track */
+  height: 30px; /* Adjusted height to better match image */
+  border-radius: 15px; /* Fully rounded container */
   margin-bottom: 40px;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Keep inner bar contained */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3); /* Subtle inner shadow */
 }
 
 .Questionnaire .progress-step {
-  background: linear-gradient(90deg, #4a7cff 0%, #635bff 100%);
+  background: linear-gradient(90deg, #4a7cff 0%, #635bff 100%); /* Gradient fill */
   color: white;
   height: 100%;
-  border-radius: 18px;
+  border-radius: 15px; /* Match container rounding, overflow hidden clips right side */
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  font-size: 0.9rem;
-  transition: width 0.3s ease;
+  font-size: 0.85rem; /* Slightly adjusted font size */
+  transition: width 0.4s ease-in-out; /* Smooth progress bar animation */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+
+/* Step Content Transition */
+.step-content-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.step-content-wrapper.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-content-wrapper.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 /* Section title */
@@ -186,7 +210,7 @@
   background-color: #3A3A4C;
 }
 
-.Questionnaire .next-button, 
+.Questionnaire .next-button,
 .Questionnaire .submit-button {
   background-color: #FF3366;
   color: white;
@@ -212,11 +236,11 @@
   .questionnaire-content {
     padding: 20px;
   }
-  
+
   .Questionnaire .title {
     font-size: 1.8rem;
   }
-  
+
   .Questionnaire .slider-container .MuiTypography-caption {
     font-size: 0.7rem;
   }
@@ -360,7 +384,7 @@
 /* Main container refinements */
 .Questionnaire .questionnaire-container {
   background-color: transparent;
-  padding: 15px 0;
+  padding: 15px 20px 40px 20px;
 }
 
 /* Title styling */
@@ -409,11 +433,12 @@
 .Questionnaire .companies-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px;
+  border-spacing: 0 20px;
 }
 
 .Questionnaire .company-row {
   background-color: #1a1a1a;
+  border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -499,6 +524,7 @@
   padding: 8px 15px;
   border-radius: 4px;
   font-weight: 500;
+  width: 100px;
 }
 
 .Questionnaire .nav-button:not(:disabled):hover {
@@ -533,42 +559,46 @@
   .Questionnaire .title {
     font-size: 1.8rem;
   }
-  
+
   .Questionnaire .search-sort-container {
     flex-direction: column;
   }
-  
+
   /* Stack the table on mobile */
   .Questionnaire .companies-table,
   .Questionnaire .company-row,
   .Questionnaire .company-row td {
     display: block;
   }
-  
+
   .Questionnaire .company-row {
     margin-bottom: 10px;
     border-radius: 4px;
   }
-  
+
   .Questionnaire .company-row td {
     width: 100%;
     text-align: left;
     padding: 8px 15px;
   }
-  
+
   .Questionnaire .company-row td:first-child {
     border-radius: 4px 4px 0 0;
     padding-bottom: 4px;
   }
-  
+
   .Questionnaire .company-row td:last-child {
     border-radius: 0 0 4px 4px;
     text-align: left;
     padding-top: 4px;
   }
-  
+
   .Questionnaire .company-email-cell {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
+}
+.Questionnaire .progress-bar {
+  background-color: red; /* Temporary bright color */
+  border: 2px solid yellow; /* Very visible border */
 }

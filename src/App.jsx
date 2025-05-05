@@ -6,6 +6,7 @@ import Contact from "./Contact.jsx";
 import ContactUs from './ContactUs'; 
 import AboutUs from "./AboutUs.jsx";
 import Hero from "./Hero.jsx";
+import FP from "./ForgotPassword.jsx";
 import FAQ from "./FAQ.jsx";
 import Features from "./Features.jsx";
 import News from "./News.jsx";
@@ -75,6 +76,7 @@ function AppContent({ userEmail, setUserEmail, isAdmin, setIsAdmin, clientEmail,
                 element={<Profile userEmail={userEmail} setUserEmail={setUserEmail} setIsAdmin={setIsAdmin} />} 
               />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/FP" element={<FP />} />
 
               {/* Route to 404 Page */}
               <Route path="*" element={<NotFound />} />

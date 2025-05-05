@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import './SignIn.css'; // Import the CSS file for styling
+import './SignUp.css'; // Import the CSS file for styling
 
 class Register extends Component {
   constructor(props) {

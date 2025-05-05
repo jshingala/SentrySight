@@ -1,103 +1,316 @@
-/* Main content wrapper to add space below the fixed header */
-.main-content {
-  padding-top: 120px; /* Adjust based on the exact height of your header */
+/* SignIn.css */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
 }
 
-/* Sign-up form styling */
-.sign-up {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--darkest-bg) 0%, var(--darkest-bg) 100%);
   padding: 20px;
-  max-width: 400px;
-  margin: 0 auto; /* Center the form */
-  background-color: #333333; /* Dark gray for contrast */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #FFFFFF; /* White text */
+  position: relative;
+  overflow: hidden;
 }
 
-.sign-up h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #635bff; /* Purple accent */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--dark-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid #444444;
+  position: relative;
+  z-index: 1;
+  /* Removed the float animation */
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: #6366f1;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.login-icon svg {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+
+.login-header h2 {
+  font-size: 2.2rem;
+  color: #8b5cf6;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.login-header p {
+  color: #B3B3B3;
+  font-size: 1rem;
+}
+
+.error-message {
+  background: rgba(255, 77, 77, 0.1);
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  color: #FF4D4D;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
   text-align: center;
 }
 
-/* Label Styling */
-.sign-up-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #B3B3B3; /* Light gray text */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
 }
 
-/* Input Styling */
-.sign-up-form input {
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #8b5cf6;
+}
+
+.input-group input {
   width: 100%;
-  padding: 12px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  font-size: 1rem;
-  border: 1px solid #555;
-  border-radius: 5px;
-  background-color: #2C2C2C; /* Darker gray for input fields */
+  padding: 16px 16px 16px 48px;
+  background: #2b2339;
+  border: 1px solid #555555;
+  border-radius: 12px;
   color: #FFFFFF;
-  transition: border-color 0.3s; /* Smooth transition for focus */
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-.sign-up-form input::placeholder {
-  color: #888; /* Gray placeholder */
+.input-group input::placeholder {
+  color: #888888;
 }
 
-.sign-up-form input:focus {
-  border-color: #635bff; /* Purple border on focus */
+.input-group input:focus {
   outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
 }
 
-/* Button Styling */
-.sign-up-form button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: #FFFFFF;
-  background-color: #635bff; /* Purple button */
-  border: none;
-  border-radius: 8px;
+/* Eye icon styling */
+.eye-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 10px;
+  color: #8b5cf6;
+  transition: color 0.3s ease;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.sign-up-form button:hover {
-  background-color: #ff0000; /* red for hover */
-  box-shadow: 0 4px 10px rgba(90, 12, 144, 0.4); /* Lift effect */
+.eye-icon:hover {
+  color: #FFFFFF;
 }
 
-/* Error Message Styling */
-.error {
-  color: #FF4D4D; /* Red for error messages */
+/* Adjust input padding for password field with eye icon */
+.input-group input[type="password"],
+.input-group input[type="text"] {
+  padding-right: 48px;
+}
+
+/* Forgot password link */
+.forgot-password {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+  margin-bottom: 20px;
+  color: #8b5cf6;
+  text-decoration: none;
   font-size: 0.9rem;
-  font-weight: bold;
-  margin-top: 5px;
+  transition: color 0.3s ease;
 }
 
-/* Responsive Styles */
-@media (max-width: 600px) {
-  .main-content {
-    padding-top: 140px; /* Adjust padding for mobile if the header height differs */
+.forgot-password:hover {
+  color: #6366f1;
+  text-decoration: underline;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 16px;
+  background: #6366f1;
+  border: none;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.submit-button:hover {
+  background: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+.submit-button.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #555555;
+}
+
+.divider span {
+  padding: 0 15px;
+  color: #888888;
+  font-size: 0.9rem;
+}
+
+.register-button {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: 1px solid #6366f1;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.register-button:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: #8b5cf6;
+}
+
+.signup-link {
+  text-align: center;
+  color: #B3B3B3;
+  font-size: 0.9rem;
+}
+
+.signup-link a {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: #6366f1;
+  text-decoration: underline;
+}
+
+.background-decoration {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+/* Additional styles for forgot password */
+.password-hint {
+  color: #888888;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group + .input-group {
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
   }
 
-  .sign-up {
-    padding: 15px;
-  }
-
-  .sign-up h2 {
+  .login-header h2 {
     font-size: 1.8rem;
   }
 
-  .sign-up-form input {
-    padding: 10px;
+  .input-group input {
+    padding: 14px 14px 14px 44px;
   }
 
-  .sign-up-form button {
-    padding: 10px 15px;
-    font-size: 0.9rem;
+  .submit-button {
+    padding: 14px;
   }
 }

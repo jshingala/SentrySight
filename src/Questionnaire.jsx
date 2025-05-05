@@ -16,22 +16,18 @@ import {
   Typography,
 } from '@mui/material';
 
-// Validation schemas for each step
 const validationSchemas = [
-  // Step 1 - Business Information
   Yup.object({
     businessName: Yup.string().required('Business name is required'),
     industryType: Yup.string().required('Industry type is required'),
     numEmployees: Yup.number().required('Number of employees is required'),
     dailyVisitors: Yup.number().required('Daily visitors is required'),
   }),
-  // Step 2 - Current Safety Measures
   Yup.object({
     hasDetectionTech: Yup.string().required('Selection is required'),
     safetyMeasures: Yup.array().min(1, 'Select at least one safety measure'),
     currentEffectiveness: Yup.number().required('Rating is required'),
   }),
-  // Step 3 - AI Firearm Detection Integration
   Yup.object({
     interestInAI: Yup.string().required('Selection is required'),
     priorityLevel: Yup.number().required('Priority level is required'),
@@ -57,8 +53,8 @@ const Questionnaire = ({ userEmail }) => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -67,11 +63,9 @@ const Questionnaire = ({ userEmail }) => {
     });
   };
 
-  // Handle checkbox changes
   const handleCheckboxChange = (e, value) => {
     const { checked } = e.target;
-    
-    // If "None of the above" is selected, clear other selections
+
     if (value === 'None of the above') {
       if (checked) {
         setFormData({
@@ -86,24 +80,22 @@ const Questionnaire = ({ userEmail }) => {
       }
       return;
     }
-    
-    // If any other option is selected, remove "None of the above"
+
     let updatedMeasures = [...formData.safetyMeasures];
-    
+
     if (checked) {
       updatedMeasures = updatedMeasures.filter(measure => measure !== 'None of the above');
       updatedMeasures.push(value);
     } else {
       updatedMeasures = updatedMeasures.filter(measure => measure !== value);
     }
-    
+
     setFormData({
       ...formData,
       safetyMeasures: updatedMeasures,
     });
   };
 
-  // Handle slider changes
   const handleSliderChange = (name) => (e, newValue) => {
     setFormData({
       ...formData,
@@ -111,7 +103,6 @@ const Questionnaire = ({ userEmail }) => {
     });
   };
 
-  // Validate the current step
   const validateStep = async () => {
     try {
       await validationSchemas[activeStep].validate(formData, { abortEarly: false });
@@ -127,26 +118,33 @@ const Questionnaire = ({ userEmail }) => {
     }
   };
 
-  // Handle next button click
+  const triggerTransition = (callback) => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+          callback();
+          setIsTransitioning(false);
+      }, 300); // Match CSS transition duration
+  };
+
   const handleNext = async () => {
     const isValid = await validateStep();
-    if (isValid) {
-      setActiveStep(prevStep => prevStep + 1);
+    if (isValid && activeStep < validationSchemas.length - 1) {
+        triggerTransition(() => setActiveStep(prevStep => prevStep + 1));
     }
   };
 
-  // Handle previous button click
   const handlePrevious = () => {
-    setActiveStep(prevStep => prevStep - 1);
+    if (activeStep > 0) {
+        triggerTransition(() => setActiveStep(prevStep => prevStep - 1));
+    }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const isValid = await validateStep();
     if (!isValid) return;
-    
+
     if (!userEmail) {
       alert("Please login to submit your questionnaire");
       return;
@@ -161,9 +159,9 @@ const Questionnaire = ({ userEmail }) => {
           ...formData
         })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.error) {
         alert(data.error);
       } else {
@@ -176,7 +174,6 @@ const Questionnaire = ({ userEmail }) => {
     }
   };
 
-  // Prevent scroll wheel from changing number inputs
   useEffect(() => {
     const numberInputs = document.querySelectorAll('input[type="number"]');
 
@@ -197,7 +194,6 @@ const Questionnaire = ({ userEmail }) => {
     };
   }, []);
 
-  // Form step content
   const getStepContent = () => {
     switch (activeStep) {
       case 0:
@@ -206,7 +202,7 @@ const Questionnaire = ({ userEmail }) => {
             <Typography variant="h6" className="section-title">
               Business Information
             </Typography>
-            
+
             <Box className="form-field">
               <Typography>1. Business Name:</Typography>
               <TextField
@@ -264,7 +260,7 @@ const Questionnaire = ({ userEmail }) => {
             <Typography variant="h6" className="section-title">
               Current Safety Measures
             </Typography>
-            
+
             <Box className="form-field">
               <Typography>5. Do you currently have any firearm detection technology installed?</Typography>
               <RadioGroup
@@ -332,7 +328,7 @@ const Questionnaire = ({ userEmail }) => {
             <Typography variant="h6" className="section-title">
               AI Firearm Detection Integration
             </Typography>
-            
+
             <Box className="form-field">
               <Typography>8. Interested in AI firearm detection with instant law enforcement alerts?</Typography>
               <RadioGroup
@@ -415,6 +411,9 @@ const Questionnaire = ({ userEmail }) => {
     }
   };
 
+  const totalSteps = validationSchemas.length;
+  const progressPercentage = ((activeStep + 1) / totalSteps) * 100;
+
   return (
     <Container maxWidth="md" className="Questionnaire">
       <Box className="questionnaire-content">
@@ -425,17 +424,16 @@ const Questionnaire = ({ userEmail }) => {
           Help us understand your needs to provide the best security solution.
         </Typography>
 
-        {/* Progress bar */}
         <Box className="progress-bar">
-          <Box className={`progress-step ${activeStep >= 0 ? 'active' : ''}`} style={{ width: `${(activeStep + 1) * 33.33}%` }}>
-            Step {activeStep + 1} of 3
+          <Box className="progress-step" style={{ width: `${progressPercentage}%` }}>
+            Step {activeStep + 1} of {totalSteps}
           </Box>
         </Box>
 
         <form onSubmit={handleSubmit}>
-          <Box className="step-content">
-            {getStepContent()}
-          </Box>
+           <Box className={`step-content-wrapper ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
+             {getStepContent()}
+           </Box>
 
           <Box className="buttons-container">
             <Button
@@ -446,8 +444,8 @@ const Questionnaire = ({ userEmail }) => {
             >
               Previous
             </Button>
-            
-            {activeStep === 2 ? (
+
+            {activeStep === totalSteps - 1 ? (
               <Button
                 variant="contained"
                 type="submit"
