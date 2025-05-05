@@ -1,7 +1,7 @@
 import React from 'react';
 import './blog.css';
 
-function Blog() {
+const Blog = () => {
   const posts = [
     { title: "Post 1", summary: "Summary of the first post." },
     { title: "Post 2", summary: "Summary of the second post." },
@@ -10,17 +10,19 @@ function Blog() {
 
   return (
     <section className="blog">
-      <h2>Recent Blog Posts</h2>
-      <ul>
+      <header className="blog-header">
+        <h2>Recent Blog Posts</h2>
+      </header>
+      <div className="blog-posts">
         {posts.map((post, index) => (
-          <li key={index}>
+          <article key={index} className="blog-post">
             <h3>{post.title}</h3>
             <p>{post.summary}</p>
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
     </section>
   );
-}
+};
 
 export default Blog;
