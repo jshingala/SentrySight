@@ -10,7 +10,7 @@
 }
 
 .profile-title {
-  color: #ff6b6b;
+  color: #635bff;
   font-size: 28px;
   margin-bottom: 30px;
   padding-bottom: 15px;
@@ -92,13 +92,13 @@
 
 .profile input:focus,
 .profile select:focus {
-  border-color: #ff6b6b;
+  border-color: #635bff;
   outline: none;
   box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
 }
 
 .edit-button {
-  background-color: #ff6b6b;
+  background-color: #635bff;
   color: white;
   border: none;
   padding: 12px;
@@ -119,11 +119,11 @@
 }
 
 .edit-button:hover {
-  background-color: #ff5252;
+  background-color: #514ad4;
 }
 
 .logout-button {
-  background-color: #ff6b6b;
+  background-color: #635bff;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -141,7 +141,7 @@
 }
 
 .logout-button:hover {
-  background-color: #ff5252;
+  background-color: #514ad4;
 }
 
 /* Media query adjustments */
