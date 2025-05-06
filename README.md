@@ -1,4 +1,17 @@
-# SentrySight Website Development
+
+# Team TechSupport
+
+**Members:**
+* David Pham
+* Arju Shrestha
+* Jenil Shingala
+* Gavin Garcia
+* Huy Dao
+* Taekjin Jung
+* Jagjot Mann
+* Adnan Baig
+* CJ Pallari
+
 
 *Developed by *TechSupport* for AI Firearm Detection Solutions.*
 
