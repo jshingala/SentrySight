@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import "./ContactUs.css";
 
 const ContactUs = () => {
   return (
