@@ -22,7 +22,7 @@ function News() {
       title: "2nd Place in SunStone CSU Startup Launch",
       date: "February 2025",
       description: "SentrySight earned 2nd place in the SunStone CSU Startup Launch competition, receiving funding and mentorship to accelerate our growth.",
-      image: "/src/assets/news-sunstone.jpg"
+      image: "/src/assets/pic3.jpg"
     }
   ];
 
