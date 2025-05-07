@@ -2,242 +2,127 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary-color: #8b5cf6;
-  --primary-gradient: linear-gradient(90deg, #8b5cf6, #6366f1);
-  --dark-bg: #121212;
-  --card-bg: #1a202c;
-  --text-light: #f3f4f6;
-  --text-secondary: #9ca3af;
+  --primary-color: #ed3c64;
+  --dark-bg: #1c1e2a;
+  --darker-bg: #151723;
+  --text-color: #ffffff;
+  --text-secondary: #b0b0b0;
 }
 
-.features {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 80px 20px;
-  background-color: #121212; /* Dark navy background */
-  text-align: center;
+.features-section {
+  background-color: var(--dark-bg);
+  padding: 80px 0;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  width: 100%;
 }
 
-/* Title Styling */
-.features-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 60px;
-  color: var(--primary-color);
-  position: relative;
-  padding-bottom: 15px;
-}
-
-.features-title:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 110px;
-  height: 3px;
-  background: var(--primary-gradient);
-  border-radius: 2px;
-}
-
-/* Carousel Container */
-.carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
+.container {
   max-width: 1200px;
   margin: 0 auto;
-  height: 420px;
+  padding: 0 20px;
 }
 
-/* Card Container */
-.card-container {
-  position: relative;
-  width: 400px;
-  height: 420px;
-  overflow: visible;
+.section-title {
+  font-size: 2.2rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
-/* Feature Card Styling */
-.feature-card {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  height: 420px;
-  background-color: var(--card-bg);
-  border-radius: 15px;
-  padding: 40px 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  top: 0;
-  left: 0;
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.feature-card.active {
-  border-top: 3px solid var(--primary-color);
-  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+.red-divider {
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-color);
+  margin: 0 auto 50px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
   transform: translateY(-5px);
 }
 
-/* Icon Circle */
-.icon-circle {
+.feature-icon-circle {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: var(--primary-gradient);
-  border-radius: 50%;
-  margin-bottom: 25px;
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+  margin: 0 auto 25px;
+  transition: all 0.3s ease;
+}
+
+.feature-icon-circle:hover {
+  box-shadow: 0 0 15px rgba(237, 60, 100, 0.3);
 }
 
 .feature-icon {
-  color: white;
-  font-size: 40px;
+  font-size: 2.5rem;
+  color: var(--text-color);
 }
 
-/* Card Title */
-.card-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-light);
+.feature-item h3 {
+  font-size: 1.3rem;
   margin-bottom: 15px;
-  text-align: center;
+  color: var(--text-color);
 }
 
-/* Title Underline */
-.title-underline {
-  width: 60px;
-  height: 3px;
-  background: var(--primary-gradient);
-  margin-bottom: 15px;
-  border-radius: 1.5px;
-}
-
-/* Card Description */
-.card-description {
+.feature-item p {
   color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.7;
-  font-weight: 400;
-  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-/* Navigation Arrows */
-.nav-arrow {
-  background: var(--primary-gradient);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
-  z-index: 10;
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.nav-arrow:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
-}
-
-.nav-arrow:active {
-  transform: scale(0.95);
-}
-
-.nav-arrow-left {
-  margin-right: 30px;
-}
-
-.nav-arrow-right {
-  margin-left: 30px;
-}
-
-/* Dot Indicators */
-.dot-indicators {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-.indicator-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #4b5563;
-  margin: 0 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.indicator-dot.active {
-  background: var(--primary-gradient);
-  transform: scale(1.2);
-}
-
-.indicator-dot:hover {
-  transform: scale(1.2);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .features-title {
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+@media (max-width: 576px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
   
-  .card-container {
-    width: 320px;
+  .section-title {
+    font-size: 1.8rem;
   }
   
-  .feature-card {
-    width: 320px;
-    padding: 30px 20px;
+  .section-subtitle {
+    font-size: 1rem;
   }
   
-  .nav-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-  
-  .nav-arrow-left {
-    margin-right: 15px;
-  }
-  
-  .nav-arrow-right {
-    margin-left: 15px;
-  }
-  
-  .icon-circle {
-    width: 70px;
-    height: 70px;
+  .feature-icon-circle {
+    width: 80px;
+    height: 80px;
   }
   
   .feature-icon {
-    font-size: 30px;
-  }
-  
-  .card-title {
-    font-size: 1.3rem;
-  }
-  
-  .card-description {
-    font-size: 0.95rem;
+    font-size: 2rem;
   }
 }

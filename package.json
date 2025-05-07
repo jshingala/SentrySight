@@ -53,6 +53,7 @@
     "@vitejs/plugin-react-swc": "^3.7.2",
     "autoprefixer": "10.4.20",
     "babel-jest": "^29.7.0",
+    "lucide-react": "^0.270.0",
     "babel-plugin-transform-vite-meta-env": "^1.0.3",
     "concurrently": "^9.1.0",
     "eslint": "^9.13.0",

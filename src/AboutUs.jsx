@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "./context/TranslationContext";
-import "./AboutUs.css"; // Assuming you have some CSS
+import "./AboutUs.css";
 
 function AboutUs() {
   const { translateText, language } = useTranslation();
@@ -21,9 +21,22 @@ function AboutUs() {
       meetOurTeam: "Meet Our Team",
       teamDescription:
         "Our team is composed of engineers, data scientists, and innovators driven by a commitment to safety and progress. With a collective background in AI, cybersecurity, and community safety, we bring a diverse skill set to every solution we create.",
+      // Team member translations
+      huyName: "Huy Dao",
+      huyTitle: "CTO/Lead AI Engineer",
+      huyBio: "Expert in computer vision and deep learning models.",
+      ritchieName: "Ritchie Martinez",
+      ritchieTitle: "CEO",
+      ritchieBio: "Bridging technology and user needs for seamless security.",
+      gavinName: "Gavin Garcia",
+      gavinTitle: "CMO/Data Analyst",
+      gavinBio: "Ensuring the company stays ahead of the trends.",
+      enriqueName: "Enrique De La Torre",
+      enriqueTitle: "Chief Operating Officer",
+      enriqueBio: "Oversees daily operations, ensuring efficient execution of company strategy and processes.",
       joinUs: "Join Us in Making a Safer Tomorrow",
       joinUsDescription:
-        "Whether you’re looking to secure your business or simply want to learn more about the future of safety technology, we welcome you to connect with us. Together, we can create safer environments for all.",
+        "Whether you're looking to secure your business or simply want to learn more about the future of safety technology, we welcome you to connect with us. Together, we can create safer environments for all.",
       awardsRecognition: "Awards & Recognition",
       award1: "1st Place AI Hackathon",
       award2: "Second Place University Pitch Competition",
@@ -80,6 +93,73 @@ function AboutUs() {
       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5, duration: 1 }}>
         {translatedText.teamDescription}
       </motion.p>
+
+      {/* Team Members Grid - Organized in two rows */}
+      <div className="team-grid">
+        <div className="team-row">
+          {/* Team member 1: Huy Dao */}
+          <motion.div 
+            className="team-member"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.6, duration: 0.8 }}
+          >
+            <div className="member-photo">
+              <img src="/src/assets/huypic.jpg" alt="Huy Dao" />
+            </div>
+            <h4>{translatedText.huyName}</h4>
+            <p className="member-title">{translatedText.huyTitle}</p>
+            <p className="member-bio">{translatedText.huyBio}</p>
+          </motion.div>
+          
+          {/* Team member 2: Ritchie Martinez */}
+          <motion.div 
+            className="team-member"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.7, duration: 0.8 }}
+          >
+            <div className="member-photo">
+              <img src="/src/assets/ritchiepic.jpg" alt="Ritchie Martinez" />
+            </div>
+            <h4>{translatedText.ritchieName}</h4>
+            <p className="member-title">{translatedText.ritchieTitle}</p>
+            <p className="member-bio">{translatedText.ritchieBio}</p>
+          </motion.div>
+        </div>
+        
+        <div className="team-row">
+          {/* Team member 3: Gavin Garcia */}
+          <motion.div 
+            className="team-member"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.8, duration: 0.8 }}
+          >
+            <div className="member-photo">
+              <img src="/src/assets/gavinpic.jpg" alt="Gavin Garcia" />
+            </div>
+            <h4>{translatedText.gavinName}</h4>
+            <p className="member-title">{translatedText.gavinTitle}</p>
+            <p className="member-bio">{translatedText.gavinBio}</p>
+          </motion.div>
+          
+          {/* Team member 4: Enrique De La Torre */}
+          <motion.div 
+            className="team-member"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.9, duration: 0.8 }}
+          >
+            <div className="member-photo">
+              <img src="/src/assets/enriquepic.jpg" alt="Enrique De La Torre" />
+            </div>
+            <h4>{translatedText.enriqueName}</h4>
+            <p className="member-title">{translatedText.enriqueTitle}</p>
+            <p className="member-bio">{translatedText.enriqueBio}</p>
+          </motion.div>
+        </div>
+      </div>
 
       <motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.8, duration: 0.8 }}>
         {translatedText.joinUs}

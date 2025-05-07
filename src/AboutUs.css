@@ -34,7 +34,7 @@ body {
 
 .about-us h2 {
   font-size: 2.5rem;
-  color: #fc0404; /* Purple accent */
+  color: #fc0404; /* Red accent */
   text-align: center;
   margin-bottom: 20px;
 }
@@ -42,7 +42,7 @@ body {
 .about-us p {
   font-size: 1rem;
   color: #B3B3B3; /* Light gray text */
-  text-align: justify;
+  text-align: left;
   margin-bottom: 20px;
 }
 
@@ -53,6 +53,65 @@ body {
   text-transform: uppercase;
   border-bottom: 2px solid #b82727;
   padding-bottom: 5px;
+}
+
+/* Team Grid Section */
+.team-grid {
+  margin: 40px 0;
+}
+
+.team-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.team-member {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.member-photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #b82727;
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member h4 {
+  font-size: 1.4rem;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+}
+
+.member-title {
+  font-size: 1rem;
+  color: #b82727 !important;
+  font-weight: 600;
+  margin-bottom: 10px !important;
+}
+
+.member-bio {
+  font-size: 0.9rem;
+  color: #B3B3B3;
+  margin-bottom: 0 !important;
 }
 
 /* Awards Section */
@@ -123,4 +182,34 @@ body {
   max-width: 500px;
   width: 90%;
   text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .about-us {
+    padding: 25px;
+  }
+  
+  .about-us h2 {
+    font-size: 2rem;
+  }
+  
+  .about-us h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Always maintain a 2x2 grid layout regardless of screen size */
+@media (min-width: 992px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

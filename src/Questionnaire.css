@@ -1,5 +1,5 @@
 .Questionnaire {
-  background-color: var(--darkest-bg);
+  background-color: var(--darker-bg) !important;
   color: #EAEAEA;
   min-height: 100vh;
   width: 100vw;
@@ -11,7 +11,7 @@
 
 
 .questionnaire-content {
-  background-color: var(--darkest-bg);
+  background-color: var(--darkest-bg) !important;
   padding: 40px;
   border-radius: 8px;
   margin-bottom: 60px;
