@@ -27,7 +27,6 @@
 - [Deployment](#deployment)
 - [Developer Instructions](#developer-instructions)
 - [Entity-Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-- [Timeline and Milestones](#timeline-and-milestones)
 - [Contact](#contact)
 
 ## Project Overview
@@ -195,63 +194,6 @@ Use camelCase for variables
 
 <img src="src/assets/readme_assets/ERD.png" alt="Logo" width="1024" height="auto">
 
-## Timeline and Milestones
-
-Our project timeline is managed through JIRA, outlining key milestones.
-Each Sprint was made bi-weekly:
-
-1. **Client Consultation (Sprint 1):**
-
-   - Met with the client to understand their needs and objectives.
-   - Gathered initial requirements and project scope.
-
-2. **Planning and Design (Sprint 2):**
-
-   - Created mockups of the website.
-   - Developed tech stack to be used.
-   - Developed ERD
-
-3. **Development Phase (Sprint 3):**
-
-   - Built the frontend using HTML, CSS, and React.
-   - Integrated interactive elements like forms and upload features.
-   - Backend development for user authentication
-
-4. **Content Integration (Sprint 4):**
-
-   - Added content provided by the client, including text and images.
-   - Redesign Website UI with dark theme
-   - Optimize the website to satisfy the remaining requirements
-
-5. **(Sprint 5):**
-
-   - Updated PDF Generation from Questionnaire submission
-   - Added Light/Dark Theme Toggle
-   - Questionnaire (admin view): Filtering functionality
-   - UI update: Smooth transitions of pages
-
-6. **(Sprint 6):**
-
-   - LightSail server setup and hosting
-   - Added AI image processing functionality
-  
-7. **Security Improvement (Sprint 7):**
-
-   - Implemented hashing for users' password
-   - Added Email verification system for account registration
-   - Improved security measures for AI demo usage
-
-8. **(Sprint 8):**
-
-   - //needs to work
-
-9. **(Sprint 9):**
-
-   - //needs to work
-
-10. **(Sprint 10):**
-
-   - //needs to work
 
 ## Installation and Setup
 
